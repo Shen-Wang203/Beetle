@@ -1,0 +1,983 @@
+INFO:root:[0, 0.18, 137.2, 2, 0.5, 0]
+INFO:root:Scan update starts at: [0, 0.18, 137.2, 2, 0.5, 0]
+INFO:root:Start Tcounts: [-16511, 56699, -46651, -28527, 44258, 14639]
+INFO:root:-44.11862
+INFO:root:Monitor start (loss then pos)
+INFO:root:-44.11862
+INFO:root:-16511
+INFO:root:-44.118415
+INFO:root:-16512
+INFO:root:-44.11821
+INFO:root:-16512
+INFO:root:-44.117599999999996
+INFO:root:-16511
+INFO:root:-44.119605
+INFO:root:-16510
+INFO:root:-44.12222
+INFO:root:-16529
+INFO:root:-44.19381
+INFO:root:-16560
+INFO:root:-45.52512
+INFO:root:-16620
+INFO:root:-46.019575
+INFO:root:-16703
+INFO:root:-46.98166
+INFO:root:-16734
+INFO:root:x scan done: decreasing
+INFO:root:Monitor start (loss then pos)
+INFO:root:-46.98166
+INFO:root:-16703
+INFO:root:-47.9285
+INFO:root:-16701
+INFO:root:-47.84611
+INFO:root:-16696
+INFO:root:-47.75148
+INFO:root:-16689
+INFO:root:-47.684315
+INFO:root:-16669
+INFO:root:-47.32
+INFO:root:-16656
+INFO:root:-47.091125000000005
+INFO:root:-16640
+INFO:root:-46.127115
+INFO:root:-16577
+INFO:root:-45.91038
+INFO:root:-16547
+INFO:root:-45.33537
+INFO:root:-16501
+INFO:root:-44.15248
+INFO:root:-16417
+INFO:root:-43.07524
+INFO:root:-16387
+INFO:root:-42.68983
+INFO:root:-16355
+INFO:root:-42.30442
+INFO:root:-16321
+INFO:root:-41.926829999999995
+INFO:root:-16263
+INFO:root:-40.91589
+INFO:root:-16231
+INFO:root:-40.611414999999994
+INFO:root:-16196
+INFO:root:-40.30694
+INFO:root:-16162
+INFO:root:-39.60053
+INFO:root:-16129
+INFO:root:-38.865995
+INFO:root:-16016
+INFO:root:-36.71236
+INFO:root:-15955
+INFO:root:-36.293195
+INFO:root:-15897
+INFO:root:-35.474275
+INFO:root:-15839
+INFO:root:-34.32877
+INFO:root:-15806
+INFO:root:-34.009585
+INFO:root:-15773
+INFO:root:-33.6904
+INFO:root:-15716
+INFO:root:-33.15157
+INFO:root:-15681
+INFO:root:-32.68343
+INFO:root:-15621
+INFO:root:-32.27085
+INFO:root:-15590
+INFO:root:-31.8594
+INFO:root:-15556
+INFO:root:-31.615165
+INFO:root:-15498
+INFO:root:-29.906480000000002
+INFO:root:-15370
+INFO:root:-29.60334
+INFO:root:-15311
+INFO:root:-29.01784
+INFO:root:-15255
+INFO:root:-28.218125
+INFO:root:-15223
+INFO:root:-27.96033
+INFO:root:-15167
+INFO:root:-27.51795
+INFO:root:-15132
+INFO:root:-27.26388
+INFO:root:-15065
+INFO:root:-26.75115
+INFO:root:-15033
+INFO:root:-26.54807
+INFO:root:-14966
+INFO:root:-26.37928
+INFO:root:-14932
+INFO:root:-26.250855
+INFO:root:-14788
+INFO:root:-26.112000000000002
+INFO:root:-14685
+INFO:root:-26.17204
+INFO:root:-14625
+INFO:root:-26.204425
+INFO:root:-14594
+INFO:root:-26.23681
+INFO:root:-14564
+INFO:root:-26.32269
+INFO:root:-14528
+INFO:root:-26.371065
+INFO:root:-14426
+INFO:root:-26.5726
+INFO:root:-14392
+INFO:root:-26.62457
+INFO:root:-14337
+INFO:root:-27.15924
+INFO:root:-14209
+INFO:root:-27.659465
+INFO:root:-14150
+INFO:root:x scan done: has max
+INFO:root:-26.12
+INFO:root:Monitor start (loss then pos)
+INFO:root:-26.12
+INFO:root:56699
+INFO:root:-26.14987
+INFO:root:56646
+INFO:root:-26.33115
+INFO:root:56629
+INFO:root:-26.38539
+INFO:root:56609
+INFO:root:-26.79929
+INFO:root:56533
+INFO:root:-27.085475000000002
+INFO:root:56475
+INFO:root:-27.25705
+INFO:root:56443
+INFO:root:y scan done: decreasing
+INFO:root:Monitor start (loss then pos)
+INFO:root:-27.25705
+INFO:root:56475
+INFO:root:-27.86104
+INFO:root:56474
+INFO:root:-27.77906
+INFO:root:56477
+INFO:root:-27.77906
+INFO:root:56488
+INFO:root:-27.67131
+INFO:root:56496
+INFO:root:-27.619
+INFO:root:56506
+INFO:root:-27.54003
+INFO:root:56520
+INFO:root:-27.46106
+INFO:root:56546
+INFO:root:-27.052529999999997
+INFO:root:56613
+INFO:root:-26.732415
+INFO:root:56640
+INFO:root:-26.62801
+INFO:root:56675
+INFO:root:-26.41853
+INFO:root:56708
+INFO:root:-26.1865
+INFO:root:56765
+INFO:root:-25.90374
+INFO:root:56818
+INFO:root:-25.55551
+INFO:root:56854
+INFO:root:-25.348550000000003
+INFO:root:56886
+INFO:root:-25.14159
+INFO:root:56923
+INFO:root:-24.68725
+INFO:root:56955
+INFO:root:-24.450474999999997
+INFO:root:56987
+INFO:root:-24.2137
+INFO:root:57020
+INFO:root:-23.74553
+INFO:root:57077
+INFO:root:-22.54961
+INFO:root:57203
+INFO:root:-22.411845
+INFO:root:57240
+INFO:root:-22.185335000000002
+INFO:root:57271
+INFO:root:-22.062379999999997
+INFO:root:57328
+INFO:root:-22.02817
+INFO:root:57384
+INFO:root:-22.06836
+INFO:root:57421
+INFO:root:-22.20516
+INFO:root:57454
+INFO:root:-22.31581
+INFO:root:57486
+INFO:root:-22.42646
+INFO:root:57519
+INFO:root:-22.69993
+INFO:root:57554
+INFO:root:-22.841855
+INFO:root:57586
+INFO:root:-22.98378
+INFO:root:57644
+INFO:root:y scan done: has max
+INFO:root:Scan update ends at: [0.08615, 0.21145, 137.2, 2, 0.5, 0]
+INFO:root:X change: 1723; Y change: 629
+INFO:root:Z optim starts at (pos then loss): [0.08615, 0.21145, 137.2, 2, 0.5, 0]
+INFO:root:-22.05208
+INFO:root:[0.08615, 0.21145, 137.2884, 2, 0.5, 0]
+INFO:root:-21.4214
+INFO:root:[0.08615, 0.21145, 137.3768, 2, 0.5, 0]
+INFO:root:-21.15858
+INFO:root:[0.08615, 0.21145, 137.4652, 2, 0.5, 0]
+INFO:root:-21.6009
+INFO:root:[0.08615, 0.21145, 137.3766, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.08615, 0.21145, 137.3766, 2, 0.5, 0]
+INFO:root:Scan update starts at: [0.08615, 0.21145, 137.3766, 2, 0.5, 0]
+INFO:root:Start Tcounts: [-9844, 57451, -46163, -23999, 45180, 10858]
+INFO:root:-21.0851
+INFO:root:Monitor start (loss then pos)
+INFO:root:-21.0851
+INFO:root:-9844
+INFO:root:-21.11726
+INFO:root:-9838
+INFO:root:-21.10225
+INFO:root:-9832
+INFO:root:-21.08724
+INFO:root:-9815
+INFO:root:-21.04312
+INFO:root:-9800
+INFO:root:-20.92164
+INFO:root:-9758
+INFO:root:-20.815620000000003
+INFO:root:-9737
+INFO:root:-20.76826
+INFO:root:-9714
+INFO:root:-20.74425
+INFO:root:-9689
+INFO:root:-20.82414
+INFO:root:-9641
+INFO:root:-21.43971
+INFO:root:-9554
+INFO:root:-21.724875
+INFO:root:-9514
+INFO:root:x scan done: has max
+INFO:root:-20.77996
+INFO:root:Monitor start (loss then pos)
+INFO:root:-20.77996
+INFO:root:57451
+INFO:root:-20.776175000000002
+INFO:root:57450
+INFO:root:-20.77455
+INFO:root:57457
+INFO:root:-20.73269
+INFO:root:57470
+INFO:root:-20.73269
+INFO:root:57484
+INFO:root:-20.5973
+INFO:root:57499
+INFO:root:-20.48621
+INFO:root:57514
+INFO:root:-20.35541
+INFO:root:57582
+INFO:root:-20.37937
+INFO:root:57634
+INFO:root:-20.47447
+INFO:root:57664
+INFO:root:-20.555185
+INFO:root:57694
+INFO:root:-20.6359
+INFO:root:57724
+INFO:root:-20.84525
+INFO:root:57779
+INFO:root:-21.09304
+INFO:root:57813
+INFO:root:y scan done: has max
+INFO:root:Scan update ends at: [0.09265000000000001, 0.2146, 137.3766, 2, 0.5, 0]
+INFO:root:X change: 130; Y change: 63
+INFO:root:Z optim starts at (pos then loss): [0.09265000000000001, 0.2146, 137.3766, 2, 0.5, 0]
+INFO:root:-20.39401
+INFO:root:[0.09265000000000001, 0.2146, 137.42759999999998, 2, 0.5, 0]
+INFO:root:-20.14796
+INFO:root:[0.09265000000000001, 0.2146, 137.47859999999997, 2, 0.5, 0]
+INFO:root:-20.06362
+INFO:root:[0.09265000000000001, 0.2146, 137.52959999999996, 2, 0.5, 0]
+INFO:root:-20.13401
+INFO:root:[0.09265000000000001, 0.2146, 137.58059999999995, 2, 0.5, 0]
+INFO:root:-20.14598
+INFO:root:[0.09265000000000001, 0.2146, 137.63159999999993, 2, 0.5, 0]
+INFO:root:-20.403930000000003
+INFO:root:[0.09265000000000001, 0.2146, 137.58039999999994, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.09265000000000001, 0.2146, 137.58039999999994, 2, 0.5, 0]
+INFO:root:Scan update starts at: [0.09265000000000001, 0.2146, 137.58039999999994, 2, 0.5, 0]
+INFO:root:Start Tcounts: [-3958, 57657, -43720, -19399, 48130, 5784]
+INFO:root:-20.15266
+INFO:root:Monitor start (loss then pos)
+INFO:root:-20.15266
+INFO:root:-3958
+INFO:root:-20.15475
+INFO:root:-3959
+INFO:root:-20.153039999999997
+INFO:root:-3944
+INFO:root:-20.1451
+INFO:root:-3935
+INFO:root:-20.12899
+INFO:root:-3923
+INFO:root:-20.132315
+INFO:root:-3910
+INFO:root:-20.13564
+INFO:root:-3890
+INFO:root:-20.16461
+INFO:root:-3872
+INFO:root:-20.26714
+INFO:root:-3835
+INFO:root:-20.47437
+INFO:root:-3792
+INFO:root:-21.360765
+INFO:root:-3691
+INFO:root:x scan done: decreasing
+INFO:root:Monitor start (loss then pos)
+INFO:root:-21.360765
+INFO:root:-3792
+INFO:root:-20.955779999999997
+INFO:root:-3826
+INFO:root:-20.730040000000002
+INFO:root:-3850
+INFO:root:-20.5679
+INFO:root:-3867
+INFO:root:-20.48067
+INFO:root:-3887
+INFO:root:-20.31114
+INFO:root:-3909
+INFO:root:-20.24841
+INFO:root:-3932
+INFO:root:-20.24183
+INFO:root:-4020
+INFO:root:-20.3673
+INFO:root:-4083
+INFO:root:-20.695465
+INFO:root:-4118
+INFO:root:-20.89816
+INFO:root:-4174
+INFO:root:-21.74352
+INFO:root:-4232
+INFO:root:x scan done: has max
+INFO:root:-20.14054
+INFO:root:Monitor start (loss then pos)
+INFO:root:-20.14054
+INFO:root:57657
+INFO:root:-20.136760000000002
+INFO:root:57658
+INFO:root:-20.12931
+INFO:root:57674
+INFO:root:-20.01128
+INFO:root:57689
+INFO:root:-19.88787
+INFO:root:57703
+INFO:root:-19.76446
+INFO:root:57718
+INFO:root:-19.49716
+INFO:root:57735
+INFO:root:-19.36096
+INFO:root:57755
+INFO:root:-19.22476
+INFO:root:57777
+INFO:root:-18.98976
+INFO:root:57804
+INFO:root:-18.898155000000003
+INFO:root:57832
+INFO:root:-18.80655
+INFO:root:57880
+INFO:root:-18.630035
+INFO:root:57913
+INFO:root:-18.58204
+INFO:root:57945
+INFO:root:-18.5235
+INFO:root:57979
+INFO:root:-18.534860000000002
+INFO:root:58011
+INFO:root:-18.54622
+INFO:root:58045
+INFO:root:-18.810850000000002
+INFO:root:58158
+INFO:root:-19.544584999999998
+INFO:root:58223
+INFO:root:-20.11296
+INFO:root:58279
+INFO:root:y scan done: has max
+INFO:root:Scan update ends at: [0.09395, 0.229, 137.58039999999994, 2, 0.5, 0]
+INFO:root:X change: 26; Y change: 288
+INFO:root:Z optim starts at (pos then loss): [0.09395, 0.229, 137.58039999999994, 2, 0.5, 0]
+INFO:root:-18.51846
+INFO:root:[0.09395, 0.229, 137.62664999999993, 2, 0.5, 0]
+INFO:root:-17.93418
+INFO:root:[0.09395, 0.229, 137.6728999999999, 2, 0.5, 0]
+INFO:root:-17.401145
+INFO:root:[0.09395, 0.229, 137.7191499999999, 2, 0.5, 0]
+INFO:root:-16.96613
+INFO:root:[0.09395, 0.229, 137.7653999999999, 2, 0.5, 0]
+INFO:root:-16.83825
+INFO:root:[0.09395, 0.229, 137.81164999999987, 2, 0.5, 0]
+INFO:root:-17.44178
+INFO:root:[0.09395, 0.229, 137.76519999999988, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.09395, 0.229, 137.76519999999988, 2, 0.5, 0]
+INFO:root:Scan update starts at: [0.09395, 0.229, 137.76519999999988, 2, 0.5, 0]
+INFO:root:Start Tcounts: [1335, 58074, -41394, -14963, 50923, 1369]
+INFO:root:-16.92924
+INFO:root:Monitor start (loss then pos)
+INFO:root:-16.92924
+INFO:root:1335
+INFO:root:-16.917305
+INFO:root:1334
+INFO:root:-16.9164
+INFO:root:1335
+INFO:root:-16.92049
+INFO:root:1333
+INFO:root:-16.929145
+INFO:root:1306
+INFO:root:-16.9378
+INFO:root:1278
+INFO:root:-17.28656
+INFO:root:1247
+INFO:root:-17.90303
+INFO:root:1210
+INFO:root:x scan done: decreasing
+INFO:root:Monitor start (loss then pos)
+INFO:root:-17.90303
+INFO:root:1247
+INFO:root:-18.07117
+INFO:root:1253
+INFO:root:-17.832055
+INFO:root:1285
+INFO:root:-17.655
+INFO:root:1303
+INFO:root:-17.39663
+INFO:root:1319
+INFO:root:-17.13194
+INFO:root:1338
+INFO:root:-17.027905
+INFO:root:1359
+INFO:root:-16.92387
+INFO:root:1383
+INFO:root:-16.80482
+INFO:root:1409
+INFO:root:-16.7944
+INFO:root:1436
+INFO:root:-16.78398
+INFO:root:1469
+INFO:root:-16.85095
+INFO:root:1507
+INFO:root:-16.933065
+INFO:root:1562
+INFO:root:-17.3504
+INFO:root:1592
+INFO:root:-17.3504
+INFO:root:1624
+INFO:root:-18.01834
+INFO:root:1658
+INFO:root:x scan done: has max
+INFO:root:-16.87207
+INFO:root:Monitor start (loss then pos)
+INFO:root:-16.87207
+INFO:root:58074
+INFO:root:-16.868465
+INFO:root:58079
+INFO:root:-16.86719
+INFO:root:58088
+INFO:root:-16.81144
+INFO:root:58096
+INFO:root:-16.764955
+INFO:root:58106
+INFO:root:-16.71847
+INFO:root:58118
+INFO:root:-16.663800000000002
+INFO:root:58132
+INFO:root:-16.60913
+INFO:root:58148
+INFO:root:-16.47726
+INFO:root:58180
+INFO:root:-16.33437
+INFO:root:58207
+INFO:root:-16.19204
+INFO:root:58230
+INFO:root:-16.19204
+INFO:root:58256
+INFO:root:-16.041735
+INFO:root:58363
+INFO:root:-16.01656
+INFO:root:58403
+INFO:root:-16.37479
+INFO:root:58438
+INFO:root:-17.07569
+INFO:root:58469
+INFO:root:y scan done: has max
+INFO:root:Scan update ends at: [0.099, 0.24345, 137.76519999999988, 2, 0.5, 0]
+INFO:root:X change: 101; Y change: 289
+INFO:root:Z optim starts at (pos then loss): [0.099, 0.24345, 137.76519999999988, 2, 0.5, 0]
+INFO:root:-16.362945
+INFO:root:[0.099, 0.24345, 137.80619999999988, 2, 0.5, 0]
+INFO:root:-15.247605
+INFO:root:[0.099, 0.24345, 137.84719999999987, 2, 0.5, 0]
+INFO:root:-14.18945
+INFO:root:[0.099, 0.24345, 137.88819999999987, 2, 0.5, 0]
+INFO:root:-13.19884
+INFO:root:[0.099, 0.24345, 137.92919999999987, 2, 0.5, 0]
+INFO:root:-12.14105
+INFO:root:[0.099, 0.24345, 137.97019999999986, 2, 0.5, 0]
+INFO:root:-11.657755
+INFO:root:[0.099, 0.24345, 138.01119999999986, 2, 0.5, 0]
+INFO:root:-10.96456
+INFO:root:[0.099, 0.24345, 138.05219999999986, 2, 0.5, 0]
+INFO:root:-13.06337
+INFO:root:[0.099, 0.24345, 138.01099999999985, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.099, 0.24345, 138.01099999999985, 2, 0.5, 0]
+INFO:root:Scan update starts at: [0.099, 0.24345, 138.01099999999985, 2, 0.5, 0]
+INFO:root:Start Tcounts: [8513, 58535, -38336, -9106, 54611, -4665]
+INFO:root:-10.99339
+INFO:root:Monitor start (loss then pos)
+INFO:root:-10.99339
+INFO:root:8513
+INFO:root:-11.06433
+INFO:root:8521
+INFO:root:-11.018885000000001
+INFO:root:8529
+INFO:root:-10.97513
+INFO:root:8538
+INFO:root:-10.91423
+INFO:root:8550
+INFO:root:-10.38419
+INFO:root:8603
+INFO:root:-10.34868
+INFO:root:8647
+INFO:root:-10.64043
+INFO:root:8694
+INFO:root:-12.129100000000001
+INFO:root:8751
+INFO:root:x scan done: has max
+INFO:root:-10.459579999999999
+INFO:root:Monitor start (loss then pos)
+INFO:root:-10.459579999999999
+INFO:root:58535
+INFO:root:-10.44936
+INFO:root:58534
+INFO:root:-10.447675
+INFO:root:58536
+INFO:root:-10.153382
+INFO:root:58575
+INFO:root:-9.860774
+INFO:root:58594
+INFO:root:-9.313673
+INFO:root:58612
+INFO:root:-9.1427745
+INFO:root:58632
+INFO:root:-8.971876
+INFO:root:58671
+INFO:root:-9.002604999999999
+INFO:root:58697
+INFO:root:-9.135673
+INFO:root:58744
+INFO:root:-9.936394
+INFO:root:58773
+INFO:root:y scan done: has max
+INFO:root:Scan update ends at: [0.10350000000000001, 0.2483, 138.01099999999985, 2, 0.5, 0]
+INFO:root:X change: 90; Y change: 97
+INFO:root:Z optim starts at (pos then loss): [0.10350000000000001, 0.2483, 138.01099999999985, 2, 0.5, 0]
+INFO:root:-8.887134
+INFO:root:[0.10350000000000001, 0.2483, 138.03324999999987, 2, 0.5, 0]
+INFO:root:-7.945068
+INFO:root:[0.10350000000000001, 0.2483, 138.05549999999988, 2, 0.5, 0]
+INFO:root:-6.984226
+INFO:root:[0.10350000000000001, 0.2483, 138.0777499999999, 2, 0.5, 0]
+INFO:root:-6.5657685
+INFO:root:[0.10350000000000001, 0.2483, 138.0999999999999, 2, 0.5, 0]
+INFO:root:-6.204276
+INFO:root:[0.10350000000000001, 0.2483, 138.12224999999992, 2, 0.5, 0]
+INFO:root:-8.411686
+INFO:root:[0.10350000000000001, 0.2483, 138.0997999999999, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.10350000000000001, 0.2483, 138.0997999999999, 2, 0.5, 0]
+INFO:root:Scan update starts at: [0.10350000000000001, 0.2483, 138.0997999999999, 2, 0.5, 0]
+INFO:root:Start Tcounts: [11180, 58694, -37277, -6983, 55900, -6871]
+INFO:root:-6.058161
+INFO:root:Monitor start (loss then pos)
+INFO:root:-6.058161
+INFO:root:11180
+INFO:root:-6.088177
+INFO:root:11180
+INFO:root:-6.118193
+INFO:root:11181
+INFO:root:-6.147061
+INFO:root:11190
+INFO:root:-6.034363
+INFO:root:11210
+INFO:root:-5.980517
+INFO:root:11226
+INFO:root:-6.1645155
+INFO:root:11260
+INFO:root:-6.356375
+INFO:root:11295
+INFO:root:x scan done: has max
+INFO:root:-5.989143
+INFO:root:Monitor start (loss then pos)
+INFO:root:-5.989143
+INFO:root:58694
+INFO:root:-5.984603
+INFO:root:58693
+INFO:root:-5.981113499999999
+INFO:root:58695
+INFO:root:-5.980624
+INFO:root:58715
+INFO:root:-5.553686
+INFO:root:58744
+INFO:root:-4.607127
+INFO:root:58763
+INFO:root:-4.492818
+INFO:root:58798
+INFO:root:-4.99138
+INFO:root:58837
+INFO:root:-6.504023
+INFO:root:58865
+INFO:root:y scan done: has max
+INFO:root:Scan update ends at: [0.10500000000000001, 0.25175, 138.0997999999999, 2, 0.5, 0]
+INFO:root:X change: 30; Y change: 69
+INFO:root:Z optim starts at (pos then loss): [0.10500000000000001, 0.25175, 138.0997999999999, 2, 0.5, 0]
+INFO:root:-4.595773
+INFO:root:[0.10500000000000001, 0.25175, 138.11129999999991, 2, 0.5, 0]
+INFO:root:-3.7753255
+INFO:root:[0.10500000000000001, 0.25175, 138.12279999999993, 2, 0.5, 0]
+INFO:root:-3.112246
+INFO:root:[0.10500000000000001, 0.25175, 138.13429999999994, 2, 0.5, 0]
+INFO:root:-2.990197
+INFO:root:[0.10500000000000001, 0.25175, 138.14579999999995, 2, 0.5, 0]
+INFO:root:-2.742734
+INFO:root:[0.10500000000000001, 0.25175, 138.15729999999996, 2, 0.5, 0]
+INFO:root:-4.427837
+INFO:root:[0.10500000000000001, 0.25175, 138.14559999999994, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.10500000000000001, 0.25175, 138.14559999999994, 2, 0.5, 0]
+INFO:root:Scan update starts at: [0.10500000000000001, 0.25175, 138.14559999999994, 2, 0.5, 0]
+INFO:root:Start Tcounts: [12544, 58795, -36712, -5866, 56584, -7994]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-2.477196
+INFO:root:12544
+INFO:root:-2.26819
+INFO:root:12554
+INFO:root:-2.195019
+INFO:root:12564
+INFO:root:-2.16478
+INFO:root:12574
+INFO:root:-2.5954639999999998
+INFO:root:12584
+INFO:root:Over
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-2.168623
+INFO:root:58795
+INFO:root:-1.694986
+INFO:root:58805
+INFO:root:-1.4898310000000001
+INFO:root:58815
+INFO:root:-1.501946
+INFO:root:58825
+INFO:root:Over
+INFO:root:Scan update ends at: [0.10640000000000001, 0.25265, 138.14559999999994, 2, 0.5, 0]
+INFO:root:X change: 28; Y change: 18
+INFO:root:Z optim starts at (pos then loss): [0.10640000000000001, 0.25265, 138.14559999999994, 2, 0.5, 0]
+INFO:root:-1.571136
+INFO:root:[0.10640000000000001, 0.25265, 138.14799999999994, 2, 0.5, 0]
+INFO:root:-1.525602
+INFO:root:[0.10640000000000001, 0.25265, 138.15039999999993, 2, 0.5, 0]
+INFO:root:-1.4583784999999998
+INFO:root:[0.10640000000000001, 0.25265, 138.15279999999993, 2, 0.5, 0]
+INFO:root:-1.43808
+INFO:root:[0.10640000000000001, 0.25265, 138.15519999999992, 2, 0.5, 0]
+INFO:root:-1.485382
+INFO:root:[0.10640000000000001, 0.25265, 138.15259999999992, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.10640000000000001, 0.25265, 138.15259999999992, 2, 0.5, 0]
+INFO:root:Change to Final_adjust
+INFO:root:Scan update starts at: [0.10640000000000001, 0.25265, 138.15259999999992, 2, 0.5, 0]
+INFO:root:Start Tcounts: [12776, 58817, -36649, -5687, 56666, -8159]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-1.309851
+INFO:root:12776
+INFO:root:-1.3186795
+INFO:root:12780
+INFO:root:Change direction
+INFO:root:-1.3015720000000002
+INFO:root:12770
+INFO:root:-1.3288250000000001
+INFO:root:12766
+INFO:root:Over
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-1.263491
+INFO:root:58817
+INFO:root:-1.219123
+INFO:root:58821
+INFO:root:-1.084417
+INFO:root:58825
+INFO:root:-1.012051
+INFO:root:58829
+INFO:root:-0.9904222
+INFO:root:58833
+INFO:root:-0.9918367
+INFO:root:58837
+INFO:root:-1.056167
+INFO:root:58841
+INFO:root:Over
+INFO:root:Scan update ends at: [0.1062, 0.25355, 138.15259999999992, 2, 0.5, 0]
+INFO:root:X change: -4; Y change: 18
+INFO:root:Z optim starts at (pos then loss): [0.1062, 0.25355, 138.15259999999992, 2, 0.5, 0]
+INFO:root:-0.985912
+INFO:root:[0.1062, 0.25355, 138.15409999999991, 2, 0.5, 0]
+INFO:root:-0.9059022999999999
+INFO:root:[0.1062, 0.25355, 138.1555999999999, 2, 0.5, 0]
+INFO:root:-0.8319615
+INFO:root:[0.1062, 0.25355, 138.1570999999999, 2, 0.5, 0]
+INFO:root:-0.7752255
+INFO:root:[0.1062, 0.25355, 138.1585999999999, 2, 0.5, 0]
+INFO:root:-0.731735
+INFO:root:[0.1062, 0.25355, 138.1600999999999, 2, 0.5, 0]
+INFO:root:-0.6693059
+INFO:root:[0.1062, 0.25355, 138.16159999999988, 2, 0.5, 0]
+INFO:root:-0.6498018
+INFO:root:[0.1062, 0.25355, 138.16309999999987, 2, 0.5, 0]
+INFO:root:-0.6360725
+INFO:root:[0.1062, 0.25355, 138.16459999999987, 2, 0.5, 0]
+INFO:root:-0.6304941
+INFO:root:[0.1062, 0.25355, 138.16609999999986, 2, 0.5, 0]
+INFO:root:-0.6407984
+INFO:root:[0.1062, 0.25355, 138.16439999999986, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.1062, 0.25355, 138.16439999999986, 2, 0.5, 0]
+INFO:root:Change to Final_adjust
+INFO:root:Scan update starts at: [0.1062, 0.25355, 138.16439999999986, 2, 0.5, 0]
+INFO:root:Start Tcounts: [13116, 58844, -36492, -5399, 56854, -8448]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.61059195
+INFO:root:13116
+INFO:root:-0.6663822
+INFO:root:13112
+INFO:root:Change direction
+INFO:root:-0.5228321499999999
+INFO:root:13122
+INFO:root:-0.5879896499999999
+INFO:root:13126
+INFO:root:Over
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.5272046
+INFO:root:58844
+INFO:root:-0.454933
+INFO:root:58848
+INFO:root:-0.4144175
+INFO:root:58852
+INFO:root:-0.42565785
+INFO:root:58856
+INFO:root:Over
+INFO:root:Scan update ends at: [0.10640000000000001, 0.25385, 138.16439999999986, 2, 0.5, 0]
+INFO:root:X change: 4; Y change: 6
+INFO:root:Z optim starts at (pos then loss): [0.10640000000000001, 0.25385, 138.16439999999986, 2, 0.5, 0]
+INFO:root:-0.4540147
+INFO:root:[0.10640000000000001, 0.25385, 138.16589999999985, 2, 0.5, 0]
+INFO:root:-0.46768095
+INFO:root:[0.10640000000000001, 0.25385, 138.16479999999984, 2, 0.5, 0]
+INFO:root:-0.4249347
+INFO:root:[0.10640000000000001, 0.25385, 138.16539999999983, 2, 0.5, 0]
+INFO:root:-0.4618149
+INFO:root:[0.10640000000000001, 0.25385, 138.16459999999984, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.10640000000000001, 0.25385, 138.16459999999984, 2, 0.5, 0]
+INFO:root:Change to Final_adjust
+INFO:root:Scan update starts at: [0.10640000000000001, 0.25385, 138.16459999999984, 2, 0.5, 0]
+INFO:root:Start Tcounts: [13126, 58850, -36493, -5388, 56853, -8448]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.42908095
+INFO:root:13126
+INFO:root:-0.44421365
+INFO:root:13130
+INFO:root:Change direction
+INFO:root:-0.48418514999999995
+INFO:root:13120
+INFO:root:Over
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.4119616
+INFO:root:58850
+INFO:root:-0.39950575
+INFO:root:58854
+INFO:root:-0.4168102
+INFO:root:58858
+INFO:root:Over
+INFO:root:Scan update ends at: [0.10645, 0.25395, 138.16459999999984, 2, 0.5, 0]
+INFO:root:X change: 1; Y change: 2
+INFO:root:Z optim starts at (pos then loss): [0.10645, 0.25395, 138.16459999999984, 2, 0.5, 0]
+INFO:root:-0.4280117
+INFO:root:[0.10645, 0.25395, 138.16609999999983, 2, 0.5, 0]
+INFO:root:-0.4174612
+INFO:root:[0.10645, 0.25395, 138.16759999999982, 2, 0.5, 0]
+INFO:root:-0.4134552
+INFO:root:[0.10645, 0.25395, 138.16909999999982, 2, 0.5, 0]
+INFO:root:-0.4209762
+INFO:root:[0.10645, 0.25395, 138.16739999999982, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.10645, 0.25395, 138.16739999999982, 2, 0.5, 0]
+INFO:root:Change to Final_adjust
+INFO:root:Scan update starts at: [0.10645, 0.25395, 138.16739999999982, 2, 0.5, 0]
+INFO:root:Start Tcounts: [13209, 58854, -36458, -5322, 56896, -8519]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3470027
+INFO:root:13209
+INFO:root:-0.3779751
+INFO:root:13205
+INFO:root:Change direction
+INFO:root:-0.3715723
+INFO:root:13215
+INFO:root:-0.4137936
+INFO:root:13219
+INFO:root:Over
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3528436
+INFO:root:58854
+INFO:root:-0.3203347
+INFO:root:58858
+INFO:root:-0.33253679999999997
+INFO:root:58862
+INFO:root:Over
+INFO:root:Scan update ends at: [0.10665000000000001, 0.25405, 138.16739999999982, 2, 0.5, 0]
+INFO:root:X change: 4; Y change: 2
+INFO:root:Z optim starts at (pos then loss): [0.10665000000000001, 0.25405, 138.16739999999982, 2, 0.5, 0]
+INFO:root:-0.3496424
+INFO:root:[0.10665000000000001, 0.25405, 138.1688999999998, 2, 0.5, 0]
+INFO:root:-0.3655772
+INFO:root:[0.10665000000000001, 0.25405, 138.1677999999998, 2, 0.5, 0]
+INFO:root:-0.3124264
+INFO:root:[0.10665000000000001, 0.25405, 138.1683999999998, 2, 0.5, 0]
+INFO:root:-0.3661837
+INFO:root:[0.10665000000000001, 0.25405, 138.1675999999998, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.10665000000000001, 0.25405, 138.1675999999998, 2, 0.5, 0]
+INFO:root:Change to Final_adjust
+INFO:root:Scan update starts at: [0.10665000000000001, 0.25405, 138.1675999999998, 2, 0.5, 0]
+INFO:root:Start Tcounts: [13219, 58856, -36459, -5315, 56895, -8522]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3216055
+INFO:root:13219
+INFO:root:-0.43730945
+INFO:root:13223
+INFO:root:Change direction
+INFO:root:-0.318477
+INFO:root:13213
+INFO:root:-0.3920369
+INFO:root:13209
+INFO:root:Over
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.30708515000000003
+INFO:root:58856
+INFO:root:-0.3014688
+INFO:root:58860
+INFO:root:-0.34055475
+INFO:root:58864
+INFO:root:Over
+INFO:root:Scan update ends at: [0.10645, 0.25415, 138.1675999999998, 2, 0.5, 0]
+INFO:root:X change: -4; Y change: 2
+INFO:root:Z optim starts at (pos then loss): [0.10645, 0.25415, 138.1675999999998, 2, 0.5, 0]
+INFO:root:-0.31671024999999997
+INFO:root:[0.10645, 0.25415, 138.1690999999998, 2, 0.5, 0]
+INFO:root:-0.3225217
+INFO:root:[0.10645, 0.25415, 138.16799999999978, 2, 0.5, 0]
+INFO:root:-0.3105754
+INFO:root:[0.10645, 0.25415, 138.16859999999977, 2, 0.5, 0]
+INFO:root:-0.3228535
+INFO:root:[0.10645, 0.25415, 138.16779999999977, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.10645, 0.25415, 138.16779999999977, 2, 0.5, 0]
+INFO:root:Change to Final_adjust
+INFO:root:Scan update starts at: [0.10645, 0.25415, 138.16779999999977, 2, 0.5, 0]
+INFO:root:Start Tcounts: [13221, 58858, -36453, -5309, 56902, -8525]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3022794
+INFO:root:13221
+INFO:root:-0.3199134
+INFO:root:13217
+INFO:root:Change direction
+INFO:root:-0.3459027
+INFO:root:13227
+INFO:root:Over
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.30284995
+INFO:root:58858
+INFO:root:-0.3087708
+INFO:root:58862
+INFO:root:Change direction
+INFO:root:-0.4332313
+INFO:root:58852
+INFO:root:Over
+INFO:root:Scan update ends at: [0.1065, 0.2542, 138.16779999999977, 2, 0.5, 0]
+INFO:root:X change: 1; Y change: 1
+INFO:root:Z optim starts at (pos then loss): [0.1065, 0.2542, 138.16779999999977, 2, 0.5, 0]
+INFO:root:-0.3015699
+INFO:root:[0.1065, 0.2542, 138.16929999999977, 2, 0.5, 0]
+INFO:root:-0.3044608
+INFO:root:[0.1065, 0.2542, 138.16819999999976, 2, 0.5, 0]
+INFO:root:-0.3088986
+INFO:root:[0.1065, 0.2542, 138.16763999999975, 2, 0.5, 0]
+INFO:root:-0.3112075
+INFO:root:Z step is too small
+INFO:root:Another Try
+INFO:root:[0.1065, 0.2542, 138.1647999999998, 2, 0.5, 0]
+INFO:root:Change to Final_adjust
+INFO:root:Scan update starts at: [0.1065, 0.2542, 138.1647999999998, 2, 0.5, 0]
+INFO:root:Start Tcounts: [13134, 58857, -36493, -5377, 56854, -8446]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3980999
+INFO:root:13134
+INFO:root:-0.5122339
+INFO:root:13138
+INFO:root:Change direction
+INFO:root:-0.4167589
+INFO:root:13128
+INFO:root:-0.4932746
+INFO:root:13124
+INFO:root:Over
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.4016175
+INFO:root:58857
+INFO:root:-0.3979387
+INFO:root:58853
+INFO:root:-0.4610789
+INFO:root:58849
+INFO:root:Over
+INFO:root:Scan update ends at: [0.10629999999999999, 0.2541, 138.1647999999998, 2, 0.5, 0]
+INFO:root:X change: -4; Y change: -2
+INFO:root:Z optim starts at (pos then loss): [0.10629999999999999, 0.2541, 138.1647999999998, 2, 0.5, 0]
+INFO:root:-0.3870733
+INFO:root:[0.10629999999999999, 0.2541, 138.16629999999978, 2, 0.5, 0]
+INFO:root:-0.3372095
+INFO:root:[0.10629999999999999, 0.2541, 138.16779999999977, 2, 0.5, 0]
+INFO:root:-0.31713179999999996
+INFO:root:[0.10629999999999999, 0.2541, 138.16929999999977, 2, 0.5, 0]
+INFO:root:-0.3558183
+INFO:root:[0.10629999999999999, 0.2541, 138.16759999999977, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.10629999999999999, 0.2541, 138.16759999999977, 2, 0.5, 0]
+INFO:root:Change to Final_adjust
+INFO:root:Scan update starts at: [0.10629999999999999, 0.2541, 138.16759999999977, 2, 0.5, 0]
+INFO:root:Start Tcounts: [13212, 58857, -36452, -5314, 56902, -8521]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3249662
+INFO:root:13212
+INFO:root:-0.3692305
+INFO:root:13208
+INFO:root:Change direction
+INFO:root:-0.3198259
+INFO:root:13218
+INFO:root:-0.3689218
+INFO:root:13222
+INFO:root:Over
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3067298
+INFO:root:58857
+INFO:root:-0.3701045
+INFO:root:58853
+INFO:root:Change direction
+INFO:root:-0.3561522
+INFO:root:58863
+INFO:root:-0.4463862
+INFO:root:58867
+INFO:root:Over
+INFO:root:Scan update ends at: [0.1065, 0.25429999999999997, 138.16759999999977, 2, 0.5, 0]
+INFO:root:X change: 4; Y change: 4
+INFO:root:Z optim starts at (pos then loss): [0.1065, 0.25429999999999997, 138.16759999999977, 2, 0.5, 0]
+INFO:root:-0.3005078
+INFO:root:[0.1065, 0.25429999999999997, 138.16909999999976, 2, 0.5, 0]
+INFO:root:-0.295925
+INFO:root:[0.1065, 0.25429999999999997, 138.17059999999975, 2, 0.5, 0]
+INFO:root:-0.2952917
+INFO:root:[0.1065, 0.25429999999999997, 138.17209999999974, 2, 0.5, 0]
+INFO:root:-0.3066396
+INFO:root:[0.1065, 0.25429999999999997, 138.17039999999974, 2, 0.5, 0]
+INFO:root:Z optim ends at: [0.1065, 0.25429999999999997, 138.17039999999974, 2, 0.5, 0]
+INFO:root:Better than criteria
