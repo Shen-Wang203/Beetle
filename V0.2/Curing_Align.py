@@ -12,13 +12,16 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.tolerance = 2 
         self.scanmode = 's'
 
+        self.loss_curing_rec = []
+
     def curing_run(self, P0):   
         print('Curing Active Alignment Start')
         logging.info('Curing Active Alignment Start')    
         start_time = time.time()
 
         while True:
-            self.fetch_loss()            
+            self.fetch_loss()    
+            self.loss_curing_rec.append(self.loss[-1])        
             if self.loss[-1] >= self.loss_criteria:
                 end_time = time.time()
                 if (end_time - start_time) > self.minutes  * 60:

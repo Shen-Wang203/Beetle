@@ -1,9 +1,4 @@
-import time
-
-start_time = time.time()
-print(start_time)
-time.sleep(4)
-
-end_time = time.time()
-
-print(end_time - start_time)
+file3 = open('Curing_loss.txt', 'w+')
+c = [1,2,1,2,4,2]
+for i in range(0,len(c)):
+    file3.writelines(str(c[i]) + '\n')

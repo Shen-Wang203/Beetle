@@ -30,15 +30,18 @@ cure.curing_run(P0)
 
 hppcontrol.disengage_motor()
 hppcontrol.normal_traj_speed()
-file1 = open(r"C:\Users\user\Desktop\Beatle\pos.txt","w+")
-file2 = open(r"C:\Users\user\Desktop\Beatle\loss.txt","w+")
+file1 = open("pos.txt","w+")
+file2 = open("loss.txt","w+")
+file3 = open('Curing_loss.txt', 'w+')
 a = xys.pos_rec[:]
 b = xys.loss_rec[:]
+c = cure.loss_curing_rec[:]
 for i in range(0,len(a)):
     file1.writelines(str(a[i]) + '\n')
 for i in range(0,len(b)):
     file2.writelines(str(b[i]) + '\n')
-    
+for i in range(0, len(c)):
+    file3.writelines(str(c[i]) + '\n')
 
 
 # hppcontrol.slow_traj_speed()
