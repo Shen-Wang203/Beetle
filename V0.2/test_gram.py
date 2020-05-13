@@ -14,4 +14,9 @@ class B(A):
     
     def minus(self):
         self.a -= 5
+        return True
     
+
+ob = B()
+if ob.minus():
+    print('sfe')

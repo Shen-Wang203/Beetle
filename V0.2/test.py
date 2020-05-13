@@ -1,5 +1,3 @@
-# from Pattern_Search import Pattern_Search
-# from Gradient_Search import Gradient_Search
 # import matplotlib.pyplot as plt
 import PowerMeter as PM
 import numpy as np 
@@ -8,14 +6,14 @@ import logging
 from XYscan import XYscan 
 # import HPP_Control_Odrive as control
 import HPP_Control as control
-# import threading
-# import PyQt5
-#from Pattern_SimplexGradient import Pattern_SimplexGradient
+from Curing_Align import Curing_Active_Alignment
+
 
 # test = [-0.401, -0.0518, 139.0434, 0.06, 1.32, 0]
 logging.basicConfig(filename='runlog.log', filemode='w', level=logging.INFO)
 
 xys = XYscan()
+cure = Curing_Active_Alignment()
 hppcontrol = control.HPP_Control()
 hppcontrol.engage_motor()
 hppcontrol.normal_traj_speed()
@@ -26,7 +24,10 @@ xys.set_limit_Z(140)
 xys.set_loss_criteria(-0.35)
 # xys.set_angle_flag(True)
 xys.set_angle_flag(False)
-xys.autoRun()
+P0 = xys.autoRun()
+
+cure.curing_run(P0)
+
 hppcontrol.disengage_motor()
 hppcontrol.normal_traj_speed()
 file1 = open(r"C:\Users\user\Desktop\Beatle\pos.txt","w+")

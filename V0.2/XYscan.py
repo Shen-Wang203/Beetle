@@ -26,6 +26,7 @@ class XYscan:
         self.final_adjust_threshold = -2.0
         self.stepmode_threshold = -4.0
         self.interpmode_threshold = -30.0
+        self.scanmode = 'c'
 
         self.loss = []
         self.pos = []
@@ -65,48 +66,20 @@ class XYscan:
         self.hppcontrol.slow_traj_speed()
         P0 = self.starting_point[:]
         P1 = P0[:]
-        scanmode = 'c'
+        self.scanmode = 'c'
         retry_num = 0
         self.loss = [-60]
         while not self.error_flag:
-            # if <= -30, then continue scan mode
-            if max(self.loss) <= self.interpmode_threshold:
-                pass
-            # if (-30,-4], then interp mode 
-            elif max(self.loss) <= self.stepmode_threshold:
-                # scanmode = 'i'
-                self.Z_amp = 2.5
-                self.tolerance = 2
-            # if (-4,-2], then step mode
-            elif max(self.loss) <= self.final_adjust_threshold:  
-                scanmode = 's'
-                self.Z_amp = 1.5
-                self.tolerance = 2
-            # if (-2,criteria], then final adjust 
-            elif max(self.loss) <= self.loss_criteria:
-                print('Change to Final_adjust')
-                logging.info('Change to Final_adjust')
-                scanmode = 's'
-                self.final_adjust = True
-                self.stepScanCounts = 4   
-                self.Z_amp = 1.2
-                if max(self.loss) > -1.0:
-                    # self.tolerance = 1
-                    pass
-                else:
-                    self.tolerance = 2 
-            # if > criteria, then exit
-            else:
-                print('Better than criteria')
-                logging.info('Better than criteria')
+            # Select mode and parameters as loss
+            if self.mode_select():
                 P_final = P0[:]
                 break
 
             # only continue scan mode can return false
-            P1 = self.scanUpdate(P0, scanmode)
+            P1 = self.scanUpdate(P0, self.scanmode)
             if P1 == False:
                 if max(self.loss) > -10:
-                    scanmode = 's'
+                    self.scanmode = 's'
                     print('XY continuesly scan failed, change to step scan')
                     logging.info('XY continuesly scan failed, change to step scan')
                     self.error_flag = False
@@ -157,13 +130,49 @@ class XYscan:
                         retry_num += 1
                     else:
                         if max(self.loss) < self.loss_criteria:
-                            P_final = self.scanUpdate(P1, scanmode)
+                            P_final = self.scanUpdate(P1, self.scanmode)
                         else:
                             P_final = P1[:]
                         break
 
         self.hppcontrol.normal_traj_speed()
         return P_final
+
+    # return true if meet criteria, otherwise return none
+    def mode_select(self):
+        # if <= -30, then continue scan mode
+        if max(self.loss) <= self.interpmode_threshold:
+            pass
+        # if (-30,-4], then interp mode 
+        elif max(self.loss) <= self.stepmode_threshold:
+            # self.scanmode = 'i'
+            self.Z_amp = 2.5
+            self.tolerance = 2
+        # if (-4,-2], then step mode
+        elif max(self.loss) <= self.final_adjust_threshold:  
+            self.scanmode = 's'
+            self.Z_amp = 1.5
+            self.tolerance = 2
+        # if (-2,criteria], then final adjust 
+        elif max(self.loss) <= self.loss_criteria:
+            print('Change to Final_adjust')
+            logging.info('Change to Final_adjust')
+            self.scanmode = 's'
+            self.final_adjust = True
+            self.stepScanCounts = 4   
+            self.Z_amp = 1.2
+            if max(self.loss) > -1.0:
+                # self.tolerance = 1
+                pass
+            else:
+                self.tolerance = 2 
+        # if > criteria, then exit
+        else:
+            print('Better than criteria')
+            logging.info('Better than criteria')
+            return True
+        
+        return None
 
 
     # need to be T1x or T1y T2y T3y

@@ -1,6 +1,9 @@
-import test_gram as test
+import time
 
-ob = test.B()
-print(ob.a)
-ob.minus()
-print(ob.a)
+start_time = time.time()
+print(start_time)
+time.sleep(4)
+
+end_time = time.time()
+
+print(end_time - start_time)
