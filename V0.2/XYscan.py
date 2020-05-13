@@ -27,6 +27,15 @@ class XYscan:
         self.stepmode_threshold = -4.0
         self.interpmode_threshold = -30.0
 
+        self.loss = []
+        self.pos = []
+        self.loss_rec = []
+        self.pos_rec = []
+        self.current_pos = [0,0,138,0,0,0]    
+        self.pos_ref = [0,0,138,0,0,0]
+        self.x_dir = 1
+        self.y_dir = 1
+
 
     def set_loss_criteria(self, _loss_criteria):
         self.loss_criteria = _loss_criteria
@@ -154,16 +163,8 @@ class XYscan:
                         break
 
         self.hppcontrol.normal_traj_speed()
+        return P_final
 
-
-    loss = []
-    pos = []
-    loss_rec = []
-    pos_rec = []
-    current_pos = [0,0,138,0,0,0]    
-    pos_ref = [0,0,138,0,0,0]
-    x_dir = 1
-    y_dir = 1
 
     # need to be T1x or T1y T2y T3y
     def update_current_pos(self, xy, current_count, ori_count):
