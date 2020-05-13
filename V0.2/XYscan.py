@@ -711,7 +711,8 @@ class XYscan:
                 
                 if success_num:
                     # go back to the best points
-                    P1[2] = P1[2] - 0.002
+                    # give extra value to counter backlash
+                    P1[2] = P1[2] - 0.0002
                     if self.final_adjust:
                         self.hppcontrol.engage_motor()
                     if not self.send_to_hpp(P1):
