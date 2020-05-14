@@ -566,7 +566,7 @@ class XYscan:
             return step_size[4]
 
     # Return P1 after XY scan starting from P0, fixture is at P1, the loss is not updated
-    # mode can be 's' (step) or 'c' (continusly)
+    # mode can be 's' (step) or 'c' (continusly) or 'i' (interpolation)
     # Need fixture to be at P0 location in the begining, fixture will be at P1 in the end.
     # step mode won't return false, only scan mode
     def scanUpdate(self, P0, _mode):

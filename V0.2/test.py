@@ -33,16 +33,19 @@ hppcontrol.normal_traj_speed()
 file1 = open("pos.txt","w+")
 file2 = open("loss.txt","w+")
 file3 = open('Curing_loss.txt', 'w+')
+file4 = open('Curing_pos.txt', 'w+')
 a = xys.pos_rec[:]
 b = xys.loss_rec[:]
 c = cure.loss_curing_rec[:]
+d = cure.pos_curing_rec[:]
 for i in range(0,len(a)):
     file1.writelines(str(a[i]) + '\n')
 for i in range(0,len(b)):
     file2.writelines(str(b[i]) + '\n')
 for i in range(0, len(c)):
     file3.writelines(str(c[i]) + '\n')
-
+for i in range(0, len(d)):
+    file4.writelines(str(d[i]) + '\n')
 
 # hppcontrol.slow_traj_speed()
 # hppcontrol.engage_motor()
