@@ -12,8 +12,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.scanmode = 's'
 
         self.minutes = 3
+        self.step_Z = 0.0005
+        self.z_dir = 1
         self.loss_curing_rec = []
         self.pos_curing_rec = []
+
+    # End: time reach or loss doesn't change
 
     def curing_run(self, P0):   
         print('Curing Active Alignment Starts')
@@ -26,22 +30,80 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.pos_curing_rec.append(P0)
         
         while True:
+            end_time = time.time()
+            if (end_time - start_time) > self.minutes  * 60:
+                logging.info('Reach Time Limit')
+                print('Reach Time Limit')
+                break             
+                       
+            time.sleep(1)
             self.fetch_loss()    
             self.loss_curing_rec.append(self.loss[-1])        
-            if self.loss[-1] >= self.loss_criteria:
-                end_time = time.time()
-                if (end_time - start_time) > self.minutes  * 60:
-                    logging.info('Reach Time Limit')
-                    print('Reach Time Limit')
-                    break
-                continue
-            else:         
+            if self.loss[-1] < self.loss_criteria:
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)       
-                P = self.scanUpdate(P, self.scanmode)[:]
-                # P2 = self.scanUpdate(P1, self.scanmode)   
-                self.pos_curing_rec.append(P)             
-    
+                P1 = self.scanUpdate(P, self.scanmode)[:]
+                P = self.scanUpdate(P1, self.scanmode)[:]  
+                if (max(self.loss) - min(self.loss)) < 0.005:
+                    print('Value doesnt change, end the program')
+                    logging.info('Value doesnt change, end the program')
+                    break
+                self.pos_curing_rec.append(P)                 
+                if  max(self.loss) < self.loss_criteria:
+                    P = self.Z_step(P)[:]
+                        
+              
 
-    def Z_adjust(self, P0):
-        pass
+    def Z_step(self, P0):
+        print('Start Zstep (loss then pos)')
+        logging.info('Start Zstep (loss then pos)')  
+        P1 = P0[:]      
+        self.loss = []        
+        self.pos = []
+        self.fetch_loss()   
+        self.save_loss_pos()
+        loss_o = self.loss[-1]
+
+        trend = 1
+        while True:
+            P1[2] = P1[2] + self.step_Z * self.z_dir
+            
+            self.hppcontrol.engage_motor()
+            if self.send_to_hpp(P1):
+                self.fetch_loss()
+                self.current_pos = P1[:]
+                self.save_loss_pos()
+            else:
+                print('Movement Error')
+                logging.info('Movement Error')
+                self.error_flag = True                
+            self.hppcontrol.disengage_motor()
+
+            bound = self.loss_resolution(loss_o)
+            diff = self.loss[-1] - loss_o
+            if diff <= -bound:
+                # go back to the old position with extra value
+                P1[2] = P1[2] - self.step_Z * self.z_dir - 0.0002 * self.z_dir
+                trend -= 1
+                if trend:
+                    print('Over')
+                    logging.info('Over')
+                    break
+                self.z_dir = -self.z_dir
+                loss_o = self.loss[-1]
+                print('Change direction')
+                logging.info('Change direction')
+            elif diff >= bound:
+                trend = 2
+                loss_o = self.loss[-1]
+            else:
+                trend = 2
+        
+        self.hppcontrol.engage_motor()   
+        if not self.send_to_hpp(P1):
+            print('Movement Error')
+            logging.info('Movement Error')
+            self.error_flag = True
+        self.hppcontrol.disengage_motor()
+        self.current_pos = P1[:]
+        return P1

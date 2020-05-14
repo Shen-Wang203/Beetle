@@ -10,7 +10,6 @@ class XYscan:
     def __init__(self):
         self.scan_radius = 10000  # 10000 counts, 10000*0.05um = 500um, +-500um
         self.starting_point = [0,0,138,0,0,0]
-        # self.step_Z = 0.2
         self.step_Rxy = 0.5
         self.step_Rz = 0
         self.reduction_ratio = 0.5
@@ -330,7 +329,7 @@ class XYscan:
             self.hppcontrol.Tx_send_only(x1, x2, x3, 's')
             while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
                 time.sleep(0.1)
-                pass
+                # pass
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
             self.update_current_pos('x', x1, x1_o)
@@ -369,7 +368,7 @@ class XYscan:
         self.hppcontrol.Tx_send_only(x1, x2, x3, 's')
         while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
             time.sleep(0.1)
-            pass
+            # pass
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
         self.update_current_pos('x', x1, x1_o)
