@@ -11,7 +11,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.tolerance = 2 
         self.scanmode = 's'
 
-        self.minutes = 3
+        self.minutes = 5
         self.step_Z = 0.0005
         self.z_dir = 1
         self.loss_curing_rec = []
@@ -43,14 +43,14 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)       
                 for i in range(0,2):
-                    P = self.scanUpdate(P, self.scanmode)[:]
+                    P = self.scanUpdate(P, self.scanmode)
                     if P == False:
                         print('Value doesnt change, end the program')
                         logging.info('Value doesnt change, end the program')
                         break                                
                 self.pos_curing_rec.append(P)                 
                 if  max(self.loss) < self.loss_criteria:
-                    P = self.Z_step(P)[:]
+                    P = self.Zstep(P)
                     if P == False:
                         print('Value doesnt change in Z, end the program')
                         logging.info('Value doesnt change in Z, end the program')
@@ -58,8 +58,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     self.pos_curing_rec.append(P)                       
                         
               
-
-    def Z_step(self, P0):
+    # cancel z doesn't change
+    # Z direction as minus at first
+    # after spray the glue, do curing initial alignment first
+    # initial alignment: Z backward a little and then xy scan use normal mode, not final_adjust
+    # after initial, then start time recording.
+    def Zstep(self, P0):
         print('Start Zstep (loss then pos)')
         logging.info('Start Zstep (loss then pos)')  
         P1 = P0[:]      

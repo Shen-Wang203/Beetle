@@ -12,11 +12,15 @@ class B(A):
     def __init__(self):
         super().__init__()
     
-    def minus(self):
+    def minus(self, x):
+        y = x[:]
         self.a -= 5
-        return None
+        y[0] = y[0] + self.a
+        return y
     
 
 ob = B()
-if ob.minus():
-    print('sfe')
+x = [1,2,3]
+x = ob.minus(x)[:]
+print(x)
+print(ob.minus(x))
