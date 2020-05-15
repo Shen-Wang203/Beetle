@@ -42,16 +42,20 @@ class Curing_Active_Alignment(XYscan.XYscan):
             if self.loss[-1] < self.loss_criteria:
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)       
-                P1 = self.scanUpdate(P, self.scanmode)[:]
-                P = self.scanUpdate(P1, self.scanmode)[:]  
-                # TODO: scanUpdate if loss doesn't change, return false
-                if (max(self.loss) - min(self.loss)) < 0.005:
-                    print('Value doesnt change, end the program')
-                    logging.info('Value doesnt change, end the program')
-                    break
+                for i in range(0,2):
+                    P = self.scanUpdate(P, self.scanmode)[:]
+                    if P == False:
+                        print('Value doesnt change, end the program')
+                        logging.info('Value doesnt change, end the program')
+                        break                                
                 self.pos_curing_rec.append(P)                 
                 if  max(self.loss) < self.loss_criteria:
                     P = self.Z_step(P)[:]
+                    if P == False:
+                        print('Value doesnt change in Z, end the program')
+                        logging.info('Value doesnt change in Z, end the program')
+                        break     
+                    self.pos_curing_rec.append(P)                       
                         
               
 
@@ -66,6 +70,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         loss_o = self.loss[-1]
 
         trend = 1
+        same_count = 0
         while True:
             P1[2] = P1[2] + self.step_Z * self.z_dir
             
@@ -95,11 +100,16 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 loss_o = self.loss[-1]
                 print('Change direction')
                 logging.info('Change direction')
+                same_count = 0
             elif diff >= bound:
                 trend = 2
                 loss_o = self.loss[-1]
+                same_count = 0
             else:
                 trend = 2
+                same_count += 1
+                if same_count >= 3:
+                    return False
         
         self.hppcontrol.engage_motor()   
         if not self.send_to_hpp(P1):

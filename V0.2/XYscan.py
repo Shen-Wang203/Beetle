@@ -319,6 +319,7 @@ class XYscan:
         x3 = x3_o
         loss_o = self.loss[-1]
         trend = 1
+        same_count = 0
         while True:
             # x2 and x3 are in opposite direction as x1
             x1 = x1 - self.stepScanCounts * self.x_dir
@@ -357,12 +358,18 @@ class XYscan:
                 self.x_dir = -self.x_dir    
                 loss_o = self.loss[-1]    
                 print('Change direction')
-                logging.info('Change direction')        
+                logging.info('Change direction')     
+                same_count = 0   
             elif diff >= bound:
                 trend = 2
                 loss_o = self.loss[-1]
+                same_count = 0
             else:
                 trend = 2
+                same_count += 1
+                if same_count >= 3:
+                    return False
+        
         if self.final_adjust:
             self.hppcontrol.engage_motor()
         self.hppcontrol.Tx_send_only(x1, x2, x3, 's')
@@ -395,6 +402,7 @@ class XYscan:
         y3 = y3_o
         loss_o = self.loss[-1]
         trend = 1
+        same_count = 0
         while True:
             y1 = y1 - self.stepScanCounts * self.y_dir
             y2 = y2 - self.stepScanCounts * self.y_dir
@@ -432,12 +440,18 @@ class XYscan:
                 self.y_dir = -self.y_dir    
                 loss_o = self.loss[-1]   
                 print('Change direction')
-                logging.info('Change direction')           
+                logging.info('Change direction') 
+                same_count = 0          
             elif diff >= bound:
                 loss_o = self.loss[-1]
                 trend = 2
+                same_count = 0
             else:
                 trend = 2
+                same_count += 1
+                if same_count >= 3:
+                    return False
+
         if self.final_adjust:
             self.hppcontrol.engage_motor()
         self.hppcontrol.Ty_send_only(y1, y2, y3, 's')
@@ -567,7 +581,9 @@ class XYscan:
     # Return P1 after XY scan starting from P0, fixture is at P1, the loss is not updated
     # mode can be 's' (step) or 'c' (continusly) or 'i' (interpolation)
     # Need fixture to be at P0 location in the begining, fixture will be at P1 in the end.
-    # step mode won't return false, only scan mode
+    # interpolation mode won't return false
+    # return false when 1. scan mode, decrease in both direction;
+    #                   2. step mode, loss doesn't change for several steps
     def scanUpdate(self, P0, _mode):
         print('Scan update starts at: ', P0)
         logging.info('Scan update starts at: ' + str(P0))
@@ -585,10 +601,16 @@ class XYscan:
         if xdelta:
             P1[0] = P1[0] + 50e-6 * xdelta
         else:
-            print('X scan failed')
-            logging.info('X scan failed')
-            self.error_flag = True
-            return False
+            if _mode == 's':
+                print('X scan failed')
+                logging.info('X scan failed')
+                self.error_flag = True
+                return False
+            else:
+                print('X step failed')
+                logging.info('X step failed')
+                self.error_flag = True
+                return False                
         
         if _mode == 's':
             ydelta = self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5])
@@ -599,10 +621,16 @@ class XYscan:
         if ydelta:
             P1[1] = P1[1] + 50e-6 * ydelta
         else:
-            print('Y scan failed')
-            logging.info('Y scan failed')
-            self.error_flag = True
-            return False
+            if _mode == 's':
+                print('Y scan failed')
+                logging.info('Y scan failed')
+                self.error_flag = True
+                return False
+            else:
+                print('Y step failed')
+                logging.info('Y step failed')
+                self.error_flag = True
+                return False                
         print('Scan update ends at: ', P1)
         logging.info('Scan update ends at: ' + str(P1))
         logging.info('X change: '+str(xdelta)+'; '+'Y change: '+str(ydelta))
