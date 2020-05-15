@@ -24,7 +24,7 @@ xys.set_loss_criteria(-0.35)
 xys.set_angle_flag(False)
 P0 = xys.autoRun()
 
-cmd = input('Done?: ')
+cmd = input('Glue Done?: ')
 if cmd == 'y':
     cure.set_loss_criteria(-0.4)
     cure.curing_run(P0)

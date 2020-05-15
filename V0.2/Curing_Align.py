@@ -4,10 +4,7 @@ import XYscan
 
 class Curing_Active_Alignment(XYscan.XYscan):
     def __init__(self):
-        super().__init__()
-        self.final_adjust = True
-        self.stepScanCounts = 4   
-        self.Z_amp = 1.2   
+        super().__init__()  
         self.tolerance = 2 
         self.scanmode = 's'
 
@@ -28,6 +25,14 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.loss_rec.append(0)
         self.pos_rec.append(0)
         self.pos_curing_rec.append(P0)
+        
+        # Alignment after glue
+        P = self.scanUpdate(P, self.scanmode)
+        self.final_adjust = True
+        self.stepScanCounts = 4         
+        while max(self.loss) < self.loss_criteria:
+            P = self.Zstep(P)
+            P = self.scanUpdate(P, self.scanmode)
         
         while True:
             end_time = time.time()
@@ -58,11 +63,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     self.pos_curing_rec.append(P)                       
                         
               
-    # cancel z doesn't change
-    # Z direction as minus at first
-    # after spray the glue, do curing initial alignment first
-    # initial alignment: Z backward a little and then xy scan use normal mode, not final_adjust
-    # after initial, then start time recording.
     def Zstep(self, P0):
         print('Start Zstep (loss then pos)')
         logging.info('Start Zstep (loss then pos)')  
@@ -75,6 +75,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
         trend = 1
         same_count = 0
+        self.z_dir = -1
         while True:
             P1[2] = P1[2] + self.step_Z * self.z_dir
             
@@ -112,7 +113,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             else:
                 trend = 2
                 same_count += 1
-                if same_count >= 3:
+                if same_count >= 5:
                     return False
         
         self.hppcontrol.engage_motor()   
