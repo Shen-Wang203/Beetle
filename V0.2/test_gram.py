@@ -14,7 +14,7 @@ class B(A):
     
     def minus(self):
         self.a -= 5
-        return True
+        return None
     
 
 ob = B()

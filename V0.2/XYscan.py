@@ -77,15 +77,19 @@ class XYscan:
             # only continue scan mode can return false
             P1 = self.scanUpdate(P0, self.scanmode)
             if P1 == False:
-                if max(self.loss) > -10:
+                if max(self.loss) > -10 and self.scanmode == 'c':
                     self.scanmode = 's'
                     print('XY continuesly scan failed, change to step scan')
                     logging.info('XY continuesly scan failed, change to step scan')
                     self.error_flag = False
                     continue
                 else:
-                    print('XY continuesly scan failed')
-                    logging.info('XY continuesly scan failed')
+                    if self.scanmode == 'c':
+                        print('XY continuesly scan failed')
+                        logging.info('XY continuesly scan failed')
+                    else:
+                        print('XY step scan failed')
+                        logging.info('XY step scan failed')                        
                     P_final = P0[:]
                     break
             
