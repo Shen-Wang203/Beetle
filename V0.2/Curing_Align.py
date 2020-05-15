@@ -44,6 +44,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.loss_curing_rec.append(99)       
                 P1 = self.scanUpdate(P, self.scanmode)[:]
                 P = self.scanUpdate(P1, self.scanmode)[:]  
+                # TODO: scanUpdate if loss doesn't change, return false
                 if (max(self.loss) - min(self.loss)) < 0.005:
                     print('Value doesnt change, end the program')
                     logging.info('Value doesnt change, end the program')
@@ -70,6 +71,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
             
             self.hppcontrol.engage_motor()
             if self.send_to_hpp(P1):
+                self.hppcontrol.disengage_motor()
+                time.sleep(0.2)
                 self.fetch_loss()
                 self.current_pos = P1[:]
                 self.save_loss_pos()
@@ -77,8 +80,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 print('Movement Error')
                 logging.info('Movement Error')
                 self.error_flag = True                
-            self.hppcontrol.disengage_motor()
-
+            
             bound = self.loss_resolution(loss_o)
             diff = self.loss[-1] - loss_o
             if diff <= -bound:
@@ -105,5 +107,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
             logging.info('Movement Error')
             self.error_flag = True
         self.hppcontrol.disengage_motor()
+        time.sleep(0.2)
         self.current_pos = P1[:]
         return P1
