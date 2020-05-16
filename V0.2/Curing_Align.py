@@ -8,9 +8,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.tolerance = 2 
         self.scanmode = 's'
 
-        self.minutes = 5
+        self.minutes = 7
         self.step_Z = 0.0005
-        self.z_dir = 1
+        self.z_dir = -1
         self.loss_curing_rec = []
         self.pos_curing_rec = []
 
@@ -19,21 +19,38 @@ class Curing_Active_Alignment(XYscan.XYscan):
     def curing_run(self, P0):   
         print('Curing Active Alignment Starts')
         logging.info('Curing Active Alignment Starts')    
-        start_time = time.time()
         P = P0[:]
         # record append number 0 as an indicate to enter curing
         self.loss_rec.append(0)
         self.pos_rec.append(0)
         self.pos_curing_rec.append(P0)
         
+        while True:
+            cmd = input('Glue ready?: ')
+            if cmd == 'y':
+                break
         # Alignment after glue
-        P = self.scanUpdate(P, self.scanmode)
-        self.final_adjust = True
-        self.stepScanCounts = 4         
-        while max(self.loss) < self.loss_criteria:
-            P = self.Zstep(P)
+        self.fetch_loss()
+        if self.loss[-1] <= self.loss_criteria:
+            self.hppcontrol.engage_motor()
             P = self.scanUpdate(P, self.scanmode)
-        
+            self.hppcontrol.disengage_motor()
+            self.final_adjust = True
+            self.stepScanCounts = 4         
+            while max(self.loss) < self.loss_criteria:
+                P = self.Zstep(P)
+                P = self.scanUpdate(P, self.scanmode)
+        else:
+            self.final_adjust = True
+            self.stepScanCounts = 4
+
+
+        while True:
+            cmd = input('Open the heater: ')
+            if cmd == 'y':
+                break
+
+        start_time = time.time()
         while True:
             end_time = time.time()
             if (end_time - start_time) > self.minutes  * 60:
@@ -47,19 +64,26 @@ class Curing_Active_Alignment(XYscan.XYscan):
             if self.loss[-1] < self.loss_criteria:
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)       
-                for i in range(0,2):
-                    P = self.scanUpdate(P, self.scanmode)
-                    if P == False:
-                        print('Value doesnt change, end the program')
-                        logging.info('Value doesnt change, end the program')
-                        break                                
+                P1 = self.scanUpdate(P, self.scanmode)
+                if P1 == False:
+                    print('Value doesnt change, end the program')
+                    logging.info('Value doesnt change, end the program')
+                    cmd = input('Want to continue?: ')
+                    if cmd == 'n':
+                        break       
+                else:
+                    P = P1[:]                         
                 self.pos_curing_rec.append(P)                 
                 if  max(self.loss) < self.loss_criteria:
-                    P = self.Zstep(P)
-                    if P == False:
+                    P1 = self.Zstep(P)
+                    if P1 == False:
                         print('Value doesnt change in Z, end the program')
                         logging.info('Value doesnt change in Z, end the program')
-                        break     
+                        cmd = input('Want to continue?: ')
+                        if cmd == 'n':
+                            break   
+                    else:
+                        P = P1[:]  
                     self.pos_curing_rec.append(P)                       
                         
               

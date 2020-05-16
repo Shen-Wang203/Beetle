@@ -371,7 +371,7 @@ class XYscan:
             else:
                 trend = 2
                 same_count += 1
-                if same_count >= 3:
+                if same_count >= 5:
                     return False
         
         if self.final_adjust:
@@ -453,7 +453,7 @@ class XYscan:
             else:
                 trend = 2
                 same_count += 1
-                if same_count >= 3:
+                if same_count >= 5:
                     return False
 
         if self.final_adjust:
