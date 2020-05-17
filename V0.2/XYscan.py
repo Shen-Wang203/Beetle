@@ -24,8 +24,9 @@ class XYscan:
         self.loss_criteria = -0.35
         self.final_adjust_threshold = -2.0
         self.stepmode_threshold = -4.0
-        self.interpmode_threshold = -30.0
+        self.interpmode_threshold = -12.0
         self.scanmode = 'c'
+        self.zmode = 'aggressive'
 
         self.loss = []
         self.pos = []
@@ -143,16 +144,19 @@ class XYscan:
 
     # return true if meet criteria, otherwise return none
     def mode_select(self):
-        # if <= -30, then continue scan mode
+        # if <= -12, then continue scan mode
         if max(self.loss) <= self.interpmode_threshold:
-            pass
-        # if (-30,-4], then interp mode 
+            self.Z_amp = 4
+            self.zmode = 'aggressive'
+        # if (-12,-4], then interp(or still continue scan) mode 
         elif max(self.loss) <= self.stepmode_threshold:
             # self.scanmode = 'i'
+            self.zmode = 'normal'
             self.Z_amp = 2.5
             self.tolerance = 2
         # if (-4,-2], then step mode
         elif max(self.loss) <= self.final_adjust_threshold:  
+            self.zmode = 'normal'
             self.scanmode = 's'
             self.Z_amp = 1.5
             self.tolerance = 2
@@ -160,6 +164,7 @@ class XYscan:
         elif max(self.loss) <= self.loss_criteria:
             print('Change to Final_adjust')
             logging.info('Change to Final_adjust')
+            self.zmode = 'normal'
             self.scanmode = 's'
             self.final_adjust = True
             self.stepScanCounts = 4   
@@ -658,8 +663,10 @@ class XYscan:
     # Starting from P0, change only Z to go to P1, 
     # the fixture will be in P1 in the end, and the fixture needs to be in P0 in the beginning
     def optimZ(self, P0):
-        print('Z optim starts at (pos then loss): ', P0)
-        logging.info('Z optim starts at (pos then loss): ' + str(P0))
+        print('Z optim starts at (pos then loss): ')
+        print(P0)
+        logging.info('Z optim starts at (pos then loss): ')
+        logging.info(P0)
         P1 = P0[:]
         self.loss = []
         self.fetch_loss()
@@ -704,6 +711,14 @@ class XYscan:
                 logging.info('Movement Error')
                 self.error_flag = True
             
+            # aggressive mode: Z goes forward until loss is 1.5 times of the initial value
+            # for instance, loss_o = -15, then until -22.5 dB we stop forwarding Z
+            # The purpose is to forward Z more aggressively to faster the process
+            if self.zmode == 'aggressive':
+                if self.loss[-1] > 1.5 * loss_o:
+                    success_num += 1
+                    continue
+
             bound = self.loss_resolution(loss_o)
             diff = self.loss[-1] - loss_o
             # if fail (smaller), difference should be smaller than -loss_resolution
@@ -722,7 +737,7 @@ class XYscan:
                 
                 # if loss is still high and step size is small enough, we will larger the step to 
                 # jump out of the local minimum
-                if step < step_ref / 12 and self.loss[-1] < -10 and self.larger_Z_flag:
+                if step < step_ref / 12 and max(self.loss) < -15 and self.larger_Z_flag:
                     # A larger step size
                     step = step_ref * 15
                     P1[2] = P1[2] + step

@@ -15,7 +15,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.pos_curing_rec = []
 
     # End: time reach or loss doesn't change
-
+    # Loss_criteria at curing should be 0.5 smaller than alignment, while still 0.5 smaller than spec
+    # This can help guarantee the final loss is within spec
     def curing_run(self, P0):   
         print('Curing Active Alignment Starts')
         logging.info('Curing Active Alignment Starts')    
@@ -31,7 +32,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 break
         # Alignment after glue
         self.fetch_loss()
-        if self.loss[-1] <= self.loss_criteria:
+        # if loss is too low, exit the program
+        if self.loss[-1] < -30:
+            return False
+        elif self.loss[-1] <= self.loss_criteria:
             self.hppcontrol.engage_motor()
             P = self.scanUpdate(P, self.scanmode)
             self.hppcontrol.disengage_motor()
@@ -58,21 +62,26 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 print('Reach Time Limit')
                 break             
                        
-            time.sleep(1)
+            time.sleep(0.5)
             self.fetch_loss()    
             self.loss_curing_rec.append(self.loss[-1])        
             if self.loss[-1] < self.loss_criteria:
                 # as an indicate that we are adjusting the fixture
-                self.loss_curing_rec.append(99)       
-                P1 = self.scanUpdate(P, self.scanmode)
-                if P1 == False:
-                    print('Value doesnt change, end the program')
-                    logging.info('Value doesnt change, end the program')
-                    cmd = input('Want to continue?: ')
-                    if cmd == 'n':
-                        break       
-                else:
-                    P = P1[:]                         
+                self.loss_curing_rec.append(99)    
+                # If fail, run the second time, if fail again, exit   
+                for i in range(0,2):
+                    P1 = self.scanUpdate(P, self.scanmode)
+                    if P1 == False:
+                        print('XY Value doesnt change')
+                        logging.info('XY Value doesnt change')
+                        if i:
+                            print('End program')
+                            logging.info('End program')
+                            import sys 
+                            sys.exit()
+                    else:
+                        P = P1[:]    
+                        break                     
                 self.pos_curing_rec.append(P)                 
                 if  max(self.loss) < self.loss_criteria:
                     P1 = self.Zstep(P)
