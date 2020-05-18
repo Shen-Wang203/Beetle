@@ -146,8 +146,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
             else:
                 trend = 2
                 same_count += 1
-                if same_count >= 4:
-                    return False
+                if same_count >= 5:
+                    P1[2] = P1[2] - self.step_Z * self.z_dir * 5 - 0.0002 * self.z_dir
+                    break
         
         self.hppcontrol.engage_motor()   
         if not self.send_to_hpp(P1):
@@ -157,4 +158,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.hppcontrol.disengage_motor()
         time.sleep(0.2)
         self.current_pos = P1[:]
+        if same_count >= 5:
+            return False
         return P1

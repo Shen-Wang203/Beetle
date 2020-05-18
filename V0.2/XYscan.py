@@ -376,8 +376,11 @@ class XYscan:
             else:
                 trend = 2
                 same_count += 1
-                if same_count >= 3:
-                    return False
+                if same_count >= 5:
+                    x1 = x1 + self.stepScanCounts * self.x_dir * 5
+                    x2 = x2 - self.stepScanCounts * self.x_dir * 5
+                    x3 = x3 - self.stepScanCounts * self.x_dir * 5
+                    break
         
         if self.final_adjust:
             self.hppcontrol.engage_motor()
@@ -388,6 +391,8 @@ class XYscan:
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
         self.update_current_pos('x', x1, x1_o)
+        if same_count >= 5:
+            return False
         if x1 - x1_o:
             return x1 - x1_o
         else:
@@ -458,8 +463,11 @@ class XYscan:
             else:
                 trend = 2
                 same_count += 1
-                if same_count >= 3:
-                    return False
+                if same_count >= 5:
+                    y1 = y1 + self.stepScanCounts * self.y_dir * 5
+                    y2 = y2 + self.stepScanCounts * self.y_dir * 5
+                    y3 = y3 + self.stepScanCounts * self.y_dir * 5
+                    break              
 
         if self.final_adjust:
             self.hppcontrol.engage_motor()
@@ -470,6 +478,8 @@ class XYscan:
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
         self.update_current_pos('y', y1, y1_o)
+        if same_count >= 5:
+            return False
         if y1 - y1_o:
             return y1 - y1_o
         else:
@@ -649,7 +659,7 @@ class XYscan:
     def loss_resolution(self, _loss_ref):
         x = abs(_loss_ref)
         if x < 0.7:
-            bound = 0.003
+            bound = 0.002
         elif x < 1.5:
             bound = 0.005
         elif x > 50:

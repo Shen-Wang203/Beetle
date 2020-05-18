@@ -23,8 +23,8 @@ xys.set_loss_criteria(-0.4)
 xys.set_angle_flag(False)
 P0 = xys.autoRun()
 
-cmd = input('Curing Loss Criteria: ')
-cure.set_loss_criteria(float(cmd))
+
+cure.set_loss_criteria(max(xys.loss_rec)-0.03)
 cure.curing_run(P0)
 
 hppcontrol.disengage_motor()
