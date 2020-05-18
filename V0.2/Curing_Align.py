@@ -146,7 +146,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             else:
                 trend = 2
                 same_count += 1
-                if same_count >= 5:
+                if same_count >= 4:
                     return False
         
         self.hppcontrol.engage_motor()   

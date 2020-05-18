@@ -8,8 +8,6 @@ from XYscan import XYscan
 import HPP_Control as control
 from Curing_Align import Curing_Active_Alignment
 
-
-# test = [-0.401, -0.0518, 139.0434, 0.06, 1.32, 0]
 logging.basicConfig(filename='runlog.log', filemode='w', level=logging.INFO)
 
 xys = XYscan()
@@ -17,15 +15,16 @@ cure = Curing_Active_Alignment()
 hppcontrol = control.HPP_Control()
 hppcontrol.engage_motor()
 hppcontrol.normal_traj_speed()
-# xys.set_starting_point([-0.2, 0.4, 138, 2, 0.5, 0])
-xys.set_starting_point([-0.2116, 0.34855, 138.35806, 2, 0.5, 0])
+xys.set_starting_point([-0.26, 0.38, 138, 2, 0.5, 0])
+# xys.set_starting_point([-0.2116, 0.34855, 138.35806, 2, 0.5, 0])
 xys.set_limit_Z(145)
-xys.set_loss_criteria(-0.45)
+xys.set_loss_criteria(-0.4)
 # xys.set_angle_flag(True)
 xys.set_angle_flag(False)
 P0 = xys.autoRun()
 
-cure.set_loss_criteria(-0.5)
+cmd = input('Curing Loss Criteria: ')
+cure.set_loss_criteria(float(cmd))
 cure.curing_run(P0)
 
 hppcontrol.disengage_motor()

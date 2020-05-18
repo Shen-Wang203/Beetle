@@ -26,7 +26,7 @@ class XYscan:
         self.stepmode_threshold = -4.0
         self.interpmode_threshold = -12.0
         self.scanmode = 'c'
-        self.zmode = 'aggressive'
+        self.zmode = 'normal'
 
         self.loss = []
         self.pos = []
@@ -376,7 +376,7 @@ class XYscan:
             else:
                 trend = 2
                 same_count += 1
-                if same_count >= 5:
+                if same_count >= 3:
                     return False
         
         if self.final_adjust:
@@ -458,7 +458,7 @@ class XYscan:
             else:
                 trend = 2
                 same_count += 1
-                if same_count >= 5:
+                if same_count >= 3:
                     return False
 
         if self.final_adjust:
@@ -649,7 +649,7 @@ class XYscan:
     def loss_resolution(self, _loss_ref):
         x = abs(_loss_ref)
         if x < 0.7:
-            bound = 0.002
+            bound = 0.003
         elif x < 1.5:
             bound = 0.005
         elif x > 50:
