@@ -20,7 +20,7 @@ class XYscan:
         self.stepScanCounts = 10
         self.angle_flag = False
         self.final_adjust = False
-        self.larger_Z_flag = True
+        self.larger_Z_flag = False
         self.loss_criteria = -0.35
         self.final_adjust_threshold = -2.0
         self.stepmode_threshold = -4.0
@@ -72,7 +72,7 @@ class XYscan:
         self.loss = [-60]
         while not self.error_flag:
             # Select mode and parameters as loss
-            if self.mode_select():
+            if self.mode_select(max(self.loss)):
                 P_final = P0[:]
                 break
 
@@ -102,9 +102,8 @@ class XYscan:
                 # # angle flag to determine whether angle are optimized
                 # self.angle_flag = False         
             
-            if max(self.loss) > self.loss_criteria:
-                print('Better than criteria')
-                logging.info('Better than criteria')
+            # Select mode and parameters as loss
+            if self.mode_select(max(self.loss)):
                 P_final = P1[:]
                 break
 
@@ -146,25 +145,25 @@ class XYscan:
         return P_final
 
     # return true if meet criteria, otherwise return none
-    def mode_select(self):
+    def mode_select(self, loss0):
         # if <= -12, then continue scan mode
-        if max(self.loss) <= self.interpmode_threshold:
+        if loss0 <= self.interpmode_threshold:
             self.Z_amp = 4
-            self.zmode = 'aggressive'
+            # self.zmode = 'aggressive'
         # if (-12,-4], then interp(or still continue scan) mode 
-        elif max(self.loss) <= self.stepmode_threshold:
+        elif loss0 <= self.stepmode_threshold:
             # self.scanmode = 'i'
             self.zmode = 'normal'
-            self.Z_amp = 2.5
+            self.Z_amp = 2
             self.tolerance = 2
         # if (-4,-2], then step mode
-        elif max(self.loss) <= self.final_adjust_threshold:  
+        elif loss0 <= self.final_adjust_threshold:  
             self.zmode = 'normal'
             self.scanmode = 's'
             self.Z_amp = 1.5
             self.tolerance = 2
         # if (-2,criteria], then final adjust 
-        elif max(self.loss) <= self.loss_criteria:
+        elif loss0 <= self.loss_criteria:
             print('Change to Final_adjust')
             logging.info('Change to Final_adjust')
             self.zmode = 'normal'
@@ -805,10 +804,11 @@ class XYscan:
     def check_abnormal_loss(self, loss0):
         if loss0 > self.loss_current_max:
             self.loss_current_max = loss0
-        elif loss0 < 2 * self.loss_current_max:
+        elif loss0 < 2.5 * self.loss_current_max or loss0 < -55:
             print('Unexpected High Loss, End Program')
             logging.info('Unexpected High Loss, End Program')
             self.hppcontrol.engage_motor()
+            self.hppcontrol.normal_traj_speed()
             self.send_to_hpp(self.starting_point)
             self.hppcontrol.disengage_motor()
             import sys

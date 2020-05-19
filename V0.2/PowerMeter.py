@@ -33,6 +33,8 @@ def power_read():
     time.sleep(0.01)
     powerRead2 = float(PM.query('READ2:POW?'))
     powerRead = (powerRead + powerRead2) * 0.5
+    while powerRead > 0:
+        powerRead = float(PM.query('READ2:POW?'))    
     print(powerRead)
     logging.info(powerRead)
     return powerRead      
