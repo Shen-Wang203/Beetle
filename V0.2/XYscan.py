@@ -149,7 +149,7 @@ class XYscan:
         # if <= -12, then continue scan mode
         if loss0 <= self.interpmode_threshold:
             self.Z_amp = 4
-            # self.zmode = 'aggressive'
+            self.zmode = 'aggressive'
         # if (-12,-4], then interp(or still continue scan) mode 
         elif loss0 <= self.stepmode_threshold:
             # self.scanmode = 'i'
