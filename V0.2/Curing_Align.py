@@ -19,6 +19,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
     # This can help guarantee the final loss is within spec
     def curing_run(self, P0):   
         print('Curing Active Alignment Starts')
+        logging.info('++++++++++++++++++++++++++++++')
         logging.info('Curing Active Alignment Starts')    
         P = P0[:]
         # record append number 0 as an indicate to enter curing
@@ -89,11 +90,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
                         
               
     def Zstep(self, P0):
-        print('Start Zstep (loss then pos)')
-        logging.info('Start Zstep (loss then pos)')  
+        print('Start Zstep (pos then loss)')
+        logging.info('Start Zstep (pos then loss)')  
         P1 = P0[:]      
         self.loss = []        
         self.pos = []
+        logging.info(P0)
         self.fetch_loss()   
         self.save_loss_pos()
         loss_o = self.loss[-1]

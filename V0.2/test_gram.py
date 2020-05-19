@@ -12,8 +12,9 @@ class B(A):
     def __init__(self):
         super().__init__()
     
-    def minus(self, x):
-        y = x[:]
+    def minus(self, anum=x, bnum=xx):
+        y = anum[:]
+        yy = bnum[:]
         self.a -= 5
         y[0] = y[0] + self.a
         return y
@@ -21,6 +22,6 @@ class B(A):
 
 ob = B()
 x = [1,2,3]
-x = ob.minus(x)[:]
+x = ob.minus(anum=x)
 print(x)
 print(ob.minus(x))

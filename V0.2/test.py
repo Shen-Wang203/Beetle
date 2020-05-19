@@ -8,7 +8,8 @@ from XYscan import XYscan
 import HPP_Control as control
 from Curing_Align import Curing_Active_Alignment
 
-logging.basicConfig(filename='runlog.log', filemode='w', level=logging.INFO)
+logfilename = 'runlog.log'
+logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
 
 xys = XYscan()
 cure = Curing_Active_Alignment()
