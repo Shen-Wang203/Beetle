@@ -724,8 +724,8 @@ class XYscan:
             # aggressive mode: Z goes forward until loss is 2 times of the initial value
             # for instance, loss_o = -15, then until -22.5 dB we stop forwarding Z
             # The purpose is to forward Z more aggressively to faster the process
-            # make sure the loss is smaller than -4 and larger than -40, so that larger Z stepping won't be problem
-            if self.zmode == 'aggressive' and max(self.loss) < -4 and min(self.loss) > -40:
+            # make sure the loss is smaller than -5 and larger than -40, so that larger Z stepping won't be problem
+            if self.zmode == 'aggressive' and max(self.loss) < -5 and min(self.loss) > -40:
                 if self.loss[-1] > 1.5 * loss_o:
                     success_num += 1
                     continue
