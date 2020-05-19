@@ -84,15 +84,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                         break                     
                 self.pos_curing_rec.append(P)                 
                 if  max(self.loss) < self.loss_criteria:
-                    P1 = self.Zstep(P)
-                    if P1 == False:
-                        print('Value doesnt change in Z, end the program')
-                        logging.info('Value doesnt change in Z, end the program')
-                        cmd = input('Want to continue?: ')
-                        if cmd == 'n':
-                            break   
-                    else:
-                        P = P1[:]  
+                    P = self.Zstep(P)
                     self.pos_curing_rec.append(P)                       
                         
               
@@ -148,6 +140,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 same_count += 1
                 if same_count >= 5:
                     P1[2] = P1[2] - self.step_Z * self.z_dir * 5 - 0.0002 * self.z_dir
+                    print('Value doesnt change in Z')
+                    logging.info('Value doesnt change in Z')
                     break
         
         self.hppcontrol.engage_motor()   
@@ -158,6 +152,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.hppcontrol.disengage_motor()
         time.sleep(0.2)
         self.current_pos = P1[:]
-        if same_count >= 5:
-            return False
+        # if same_count >= 5:
+        #     return False
         return P1

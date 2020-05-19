@@ -167,7 +167,7 @@ class XYscan:
             self.zmode = 'normal'
             self.scanmode = 's'
             self.final_adjust = True
-            self.stepScanCounts = 4   
+            self.stepScanCounts = 3 
             self.Z_amp = 1.2
             if max(self.loss) > -1.0:
                 # self.tolerance = 1
@@ -621,13 +621,13 @@ class XYscan:
             P1[0] = P1[0] + 50e-6 * xdelta
         else:
             if _mode == 's':
-                print('X scan failed')
-                logging.info('X scan failed')
+                print('X step failed')
+                logging.info('X step failed')
                 self.error_flag = True
                 return False
             else:
-                print('X step failed')
-                logging.info('X step failed')
+                print('X scan failed')
+                logging.info('X scan failed')
                 self.error_flag = True
                 return False                
         
@@ -641,13 +641,13 @@ class XYscan:
             P1[1] = P1[1] + 50e-6 * ydelta
         else:
             if _mode == 's':
-                print('Y scan failed')
-                logging.info('Y scan failed')
+                print('Y step failed')
+                logging.info('Y step failed')
                 self.error_flag = True
                 return False
             else:
-                print('Y step failed')
-                logging.info('Y step failed')
+                print('Y scan failed')
+                logging.info('Y scan failed')
                 self.error_flag = True
                 return False                
         print('Scan update ends at: ', P1)
@@ -721,10 +721,11 @@ class XYscan:
                 logging.info('Movement Error')
                 self.error_flag = True
             
-            # aggressive mode: Z goes forward until loss is 1.5 times of the initial value
+            # aggressive mode: Z goes forward until loss is 2 times of the initial value
             # for instance, loss_o = -15, then until -22.5 dB we stop forwarding Z
             # The purpose is to forward Z more aggressively to faster the process
-            if self.zmode == 'aggressive':
+            # make sure the loss is smaller than -4 and larger than -40, so that larger Z stepping won't be problem
+            if self.zmode == 'aggressive' and max(self.loss) < -4 and min(self.loss) > -40:
                 if self.loss[-1] > 1.5 * loss_o:
                     success_num += 1
                     continue
