@@ -36,6 +36,7 @@ class XYscan:
         self.pos_ref = [0,0,138,0,0,0]
         self.x_dir = 1
         self.y_dir = 1
+        self.loss_current_max = -60
 
 
     def set_loss_criteria(self, _loss_criteria):
@@ -94,12 +95,12 @@ class XYscan:
                     P_final = P0[:]
                     break
             
-            if max(self.loss) > -15 and self.angle_flag:
-                P1 = self.optimRxy(P1)
-                if P1 == False:
-                    break
-                # angle flag to determine whether angle are optimized
-                self.angle_flag = False         
+            # if max(self.loss) > -15 and self.angle_flag:
+                # P1 = self.optimRxy(P1)
+                # if P1 == False:
+                #     break
+                # # angle flag to determine whether angle are optimized
+                # self.angle_flag = False         
             
             if max(self.loss) > self.loss_criteria:
                 print('Better than criteria')
@@ -108,7 +109,8 @@ class XYscan:
                 break
 
             P0 = self.optimZ(P1)
-            # The only reason to be false is Z step is too small
+            # Return False Reason 1: Z step is too small
+            # Return False Reason 2: Unexpected high loss
             if P0 == False:
                 if not self.final_adjust and max(self.loss) > self.stepmode_threshold:
                     print('Change to Final_adjust(Z optim failed once)')
@@ -231,6 +233,7 @@ class XYscan:
                 # if i = 0, x_dir = _dir; if i = 1, x_dir = -_dir
                 self.x_dir = self.x_dir * (-2 * i + 1)
                 self.update_current_pos('x', x1_final, X1_counts)
+                self.check_abnormal_loss(max(self.loss))
                 if x1_final - X1_counts:
                     return x1_final - X1_counts 
                 else:
@@ -283,10 +286,11 @@ class XYscan:
                 # check on target, check all of them
                 while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
                     time.sleep(0.1)  
-                    pass       
-                self.update_current_pos('y', y1_final, Y1_counts)
+                    pass                      
                 # if i = 0, y_dir = _dir; if i = 1, y_dir = -_dir
                 self.y_dir = self.y_dir * (-2 * i + 1)
+                self.update_current_pos('y', y1_final, Y1_counts)
+                self.check_abnormal_loss(max(self.loss))
                 if y1_final - Y1_counts:
                     return y1_final - Y1_counts
                 else:
@@ -391,8 +395,9 @@ class XYscan:
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
         self.update_current_pos('x', x1, x1_o)
+        self.check_abnormal_loss(max(self.loss))
         if same_count >= 5:
-            return False
+            return False       
         if x1 - x1_o:
             return x1 - x1_o
         else:
@@ -478,6 +483,7 @@ class XYscan:
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
         self.update_current_pos('y', y1, y1_o)
+        self.check_abnormal_loss(max(self.loss))
         if same_count >= 5:
             return False
         if y1 - y1_o:
@@ -528,6 +534,7 @@ class XYscan:
         self.update_current_pos('x', x1_final, x1_o)
         print('XInterp final: ',x1_final)
         logging.info('XInterp final: ' + str(x1_final))
+        self.check_abnormal_loss(max(self.loss))
         if x1_final - x1_o:
             return x1_final - x1_o 
         else:
@@ -575,6 +582,7 @@ class XYscan:
         self.update_current_pos('y', y1_final, y1_o)
         print('YInterp final: ',y1_final)
         logging.info('YInterp final: ' + str(y1_final))
+        self.check_abnormal_loss(max(self.loss))
         if y1_final - y1_o:
             return y1_final - y1_o 
         else:
@@ -789,128 +797,21 @@ class XYscan:
             else:
                 success_num += 1
         print('Z optim ends at: ', P1)
-        logging.info('Z optim ends at: ' + str(P1))         
+        logging.info('Z optim ends at: ' + str(P1))      
+        self.check_abnormal_loss(max(self.loss))
         return P1
 
-
-    # find optimum Rx and Ry starting from P0 and return P1
-    # The fixture will be in P1 in the end, and fixture needs to be in P0 in the beginning
-    def optimRxy(self, P0):
-        # Input is R0, output is R1 and its loss
-        # if return false, then movement error; if return 1, then step is too small
-        def detecting_move(R0, _loss_R0):
-            R1 = R0[:]
-            _loss_R1 = _loss_R0
-            while True:        
-                for i in range(3,5):
-                    R1_try = R1[:] 
-                    R1_try[i] = R1[i] + self.step_Rxy
-                    #Send to fixture, if error occur, return false with value of 99.0
-                    if self.send_to_hpp(R1_try):
-                        R1_try = self.scanUpdate(R1_try,'c')[:]
-                        self.fetch_loss()   
-                        loss_try = self.loss[-1]            
-                    else:
-                        print('Movement Error')
-                        logging.info('Movement Error')
-                        self.error_flag = True  
-                        return False, 99
-                    if loss_try > _loss_R1:
-                        R1 = R1_try[:]
-                        _loss_R1 = loss_try
-                    else:
-                        R1_try[i] = R1[i] - self.step_Rxy
-                        #Send to fixture, if error occur, return false with value of 99.0
-                        if self.send_to_hpp(R1_try):
-                            R1_try = self.scanUpdate(R1_try,'c')[:]
-                            self.fetch_loss()   
-                            loss_try = self.loss[-1]            
-                        else:
-                            print('Movement Error')
-                            logging.info('Movement Error')
-                            self.error_flag = True  
-                            return False, 99                     
-                        if loss_try > _loss_R1:
-                            R1 = R1_try[:]
-                            _loss_R1 = loss_try
-                # if better or the same
-                if (_loss_R1 - _loss_R0) >= 0.1:
-                    return R1, _loss_R1
-                else:
-                    self.step_Rxy = self.reduction_ratio * self.step_Rxy
-                    R1 = R0[:]
-                    if self.step_Rxy < 0.2:
-                        return 1, _loss_R0
-
-        # return R0 and its loss, if return false, then movement error
-        def pattern_move(R0, R1, _loss_R1):
-            # Pattern Move 
-            while True:
-                # Tentative Pattern Move
-                # R2 = acceleration*R1 - R0
-                R2_t = R1[:]
-                for j in range(3,5):
-                    R2_t[j] = 2 * R1[j] - R0[j] 
-                #Send to fixture, if error occur, return false
-                if self.send_to_hpp(R2_t):
-                    R2_t = self.scanUpdate(R2_t,'c')[:]
-                    self.fetch_loss()   
-                    loss_R2_t = self.loss[-1]            
-                else:
-                    print('Movement Error')
-                    logging.info('Movement Error')
-                    self.error_flag = True  
-                    return False
-                # Final Pattern Move    
-                # TODO: may not need this detecting move 
-                # results = detecting_move(R2_t, loss_R2_t)
-                # R2_f = results[0]
-                # loss_R2_f = results[1]
-                # if R2_f == False:
-                #     if loss_R2_f == 99:
-                #         return False
-                #     R2_f = R2_t[:]
-                R2_f = R2_t
-                loss_R2_f = loss_R2_t
-
-                # if loss is better or the same, keep it and continue another pattern move
-                if (loss_R2_f - _loss_R1) >= 0.1:
-                    R0 = R1[:]
-                    R1 = R2_f[:]
-                    _loss_R1 = loss_R2_f
-                # if loss is worse, exit pattern move, go to detection move
-                else:
-                    R0 = R1[:]
-                    _loss_R0 = _loss_R1
-                    break          
-            return R0, _loss_R0
-
-        self.loss = []
-        self.fetch_loss()
-        # because scanUpdate will clear self.loss and it doesn't return the best loss, 
-        # so we need a new variable
-        loss_P0 = self.loss[-1]
-        while True:     
-            # Detecting Motion from P0 to P1, if step is too small return the P0 inputted
-            results = detecting_move(P0, loss_P0)
-            P1 = results[0]
-            if P1 == False:
-                return False
-            elif P1 == 1:
-                print('Angle is done')
-                logging.info('Angle is done')
-                if not self.send_to_hpp(P0):
-                    return False
-                return P0
-            loss_P1 = results[1]
-
-            results = pattern_move(P0, P1, loss_P1)
-            try:
-                P0 = results[0]
-                loss_P0 = results[1]
-            except:
-                return False
-
+    def check_abnormal_loss(self, loss0):
+        if loss0 > self.loss_current_max:
+            self.loss_current_max = loss0
+        elif loss0 < 2 * self.loss_current_max:
+            print('Unexpected High Loss, End Program')
+            logging.info('Unexpected High Loss, End Program')
+            self.hppcontrol.engage_motor()
+            self.send_to_hpp(self.starting_point)
+            self.hppcontrol.disengage_motor()
+            import sys
+            sys.exit()
 
     def fetch_loss(self):
         self.loss.append(PM.power_read())
