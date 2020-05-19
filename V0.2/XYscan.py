@@ -36,7 +36,7 @@ class XYscan:
         self.pos_ref = [0,0,138,0,0,0]
         self.x_dir = 1
         self.y_dir = 1
-        self.loss_current_max = -60
+        self.loss_current_max = -60.0
 
 
     def set_loss_criteria(self, _loss_criteria):
@@ -133,6 +133,7 @@ class XYscan:
                         P0[2] = P0[2] - step_ref * 30
                         self.hppcontrol.engage_motor()
                         self.send_to_hpp(P0)
+                        self.loss_current_max = -20.0
                         retry_num += 1
                     else:
                         if max(self.loss) < self.loss_criteria:
