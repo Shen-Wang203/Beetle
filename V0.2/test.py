@@ -11,7 +11,7 @@ from Curing_Align import Curing_Active_Alignment
 logfilename = 'runlog.log'
 logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
 
-P0 = [-0.42, 0, 138.8, 3.5, 0.5, 0]
+P0 = [-0.42, -0.14, 138.2, 3.5, 0.5, 0]
 
 xys = XYscan()
 cure = Curing_Active_Alignment()

@@ -158,3 +158,17 @@ class Curing_Active_Alignment(XYscan.XYscan):
         # if same_count >= 5:
         #     return False
         return P1
+
+    # Over-write function, disable loss_fail_improve
+    def check_abnormal_loss(self, loss0):
+        if loss0 > self.loss_current_max:
+            self.loss_current_max = loss0
+        elif (loss0 < (2.5 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
+            print('Unexpected High Loss, End Program')
+            logging.info('Unexpected High Loss, End Program')
+            self.hppcontrol.engage_motor()
+            self.hppcontrol.normal_traj_speed()
+            self.send_to_hpp(self.starting_point)
+            self.hppcontrol.disengage_motor()
+            import sys
+            sys.exit()

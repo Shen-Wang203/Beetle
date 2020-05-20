@@ -8,7 +8,7 @@ import interpolation
 
 class XYscan:
     def __init__(self):
-        self.scan_radius = 10000  # 10000 counts, 10000*0.05um = 500um, +-500um
+        self.scan_radius = 5000  # 5000 counts, 5000*0.05um = 250um, +-250um
         self.starting_point = [0,0,138,0,0,0]
         self.step_Rxy = 0.5
         self.step_Rz = 0

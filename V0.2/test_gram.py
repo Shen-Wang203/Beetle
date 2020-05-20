@@ -7,21 +7,25 @@ class A:
     def plus(self):
         self.a += 3
     
+    def doubleplus(self):
+        self.plus()
+        self.plus()
+
 
 class B(A):
     def __init__(self):
         super().__init__()
     
-    def minus(self, anum=x, bnum=xx):
+    def minus(self, anum, bnum):
         y = anum[:]
         yy = bnum[:]
         self.a -= 5
         y[0] = y[0] + self.a
         return y
     
+    def plus(self):
+        self.a += 6
 
 ob = B()
-x = [1,2,3]
-x = ob.minus(anum=x)
-print(x)
-print(ob.minus(x))
+x = ob.doubleplus()
+print(ob.a)
