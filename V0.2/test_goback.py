@@ -3,7 +3,7 @@ import numpy as np
 import HPP_Control as control
 import Back_Model as BM
 
-P0 = [-0.26, 0.3, 138.3, 2, 0.5, 0]
+P0 = [-0.42, 0, 138.8, 3.5, 0.5, 0]
 # P0 = [-0.2116, 0.34855, 138.35806, 2, 0.5, 0]
 
 HPP = BM.BackModel()
