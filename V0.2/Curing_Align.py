@@ -57,7 +57,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 break
 
         start_time = time.time()
-        while True:
+        curing_active = True
+        curing_active_flag = False
+        while True:         
             end_time = time.time()
             if (end_time - start_time) > self.minutes  * 60:
                 logging.info('Reach Time Limit')
@@ -66,8 +68,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
                        
             time.sleep(0.5)
             self.fetch_loss()    
-            self.loss_curing_rec.append(self.loss[-1])        
-            if self.loss[-1] < self.loss_criteria:
+            self.loss_curing_rec.append(self.loss[-1])   
+
+            if curing_active and self.loss[-1] < self.loss_criteria:
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
                 # If fail, run the second time, if fail again, exit   
@@ -79,16 +82,22 @@ class Curing_Active_Alignment(XYscan.XYscan):
                         if i:
                             print('End program')
                             logging.info('End program')
-                            import sys 
-                            sys.exit()
+                            curing_active = False
+                            if curing_active_flag:
+                                import sys 
+                                sys.exit()
+                            else:
+                                break
                     else:
                         P = P1[:]    
-                        break                     
-                self.pos_curing_rec.append(P)                 
-                if  max(self.loss) < self.loss_criteria:
+                        break     
+                self.pos_curing_rec.append(P)        
+                if curing_active and max(self.loss) < self.loss_criteria:
                     P = self.Zstep(P)
                     self.pos_curing_rec.append(P)                       
-                        
+            elif (not curing_active) and self.loss[-1] < (self.loss_criteria - 1):
+                    curing_active = True
+                    curing_active_flag = True
               
     def Zstep(self, P0):
         print('Start Zstep (pos then loss)')
