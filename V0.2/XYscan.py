@@ -37,6 +37,7 @@ class XYscan:
         self.x_dir = 1
         self.y_dir = 1
         self.loss_current_max = -60.0
+        self.loss_fail_improve = 0
 
 
     def set_loss_criteria(self, _loss_criteria):
@@ -804,6 +805,7 @@ class XYscan:
     def check_abnormal_loss(self, loss0):
         if loss0 > self.loss_current_max:
             self.loss_current_max = loss0
+            self.loss_fail_improve = 0
         elif (loss0 < (2.5 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
             print('Unexpected High Loss, End Program')
             logging.info('Unexpected High Loss, End Program')
@@ -813,6 +815,13 @@ class XYscan:
             self.hppcontrol.disengage_motor()
             import sys
             sys.exit()
+        else:
+            # x,y and z fail to improve 6 times continuesly, then reset the loss_criteria as current max
+            # this is to faster the process
+            self.loss_fail_improve += 1
+            if self.loss_fail_improve == 6:
+                self.loss_criteria = self.loss_current_max - 0.01
+
 
     def fetch_loss(self):
         self.loss.append(PM.power_read())
