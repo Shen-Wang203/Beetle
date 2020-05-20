@@ -804,7 +804,7 @@ class XYscan:
     def check_abnormal_loss(self, loss0):
         if loss0 > self.loss_current_max:
             self.loss_current_max = loss0
-        elif loss0 < 2.5 * self.loss_current_max or loss0 < -55:
+        elif (loss0 < (2.5 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
             print('Unexpected High Loss, End Program')
             logging.info('Unexpected High Loss, End Program')
             self.hppcontrol.engage_motor()

@@ -11,22 +11,23 @@ from Curing_Align import Curing_Active_Alignment
 logfilename = 'runlog.log'
 logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
 
+P0 = [-0.42, 0, 138.8, 3.5, 0.5, 0]
+
 xys = XYscan()
 cure = Curing_Active_Alignment()
 hppcontrol = control.HPP_Control()
 hppcontrol.engage_motor()
 hppcontrol.normal_traj_speed()
-xys.set_starting_point([-0.42, 0, 138.8, 3.5, 0.5, 0])
-# xys.set_starting_point([-0.2116, 0.34855, 138.35806, 2, 0.5, 0])
+xys.set_starting_point(P0)
 xys.set_limit_Z(145)
 xys.set_loss_criteria(-0.18)
 # xys.set_angle_flag(True)
 xys.set_angle_flag(False)
-P0 = xys.autoRun()
+P1 = xys.autoRun()
 
-
+cure.set_starting_point(P0)
 cure.set_loss_criteria(max(xys.loss_rec)-0.03)
-cure.curing_run(P0)
+cure.curing_run(P1)
 
 hppcontrol.disengage_motor()
 hppcontrol.normal_traj_speed()

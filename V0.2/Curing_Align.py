@@ -33,6 +33,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 break
         # Alignment after glue
         self.fetch_loss()
+        self.loss_current_max = self.loss[-1]
         # if loss is too low, exit the program
         if self.loss[-1] < -30:
             return False
