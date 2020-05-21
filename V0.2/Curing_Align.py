@@ -8,7 +8,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.tolerance = 2 
         self.scanmode = 's'
 
-        self.minutes = 7
+        self.minutes = 5
         self.step_Z = 0.0005
         self.z_dir = -1
         self.loss_curing_rec = []
@@ -95,9 +95,11 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 if curing_active and max(self.loss) < self.loss_criteria:
                     P = self.Zstep(P)
                     self.pos_curing_rec.append(P)                       
-            elif (not curing_active) and self.loss[-1] < (self.loss_criteria - 1):
+            elif (not curing_active) and self.loss[-1] < (self.loss_criteria - 0.5):
                     curing_active = True
                     curing_active_flag = True
+                    print('Loss is high, trying again')
+                    logging.info('Loss is high, trying again')
               
     def Zstep(self, P0):
         print('Start Zstep (pos then loss)')

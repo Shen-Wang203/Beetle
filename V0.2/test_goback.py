@@ -3,7 +3,7 @@ import numpy as np
 import HPP_Control as control
 import Back_Model as BM
 
-P0 = [-0.42, -0.14, 137, 3.5, .5, 0]
+P0 = [-0.42, 0, 138, 3, .5, 0]
 
 HPP = BM.BackModel()
 HPP.set_Pivot(np.array([[0], [0], [28.5], [0]]))
