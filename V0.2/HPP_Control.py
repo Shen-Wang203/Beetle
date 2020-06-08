@@ -18,14 +18,47 @@ import time
 # Tser2 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
 # time.sleep(.5)
 
-# Company Small PC
-# COM86: T3
-Tser3 = serial.Serial('COM86', 115200, timeout=None, stopbits=1)
-# COM88: T1
-Tser1 = serial.Serial('COM88', 115200, timeout=None, stopbits=1)
-# COM87: T2
-Tser2 = serial.Serial('COM87', 115200, timeout=None, stopbits=1)
-time.sleep(.5)
+# # Company Small PC
+# # COM86: T3
+# Tser3 = serial.Serial('COM86', 115200, timeout=None, stopbits=1)
+# # COM88: T1
+# Tser1 = serial.Serial('COM88', 115200, timeout=None, stopbits=1)
+# # COM87: T2
+# Tser2 = serial.Serial('COM87', 115200, timeout=None, stopbits=1)
+# time.sleep(.5)
+
+while True:
+    stationNum = input('Station #: ')
+    if stationNum == '1':
+        # Company Small PC
+        # COM86: T3
+        Tser3 = serial.Serial('COM89', 115200, timeout=None, stopbits=1)
+        # COM88: T1
+        Tser1 = serial.Serial('COM90', 115200, timeout=None, stopbits=1)
+        # COM87: T2
+        Tser2 = serial.Serial('COM91', 115200, timeout=None, stopbits=1)
+    elif stationNum == '2':
+        # Company Small PC
+        # COM86: T3
+        Tser3 = serial.Serial('COM86', 115200, timeout=None, stopbits=1)
+        # COM88: T1
+        Tser1 = serial.Serial('COM88', 115200, timeout=None, stopbits=1)
+        # COM87: T2
+        Tser2 = serial.Serial('COM87', 115200, timeout=None, stopbits=1)
+    elif stationNum == '3':
+        pass
+    elif stationNum == '4':
+        pass
+    elif stationNum == '5':
+        pass
+    elif stationNum == '0':
+        pass
+    else:
+        print('Wrong input')
+        continue
+    time.sleep(.5)
+    break
+
 
 error_log = ''
 Tcounts_real = [0,0,0,0,0,0]
