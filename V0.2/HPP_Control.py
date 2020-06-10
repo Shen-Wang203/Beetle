@@ -27,38 +27,47 @@ import time
 # Tser2 = serial.Serial('COM87', 115200, timeout=None, stopbits=1)
 # time.sleep(.5)
 
-while True:
-    stationNum = input('Station #: ')
-    if stationNum == '1':
-        # Company Small PC
-        # COM86: T3
-        Tser3 = serial.Serial('COM89', 115200, timeout=None, stopbits=1)
-        # COM88: T1
-        Tser1 = serial.Serial('COM90', 115200, timeout=None, stopbits=1)
-        # COM87: T2
-        Tser2 = serial.Serial('COM91', 115200, timeout=None, stopbits=1)
-    elif stationNum == '2':
-        # Company Small PC
-        # COM86: T3
-        Tser3 = serial.Serial('COM86', 115200, timeout=None, stopbits=1)
-        # COM88: T1
-        Tser1 = serial.Serial('COM88', 115200, timeout=None, stopbits=1)
-        # COM87: T2
-        Tser2 = serial.Serial('COM87', 115200, timeout=None, stopbits=1)
-    elif stationNum == '3':
-        pass
-    elif stationNum == '4':
-        pass
-    elif stationNum == '5':
-        pass
-    elif stationNum == '0':
-        pass
-    else:
-        print('Wrong input')
-        continue
-    time.sleep(.5)
-    break
+# For small PC
+# while True:
+#     stationNum = input('Control Box #: ')
+#     if stationNum == '1':
+#         # Company Small PC
+#         # COM86: T3
+#         Tser3 = serial.Serial('COM89', 115200, timeout=None, stopbits=1)
+#         # COM88: T1
+#         Tser1 = serial.Serial('COM90', 115200, timeout=None, stopbits=1)
+#         # COM87: T2
+#         Tser2 = serial.Serial('COM91', 115200, timeout=None, stopbits=1)
+#     elif stationNum == '2':
+#         pass
+#     elif stationNum == '3':
+#         pass
+#     elif stationNum == '4':
+#         pass
+#     elif stationNum == '5':
+#         pass
+#     elif stationNum == '0':
+#         # Company Small PC
+#         # COM86: T3
+#         Tser3 = serial.Serial('COM86', 115200, timeout=None, stopbits=1)
+#         # COM88: T1
+#         Tser1 = serial.Serial('COM88', 115200, timeout=None, stopbits=1)
+#         # COM87: T2
+#         Tser2 = serial.Serial('COM87', 115200, timeout=None, stopbits=1)
+#     else:
+#         print('Wrong input')
+#         continue
+#     time.sleep(.5)
+#     break
 
+# Cube PC, control box #1 
+# COM15: T3
+Tser3 = serial.Serial('COM23', 115200, timeout=None, stopbits=1)
+# COM17: T1
+Tser1 = serial.Serial('COM24', 115200, timeout=None, stopbits=1)
+# COM20: T2
+Tser2 = serial.Serial('COM26', 115200, timeout=None, stopbits=1)
+time.sleep(.5)
 
 error_log = ''
 Tcounts_real = [0,0,0,0,0,0]
@@ -72,6 +81,57 @@ class HPP_Control:
     def __init__(self):    
         # counter backlash, extra counts, default as 4
         self.backlash = 4
+        self.limit = []
+        self.A = self.define_fixture()
+
+    def define_fixture(self):
+        # A1x = 188030 - -85.796144 / 50e-6 = 1.903953e6
+        # A1y = 180000 - 9.55 / 50e-6       = -11000
+        # A2x = 183400 + 38.123072 / 50e-6  = 9.4586144e5
+        # A2y = 190250 - -73.022182 / 50e-6 = 1.65069364e6
+        # A3x = 194300 + 38.123072 / 50e-6  = 9.567614e5
+        # A3y = 179350 - 92.122182 / 50e-6  = -1.66309364e6
+        # Beetle #
+        while True:
+            BeetleNum = input('Beetle #: ')
+            if BeetleNum == '1':
+                x1 = 193050
+                y1 = 187450
+                x2 = 191950
+                y2 = 189780
+                x3 = 183700
+                y3 = 187400
+            elif BeetleNum == '2':
+                x1 = 192120
+                y1 = 187570
+                x2 = 186840
+                y2 = 187150
+                x3 = 183500
+                y3 = 183820
+            elif BeetleNum == '3':
+                pass
+            elif BeetleNum == '4':
+                pass
+            elif BeetleNum == '5':
+                pass
+            elif BeetleNum == '0':
+                x1 = 188030
+                y1 = 180000
+                x2 = 183400
+                y2 = 190250
+                x3 = 194300
+                y3 = 179350
+            else:
+                print('Wrong input')
+                continue
+            A1x = x1 - (-85.796144) / 50e-6
+            A1y = y1 - 9.55 / 50e-6      
+            A2x = x2 + 38.123072 / 50e-6  
+            A2y = y2 - (-73.022182) / 50e-6 
+            A3x = x3 + 38.123072 / 50e-6  
+            A3y = y3 - 92.122182 / 50e-6 
+            self.limit = [x1, y1, x2, y2, x3, y3]
+            return [A1x, A1y, A2x, A2y, A3x, A3y]
 
     # set backlash, if 0 then there is no backlash counter
     def set_backlash(self, _backlash):
@@ -481,12 +541,18 @@ class HPP_Control:
     # A3x = 194300 + 38.123072 / 50e-6  = 9.567614e5
     # A3y = 179350 - 92.122182 / 50e-6  = -1.66309364e6
     def translate_to_counts(self, Tmm):
-        T1x =  Tmm[0] / 50e-6 + 1.903953e6
-        T1y =  Tmm[1] / 50e-6 - 11000 
-        T2x = -Tmm[2] / 50e-6 + 9.4586144e5
-        T2y =  Tmm[3] / 50e-6 + 1.65069364e6
-        T3x = -Tmm[4] / 50e-6 + 9.567614e5
-        T3y =  Tmm[5] / 50e-6 - 1.66309364e6
+        # T1x =  Tmm[0] / 50e-6 + 1.903953e6
+        # T1y =  Tmm[1] / 50e-6 - 11000 
+        # T2x = -Tmm[2] / 50e-6 + 9.4586144e5
+        # T2y =  Tmm[3] / 50e-6 + 1.65069364e6
+        # T3x = -Tmm[4] / 50e-6 + 9.567614e5
+        # T3y =  Tmm[5] / 50e-6 - 1.66309364e6
+        T1x =  Tmm[0] / 50e-6 + self.A[0]
+        T1y =  Tmm[1] / 50e-6 + self.A[1] 
+        T2x = -Tmm[2] / 50e-6 + self.A[2]
+        T2y =  Tmm[3] / 50e-6 + self.A[3]
+        T3x = -Tmm[4] / 50e-6 + self.A[4]
+        T3y =  Tmm[5] / 50e-6 + self.A[5]
         Tcounts= [int(round(T1x)), int(round(T1y)), int(round(T2x)), int(round(T2y)), int(round(T3x)), int(round(T3y))]
         return Tcounts
 
@@ -494,27 +560,27 @@ class HPP_Control:
     def safecheck(self, Tcounts):
         global error_log
         error_log = ''
-        if Tcounts[0] > 187030 or Tcounts[0] < -181300:
+        if Tcounts[0] > (self.limit[0] - 5000) or Tcounts[0] < (self.limit[0]-17.7*20000):
             print('T1x Out of Range')
             error_log = 'T1x Out of Range' + '\n'
             return False
-        elif Tcounts[1] > 179000 or Tcounts[1] < -197140:
+        elif Tcounts[1] > (self.limit[1] - 5000) or Tcounts[1] < (self.limit[1]-17.7*20000):
             print('T1y Out of Range')
             error_log = 'T1y Out of Range' + '\n'
             return False
-        elif Tcounts[2] > 176058 or Tcounts[2] < -186284:
+        elif Tcounts[2] > (self.limit[2] - 5000) or Tcounts[2] < (self.limit[2]-17.7*20000):
             print('T2x Out of Range')
             error_log = 'T2x Out of Range' + '\n'
             return False
-        elif Tcounts[3] > 188710 or Tcounts[3] < -180777:
+        elif Tcounts[3] > (self.limit[3] - 5000) or Tcounts[3] < (self.limit[3]-17.7*20000):
             print('T2y Out of Range')
             error_log = 'T2y Out of Range' + '\n'
             return False
-        elif Tcounts[4] > 193300 or Tcounts[4] < -177160:
+        elif Tcounts[4] > (self.limit[4] - 5000) or Tcounts[4] < (self.limit[4]-17.7*20000):
             print('T3x Out of Range')
             error_log = 'T3x Out of Range' + '\n'
             return False
-        elif Tcounts[5] > 182450 or Tcounts[5] < -192000:
+        elif Tcounts[5] > (self.limit[5] - 5000) or Tcounts[5] < (self.limit[5]-17.7*20000):
             print('T3y Out of Range')
             error_log = 'T3y Out of Range' + '\n'
             return False
