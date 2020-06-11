@@ -109,11 +109,21 @@ class HPP_Control:
                 x3 = 183500
                 y3 = 183820
             elif BeetleNum == '3':
-                pass
+                x1 = 188040
+                y1 = 183300
+                x2 = 179950
+                y2 = 183880
+                x3 = 185180
+                y3 = 184270
             elif BeetleNum == '4':
                 pass
             elif BeetleNum == '5':
-                pass
+                x1 = 188710
+                y1 = 180590
+                x2 = 180400
+                y2 = 187880
+                x3 = 182640
+                y3 = 180670
             elif BeetleNum == '0':
                 x1 = 188030
                 y1 = 180000
@@ -560,27 +570,27 @@ class HPP_Control:
     def safecheck(self, Tcounts):
         global error_log
         error_log = ''
-        if Tcounts[0] > (self.limit[0] - 5000) or Tcounts[0] < (self.limit[0]-17.7*20000):
+        if Tcounts[0] > (self.limit[0] - 10000) or Tcounts[0] < (self.limit[0]-17.7*20000):
             print('T1x Out of Range')
             error_log = 'T1x Out of Range' + '\n'
             return False
-        elif Tcounts[1] > (self.limit[1] - 5000) or Tcounts[1] < (self.limit[1]-17.7*20000):
+        elif Tcounts[1] > (self.limit[1] - 10000) or Tcounts[1] < (self.limit[1]-17.7*20000):
             print('T1y Out of Range')
             error_log = 'T1y Out of Range' + '\n'
             return False
-        elif Tcounts[2] > (self.limit[2] - 5000) or Tcounts[2] < (self.limit[2]-17.7*20000):
+        elif Tcounts[2] > (self.limit[2] - 10000) or Tcounts[2] < (self.limit[2]-17.7*20000):
             print('T2x Out of Range')
             error_log = 'T2x Out of Range' + '\n'
             return False
-        elif Tcounts[3] > (self.limit[3] - 5000) or Tcounts[3] < (self.limit[3]-17.7*20000):
+        elif Tcounts[3] > (self.limit[3] - 10000) or Tcounts[3] < (self.limit[3]-17.7*20000):
             print('T2y Out of Range')
             error_log = 'T2y Out of Range' + '\n'
             return False
-        elif Tcounts[4] > (self.limit[4] - 5000) or Tcounts[4] < (self.limit[4]-17.7*20000):
+        elif Tcounts[4] > (self.limit[4] - 10000) or Tcounts[4] < (self.limit[4]-17.7*20000):
             print('T3x Out of Range')
             error_log = 'T3x Out of Range' + '\n'
             return False
-        elif Tcounts[5] > (self.limit[5] - 5000) or Tcounts[5] < (self.limit[5]-17.7*20000):
+        elif Tcounts[5] > (self.limit[5] - 10000) or Tcounts[5] < (self.limit[5]-17.7*20000):
             print('T3y Out of Range')
             error_log = 'T3y Out of Range' + '\n'
             return False
