@@ -116,7 +116,12 @@ class HPP_Control:
                 x3 = 185180
                 y3 = 184270
             elif BeetleNum == '4':
-                pass
+                x1 = 188920
+                y1 = 188310
+                x2 = 184950
+                y2 = 181650
+                x3 = 183790
+                y3 = 183540
             elif BeetleNum == '5':
                 x1 = 188710
                 y1 = 180590
