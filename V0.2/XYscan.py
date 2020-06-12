@@ -228,9 +228,14 @@ class XYscan:
                 x3_final = -x1_final + x1start + x3start
                 self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 's')
                 # check on target, need to check all of them
+                timeout = 0
                 while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
                     time.sleep(0.1)
-                    pass
+                    timeout += 1
+                    if timeout > 200:
+                        print('Movement Timeout Error')
+                        logging.info('Movement Timeout Error')
+                        return False
                 # if i = 0, x_dir = _dir; if i = 1, x_dir = -_dir
                 self.x_dir = self.x_dir * (-2 * i + 1)
                 self.update_current_pos('x', x1_final, X1_counts)
@@ -243,9 +248,14 @@ class XYscan:
                 if i:
                     # if fail, the fixture needs to go back to the original position
                     self.hppcontrol.Tx_send_only(X1_counts, X2_counts, X3_counts, 's')
+                    timeout = 0
                     while not self.hppcontrol.Tx_on_target(X1_counts, X2_counts, X3_counts, self.tolerance):
                         time.sleep(0.1)
-                        pass
+                        timeout += 1
+                        if timeout > 200:
+                            print('Movement Timeout Error')
+                            logging.info('Movement Timeout Error')
+                            return False
                     self.update_current_pos('x', X1_counts, X1_counts)
                     return False
                 loss0 = self.loss[-1]
@@ -285,9 +295,14 @@ class XYscan:
                 y3_final = y1_final - y1start + y3start
                 self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 's')
                 # check on target, check all of them
+                timeout = 0
                 while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
                     time.sleep(0.1)  
-                    pass                      
+                    timeout += 1
+                    if timeout > 200:
+                        print('Movement Timeout Error')
+                        logging.info('Movement Timeout Error')
+                        return False
                 # if i = 0, y_dir = _dir; if i = 1, y_dir = -_dir
                 self.y_dir = self.y_dir * (-2 * i + 1)
                 self.update_current_pos('y', y1_final, Y1_counts)
@@ -300,9 +315,14 @@ class XYscan:
                 if i:
                     # if fail, go back to original position
                     self.hppcontrol.Ty_send_only(Y1_counts, Y2_counts, Y3_counts, 's')
+                    timeout = 0
                     while not self.hppcontrol.Ty_on_target(Y1_counts, Y2_counts, Y3_counts, self.tolerance):
                         time.sleep(0.1)     
-                        pass               
+                        timeout += 1
+                        if timeout > 200:
+                            print('Movement Timeout Error')
+                            logging.info('Movement Timeout Error')
+                            return False              
                     self.update_current_pos('y', Y1_counts, Y1_counts)
                     return False
                 loss0 = self.loss[-1]
@@ -342,9 +362,14 @@ class XYscan:
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
             self.hppcontrol.Tx_send_only(x1, x2, x3, 's')
+            timeout = 0
             while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
                 time.sleep(0.1)
-                # pass
+                timeout += 1
+                if timeout > 200:
+                    print('Movement Timeout Error')
+                    logging.info('Movement Timeout Error')
+                    return False
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
             self.update_current_pos('x', x1, x1_o)
@@ -390,9 +415,14 @@ class XYscan:
         if self.final_adjust:
             self.hppcontrol.engage_motor()
         self.hppcontrol.Tx_send_only(x1, x2, x3, 's')
+        timeout = 0
         while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
             time.sleep(0.1)
-            # pass
+            timeout += 1
+            if timeout > 200:
+                print('Movement Timeout Error')
+                logging.info('Movement Timeout Error')
+                return False
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
         self.update_current_pos('x', x1, x1_o)
@@ -430,9 +460,14 @@ class XYscan:
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
             self.hppcontrol.Ty_send_only(y1, y2, y3, 's')
+            timeout = 0
             while not self.hppcontrol.Ty_on_target(y1, y2, y3, self.tolerance):
                 time.sleep(0.1)
-                pass
+                timeout += 1
+                if timeout > 200:
+                    print('Movement Timeout Error')
+                    logging.info('Movement Timeout Error')
+                    return False
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
             self.update_current_pos('y', y1, y1_o)
@@ -478,9 +513,14 @@ class XYscan:
         if self.final_adjust:
             self.hppcontrol.engage_motor()
         self.hppcontrol.Ty_send_only(y1, y2, y3, 's')
+        timeout = 0
         while not self.hppcontrol.Ty_on_target(y1, y2, y3, self.tolerance):
             time.sleep(0.1)
-            pass
+            timeout += 1
+            if timeout > 200:
+                print('Movement Timeout Error')
+                logging.info('Movement Timeout Error')
+                return False
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
         self.update_current_pos('y', y1, y1_o)
@@ -512,9 +552,14 @@ class XYscan:
         x3 = [x3_o, x3_o+step, x3_o+2*step, x3_o+3*step, x3_o-step, x3_o-2*step, x3_o-3*step]
         for i in range(1,7):
             self.hppcontrol.Tx_send_only(x1[i], x2[i], x3[i], 's')
+            timeout = 0
             while not self.hppcontrol.Tx_on_target(x1[i], x2[i], x3[i], self.tolerance):
-                # time.sleep(0.05)
-                pass
+                time.sleep(0.1)
+                timeout += 1
+                if timeout > 200:
+                    print('Movement Timeout Error')
+                    logging.info('Movement Timeout Error')
+                    return False
             self.update_current_pos('x', x1[i], x1_o)
             self.fetch_loss()
             self.pos.append(x1[i])
@@ -529,9 +574,14 @@ class XYscan:
         x3_final = -x1_final + x1_o + x3_o
         self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 's')
         # check on target, need to check all of them
+        timeout = 0
         while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
-            # time.sleep(0.05)
-            pass
+            time.sleep(0.1)
+            timeout += 1
+            if timeout > 200:
+                print('Movement Timeout Error')
+                logging.info('Movement Timeout Error')
+                return False
         self.update_current_pos('x', x1_final, x1_o)
         print('XInterp final: ',x1_final)
         logging.info('XInterp final: ' + str(x1_final))
@@ -562,8 +612,14 @@ class XYscan:
         y3 = [y3_o, y3_o-step, y3_o-2*step, y3_o-3*step, y3_o+step, y3_o+2*step, y3_o+3*step]
         for i in range(1,7):
             self.hppcontrol.Ty_send_only(y1[i], y2[i], y3[i], 's')
+            timeout = 0
             while not self.hppcontrol.Ty_on_target(y1[i], y2[i], y3[i], self.tolerance):
-                time.sleep(0.05)
+                time.sleep(0.1)
+                timeout += 1
+                if timeout > 200:
+                    print('Movement Timeout Error')
+                    logging.info('Movement Timeout Error')
+                    return False
             self.update_current_pos('y', y1[i], y1_o)
             self.fetch_loss()
             self.pos.append(y1[i])
@@ -578,8 +634,14 @@ class XYscan:
         y3_final = y1_final - y1_o + y3_o
         self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 's')
         # check on target, need to check all of them
+        timeout = 0
         while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
-            time.sleep(0.05)
+            time.sleep(0.1)
+            timeout += 1
+            if timeout > 200:
+                print('Movement Timeout Error')
+                logging.info('Movement Timeout Error')
+                return False
         self.update_current_pos('y', y1_final, y1_o)
         print('YInterp final: ',y1_final)
         logging.info('YInterp final: ' + str(y1_final))
@@ -612,6 +674,7 @@ class XYscan:
     # interpolation mode won't return false
     # return false when 1. scan mode, decrease in both direction;
     #                   2. step mode, loss doesn't change for several steps
+    #                   3. Motor failed to move, fail on on_target check
     def scanUpdate(self, P0, _mode):
         print('Scan update starts at: ', P0)
         logging.info('Scan update starts at: ' + str(P0))

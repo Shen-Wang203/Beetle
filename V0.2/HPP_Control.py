@@ -798,6 +798,8 @@ class HPP_Control:
         return None
 
     def run_to_Tmm(self, Tmm, tolerance):
+        global error_log
+        global Tcounts_real
         _Tcounts = self.translate_to_counts(Tmm) 
         # print('Commands counts: ', _Tcounts)
         # self.engage_motor()
@@ -808,13 +810,19 @@ class HPP_Control:
         else:
             self.disengage_motor()
             return _Tcounts
+        timeout = 0
         # Set on target tolerance as +-tolerance counts
         while not self.on_target(_Tcounts, tolerance):
             # if errors exist, disengage motors, exit the loop
             time.sleep(0.1)
-            pass
-            # print('Ontarget target: ', _Tcounts)
-            # print('-------')
+            timeout += 1
+            if timeout > 200:
+                self.disengage_motor()
+                for i in range(0,6):
+                    if abs(_Tcounts[i] - Tcounts_real[i]) > 20:
+                        print('Motor ' + str(i) + ' Timeout Error')
+                        error_log = error_log + 'Motor ' + str(i) + ' Timeout Error' + '\n'
+                return _Tcounts
             # if self.check_errors():
             #     return _Tcounts
         # self.disengage_motor()
