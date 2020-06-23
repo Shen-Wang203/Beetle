@@ -645,7 +645,7 @@ class Ui_MainWindow(object):
         self.label_targetcountsdata.setText(string)
         
         if _error_flag:
-            self.label_statusdata.setText('DisArmed')
+            self.label_statusdata.setText('Disarmed')
             self.label_statusdata.setStyleSheet("color: rgb(255, 30, 0);")
         else:
             self.label_statusdata.setText('Ready')
