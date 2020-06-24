@@ -85,7 +85,12 @@ while True:
         # COM38: T3
         Tser3 = serial.Serial('COM38', 115200, timeout=None, stopbits=1)
     elif stationNum == '4':
-        pass
+        # COM43: T2
+        Tser2 = serial.Serial('COM43', 115200, timeout=None, stopbits=1)
+        # COM42: T1
+        Tser1 = serial.Serial('COM42', 115200, timeout=None, stopbits=1)
+        # COM46: T3
+        Tser3 = serial.Serial('COM46', 115200, timeout=None, stopbits=1)        
     elif stationNum == '5':
         pass
     elif stationNum == '0':
@@ -283,7 +288,12 @@ class HPP_Control:
     
     # Without return value
     def T123_send_only(self, var0, var1):
-        return self.T1_send_only(var0), self.T1_send_only(var1), self.T2_send_only(var0), self.T2_send_only(var1), self.T3_send_only(var0), self.T3_send_only(var1)           
+        self.T1_send_only(var0)
+        self.T2_send_only(var0)
+        self.T3_send_only(var0)
+        self.T1_send_only(var1)
+        self.T2_send_only(var1)
+        self.T3_send_only(var1)           
 
     def Tx_send_only(self, x1, x2, x3, mode):
         # Counter backlash, if direction changed, add extra counts
@@ -548,23 +558,30 @@ class HPP_Control:
         error_log = 'Errors are cleared'
 
     def calibration(self):
-        #Full calibration sequence
+        # # All send once
+        # #Full calibration sequence
+        # var0 = 'w axis0.requested_state 3' + '\n'
+        # var1 = 'w axis1.requested_state 3' + '\n'
+        # self.T123_send_only(var0, var1)      
+
+        # Send X first, then y. This is because Control Box #3 and #4 has to use this patter
+        var0 = 'w axis0.encoder.is_ready 0' + '\n'
+        var1 = 'w axis1.encoder.is_ready 0' + '\n'
+        self.T123_send_only(var0, var1)
+
         var0 = 'w axis0.requested_state 3' + '\n'
+        self.T1_send_only(var0)
+        self.T2_send_only(var0)
+        self.T3_send_only(var0)
+
+        var0 = 'r axis0.encoder.is_ready' + '\n'
+        while (int(self.T1_send(var0)) + int(self.T2_send(var0)) + int(self.T3_send(var0))) < 3:
+            time.sleep(0.5)
+
         var1 = 'w axis1.requested_state 3' + '\n'
-        self.T123_send_only(var0, var1)      
-
-        # #Index Search
-        # var0 = 'w axis0.requested_state 6' + '\n'
-        # var1 = 'w axis1.requested_state 6' + '\n'
-        # T123_send_only(var0, var1)    
-        
-        # #wait for index search to finish
-        # time.sleep(5)
-
-        # #Encoder Offset Calibration
-        # var0 = 'w axis0.requested_state 7' + '\n'
-        # var1 = 'w axis1.requested_state 7' + '\n'
-        # T123_send_only(var0, var1)
+        self.T1_send_only(var1)
+        self.T2_send_only(var1)
+        self.T3_send_only(var1)  
 
 
     def calibration_from_random(self):

@@ -3,7 +3,6 @@ import HPP_Control as control
 import numpy as np
 import time
 from PyQt5 import QtCore
-# from Pattern_Search import Pattern_Search
 
 error_flag = False 
 
@@ -96,7 +95,7 @@ class CMDInputThread(QtCore.QThread):
             error_log = ''
             self.hppcontrol.calibration()
             # print('Calibrating...')
-            time.sleep(12)
+            time.sleep(20)
             error_flag = False
             if self.hppcontrol.check_errors():
                 error_flag = True

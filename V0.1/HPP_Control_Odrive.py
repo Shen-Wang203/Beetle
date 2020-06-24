@@ -4,10 +4,17 @@ import odrive
 
 # odrivetool rate-test
 
-T1 = odrive.find_any(serial_number="208739844D4D")
-T2 = odrive.find_any(serial_number="208339834D4D")
-T3 = odrive.find_any(serial_number="205C39844D4D")
+# Control box #0
+# T1 = odrive.find_any(serial_number="208739844D4D")
+# T2 = odrive.find_any(serial_number="208339834D4D")
+# T3 = odrive.find_any(serial_number="205C39844D4D")
+# Control box #3
+print('Connecting...')
+T1 = odrive.find_any(serial_number="2064387E304E")
+T2 = odrive.find_any(serial_number="2087388E304E")
+T3 = odrive.find_any(serial_number="207C397D4D4D")
 time.sleep(0.5)
+print('Connected')
 
 error_log = ''
 Tcounts_real = [0,0,0,0,0,0]

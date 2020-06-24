@@ -1,6 +1,6 @@
 import serial
 import time
-from HPP_Control import HPP_Control as Run
+import HPP_Control as control
 
 # while True:
     # commands = input("Enter your commands (starting with the motor number): ")
@@ -14,7 +14,22 @@ from HPP_Control import HPP_Control as Run
     #     print('Wrong Input')     
     #   
 
-Run.calibration()
+hppcontrol = control.HPP_Control()
+var0 = 'w axis0.requested_state 3' + '\n'
+hppcontrol.T1_send_only(var0)
+hppcontrol.T2_send_only(var0)
+hppcontrol.T3_send_only(var0)
+
+var0 = 'r axis0.encoder.is_ready' + '\n'
+while (int(hppcontrol.T1_send(var0)) + int(hppcontrol.T2_send(var0)) + int(hppcontrol.T3_send(var0))) < 3:
+    time.sleep(0.5)
+
+var1 = 'w axis1.requested_state 3' + '\n'
+hppcontrol.T1_send_only(var1)
+hppcontrol.T2_send_only(var1)
+hppcontrol.T3_send_only(var1)  
+
+  
 
 # var0 = 'w axis0.error 0' + '\n'
 # var1 = 'w axis1.error 0' + '\n'
