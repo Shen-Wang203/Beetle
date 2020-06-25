@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1184</width>
-    <height>885</height>
+    <width>1248</width>
+    <height>878</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,10 +23,10 @@
    <widget class="QLCDNumber" name="lcdX">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>195</y>
-      <width>160</width>
-      <height>70</height>
+      <x>70</x>
+      <y>500</y>
+      <width>100</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="font">
@@ -56,34 +56,13 @@
      <number>0</number>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_X1">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>280</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>0.2 um</string>
-    </property>
-   </widget>
    <widget class="QLCDNumber" name="lcdY">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>195</y>
-      <width>160</width>
-      <height>70</height>
+      <x>260</x>
+      <y>500</y>
+      <width>100</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -108,10 +87,10 @@
    <widget class="QLCDNumber" name="lcdZ">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>195</y>
-      <width>160</width>
-      <height>70</height>
+      <x>460</x>
+      <y>500</y>
+      <width>100</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -136,10 +115,10 @@
    <widget class="QLCDNumber" name="lcdRx">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>195</y>
-      <width>160</width>
-      <height>70</height>
+      <x>70</x>
+      <y>620</y>
+      <width>100</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -164,10 +143,10 @@
    <widget class="QLCDNumber" name="lcdRy">
     <property name="geometry">
      <rect>
-      <x>750</x>
-      <y>195</y>
-      <width>160</width>
-      <height>70</height>
+      <x>260</x>
+      <y>620</y>
+      <width>100</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -192,10 +171,10 @@
    <widget class="QLCDNumber" name="lcdRz">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>195</y>
-      <width>160</width>
-      <height>70</height>
+      <x>460</x>
+      <y>620</y>
+      <width>100</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -217,8 +196,8 @@
    <widget class="QPushButton" name="pushButton_start">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>10</y>
+      <x>920</x>
+      <y>770</y>
       <width>150</width>
       <height>60</height>
      </rect>
@@ -235,8 +214,8 @@
    <widget class="QPushButton" name="pushButton_close">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>10</y>
+      <x>1090</x>
+      <y>770</y>
       <width>150</width>
       <height>60</height>
      </rect>
@@ -250,53 +229,11 @@
      <string>Close</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_X2">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>310</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>1 um</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_X3">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>340</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>10 um</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_Xp">
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>370</y>
+      <y>560</y>
       <width>51</width>
       <height>23</height>
      </rect>
@@ -315,7 +252,7 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>370</y>
+      <y>560</y>
       <width>51</width>
       <height>23</height>
      </rect>
@@ -333,8 +270,8 @@
    <widget class="QPushButton" name="pushButton_Ym">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>370</y>
+      <x>310</x>
+      <y>560</y>
       <width>51</width>
       <height>23</height>
      </rect>
@@ -352,8 +289,8 @@
    <widget class="QPushButton" name="pushButton_Yp">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>370</y>
+      <x>260</x>
+      <y>560</y>
       <width>51</width>
       <height>23</height>
      </rect>
@@ -368,74 +305,11 @@
      <string>+</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_Y3">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>340</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>10 um</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_Y2">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>310</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>1 um</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_Y1">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>280</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>0.2 um</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_Zm">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>370</y>
+      <x>510</x>
+      <y>560</y>
       <width>51</width>
       <height>23</height>
      </rect>
@@ -453,8 +327,8 @@
    <widget class="QPushButton" name="pushButton_Zp">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>370</y>
+      <x>460</x>
+      <y>560</y>
       <width>51</width>
       <height>23</height>
      </rect>
@@ -469,74 +343,11 @@
      <string>+</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_Z3">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>340</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>10 um</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_Z2">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>310</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>1 um</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_Z1">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>280</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>0.2 um</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_Rxm">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>370</y>
+      <x>120</x>
+      <y>680</y>
       <width>51</width>
       <height>23</height>
      </rect>
@@ -554,8 +365,8 @@
    <widget class="QPushButton" name="pushButton_Rxp">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>370</y>
+      <x>70</x>
+      <y>680</y>
       <width>51</width>
       <height>23</height>
      </rect>
@@ -570,74 +381,11 @@
      <string>+</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_Rx3">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>340</y>
-      <width>82</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>0.5 Deg</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_Rx2">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>310</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>0.1 Deg</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_Rx1">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>280</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>0.01 Deg</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_Ryp">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>370</y>
+      <x>260</x>
+      <y>680</y>
       <width>51</width>
       <height>23</height>
      </rect>
@@ -655,8 +403,8 @@
    <widget class="QPushButton" name="pushButton_Rym">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>370</y>
+      <x>310</x>
+      <y>680</y>
       <width>51</width>
       <height>23</height>
      </rect>
@@ -671,74 +419,11 @@
      <string>-</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_Ry3">
-    <property name="geometry">
-     <rect>
-      <x>780</x>
-      <y>340</y>
-      <width>82</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>0.5 Deg</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_Ry2">
-    <property name="geometry">
-     <rect>
-      <x>780</x>
-      <y>310</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>0.1 Deg</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_Ry1">
-    <property name="geometry">
-     <rect>
-      <x>780</x>
-      <y>280</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>0.01 Deg</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_Rzp">
     <property name="geometry">
      <rect>
-      <x>960</x>
-      <y>370</y>
+      <x>460</x>
+      <y>680</y>
       <width>51</width>
       <height>23</height>
      </rect>
@@ -756,8 +441,8 @@
    <widget class="QPushButton" name="pushButton_Rzm">
     <property name="geometry">
      <rect>
-      <x>1010</x>
-      <y>370</y>
+      <x>510</x>
+      <y>680</y>
       <width>51</width>
       <height>23</height>
      </rect>
@@ -772,74 +457,11 @@
      <string>-</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_Rz3">
-    <property name="geometry">
-     <rect>
-      <x>960</x>
-      <y>340</y>
-      <width>82</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>0.5 Deg</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_Rz2">
-    <property name="geometry">
-     <rect>
-      <x>960</x>
-      <y>310</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>0.1 Deg</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_Rz1">
-    <property name="geometry">
-     <rect>
-      <x>960</x>
-      <y>280</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(224, 224, 224);</string>
-    </property>
-    <property name="text">
-     <string>0.01 Deg</string>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="textEdit_gotocommands">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>580</y>
+      <x>10</x>
+      <y>750</y>
       <width>320</width>
       <height>80</height>
      </rect>
@@ -853,8 +475,8 @@
    <widget class="QScrollBar" name="verticalScrollBar_goto">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>580</y>
+      <x>330</x>
+      <y>750</y>
       <width>20</width>
       <height>81</height>
      </rect>
@@ -866,8 +488,8 @@
    <widget class="QPushButton" name="pushButton_gotosend">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>580</y>
+      <x>360</x>
+      <y>750</y>
       <width>111</width>
       <height>81</height>
      </rect>
@@ -886,10 +508,10 @@
    <widget class="QLabel" name="label_errorlog">
     <property name="geometry">
      <rect>
-      <x>740</x>
-      <y>540</y>
+      <x>500</x>
+      <y>710</y>
       <width>81</width>
-      <height>31</height>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
@@ -902,12 +524,15 @@
     </property>
    </widget>
    <widget class="QTextBrowser" name="textBrowser">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>740</x>
-      <y>570</y>
-      <width>331</width>
-      <height>131</height>
+      <x>500</x>
+      <y>750</y>
+      <width>320</width>
+      <height>80</height>
      </rect>
     </property>
     <property name="html">
@@ -921,10 +546,10 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_status">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>10</y>
-      <width>150</width>
-      <height>40</height>
+      <x>360</x>
+      <y>450</y>
+      <width>121</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -939,8 +564,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_statusdata">
     <property name="geometry">
      <rect>
-      <x>909</x>
-      <y>10</y>
+      <x>480</x>
+      <y>450</y>
       <width>161</width>
       <height>40</height>
      </rect>
@@ -957,32 +582,11 @@ p, li { white-space: pre-wrap; }
      <string>DisArmed</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_target_mm">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>70</y>
-      <width>440</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>35</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Target Position(mm)</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_X">
     <property name="geometry">
      <rect>
-      <x>85</x>
-      <y>150</y>
+      <x>10</x>
+      <y>500</y>
       <width>50</width>
       <height>40</height>
      </rect>
@@ -1002,8 +606,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_Y">
     <property name="geometry">
      <rect>
-      <x>265</x>
-      <y>150</y>
+      <x>200</x>
+      <y>500</y>
       <width>50</width>
       <height>40</height>
      </rect>
@@ -1023,8 +627,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_Z">
     <property name="geometry">
      <rect>
-      <x>445</x>
-      <y>150</y>
+      <x>400</x>
+      <y>500</y>
       <width>50</width>
       <height>40</height>
      </rect>
@@ -1044,8 +648,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_Rx">
     <property name="geometry">
      <rect>
-      <x>625</x>
-      <y>150</y>
+      <x>10</x>
+      <y>630</y>
       <width>50</width>
       <height>40</height>
      </rect>
@@ -1065,8 +669,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_Ry">
     <property name="geometry">
      <rect>
-      <x>805</x>
-      <y>150</y>
+      <x>200</x>
+      <y>630</y>
       <width>50</width>
       <height>40</height>
      </rect>
@@ -1086,8 +690,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_Rz">
     <property name="geometry">
      <rect>
-      <x>985</x>
-      <y>150</y>
+      <x>400</x>
+      <y>630</y>
       <width>50</width>
       <height>40</height>
      </rect>
@@ -1104,116 +708,11 @@ p, li { white-space: pre-wrap; }
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_T1xT3y">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>420</y>
-      <width>810</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>T1x,      T1y,      T2x,      T2y,      T3x,      T3y</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_realcounts">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>440</y>
-      <width>200</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Real-time Counts:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_targetcounts">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>490</y>
-      <width>200</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Target Counts:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_realcountsdata">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>440</y>
-      <width>810</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>2150, -2511, 139, -1021, -886, -1523</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_targetcountsdata">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>490</y>
-      <width>810</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>2150, -2511, 139, -1021, -886, -1523</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_goto">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>540</y>
+      <x>10</x>
+      <y>710</y>
       <width>280</width>
       <height>40</height>
      </rect>
@@ -1227,14 +726,167 @@ p, li { white-space: pre-wrap; }
      <string>Goto Commands (Seperate with ',')</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="camera_selector">
+   <widget class="QComboBox" name="stepSizeComboBox">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>670</y>
+      <x>170</x>
+      <y>460</y>
       <width>121</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>0.2um</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1um</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>5um</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>20um</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1mm</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>5mm</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_stepsize">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>460</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Step size:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_reset">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>0</y>
+      <width>150</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Reset</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_alignment">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>80</y>
+      <width>150</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Alignment</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_pre_curing">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>160</y>
+      <width>150</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Pre-Curing</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_curing">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>240</y>
+      <width>150</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Curing</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_camera">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>0</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_camera">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Camera:</string>
     </property>
    </widget>
   </widget>
@@ -1243,7 +895,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1184</width>
+     <width>1248</width>
      <height>21</height>
     </rect>
    </property>

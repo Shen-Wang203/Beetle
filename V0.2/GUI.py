@@ -10,9 +10,18 @@
 # pyuic5 -x GUI.ui -o GUI.py
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+from PyQt5.QtPrintSupport import *
+from PyQt5.QtMultimedia import *
+from PyQt5.QtMultimediaWidgets import *
 # from PyQt5 import pyqtThread, pyqtSignal
 import Command_Input as cmd
 
+import os
+import sys
+import time
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -29,8 +38,7 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.lcdX.setFont(font)
-        self.lcdX.setStyleSheet("background-color: rgb(224, 224, 224);\n"
-"")
+        self.lcdX.setStyleSheet("background-color: rgb(224, 224, 224);\n""")
         self.lcdX.setSmallDecimalPoint(False)
         self.lcdX.setDigitCount(8)
         self.lcdX.setSegmentStyle(QtWidgets.QLCDNumber.Filled)
@@ -476,6 +484,34 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+
+
+
+        # Camera settings
+        self.available_cameras = QCameraInfo.availableCameras()
+        if not self.available_cameras:
+            pass #quit
+
+        # self.status = QStatusBar()
+        # self.setStatusBar(self.status)
+        self.viewfinder = QCameraViewfinder()
+        self.viewfinder.show()
+
+        # Set the deafault camera
+        self.select_camera(0)
+
+        # Setup tools
+        camera_toolbar = QToolBar("Camera")
+        camera_toolbar.setIconSize(QSize(14, 14))
+        # self.addToolBar(camera_toolbar)
+
+        camera_selector = QComboBox()
+        camera_selector.addItems([c.description() for c in self.available_cameras])
+        camera_selector.currentIndexChanged.connect(self.select_camera)
+
+        camera_toolbar.addWidget(camera_selector)
+
+        # Shen's work
         self.pushButton_start.clicked.connect(self.calibration_click)
         self.pushButton_close.clicked.connect(self.close_click)
         self.actionDemo_1.triggered.connect(lambda: self.click_to_send('demo1'))
@@ -518,6 +554,20 @@ class Ui_MainWindow(object):
 
     step = 0
     target_mm = [0,0,138,0,0,0]
+
+    def select_camera(self, i):
+        self.camera = QCamera(self.available_cameras[i])
+        self.camera.setViewfinder(self.viewfinder)
+        self.camera.setCaptureMode(QCamera.CaptureStillImage)
+        self.camera.error.connect(lambda: self.alert(self.camera.errorString()))
+        self.camera.start()
+
+        self.capture = QCameraImageCapture(self.camera)
+        self.capture.error.connect(lambda i, e, s: self.alert(s))
+        self.capture.imageCaptured.connect(lambda d, i: self.status.showMessage("Image %04d captured" % self.save_seq))
+
+        self.current_camera_name = self.available_cameras[i].description()
+        self.save_seq = 0
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -772,7 +822,6 @@ class Ui_MainWindow(object):
         self.runthread.sig1.connect(self.refresh)
 
 if __name__ == "__main__":
-    import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

@@ -62,11 +62,11 @@ import time
 
 # Cube PC, control box #1 
 # COM15: T3
-Tser3 = serial.Serial('COM23', 115200, timeout=None, stopbits=1)
+Tser3 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
 # COM17: T1
-Tser1 = serial.Serial('COM24', 115200, timeout=None, stopbits=1)
+Tser1 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
 # COM20: T2
-Tser2 = serial.Serial('COM26', 115200, timeout=None, stopbits=1)
+Tser2 = serial.Serial('COM8', 115200, timeout=None, stopbits=1)
 time.sleep(.5)
 
 error_log = ''
