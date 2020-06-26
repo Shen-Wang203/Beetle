@@ -1,27 +1,28 @@
-import HPP_Control as control
 import PowerMeter as PM
 import time
-import Back_Model as BM
 import numpy as np
 import logging
 import interpolation
 
 class XYscan:
-    def __init__(self):
+    def __init__(self, HPP, hppcontrol):
+        self.HPP = HPP
+        self.hppcontrol = hppcontrol
+
         self.scan_radius = 5000  # 5000 counts, 5000*0.05um = 250um, +-250um
         self.starting_point = [0,0,138,0,0,0]
         self.step_Rxy = 0.5
         self.step_Rz = 0
         self.reduction_ratio = 0.5
         self.error_flag = False
-        self.limit_Z = 140
+        self.limit_Z = 142
         self.tolerance = 5
         self.Z_amp = 4
         self.stepScanCounts = 10
         self.angle_flag = False
         self.final_adjust = False
         self.larger_Z_flag = False
-        self.loss_criteria = -0.35
+        self.loss_criteria = -0.3
         self.final_adjust_threshold = -2.0
         self.stepmode_threshold = -4.0
         self.interpmode_threshold = -12.0
@@ -57,10 +58,6 @@ class XYscan:
 
     def set_angle_flag(self, _bool):
         self.angle_flag = _bool
-
-    HPP = BM.BackModel()
-    HPP.set_Pivot(np.array([[0], [0], [28.5], [0]]))
-    hppcontrol = control.HPP_Control()
 
     def autoRun(self):
         self.send_to_hpp(self.starting_point)
@@ -956,7 +953,7 @@ class XYscan:
         self.hppcontrol.run_to_Tmm(Tmm, self.tolerance)
         # print(target_counts)
         # real_counts = control.Tcounts_real
-        error_log = control.error_log
+        error_log = self.hppcontrol.error_log
         if error_log != '':
             # error_flag = True
             return False 

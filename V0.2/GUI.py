@@ -650,7 +650,7 @@ class Ui_MainWindow(object):
         self.runthread.setcmd('close')
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
-        # sys.exit()
+        sys.exit()
 
     def send_click(self):
         cmdtext = self.textEdit_gotocommands.toPlainText()

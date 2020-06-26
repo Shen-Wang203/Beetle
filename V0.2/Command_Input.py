@@ -3,7 +3,9 @@ import HPP_Control as control
 import numpy as np
 import time
 from PyQt5 import QtCore
-# from Pattern_Search import Pattern_Search
+import logging
+from XYscan import XYscan 
+from Curing_Align import Curing_Active_Alignment
 
 error_flag = False 
 
@@ -13,6 +15,7 @@ class CMDInputThread(QtCore.QThread):
     def __init__(self, parent=None):
         QtCore.QThread.__init__(self, parent)
         self.cmd = ''
+        self.currentPosition = [0,0,138,0,0,0]
         
     #error_log, target_mm, target_counts, real_counts
     sig1 = QtCore.pyqtSignal(str, list, list, list, bool)
@@ -27,7 +30,12 @@ class CMDInputThread(QtCore.QThread):
     HPP = BM.BackModel()
     HPP.set_Pivot(np.array([[0], [0], [28.5], [0]]))
     hppcontrol = control.HPP_Control()
-    # ps = Pattern_Search()
+
+    logfilename = 'runlog.log'
+    logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
+
+    xys = XYscan(HPP, hppcontrol)
+    cure = Curing_Active_Alignment(HPP, hppcontrol)
 
     P1 = [[0, 0, 138, 0, 0, 0],
         [4, 0, 138, 0, 0, 0],
@@ -165,7 +173,7 @@ class CMDInputThread(QtCore.QThread):
             error_log = ''
             self.hppcontrol.engage_motor()
             #go to a reset position so that index can be found on next startup.
-            T_reset = [-20000, -20000, -20000, -20000, -20000, -20000]
+            T_reset = [-2000, -2000, -2000, -2000, -2000, -2000]
             target_counts = T_reset[:]
             # Tcounts_old = self.hppcontrol.real_time_counts(0)
             self.hppcontrol.send_counts(T_reset)
@@ -204,8 +212,35 @@ class CMDInputThread(QtCore.QThread):
             target_counts = self.hppcontrol.run_to_Tmm(Tmm, 2)
             real_counts = control.Tcounts_real
 
-        elif commands == 'auto':
-            pass
+        elif commands == 'align':
+            self.hppcontrol.engage_motor()
+            # self.xys.set_starting_point(P0)
+            # self.xys.set_loss_criteria(-0.2)
+            P1 = self.xys.autoRun()           
+            self.hppcontrol.disengage_motor()
+            self.currentPosition = P1[:]
+            target_mm = P1[:]
+            real_counts = control.Tcounts_real
+            # we don't use target_counts in gui now so just set it as a random value
+            target_counts = [0,0,0,0,0,0]
+
+        elif commands == 'precure':
+            self.cure.set_loss_criteria(max(self.xys.loss_rec)-0.03)
+            P1 = self.cure.pre_curing_run(self.currentPosition)
+            self.currentPosition = P1[:]
+            target_mm = P1[:]
+            real_counts = control.Tcounts_real
+            # we don't use target_counts in gui now so just set it as a random value
+            target_counts = [0,0,0,0,0,0]
+
+        elif commands == 'curing':
+            P1 = self.cure.curing_run(self.currentPosition)
+            self.currentPosition = P1[:]
+            target_mm = P1[:]
+            real_counts = control.Tcounts_real
+            # we don't use target_counts in gui now so just set it as a random value
+            target_counts = [0,0,0,0,0,0]
+
         else:
             print('Wrong Input')     
 

@@ -60,14 +60,51 @@ import time
 #     time.sleep(.5)
 #     break
 
-# Cube PC, control box #1 
-# COM15: T3
-Tser3 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
-# COM17: T1
-Tser1 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
-# COM20: T2
-Tser2 = serial.Serial('COM8', 115200, timeout=None, stopbits=1)
-time.sleep(.5)
+# For cube PC
+while True:
+    stationNum = input('Control Box #: ')
+    if stationNum == '1':
+        # COM15: T3
+        Tser3 = serial.Serial('COM23', 115200, timeout=None, stopbits=1)
+        # COM17: T1
+        Tser1 = serial.Serial('COM24', 115200, timeout=None, stopbits=1)
+        # COM20: T2
+        Tser2 = serial.Serial('COM26', 115200, timeout=None, stopbits=1)
+    elif stationNum == '2':
+        # COM27: T2
+        Tser2 = serial.Serial('COM27', 115200, timeout=None, stopbits=1)
+        # COM28: T1
+        Tser1 = serial.Serial('COM28', 115200, timeout=None, stopbits=1)
+        # COM32: T3
+        Tser3 = serial.Serial('COM32', 115200, timeout=None, stopbits=1)
+    elif stationNum == '3':
+        # COM35: T2
+        Tser2 = serial.Serial('COM35', 115200, timeout=None, stopbits=1)
+        # COM36: T1
+        Tser1 = serial.Serial('COM36', 115200, timeout=None, stopbits=1)
+        # COM38: T3
+        Tser3 = serial.Serial('COM38', 115200, timeout=None, stopbits=1)
+    elif stationNum == '4':
+        # COM43: T2
+        Tser2 = serial.Serial('COM43', 115200, timeout=None, stopbits=1)
+        # COM42: T1
+        Tser1 = serial.Serial('COM42', 115200, timeout=None, stopbits=1)
+        # COM46: T3
+        Tser3 = serial.Serial('COM46', 115200, timeout=None, stopbits=1)        
+    elif stationNum == '5':
+        pass
+    elif stationNum == '0':
+        # COM15: T3
+        Tser3 = serial.Serial('COM15', 115200, timeout=None, stopbits=1)
+        # COM17: T1
+        Tser1 = serial.Serial('COM17', 115200, timeout=None, stopbits=1)
+        # COM20: T2
+        Tser2 = serial.Serial('COM20', 115200, timeout=None, stopbits=1)
+    else:
+        print('Wrong input')
+        continue
+    time.sleep(.5)
+    break
 
 error_log = ''
 Tcounts_real = [0,0,0,0,0,0]
@@ -77,7 +114,6 @@ direction = [1,1,1,1,1,1]
 backlash_counter = [0,0,0,0,0,0]
 
 class HPP_Control:
-
     def __init__(self):    
         # counter backlash, extra counts, default as 4
         self.backlash = 4
@@ -251,7 +287,12 @@ class HPP_Control:
     
     # Without return value
     def T123_send_only(self, var0, var1):
-        return self.T1_send_only(var0), self.T1_send_only(var1), self.T2_send_only(var0), self.T2_send_only(var1), self.T3_send_only(var0), self.T3_send_only(var1)           
+        self.T1_send_only(var0)
+        self.T2_send_only(var0)
+        self.T3_send_only(var0)
+        self.T1_send_only(var1)
+        self.T2_send_only(var1)
+        self.T3_send_only(var1)           
 
     def Tx_send_only(self, x1, x2, x3, mode):
         # Counter backlash, if direction changed, add extra counts
@@ -516,23 +557,57 @@ class HPP_Control:
         error_log = 'Errors are cleared'
 
     def calibration(self):
+        # All send once
         #Full calibration sequence
         var0 = 'w axis0.requested_state 3' + '\n'
         var1 = 'w axis1.requested_state 3' + '\n'
         self.T123_send_only(var0, var1)      
 
-        # #Index Search
-        # var0 = 'w axis0.requested_state 6' + '\n'
-        # var1 = 'w axis1.requested_state 6' + '\n'
-        # T123_send_only(var0, var1)    
-        
-        # #wait for index search to finish
-        # time.sleep(5)
+        # # Send X first, then y. This is can avoid drive voltage shortage issue
+        # var0 = 'w axis0.encoder.is_ready 0' + '\n'
+        # var1 = 'w axis1.encoder.is_ready 0' + '\n'
+        # self.T123_send_only(var0, var1)
+        # var0 = 'w axis0.requested_state 3' + '\n'
+        # self.T1_send_only(var0)
+        # self.T2_send_only(var0)
+        # self.T3_send_only(var0)
+        # var0 = 'r axis0.encoder.is_ready' + '\n'
+        # while (int(self.T1_send(var0)) + int(self.T2_send(var0)) + int(self.T3_send(var0))) < 3:
+        #     time.sleep(0.5)
+        # var1 = 'w axis1.requested_state 3' + '\n'
+        # self.T1_send_only(var1)
+        # self.T2_send_only(var1)
+        # self.T3_send_only(var1)  
 
-        # #Encoder Offset Calibration
-        # var0 = 'w axis0.requested_state 7' + '\n'
-        # var1 = 'w axis1.requested_state 7' + '\n'
-        # T123_send_only(var0, var1)
+
+    # Under testing
+    def calibration_from_random(self):
+        # 17.6 is one circle 0.5mm, and half range is 9mm, which is we need 18*17.6 = 316.8
+        var1 = 'w axis1.config.general_lockin.finish_distance 180' + '\n'
+        self.T3_send_only(var1)
+        # Lockin spin
+        var1 = 'w axis1.requested_state 9' + '\n'
+        self.T3_send_only(var1)
+
+        var1 = 'r axis1.encoder.index_found' +  '\n'
+        timecount = 0
+        while int(self.T3_send(var1)) == 0:
+            time.sleep(1)
+            timecount += 1
+            if timecount > 10:
+                var1 = 'w axis1.motor.config.direction -1' + '\n'
+                self.T3_send_only(var1)
+                var1 = 'w axis1.config.general_lockin.finish_distance 220' + '\n'
+                self.T3_send_only(var1)
+                var1 = 'w axis1.requested_state 9' + '\n'
+                self.T3_send_only(var1)               
+                timecount = 0
+                var1 = 'r axis1.encoder.index_found' +  '\n'
+        
+        var1 = 'w axis1.motor.config.direction 1' + '\n'
+        self.T3_send_only(var1)
+        var1 = 'w axis1.requested_state 7' + '\n'
+        self.T3_send_only(var1)
 
 
 
@@ -816,12 +891,12 @@ class HPP_Control:
             # if errors exist, disengage motors, exit the loop
             time.sleep(0.1)
             timeout += 1
-            if timeout > 200:
+            if timeout > 100:
                 self.disengage_motor()
                 for i in range(0,6):
                     if abs(_Tcounts[i] - Tcounts_real[i]) > 20:
-                        print('Motor ' + str(i) + ' Timeout Error')
-                        error_log = error_log + 'Motor ' + str(i) + ' Timeout Error' + '\n'
+                        print('Motor ' + str(i+1) + ' Timeout Error')
+                        error_log = error_log + 'Motor ' + str(i+1) + ' Timeout Error' + '\n'
                 return _Tcounts
             # if self.check_errors():
             #     return _Tcounts

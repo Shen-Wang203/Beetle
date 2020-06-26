@@ -3,8 +3,8 @@ import logging
 import XYscan
 
 class Curing_Active_Alignment(XYscan.XYscan):
-    def __init__(self):
-        super().__init__()  
+    def __init__(self, HPP, hppcontrol):
+        super().__init__(HPP, hppcontrol)  
         self.tolerance = 2 
         self.scanmode = 's'
 
@@ -14,23 +14,16 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.loss_curing_rec = []
         self.pos_curing_rec = []
 
-    # End: time reach or loss doesn't change
-    # Loss_criteria at curing should be 0.5 smaller than alignment, while still 0.5 smaller than spec
-    # This can help guarantee the final loss is within spec
-    def curing_run(self, P0):   
-        print('Curing Active Alignment Starts')
+    def pre_curing_run(self, P0):   
+        print('Pre-Curing Active Alignment Starts')
         logging.info('++++++++++++++++++++++++++++++')
-        logging.info('Curing Active Alignment Starts')    
+        logging.info('Pre-Curing Active Alignment Starts')    
         P = P0[:]
         # record append number 0 as an indicate to enter curing
         self.loss_rec.append(0)
         self.pos_rec.append(0)
         self.pos_curing_rec.append(P0)
         
-        while True:
-            cmd = input('Glue ready?: ')
-            if cmd == 'y':
-                break
         # Alignment after glue
         self.fetch_loss()
         self.loss_current_max = self.loss[-1]
@@ -49,13 +42,27 @@ class Curing_Active_Alignment(XYscan.XYscan):
         else:
             self.final_adjust = True
             self.stepScanCounts = 4
+        
+        return P
+                   
+    # End: time reach or loss doesn't change
+    # Loss_criteria at curing should be 0.5 smaller than alignment, while still 0.5 smaller than spec
+    # This can help guarantee the final loss is within spec   
+    def curing_run(self, P0):
+        print('Curing Active Alignment Starts')
+        logging.info('++++++++++++++++++++++++++++++')
+        logging.info('Curing Active Alignment Starts')    
+        P = P0[:]
+        # record append number 0 as an indicate to enter curing
+        self.loss_rec.append(0)
+        self.pos_rec.append(0)
+        self.pos_curing_rec.append(P0)
+        self.fetch_loss()
+        self.loss_current_max = self.loss[-1]
 
 
-        while True:
-            cmd = input('Open the heater: ')
-            if cmd == 'y':
-                break
-
+        self.final_adjust = True
+        self.stepScanCounts = 4
         start_time = time.time()
         curing_active = True
         curing_active_flag = False
@@ -84,8 +91,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
                             logging.info('End program')
                             curing_active = False
                             if curing_active_flag:
-                                import sys 
-                                sys.exit()
+                                # import sys 
+                                # sys.exit()
+                                return P
                             else:
                                 break
                     else:
@@ -100,7 +108,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     curing_active_flag = True
                     print('Loss is high, trying again')
                     logging.info('Loss is high, trying again')
-              
+            
+
+
     def Zstep(self, P0):
         print('Start Zstep (pos then loss)')
         logging.info('Start Zstep (pos then loss)')  

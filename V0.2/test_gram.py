@@ -11,21 +11,24 @@ class A:
         self.plus()
         self.plus()
 
+class C:
+    def __init__(self, aa):
+        self.a_class = aa
+        self.c = 2
 
-class B(A):
-    def __init__(self):
-        super().__init__()
-    
-    def minus(self, anum, bnum):
-        y = anum[:]
-        yy = bnum[:]
-        self.a -= 5
-        y[0] = y[0] + self.a
-        return y
+    def times(self):
+        return self.a_class.b * 4
+
+
+class B(C):
+    def __init__(self, bb):
+        super().__init__(bb)
     
     def plus(self):
-        self.a += 6
+        return self.a_class.b + 6
+        
 
-ob = B()
-x = ob.doubleplus()
-print(ob.a)
+ob_a = A()
+ob_c = C(ob_a)
+ob_b = B(ob_a)
+print(ob_b.plus())
