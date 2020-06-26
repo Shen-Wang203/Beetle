@@ -3,6 +3,7 @@ import time
 import numpy as np
 import logging
 import interpolation
+import HPP_Control as control
 
 class XYscan:
     def __init__(self, HPP, hppcontrol):
@@ -953,7 +954,7 @@ class XYscan:
         self.hppcontrol.run_to_Tmm(Tmm, self.tolerance)
         # print(target_counts)
         # real_counts = control.Tcounts_real
-        error_log = self.hppcontrol.error_log
+        error_log = control.error_log
         if error_log != '':
             # error_flag = True
             return False 
