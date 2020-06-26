@@ -15,36 +15,13 @@ import HPP_Control as control
     #   
 
 hppcontrol = control.HPP_Control()
+
+# All send once
+#Full calibration sequence
 var0 = 'w axis0.requested_state 3' + '\n'
-hppcontrol.T1_send_only(var0)
-hppcontrol.T2_send_only(var0)
-hppcontrol.T3_send_only(var0)
-
-var0 = 'r axis0.encoder.is_ready' + '\n'
-while (int(hppcontrol.T1_send(var0)) + int(hppcontrol.T2_send(var0)) + int(hppcontrol.T3_send(var0))) < 3:
-    time.sleep(0.5)
-
 var1 = 'w axis1.requested_state 3' + '\n'
-hppcontrol.T1_send_only(var1)
-hppcontrol.T2_send_only(var1)
-hppcontrol.T3_send_only(var1)  
+hppcontrol.T123_send_only(var0, var1)   
 
-  
-
-# var0 = 'w axis0.error 0' + '\n'
-# var1 = 'w axis1.error 0' + '\n'
-# Run.T123_send(var0, var1)
-# var0 = 'w axis0.controller.error 0' + '\n'
-# var1 = 'w axis1.controller.error 0' + '\n'
-# Run.T123_send(var0, var1)
-# var0 = 'w axis0.motor.error 0' + '\n'
-# var1 = 'w axis1.motor.error 0' + '\n'
-# Run.T123_send(var0, var1)
-# var0 = 'w axis0.encoder.error 0' + '\n'
-# var1 = 'w axis1.encoder.error 0' + '\n'
-# Run.T123_send(var0, var1)
-# var = 'r axis0.encoder.error' + '\n'
-# print(Run.T2_send(var))
 
 
 # commands = 'w axis0.requested_state 4' + '\n'

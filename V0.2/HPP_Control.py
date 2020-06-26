@@ -558,30 +558,27 @@ class HPP_Control:
         error_log = 'Errors are cleared'
 
     def calibration(self):
-        # # All send once
-        # #Full calibration sequence
-        # var0 = 'w axis0.requested_state 3' + '\n'
-        # var1 = 'w axis1.requested_state 3' + '\n'
-        # self.T123_send_only(var0, var1)      
-
-        # Send X first, then y. This is because Control Box #3 and #4 has to use this patter
-        var0 = 'w axis0.encoder.is_ready 0' + '\n'
-        var1 = 'w axis1.encoder.is_ready 0' + '\n'
-        self.T123_send_only(var0, var1)
-
+        # All send once
+        #Full calibration sequence
         var0 = 'w axis0.requested_state 3' + '\n'
-        self.T1_send_only(var0)
-        self.T2_send_only(var0)
-        self.T3_send_only(var0)
-
-        var0 = 'r axis0.encoder.is_ready' + '\n'
-        while (int(self.T1_send(var0)) + int(self.T2_send(var0)) + int(self.T3_send(var0))) < 3:
-            time.sleep(0.5)
-
         var1 = 'w axis1.requested_state 3' + '\n'
-        self.T1_send_only(var1)
-        self.T2_send_only(var1)
-        self.T3_send_only(var1)  
+        self.T123_send_only(var0, var1)      
+
+        # # Send X first, then y. This is can avoid drive voltage shortage issue
+        # var0 = 'w axis0.encoder.is_ready 0' + '\n'
+        # var1 = 'w axis1.encoder.is_ready 0' + '\n'
+        # self.T123_send_only(var0, var1)
+        # var0 = 'w axis0.requested_state 3' + '\n'
+        # self.T1_send_only(var0)
+        # self.T2_send_only(var0)
+        # self.T3_send_only(var0)
+        # var0 = 'r axis0.encoder.is_ready' + '\n'
+        # while (int(self.T1_send(var0)) + int(self.T2_send(var0)) + int(self.T3_send(var0))) < 3:
+        #     time.sleep(0.5)
+        # var1 = 'w axis1.requested_state 3' + '\n'
+        # self.T1_send_only(var1)
+        # self.T2_send_only(var1)
+        # self.T3_send_only(var1)  
 
 
     def calibration_from_random(self):
