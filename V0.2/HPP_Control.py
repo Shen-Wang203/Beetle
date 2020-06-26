@@ -114,7 +114,6 @@ direction = [1,1,1,1,1,1]
 backlash_counter = [0,0,0,0,0,0]
 
 class HPP_Control:
-
     def __init__(self):    
         # counter backlash, extra counts, default as 4
         self.backlash = 4
