@@ -21,7 +21,6 @@ import os
 import sys
 import time
 
-
 class Ui_MainWindow(object):
         def setupUi(self, MainWindow):
                 MainWindow.setObjectName("MainWindow")

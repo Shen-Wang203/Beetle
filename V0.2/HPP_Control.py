@@ -63,13 +63,25 @@ import time
 # For cube PC
 while True:
     stationNum = input('Control Box #: ')
+    # Shen's PC
+    # if stationNum == '1':
+    #     # COM15: T3
+    #     Tser3 = serial.Serial('COM23', 115200, timeout=None, stopbits=1)
+    #     # COM17: T1
+    #     Tser1 = serial.Serial('COM24', 115200, timeout=None, stopbits=1)
+    #     # COM20: T2
+    #     Tser2 = serial.Serial('COM26', 115200, timeout=None, stopbits=1)
+
+    # Jerry's laptop####################################################
     if stationNum == '1':
         # COM15: T3
-        Tser3 = serial.Serial('COM23', 115200, timeout=None, stopbits=1)
+        Tser3 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
         # COM17: T1
-        Tser1 = serial.Serial('COM24', 115200, timeout=None, stopbits=1)
+        Tser1 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
         # COM20: T2
-        Tser2 = serial.Serial('COM26', 115200, timeout=None, stopbits=1)
+        Tser2 = serial.Serial('COM8', 115200, timeout=None, stopbits=1)
+    ####################################################################
+
     elif stationNum == '2':
         # COM27: T2
         Tser2 = serial.Serial('COM27', 115200, timeout=None, stopbits=1)
