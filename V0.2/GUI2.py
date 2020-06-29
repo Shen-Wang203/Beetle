@@ -304,7 +304,7 @@ class Ui_MainWindow(object):
         self.label_stepsize.setObjectName("label_stepsize")
 
         self.label_key_press = QtWidgets.QLabel(self.centralwidget)
-        self.label_key_press.setGeometry(QtCore.QRect(50, 540, 120, 30))
+        self.label_key_press.setGeometry(QtCore.QRect(50, 540, 500, 30))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_key_press.setFont(font)
@@ -430,12 +430,6 @@ class Ui_MainWindow(object):
         self.comboBox_camera.addItems([c.description() for c in self.available_cameras])
         self.comboBox_camera.currentIndexChanged.connect(self.select_camera)
 
-        # key pressed event
-        # self.keyPressed.connect(self.on_key)
-
-    step = 0
-    target_mm = [0,0,138,0,0,0]
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "HPP System"))
@@ -477,7 +471,7 @@ class Ui_MainWindow(object):
         self.stepSizeComboBox.setItemText(5, _translate("MainWindow", "0.1degree"))
         self.stepSizeComboBox.setItemText(6, _translate("MainWindow", "0.5degree"))
         self.label_stepsize.setText(_translate("MainWindow", "Step size:"))
-        self.label_key_press.setText(_translate("MainWindow", ""))
+        # self.label_key_press.setText(_translate("MainWindow", ""))
         self.pushButton_reset.setText(_translate("MainWindow", "Reset"))
         self.pushButton_alignment.setText(_translate("MainWindow", "Alignment"))
         self.pushButton_pre_curing.setText(_translate("MainWindow", "Pre-Curing"))
@@ -492,7 +486,15 @@ class Ui_MainWindow(object):
         self.actionDemo_2.setText(_translate("MainWindow", "Demo 2"))
         self.actionDemo_3.setText(_translate("MainWindow", "Demo 3"))
 
+
+class MainWindow(QMainWindow, Ui_MainWindow):
+    def __init__(self, parent=None):
+        QMainWindow.__init__(self, parent=parent)
+        self.setupUi(self)
         self.runthread = cmd.CMDInputThread()
+
+    step = 0
+    target_mm = [0,0,138,0,0,0]
 
     def click_to_send(self, _cmd):
         self.runthread.setcmd(_cmd)
@@ -607,22 +609,6 @@ class Ui_MainWindow(object):
         elif self.stepSizeComboBox.currentIndex() == 6:
                 self.step = 0.5
         # print(self.step)
-
-    # Key press events
-    def keyPressEvent(self, event):
-        print("A key is pressed")
-        # super(Ui_MainWindow, self).keyPressEvent(event)
-        # self.keyPressed.emit(event)
-
-    def on_key(self, event):
-        print('key is pressed')
-        if  event.key() == Qt.Key_X or event.key() == Qt.Key_x:
-            self.label_key_press.setText(self, "X:")
-            print('x')
-        elif  event.key() == Qt.Key_Y or event.key() == Qt.Key_y:
-            self.label_key_press.setText(self, "Y:")
-        elif  event.key() == Qt.Key_Z or event.key() == Qt.Key_z:
-            self.label_key_press.setText(self, "Z:")
 
     def xplus_click(self, step):
         self.target_mm[0] = self.target_mm[0] + step
@@ -742,14 +728,46 @@ class Ui_MainWindow(object):
         err = QErrorMessage(self)
         err.showMessage(s)
 
-class MainWindow(QMainWindow, Ui_MainWindow):
-    def __init__(self, parent=None):
-        QMainWindow.__init__(self, parent=parent)
-        self.setupUi(self)
-
+    isControllingX = False
+    isControllingY = False
+    isControllingZ = False
     def keyPressEvent(self, e):
-        print('A key is pressed here!!!')
+        if e.key()==Qt.Key_X:
+            self.label_key_press.setText("Controlling X-axis:+/-")
+            self.isControllingX = True
+            self.isControllingY = False
+            self.isControllingZ = False
+        elif e.key()==Qt.Key_Y:
+            self.label_key_press.setText("Controlling Y-axis:+/-")
+            self.isControllingX = False
+            self.isControllingY = True
+            self.isControllingZ = False
+        elif e.key()==Qt.Key_Z:
+            self.label_key_press.setText("Controlling Z-axis:+/-")
+            self.isControllingX = False
+            self.isControllingY = False
+            self.isControllingZ = True
+        elif e.key()==Qt.Key_Escape:
+            self.label_key_press.setText("Press X/Y/Z to activate keyboard shortcut")
+            self.isControllingX = False
+            self.isControllingY = False
+            self.isControllingZ = False
 
+        if self.isControllingX == True:
+            if e.key() == Qt.Key_Plus:
+                self.xplus_click(self.step)
+            elif e.key() == Qt.Key_Minus:
+                self.xminus_click(self.step)
+        elif self.isControllingY == True:
+            if e.key() == Qt.Key_Plus:
+                self.yplus_click(self.step)
+            elif e.key() == Qt.Key_Minus:
+                self.yminus_click(self.step)
+        elif self.isControllingZ == True:
+            if e.key() == Qt.Key_Plus:
+                self.zplus_click(self.step)
+            elif e.key() == Qt.Key_Minus:
+                self.zminus_click(self.step)
 
 if __name__ == "__main__":
     import sys
