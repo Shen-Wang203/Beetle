@@ -493,7 +493,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.runthread = cmd.CMDInputThread()
 
-    step = 0
+    step = 0.0002
     target_mm = [0,0,138,0,0,0]
 
     def click_to_send(self, _cmd):
