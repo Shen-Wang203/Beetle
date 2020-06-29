@@ -89,13 +89,13 @@ class Ui_MainWindow(object):
                 self.lcdRz.setProperty("value", 0.0)
                 self.lcdRz.setObjectName("lcdRz")
                 self.pushButton_start = QtWidgets.QPushButton(self.centralwidget)
-                self.pushButton_start.setGeometry(QtCore.QRect(920, 770, 150, 60))
+                self.pushButton_start.setGeometry(QtCore.QRect(850, 450, 150, 60))
                 font = QtGui.QFont()
                 font.setPointSize(20)
                 self.pushButton_start.setFont(font)
                 self.pushButton_start.setObjectName("pushButton_start")
                 self.pushButton_close = QtWidgets.QPushButton(self.centralwidget)
-                self.pushButton_close.setGeometry(QtCore.QRect(1090, 770, 150, 60))
+                self.pushButton_close.setGeometry(QtCore.QRect(1000, 450, 150, 60))
                 font = QtGui.QFont()
                 font.setPointSize(20)
                 self.pushButton_close.setFont(font)
@@ -382,7 +382,7 @@ class Ui_MainWindow(object):
                 self.retranslateUi(MainWindow)
                 QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-                # Shen's work
+                # Button trigger events @Shen
                 self.pushButton_start.clicked.connect(self.calibration_click)
                 self.pushButton_close.clicked.connect(self.close_click)
                 self.actionDemo_1.triggered.connect(lambda: self.click_to_send('demo1'))
@@ -390,12 +390,15 @@ class Ui_MainWindow(object):
                 self.actionDemo_3.triggered.connect(lambda: self.click_to_send('demo3'))
                 self.pushButton_gotosend.clicked.connect(self.send_click)
                 self.stepSizeComboBox.currentIndexChanged.connect(self.step_choose)
+
+                ##################################################
                 self.pushButton_Xp.clicked.connect(lambda: self.xplus_click(self.step))
                 self.pushButton_Xm.clicked.connect(lambda: self.xminus_click(self.step))
                 self.pushButton_Yp.clicked.connect(lambda: self.yplus_click(self.step))
                 self.pushButton_Ym.clicked.connect(lambda: self.yminus_click(self.step))
                 self.pushButton_Zp.clicked.connect(lambda: self.zplus_click(self.step))
                 self.pushButton_Zm.clicked.connect(lambda: self.zminus_click(self.step))
+                ##################################################
                 self.pushButton_Rxp.clicked.connect(lambda: self.Rxplus_click(self.step))
                 self.pushButton_Rxm.clicked.connect(lambda: self.Rxminus_click(self.step))
                 self.pushButton_Ryp.clicked.connect(lambda: self.Ryplus_click(self.step))
@@ -407,13 +410,13 @@ class Ui_MainWindow(object):
                 self.pushButton_pre_curing.clicked.connect(self.pre_curing_click)
                 self.pushButton_curing.clicked.connect(self.curing_click)
 
-                # Jerry adding camera
+                # Camera configuration @Jerry
                 self.available_cameras = QCameraInfo.availableCameras()
                 if not self.available_cameras:
                         pass #quit
 
                 self.viewfinder = QCameraViewfinder(self.centralwidget)
-                self.viewfinder.setGeometry(QtCore.QRect(-100,25,1000,550))
+                self.viewfinder.setGeometry(QtCore.QRect(-150,50,1000,450))
                 self.viewfinder.show()
                 self.select_camera(0)
                 self.comboBox_camera.addItems([c.description() for c in self.available_cameras])
