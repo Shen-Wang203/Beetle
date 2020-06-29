@@ -28,67 +28,71 @@ class CMDInputThread(QtCore.QThread):
 
     #Create a HPP fixture object
     HPP = BM.BackModel()
-    HPP.set_Pivot(np.array([[0], [0], [28.5], [0]]))
+    HPP.set_Pivot(np.array([[0], [0], [44.62], [0]]))
     hppcontrol = control.HPP_Control()
 
     logfilename = 'runlog.log'
-    logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
+    # Create a new log file each time the program is launched
+    # logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
+    # Append the logg file to the existing one
+    logging.basicConfig(filename=logfilename, level=logging.INFO)
+
 
     xys = XYscan(HPP, hppcontrol)
     cure = Curing_Active_Alignment(HPP, hppcontrol)
 
-    P1 = [[0, 0, 138, 0, 0, 0],
-        [4, 0, 138, 0, 0, 0],
-        [-4, 0, 138, 0, 0, 0],
-        [0, 0, 138, 0, 0, 0],
-        [0, -4, 138, 0, 0, 0],
-        [0, 4, 138, 0, 0, 0],
-        [0, 0, 138, 0, 0, 0],
-        [0, 0, 142, 0, 0, 0],
-        [0, 0, 134, 0, 0, 0],
-        [0, 0, 138, 0, 0, 0],
-        [0, 0, 138, 4, 0, 0],
-        [0, 0, 138, -4, 0, 0],
-        [0, 0, 138, 0, 0, 0],
-        [0, 0, 138, 0, 4, 0],
-        [0, 0, 138, 0, -4, 0],
-        [0, 0, 138, 0, 0, 0],
-        [0, 0, 138, 0, 0, 4],
-        [0, 0, 138, 0, 0, -4],
-        [0, 0, 138, 0, 0, 0],
-        [0, 0, 138, -4, 0, 0],
-        [0, 0, 138, -3, -3, 0],
-        [0, 0, 138, 0, -4, 0],
-        [0, 0, 138, 3, -3, 0],
-        [0, 0, 138, 4, 0, 0],
-        [0, 0, 138, 3, 3, 0],
-        [0, 0, 138, 0, 4, 0],
-        [0, 0, 138, -3, 3, 0],
-        [0, 0, 138, -4, 0, 0],
-        [0, 0, 138, 0, 0, 0]
+    P1 = [  [0, 0, 138, 0, 0, 0],
+            [4, 0, 138, 0, 0, 0],
+            [-4, 0, 138, 0, 0, 0],
+            [0, 0, 138, 0, 0, 0],
+            [0, -4, 138, 0, 0, 0],
+            [0, 4, 138, 0, 0, 0],
+            [0, 0, 138, 0, 0, 0],
+            [0, 0, 142, 0, 0, 0],
+            [0, 0, 134, 0, 0, 0],
+            [0, 0, 138, 0, 0, 0],
+            [0, 0, 138, 4, 0, 0],
+            [0, 0, 138, -4, 0, 0],
+            [0, 0, 138, 0, 0, 0],
+            [0, 0, 138, 0, 4, 0],
+            [0, 0, 138, 0, -4, 0],
+            [0, 0, 138, 0, 0, 0],
+            [0, 0, 138, 0, 0, 4],
+            [0, 0, 138, 0, 0, -4],
+            [0, 0, 138, 0, 0, 0],
+            [0, 0, 138, -4, 0, 0],
+            [0, 0, 138, -3, -3, 0],
+            [0, 0, 138, 0, -4, 0],
+            [0, 0, 138, 3, -3, 0],
+            [0, 0, 138, 4, 0, 0],
+            [0, 0, 138, 3, 3, 0],
+            [0, 0, 138, 0, 4, 0],
+            [0, 0, 138, -3, 3, 0],
+            [0, 0, 138, -4, 0, 0],
+            [0, 0, 138, 0, 0, 0]
         ]
 
-    P2 = [[0, 0, 138, 0, 0, 0],
-        [0, 0, 138.1, 0, 0, 0],
-        [0.1, 0, 138.1, -0.6, 0.2, 0],
-        [0.1, -0.05, 138.05, -0.6, 0.2, 0],
-        [0.06, -0.03, 138.05, -0.62, 0.21, 0],
-        [0.05, -0.03, 138.05, -0.62, 0.213, 0],
-        [0.054, -0.036, 138.053, -0.616, 0.210, 0],
-        [0.054, -0.036, 138.053, -0.616, 0.240, 0],
-        [0.054, -0.036, 138.053, -0.636, 0.240, 0],
-        [0.057, -0.056, 138.053, -0.636, 0.240, 0],
-        [0.057, -0.052, 138.056, -0.636, 0.240, 0],
-        [0.057, -0.052, 138.05, -0.636, 0.240, 0]
+    P2 = [  [0, 0, 138, 0, 0, 0],
+            [0, 0, 138.1, 0, 0, 0],
+            [0.1, 0, 138.1, -0.6, 0.2, 0],
+            [0.1, -0.05, 138.05, -0.6, 0.2, 0],
+            [0.06, -0.03, 138.05, -0.62, 0.21, 0],
+            [0.05, -0.03, 138.05, -0.62, 0.213, 0],
+            [0.054, -0.036, 138.053, -0.616, 0.210, 0],
+            [0.054, -0.036, 138.053, -0.616, 0.240, 0],
+            [0.054, -0.036, 138.053, -0.636, 0.240, 0],
+            [0.057, -0.056, 138.053, -0.636, 0.240, 0],
+            [0.057, -0.052, 138.056, -0.636, 0.240, 0],
+            [0.057, -0.052, 138.05, -0.636, 0.240, 0]
         ]
 
-    P3 = [[0, 0, 138, 0, -4, 0],
-        [0, 0, 138, 0, -2, 0],
-        [0, 0, 138, 0, 0, 0],
-        [0, 0, 138, 0, 2, 0],
-        [0, 0, 138, 0, 4, 0],
-        [0, 0, 138, 0, 2, 0],
-        [0, 0, 138, 0, 0, 0]
+    P3 = [  [0, 0, 138, 0, -4, 0],
+            [0, 0, 138, 0, -2, 0],
+            [0, 0, 138, 0, 0, 0],
+            [0, 0, 138, 0, 2, 0],
+            [0, 0, 138, 0, 4, 0],
+            [0, 0, 138, 0, 2, 0],
+            [0, 0, 138, 0, 0, 0]
         ]
 
     def enter_commands(self, cmd):
@@ -100,7 +104,7 @@ class CMDInputThread(QtCore.QThread):
         target_mm = [0,0,138,0,0,0]
         real_counts = [0,0,0,0,0,0]
 
-        if commands == 'start':
+        if commands == 'calib':
             error_log = ''
             self.hppcontrol.calibration()
             # print('Calibrating...')
@@ -108,7 +112,6 @@ class CMDInputThread(QtCore.QThread):
             error_flag = False
             if self.hppcontrol.check_errors():
                 error_flag = True
-                self.hppcontrol.disengage_motor()
             # Read real time counts for all axis
             control.Tcounts_old = self.hppcontrol.real_time_counts(0)
         
@@ -158,8 +161,6 @@ class CMDInputThread(QtCore.QThread):
                     break
                 real_counts = control.Tcounts_real[:]
                 self.sig1.emit(error_log, target_mm, target_counts, real_counts, error_flag)
-
-            self.hppcontrol.disengage_motor()
         
         elif commands == 'debug':
             error_log = ''
@@ -211,13 +212,13 @@ class CMDInputThread(QtCore.QThread):
             self.hppcontrol.engage_motor()
             target_counts = self.hppcontrol.run_to_Tmm(Tmm, 2)
             real_counts = control.Tcounts_real
+            self.currentPosition = target_mm[:]
 
         elif commands == 'align':
             self.hppcontrol.engage_motor()
             # self.xys.set_starting_point(P0)
             # self.xys.set_loss_criteria(-0.2)
             P1 = self.xys.autoRun()           
-            self.hppcontrol.disengage_motor()
             self.currentPosition = P1[:]
             target_mm = P1[:]
             real_counts = control.Tcounts_real

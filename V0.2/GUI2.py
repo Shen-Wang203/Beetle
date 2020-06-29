@@ -20,6 +20,7 @@ import Command_Input as cmd
 import os
 import sys
 import time
+import logging
 
 class Ui_MainWindow(object):
         def setupUi(self, MainWindow):
@@ -302,7 +303,7 @@ class Ui_MainWindow(object):
                 self.label_stepsize.setObjectName("label_stepsize")
 
                 self.pushButton_reset = QtWidgets.QPushButton(self.centralwidget)
-                self.pushButton_reset.setGeometry(QtCore.QRect(1090, 0, 150, 60))
+                self.pushButton_reset.setGeometry(QtCore.QRect(850, 50, 300, 60))
                 font = QtGui.QFont()
                 font.setPointSize(20)
                 self.pushButton_reset.setFont(font)
@@ -310,7 +311,7 @@ class Ui_MainWindow(object):
                 self.pushButton_reset.setStyleSheet("background-color: red") 
 
                 self.pushButton_alignment = QtWidgets.QPushButton(self.centralwidget)
-                self.pushButton_alignment.setGeometry(QtCore.QRect(1090, 80, 150, 60))
+                self.pushButton_alignment.setGeometry(QtCore.QRect(850, 150, 300, 60))
                 font = QtGui.QFont()
                 font.setPointSize(20)
                 self.pushButton_alignment.setFont(font)
@@ -319,7 +320,7 @@ class Ui_MainWindow(object):
                 self.pushButton_alignment.setEnabled(False)
 
                 self.pushButton_pre_curing = QtWidgets.QPushButton(self.centralwidget)
-                self.pushButton_pre_curing.setGeometry(QtCore.QRect(1090, 160, 150, 60))
+                self.pushButton_pre_curing.setGeometry(QtCore.QRect(850, 250, 300, 60))
                 font = QtGui.QFont()
                 font.setPointSize(20)
                 self.pushButton_pre_curing.setFont(font)
@@ -328,7 +329,7 @@ class Ui_MainWindow(object):
                 self.pushButton_pre_curing.setEnabled(False)
 
                 self.pushButton_curing = QtWidgets.QPushButton(self.centralwidget)
-                self.pushButton_curing.setGeometry(QtCore.QRect(1090, 240, 150, 60))
+                self.pushButton_curing.setGeometry(QtCore.QRect(850, 350, 300, 60))
                 font = QtGui.QFont()
                 font.setPointSize(20)
                 self.pushButton_curing.setFont(font)
@@ -501,11 +502,15 @@ class Ui_MainWindow(object):
                 self.runthread.sig1.connect(self.refresh)
 
         def calibration_click(self):
-                self.runthread.setcmd('start')
+                self.runthread.setcmd('calib')
                 self.runthread.start()
                 self.runthread.sig1.connect(self.refresh)
 
         def reset_click(self):
+                logging.info(' ')
+                logging.info('*************************')
+                logging.info('Reset')
+                logging.info('*************************')
                 # target_mm_text = '[0,0,138,0,0,0]'
                 # cmdtext = 'goto' + target_mm_text[1:-1]
                 # print(cmdtext)

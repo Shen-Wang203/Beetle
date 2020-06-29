@@ -1,1 +1,6 @@
-print(183400 + 38.123072 / 50e-6)
+import logging
+
+logfilename = 'runlog.log'
+logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
+
+logging.info('Run')

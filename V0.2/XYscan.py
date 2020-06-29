@@ -1,4 +1,4 @@
-import PowerMeter as PM
+# import PowerMeter as PM
 import time
 import numpy as np
 import logging
@@ -6,8 +6,8 @@ import interpolation
 import HPP_Control as control
 
 class XYscan:
-    def __init__(self, HPP, hppcontrol):
-        self.HPP = HPP
+    def __init__(self, HPPModel, hppcontrol):
+        self.HPP = HPPModel
         self.hppcontrol = hppcontrol
 
         self.scan_radius = 5000  # 5000 counts, 5000*0.05um = 250um, +-250um
@@ -61,6 +61,12 @@ class XYscan:
         self.angle_flag = _bool
 
     def autoRun(self):
+        print('A New Alignment Starts')
+        logging.info(' ')
+        logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+        logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+        logging.info('A New Alignment Starts') 
+        logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
         self.send_to_hpp(self.starting_point)
         # time.sleep(2)
         self.hppcontrol.slow_traj_speed()

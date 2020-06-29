@@ -3,8 +3,8 @@ import logging
 import XYscan
 
 class Curing_Active_Alignment(XYscan.XYscan):
-    def __init__(self, HPP, hppcontrol):
-        super().__init__(HPP, hppcontrol)  
+    def __init__(self, HPPModel, hppcontrol):
+        super().__init__(HPPModel, hppcontrol)  
         self.tolerance = 2 
         self.scanmode = 's'
 
@@ -16,8 +16,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
     def pre_curing_run(self, P0):   
         print('Pre-Curing Active Alignment Starts')
+        logging.info(' ')
         logging.info('++++++++++++++++++++++++++++++')
-        logging.info('Pre-Curing Active Alignment Starts')    
+        logging.info('Pre-Curing Active Alignment Starts')   
+        logging.info('++++++++++++++++++++++++++++++') 
         P = P0[:]
         # record append number 0 as an indicate to enter curing
         self.loss_rec.append(0)
@@ -50,8 +52,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
     # This can help guarantee the final loss is within spec   
     def curing_run(self, P0):
         print('Curing Active Alignment Starts')
+        logging.info(' ')
         logging.info('++++++++++++++++++++++++++++++')
-        logging.info('Curing Active Alignment Starts')    
+        logging.info('Curing Active Alignment Starts') 
+        logging.info('++++++++++++++++++++++++++++++')
         P = P0[:]
         # record append number 0 as an indicate to enter curing
         self.loss_rec.append(0)
