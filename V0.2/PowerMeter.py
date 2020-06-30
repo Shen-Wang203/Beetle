@@ -4,7 +4,7 @@ import visa
 import logging
 
 
-PM_ADDR = str(20)
+PM_ADDR = str(13)
 # POWER = str(0)
 rm = visa.ResourceManager()
 PM = rm.open_resource('GPIB0::'+PM_ADDR+'::INSTR')

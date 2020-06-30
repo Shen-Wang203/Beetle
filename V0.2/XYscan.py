@@ -1,4 +1,4 @@
-# import PowerMeter as PM
+import PowerMeter as PM
 import time
 import numpy as np
 import logging
