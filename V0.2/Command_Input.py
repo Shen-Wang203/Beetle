@@ -28,7 +28,7 @@ class CMDInputThread(QtCore.QThread):
 
     #Create a HPP fixture object
     HPP = BM.BackModel()
-    HPP.set_Pivot(np.array([[0], [0], [44.62], [0]]))
+    HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))
     hppcontrol = control.HPP_Control()
 
     logfilename = 'runlog.log'
