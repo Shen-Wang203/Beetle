@@ -32,18 +32,13 @@ class Curing_Active_Alignment(XYscan.XYscan):
         # if loss is too low, exit the program
         if self.loss[-1] < -30:
             return False
-        elif self.loss[-1] <= self.loss_criteria:
-            self.hppcontrol.engage_motor()
+        if self.loss[-1] <= self.loss_criteria:
             P = self.scanUpdate(P, self.scanmode)
-            self.hppcontrol.disengage_motor()
             self.final_adjust = True
             self.stepScanCounts = 4         
             while max(self.loss) < self.loss_criteria:
                 P = self.Zstep(P)
                 P = self.scanUpdate(P, self.scanmode)
-        else:
-            self.final_adjust = True
-            self.stepScanCounts = 4
         
         return P
                    

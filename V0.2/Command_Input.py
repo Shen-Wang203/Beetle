@@ -19,6 +19,13 @@ class CMDInputThread(QtCore.QThread):
         
     #error_log, target_mm, target_counts, real_counts
     sig1 = QtCore.pyqtSignal(str, list, list, list, bool)
+    # Motor status signal
+    # 0: Idle
+    # 1: Running
+    # 2: Auto-alignment runnning
+    # 3: Pre-curing running
+    # 4: Curing running
+    sig2 = QtCore.pyqtSignal(int)
 
     def setcmd(self, cmdtext):
         self.cmd = cmdtext
@@ -132,6 +139,7 @@ class CMDInputThread(QtCore.QThread):
                 self.HPP.set_Pivot(np.array([[0], [0], [75], [0]]))
             # Engage motors, do close-loop controls
             self.hppcontrol.engage_motor()
+            self.sig2.emit(1)
             # Read real time counts
             # Tcounts_old = self.hppcontrol.real_time_counts(0)
             # Set error flag as false
@@ -169,10 +177,11 @@ class CMDInputThread(QtCore.QThread):
         elif commands == 'counts':
             num = input("Enter your axis #: ")
             print(self.hppcontrol.real_time_counts(int(num)))
-        
+
         elif commands == 'close':
             error_log = ''
             self.hppcontrol.engage_motor()
+            self.sig2.emit(1)
             #go to a reset position so that index can be found on next startup.
             T_reset = [-2000, -2000, -2000, -2000, -2000, -2000]
             target_counts = T_reset[:]
@@ -182,6 +191,7 @@ class CMDInputThread(QtCore.QThread):
                 #if errors exist, exit the loop, disengage motors
                 if self.hppcontrol.check_errors():
                     self.hppcontrol.disengage_motor()
+                    self.sig2.emit(0)
                     break
             real_counts = control.Tcounts_real
         
@@ -210,12 +220,14 @@ class CMDInputThread(QtCore.QThread):
             Tmm = self.HPP.findAxialPosition(X, Y, Z, Rx, Ry, Rz)  
             
             self.hppcontrol.engage_motor()
+            self.sig2.emit(1)
             target_counts = self.hppcontrol.run_to_Tmm(Tmm, 2)
             real_counts = control.Tcounts_real
             self.currentPosition = target_mm[:]
 
         elif commands == 'align':
             self.hppcontrol.engage_motor()
+            self.sig2.emit(2)
             # self.xys.set_starting_point(P0)
             # self.xys.set_loss_criteria(-0.2)
             P1 = self.xys.autoRun()           
@@ -226,6 +238,8 @@ class CMDInputThread(QtCore.QThread):
             target_counts = [0,0,0,0,0,0]
 
         elif commands == 'precure':
+            self.hppcontrol.engage_motor()
+            self.sig2.emit(3)            
             self.cure.set_loss_criteria(max(self.xys.loss_rec)-0.03)
             P1 = self.cure.pre_curing_run(self.currentPosition)
             self.currentPosition = P1[:]
@@ -235,6 +249,7 @@ class CMDInputThread(QtCore.QThread):
             target_counts = [0,0,0,0,0,0]
 
         elif commands == 'curing':
+            self.sig2.emit(4)
             P1 = self.cure.curing_run(self.currentPosition)
             self.currentPosition = P1[:]
             target_mm = P1[:]
@@ -242,6 +257,8 @@ class CMDInputThread(QtCore.QThread):
             # we don't use target_counts in gui now so just set it as a random value
             target_counts = [0,0,0,0,0,0]
 
+        elif commands == 'disarm':
+            pass
         else:
             print('Wrong Input')     
 
@@ -250,7 +267,7 @@ class CMDInputThread(QtCore.QThread):
             error_flag = True
         self.sig1.emit(error_log, target_mm, target_counts, real_counts, error_flag)
         self.hppcontrol.disengage_motor()
-
+        self.sig2.emit(0)
 
     def close_ports(self):
         self.hppcontrol.close_ports()

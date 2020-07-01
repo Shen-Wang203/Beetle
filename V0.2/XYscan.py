@@ -236,7 +236,7 @@ class XYscan:
                 while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
                     time.sleep(0.1)
                     timeout += 1
-                    if timeout > 200:
+                    if timeout > 100:
                         print('Movement Timeout Error')
                         logging.info('Movement Timeout Error')
                         return False
@@ -256,7 +256,7 @@ class XYscan:
                     while not self.hppcontrol.Tx_on_target(X1_counts, X2_counts, X3_counts, self.tolerance):
                         time.sleep(0.1)
                         timeout += 1
-                        if timeout > 200:
+                        if timeout > 100:
                             print('Movement Timeout Error')
                             logging.info('Movement Timeout Error')
                             return False
@@ -303,7 +303,7 @@ class XYscan:
                 while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
                     time.sleep(0.1)  
                     timeout += 1
-                    if timeout > 200:
+                    if timeout > 100:
                         print('Movement Timeout Error')
                         logging.info('Movement Timeout Error')
                         return False
@@ -323,7 +323,7 @@ class XYscan:
                     while not self.hppcontrol.Ty_on_target(Y1_counts, Y2_counts, Y3_counts, self.tolerance):
                         time.sleep(0.1)     
                         timeout += 1
-                        if timeout > 200:
+                        if timeout > 100:
                             print('Movement Timeout Error')
                             logging.info('Movement Timeout Error')
                             return False              
@@ -370,7 +370,7 @@ class XYscan:
             while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
                 time.sleep(0.1)
                 timeout += 1
-                if timeout > 200:
+                if timeout > 100:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
                     return False
@@ -423,7 +423,7 @@ class XYscan:
         while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
             time.sleep(0.1)
             timeout += 1
-            if timeout > 200:
+            if timeout > 100:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
                 return False
@@ -468,7 +468,7 @@ class XYscan:
             while not self.hppcontrol.Ty_on_target(y1, y2, y3, self.tolerance):
                 time.sleep(0.1)
                 timeout += 1
-                if timeout > 200:
+                if timeout > 100:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
                     return False
@@ -521,7 +521,7 @@ class XYscan:
         while not self.hppcontrol.Ty_on_target(y1, y2, y3, self.tolerance):
             time.sleep(0.1)
             timeout += 1
-            if timeout > 200:
+            if timeout > 100:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
                 return False
@@ -560,7 +560,7 @@ class XYscan:
             while not self.hppcontrol.Tx_on_target(x1[i], x2[i], x3[i], self.tolerance):
                 time.sleep(0.1)
                 timeout += 1
-                if timeout > 200:
+                if timeout > 100:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
                     return False
@@ -582,7 +582,7 @@ class XYscan:
         while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
             time.sleep(0.1)
             timeout += 1
-            if timeout > 200:
+            if timeout > 100:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
                 return False
@@ -620,7 +620,7 @@ class XYscan:
             while not self.hppcontrol.Ty_on_target(y1[i], y2[i], y3[i], self.tolerance):
                 time.sleep(0.1)
                 timeout += 1
-                if timeout > 200:
+                if timeout > 100:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
                     return False
@@ -642,7 +642,7 @@ class XYscan:
         while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
             time.sleep(0.1)
             timeout += 1
-            if timeout > 200:
+            if timeout > 100:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
                 return False

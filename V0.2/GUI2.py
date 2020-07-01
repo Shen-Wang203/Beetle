@@ -101,6 +101,12 @@ class Ui_MainWindow(object):
         font.setPointSize(20)
         self.pushButton_close.setFont(font)
         self.pushButton_close.setObjectName("pushButton_close")
+        self.pushButton_disarm = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_disarm.setGeometry(QtCore.QRect(1000, 530, 150, 60))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        self.pushButton_disarm.setFont(font)
+        self.pushButton_disarm.setObjectName("pushButton_disarm")
         self.pushButton_Xp = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Xp.setGeometry(QtCore.QRect(70, 680, 51, 23))
         font = QtGui.QFont()
@@ -393,6 +399,7 @@ class Ui_MainWindow(object):
         # Button trigger events @Shen
         self.pushButton_start.clicked.connect(self.calibration_click)
         self.pushButton_close.clicked.connect(self.close_click)
+        self.pushButton_disarm.clicked.connect(self.disarm_click)
         self.actionDemo_1.triggered.connect(lambda: self.click_to_send('demo1'))
         self.actionDemo_2.triggered.connect(lambda: self.click_to_send('demo2'))
         self.actionDemo_3.triggered.connect(lambda: self.click_to_send('demo3'))
@@ -435,6 +442,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "HPP System"))
         self.pushButton_start.setText(_translate("MainWindow", "Calibration"))
         self.pushButton_close.setText(_translate("MainWindow", "Close"))
+        self.pushButton_disarm.setText(_translate("MainWindow", "Disarm"))
         self.pushButton_Xp.setText(_translate("MainWindow", "+"))
         self.pushButton_Xm.setText(_translate("MainWindow", "-"))
         self.pushButton_Ym.setText(_translate("MainWindow", "-"))
@@ -500,11 +508,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(_cmd)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def close_click(self):
         self.runthread.setcmd('close')
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
         time.sleep(1)
         sys.exit()
 
@@ -517,11 +527,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def calibration_click(self):
         self.runthread.setcmd('calib')
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+
+    def disarm_click(self):
+        self.runthread.setcmd('disarm')
+        self.runthread.start()
+        self.runthread.sig1.connect(self.refresh)  
+        self.runthread.sig2.connect(self.motor_status)      
 
     def reset_click(self):
         logging.info(' ')
@@ -534,6 +551,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
         self.pushButton_reset.setStyleSheet("background-color: green")
         self.pushButton_alignment.setStyleSheet("background-color: red")
@@ -548,6 +566,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd('align')
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
         self.pushButton_alignment.setStyleSheet("background-color: green")
         self.pushButton_pre_curing.setEnabled(True)
 
@@ -555,6 +574,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd('precure')
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
         self.pushButton_pre_curing.setStyleSheet("background-color: green")
         self.pushButton_curing.setEnabled(True)
 
@@ -562,7 +582,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd('curing')
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
         self.pushButton_curing.setStyleSheet('Background-color: green')
+
+    def motor_status(self, _status):
+        if _status == 1:
+            self.label_statusdata.setText('Running')
+        elif _status == 2:
+            self.label_statusdata.setText('Auto Running')
+        elif _status == 3:
+            self.label_statusdata.setText('PreCure Running')
+        elif _status == 4:
+            self.label_statusdata.setText('Cure Running')
+        else:
+            self.label_statusdata.setText('Idle')
 
     def refresh(self, _error_log, _target_mm, _target_counts, _real_counts, _error_flag):
         self.target_mm = _target_mm
@@ -587,7 +620,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.label_targetcountsdata.setText(string)
 
         if _error_flag:
-                self.label_statusdata.setText('DisArmed')
+                self.label_statusdata.setText('Disarmed')
                 self.label_statusdata.setStyleSheet("color: rgb(255, 30, 0);")
         else:
                 self.label_statusdata.setText('Ready')
@@ -618,6 +651,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def xminus_click(self, step):
         self.target_mm[0] = self.target_mm[0] - step
@@ -626,6 +660,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def yplus_click(self, step):
         self.target_mm[1] = self.target_mm[1] + step
@@ -634,6 +669,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def yminus_click(self, step):
         self.target_mm[1] = self.target_mm[1] - step
@@ -642,6 +678,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def zplus_click(self, step):
         self.target_mm[2] = self.target_mm[2] + step
@@ -650,6 +687,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def zminus_click(self, step):
         self.target_mm[2] = self.target_mm[2] - step
@@ -658,6 +696,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def Rxplus_click(self, step):
         self.target_mm[3] = self.target_mm[3] + step
@@ -666,6 +705,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def Rxminus_click(self, step):
         self.target_mm[3] = self.target_mm[3] - step
@@ -674,6 +714,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def Ryplus_click(self, step):
         self.target_mm[4] = self.target_mm[4] + step
@@ -682,6 +723,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def Ryminus_click(self, step):
         self.target_mm[4] = self.target_mm[4] - step
@@ -690,6 +732,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def Rzplus_click(self, step):
         self.target_mm[5] = self.target_mm[5] + step
@@ -698,6 +741,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     def Rzminus_click(self, step):
         self.target_mm[5] = self.target_mm[5] - step
@@ -706,6 +750,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
 
     # Camera
     def select_camera(self, i):
