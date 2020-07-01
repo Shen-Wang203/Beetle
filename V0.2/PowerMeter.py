@@ -24,17 +24,17 @@ def get_loss_simulate(Ipt):
 
 def powermeter_init():
     time.sleep(0.5)
-    print('PM wavelength: '+ PM.query('SENS:CHAN2:POW:WAV?'))
+    print('PM wavelength: '+ PM.query('SENS:CHAN1:POW:WAV?'))
     time.sleep(0.2)
-    print('PM receiving power: '+PM.query('READ:CHAN2:POW?'))
+    print('PM receiving power: '+PM.query('READ:CHAN1:POW?'))
 
 def power_read():
-    powerRead = float(PM.query('READ2:POW?'))
+    powerRead = float(PM.query('READ1:POW?'))
     time.sleep(0.01)
-    powerRead2 = float(PM.query('READ2:POW?'))
+    powerRead2 = float(PM.query('READ1:POW?'))
     powerRead = (powerRead + powerRead2) * 0.5
     while powerRead > 0:
-        powerRead = float(PM.query('READ2:POW?'))    
+        powerRead = float(PM.query('READ1:POW?'))
     print(powerRead)
     logging.info(powerRead)
     return powerRead      
