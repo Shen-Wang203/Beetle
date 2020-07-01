@@ -228,7 +228,8 @@ class CMDInputThread(QtCore.QThread):
         elif commands == 'align':
             self.hppcontrol.engage_motor()
             self.sig2.emit(2)
-            # self.xys.set_starting_point(P0)
+            P0 = [0,0,138,-0.7,0,0]
+            self.xys.set_starting_point(P0)
             # self.xys.set_loss_criteria(-0.2)
             P1 = self.xys.autoRun()           
             self.currentPosition = P1[:]
@@ -258,7 +259,7 @@ class CMDInputThread(QtCore.QThread):
             target_counts = [0,0,0,0,0,0]
 
         elif commands == 'disarm':
-            pass
+            target_mm = self.currentPosition[:]
         else:
             print('Wrong Input')     
 

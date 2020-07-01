@@ -3,10 +3,10 @@ import numpy as np
 import HPP_Control as control
 import Back_Model as BM
 
-P0 = [-0.42, 0, 138, 3, .5, 0]
+P0 = [0, 0, 138, -0.7, 0, 0]
 
 HPP = BM.BackModel()
-HPP.set_Pivot(np.array([[0], [0], [28.5], [0]]))
+HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))
 hppcontrol = control.HPP_Control()
 hppcontrol.normal_traj_speed()
 hppcontrol.engage_motor()

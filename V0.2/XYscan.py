@@ -147,6 +147,8 @@ class XYscan:
                         break
 
         self.hppcontrol.normal_traj_speed()
+        print('Auto Alignment Finished')
+        logging.info('Auto Alignment Finished')
         return P_final
 
     # return true if meet criteria, otherwise return none
@@ -874,8 +876,8 @@ class XYscan:
             self.loss_current_max = loss0
             self.loss_fail_improve = 0
         elif (loss0 < (2.5 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
-            print('Unexpected High Loss, End Program')
-            logging.info('Unexpected High Loss, End Program')
+            print('Unexpected High Loss, End Program: ', str(loss0))
+            logging.info('Unexpected High Loss, End Program: ' + str(loss0))
             self.hppcontrol.engage_motor()
             self.hppcontrol.normal_traj_speed()
             self.send_to_hpp(self.starting_point)
