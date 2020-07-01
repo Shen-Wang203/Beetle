@@ -1,0 +1,301 @@
+%Control Box #0
+%T1
+odrivetool --serial-number 208739844D4D
+%T2
+odrivetool --serial-number 208339834D4D
+%T3
+odrivetool --serial-number 205C39844D4D
+
+Control Box #1:
+T3
+odrivetool --serial-number 20813882304E
+T2
+odrivetool --serial-number 2060388E304E
+T1
+odrivetool --serial-number 20803880304E
+
+Control Box #2:
+T1
+odrivetool --serial-number 207639684D4D
+T2
+odrivetool --serial-number 2061397D4D4D
+T3
+odrivetool --serial-number 207B396A4D4D
+Potential Issues: T2x encoder signal is none; some Z signals doesn't work
+
+Control Box #3:
+T1
+odrivetool --serial-number 2064387E304E
+T2
+odrivetool --serial-number 2087388E304E
+T3
+odrivetool --serial-number 207C397D4D4D
+Potential Issues: T1y Z signal doesn't work
+
+Control Box #4:
+T1
+odrivetool --serial-number 2067387E304E
+T2
+odrivetool --serial-number 204F388E304E
+T3
+odrivetool --serial-number 2065387E304E
+Potential Issues: 
+
+
+%Find the serial number
+hex(odrv0.serial_number).upper()
+hex(odrv1.serial_number).upper()
+hex(odrv2.serial_number).upper()
+
+%Pole pairs
+odrv0.axis0.motor.config.pole_pairs = 2
+odrv0.axis1.motor.config.pole_pairs = 2
+odrv1.axis0.motor.config.pole_pairs = 2
+odrv1.axis1.motor.config.pole_pairs = 2
+odrv2.axis0.motor.config.pole_pairs = 2
+odrv2.axis1.motor.config.pole_pairs = 2
+
+%Current limit
+odrv0.axis0.motor.config.current_lim = 19
+odrv0.axis1.motor.config.current_lim = 19
+odrv1.axis0.motor.config.current_lim = 19
+odrv1.axis1.motor.config.current_lim = 19
+odrv2.axis0.motor.config.current_lim = 19
+odrv2.axis1.motor.config.current_lim = 19
+
+%Calibration Current for encoder offset calibration, higher if have error CPR_OUT_OF_RANGE, but max is half of Vbus
+odrv0.axis0.motor.config.calibration_current = 9
+odrv0.axis1.motor.config.calibration_current = 9
+odrv1.axis0.motor.config.calibration_current = 9
+odrv1.axis1.motor.config.calibration_current = 9
+odrv2.axis0.motor.config.calibration_current = 9
+odrv2.axis1.motor.config.calibration_current = 9
+
+odrv0.axis0.motor.config.resistance_calib_max_voltage = 9
+odrv0.axis1.motor.config.resistance_calib_max_voltage = 9
+odrv1.axis0.motor.config.resistance_calib_max_voltage = 9
+odrv1.axis1.motor.config.resistance_calib_max_voltage = 9
+odrv2.axis0.motor.config.resistance_calib_max_voltage = 9
+odrv2.axis1.motor.config.resistance_calib_max_voltage = 9
+
+%Velocity limit
+odrv0.axis0.controller.config.vel_limit = 100000
+odrv0.axis0.controller.config.vel_limit_tolerance = 1.2
+odrv0.axis0.controller.config.vel_ramp_rate = 20000
+odrv0.axis1.controller.config.vel_limit = 100000
+odrv0.axis1.controller.config.vel_limit_tolerance = 1.2
+odrv0.axis1.controller.config.vel_ramp_rate = 20000
+
+odrv1.axis0.controller.config.vel_limit = 100000
+odrv1.axis0.controller.config.vel_limit_tolerance = 1.2
+odrv1.axis0.controller.config.vel_ramp_rate = 20000
+odrv1.axis1.controller.config.vel_limit = 100000
+odrv1.axis1.controller.config.vel_limit_tolerance = 1.2
+odrv1.axis1.controller.config.vel_ramp_rate = 20000
+
+odrv2.axis0.controller.config.vel_limit = 100000
+odrv2.axis0.controller.config.vel_limit_tolerance = 1.2
+odrv2.axis0.controller.config.vel_ramp_rate = 20000
+odrv2.axis1.controller.config.vel_limit = 100000
+odrv2.axis1.controller.config.vel_limit_tolerance = 1.2
+odrv2.axis1.controller.config.vel_ramp_rate = 20000
+
+%Trap Velocity
+odrv0.axis0.trap_traj.config.vel_limit = 70000
+odrv0.axis0.trap_traj.config.accel_limit = 40000
+odrv0.axis0.trap_traj.config.decel_limit = 40000
+odrv0.axis1.trap_traj.config.vel_limit = 70000
+odrv0.axis1.trap_traj.config.accel_limit = 40000
+odrv0.axis1.trap_traj.config.decel_limit = 40000
+
+odrv1.axis0.trap_traj.config.vel_limit = 70000
+odrv1.axis0.trap_traj.config.accel_limit = 40000
+odrv1.axis0.trap_traj.config.decel_limit = 40000
+odrv1.axis1.trap_traj.config.vel_limit = 70000
+odrv1.axis1.trap_traj.config.accel_limit = 40000
+odrv1.axis1.trap_traj.config.decel_limit = 40000
+
+odrv2.axis0.trap_traj.config.vel_limit = 70000
+odrv2.axis0.trap_traj.config.accel_limit = 40000
+odrv2.axis0.trap_traj.config.decel_limit = 40000
+odrv2.axis1.trap_traj.config.vel_limit = 70000
+odrv2.axis1.trap_traj.config.accel_limit = 40000
+odrv2.axis1.trap_traj.config.decel_limit = 40000
+
+%Motor type and Encoder counts
+odrv0.axis0.motor.config.motor_type = MOTOR_TYPE_GIMBAL
+odrv0.axis0.encoder.config.cpr = 10000
+odrv0.axis1.motor.config.motor_type = MOTOR_TYPE_GIMBAL
+odrv0.axis1.encoder.config.cpr = 10000
+
+odrv1.axis0.motor.config.motor_type = MOTOR_TYPE_GIMBAL
+odrv1.axis0.encoder.config.cpr = 10000
+odrv1.axis1.motor.config.motor_type = MOTOR_TYPE_GIMBAL
+odrv1.axis1.encoder.config.cpr = 10000
+
+odrv2.axis0.motor.config.motor_type = MOTOR_TYPE_GIMBAL
+odrv2.axis0.encoder.config.cpr = 10000
+odrv2.axis1.motor.config.motor_type = MOTOR_TYPE_GIMBAL
+odrv2.axis1.encoder.config.cpr = 10000
+
+%After first time motor calibration, set to true, so that we don't need to run motor_calibration at startup
+odrv0.axis0.motor.config.pre_calibrated = True
+odrv0.axis1.motor.config.pre_calibrated = True
+odrv1.axis0.motor.config.pre_calibrated = True
+odrv1.axis1.motor.config.pre_calibrated = True
+odrv2.axis0.motor.config.pre_calibrated = True
+odrv2.axis1.motor.config.pre_calibrated = True
+
+%Start up
+odrv0.axis0.config.startup_motor_calibration =  False
+odrv0.axis0.config.startup_encoder_index_search = False
+odrv0.axis0.config.startup_encoder_offset_calibration = False
+odrv0.axis0.config.startup_closed_loop_control = False
+odrv0.axis1.config.startup_motor_calibration =  False
+odrv0.axis1.config.startup_encoder_index_search = False
+odrv0.axis1.config.startup_encoder_offset_calibration = False
+odrv0.axis1.config.startup_closed_loop_control = False
+%Start up
+odrv1.axis0.config.startup_motor_calibration =  False
+odrv1.axis0.config.startup_encoder_index_search = False
+odrv1.axis0.config.startup_encoder_offset_calibration = False
+odrv1.axis0.config.startup_closed_loop_control = False
+odrv1.axis1.config.startup_motor_calibration =  False
+odrv1.axis1.config.startup_encoder_index_search = False
+odrv1.axis1.config.startup_encoder_offset_calibration = False
+odrv1.axis1.config.startup_closed_loop_control = False
+%Start up
+odrv2.axis0.config.startup_motor_calibration =  False
+odrv2.axis0.config.startup_encoder_index_search = False
+odrv2.axis0.config.startup_encoder_offset_calibration = False
+odrv2.axis0.config.startup_closed_loop_control = False
+odrv2.axis1.config.startup_motor_calibration =  False
+odrv2.axis1.config.startup_encoder_index_search = False
+odrv2.axis1.config.startup_encoder_offset_calibration = False
+odrv2.axis1.config.startup_closed_loop_control = False
+
+%For Index search 
+odrv0.axis0.config.calibration_lockin.current = 9
+odrv0.axis0.config.calibration_lockin.vel = 16
+odrv0.axis0.config.calibration_lockin.accel = 10
+odrv0.axis0.encoder.config.use_index = 1
+odrv0.axis1.config.calibration_lockin.current = 9
+odrv0.axis1.config.calibration_lockin.vel = 16
+odrv0.axis1.config.calibration_lockin.accel = 10
+odrv0.axis1.encoder.config.use_index = 1
+
+odrv1.axis0.config.calibration_lockin.current = 9
+odrv1.axis0.config.calibration_lockin.vel = 16
+odrv1.axis0.config.calibration_lockin.accel = 10
+odrv1.axis0.encoder.config.use_index = 1
+odrv1.axis1.config.calibration_lockin.current = 9
+odrv1.axis1.config.calibration_lockin.vel = 16
+odrv1.axis1.config.calibration_lockin.accel = 10
+odrv1.axis1.encoder.config.use_index = 1
+
+odrv2.axis0.config.calibration_lockin.current = 9
+odrv2.axis0.config.calibration_lockin.vel = 16
+odrv2.axis0.config.calibration_lockin.accel = 10
+odrv2.axis0.encoder.config.use_index = 1
+odrv2.axis1.config.calibration_lockin.current = 9
+odrv2.axis1.config.calibration_lockin.vel = 16
+odrv2.axis1.config.calibration_lockin.accel = 10
+odrv2.axis1.encoder.config.use_index = 1
+
+%Request State
+odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+odrv0.axis1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+odrv1.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+odrv1.axis1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+odrv2.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+odrv2.axis1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+
+odrv0.axis0.requested_state = AXIS_STATE_IDLE
+odrv0.axis1.requested_state = AXIS_STATE_IDLE
+odrv1.axis0.requested_state = AXIS_STATE_IDLE
+odrv1.axis1.requested_state = AXIS_STATE_IDLE
+odrv2.axis0.requested_state = AXIS_STATE_IDLE
+odrv2.axis1.requested_state = AXIS_STATE_IDLE
+
+%PID 
+odrv0.axis0.controller.config.pos_gain = 1150
+odrv0.axis0.controller.config.vel_gain = 0.6/10000
+odrv0.axis0.controller.config.vel_integrator_gain = 1.0/1000
+odrv0.axis1.controller.config.pos_gain = 1150
+odrv0.axis1.controller.config.vel_gain = 0.6/10000
+odrv0.axis1.controller.config.vel_integrator_gain = 1.0/1000
+
+odrv1.axis0.controller.config.pos_gain = 1150
+odrv1.axis0.controller.config.vel_gain = 0.6/10000
+odrv1.axis0.controller.config.vel_integrator_gain = 1.0/1000
+odrv1.axis1.controller.config.pos_gain = 1150
+odrv1.axis1.controller.config.vel_gain = 0.6/10000
+odrv1.axis1.controller.config.vel_integrator_gain = 1.0/1000
+
+odrv2.axis0.controller.config.pos_gain = 1150
+odrv2.axis0.controller.config.vel_gain = 0.6/10000
+odrv2.axis0.controller.config.vel_integrator_gain = 1.0/1000
+odrv2.axis1.controller.config.pos_gain = 1150
+odrv2.axis1.controller.config.vel_gain = 0.6/10000
+odrv2.axis1.controller.config.vel_integrator_gain = 1.0/1000
+
+%Errors
+dump_errors(odrv0, True)
+dump_errors(odrv1, True)
+dump_errors(odrv2, True)
+
+%Counts
+odrv0.axis0.encoder.shadow_count 
+odrv0.axis1.encoder.shadow_count 
+
+odrv1.axis0.encoder.shadow_count 
+odrv1.axis1.encoder.shadow_count 
+
+odrv2.axis0.encoder.shadow_count 
+odrv2.axis1.encoder.shadow_count 
+
+%Save Configure
+odrv0.save_configuration()
+odrv1.save_configuration()
+odrv2.save_configuration()
+
+%Reboot
+odrv0.reboot()
+odrv1.reboot()
+odrv2.reboot()
+
+%Plot
+start_liveplotter(lambda:[odrv0.axis0.encoder.pos_estimate, odrv0.axis0.controller.pos_setpoint])
+start_liveplotter(lambda:[odrv0.axis1.encoder.pos_estimate, odrv0.axis1.controller.pos_setpoint])
+
+start_liveplotter(lambda:[odrv1.axis0.encoder.pos_estimate, odrv1.axis0.controller.pos_setpoint])
+start_liveplotter(lambda:[odrv1.axis1.encoder.pos_estimate, odrv1.axis1.controller.pos_setpoint])
+
+start_liveplotter(lambda:[odrv2.axis0.encoder.pos_estimate, odrv2.axis0.controller.pos_setpoint])
+start_liveplotter(lambda:[odrv2.axis1.encoder.pos_estimate, odrv2.axis1.controller.pos_setpoint])
+
+%Positioning
+odrv0.axis0.controller.pos_setpoint = 1000
+odrv0.axis1.controller.pos_setpoint = 1000
+odrv1.axis0.controller.pos_setpoint = 1000
+odrv1.axis1.controller.pos_setpoint = 1000
+odrv2.axis0.controller.pos_setpoint = 1000
+odrv2.axis1.controller.pos_setpoint = 1000
+
+odrv0.axis0.controller.move_to_pos(0)
+odrv0.axis1.controller.move_to_pos(0)
+odrv1.axis0.controller.move_to_pos(0)
+odrv1.axis1.controller.move_to_pos(0)
+odrv2.axis0.controller.move_to_pos(0)
+odrv2.axis1.controller.move_to_pos(0)
+
+%Optional:
+odrv0.axis0.encoder.config.calib_range = 0.03
+odrv0.axis1.encoder.config.calib_range = 0.03
+odrv1.axis0.encoder.config.calib_range = 0.03
+odrv1.axis1.encoder.config.calib_range = 0.03
+odrv2.axis0.encoder.config.calib_range = 0.03
+odrv2.axis1.encoder.config.calib_range = 0.03
+
+%Pending 
+encoder_pll_bandwidth larger

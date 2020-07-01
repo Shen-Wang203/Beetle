@@ -33,6 +33,9 @@ class CMDInputThread(QtCore.QThread):
     def run(self):
         self.enter_commands(self.cmd)
 
+    def stop(self):
+        self.terminate()
+
     #Create a HPP fixture object
     HPP = BM.BackModel()
     HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))

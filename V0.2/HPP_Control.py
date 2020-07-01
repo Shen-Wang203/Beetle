@@ -1,5 +1,6 @@
 import serial
 import time
+import logging
 # # Cube PC
 # # COM15: T3
 # Tser3 = serial.Serial('COM15', 115200, timeout=None, stopbits=1)
@@ -127,7 +128,7 @@ import time
 # # COM4: T2
 # Tser2 = serial.Serial('COM4', 115200, timeout=None, stopbits=1)
 
-# Control Box #1
+# Control Box #4
 # COM9: T3
 Tser3 = serial.Serial('COM9', 115200, timeout=None, stopbits=1)
 # COM10: T1
@@ -359,11 +360,13 @@ class HPP_Control:
         var1 = var1.encode('Utf-8')
         var2 = var2.encode('Utf-8')
         var3 = var3.encode('Utf-8')     
-        # Time delay between first and last send is 2*11*10/115200 = 1.9ms
-        # If acceleration is smaller than 554000, the counts is less than 1 during this time   
+        print('Sending Tx')
+        logging.info('Sending Tx')  
         Tser1.write(var1)
         Tser2.write(var2)
         Tser3.write(var3)
+        print('Done Send')
+        logging.info('Done Send') 
 
 
     def Ty_send_only(self, y1, y2, y3, mode):
@@ -400,11 +403,13 @@ class HPP_Control:
         var1 = var1.encode('Utf-8')
         var2 = var2.encode('Utf-8')
         var3 = var3.encode('Utf-8')     
-        # Time delay between first and last send is 2*11*10/115200 = 1.9ms 
-        # If acceleration is smaller than 554000, the counts is less than 1 during this time   
+        print('Sending Ty')
+        logging.info('Sending Ty')
         Tser1.write(var1)
         Tser2.write(var2)
-        Tser3.write(var3)        
+        Tser3.write(var3)       
+        print('Done Send')
+        logging.info('Done Send') 
         
 
     # # for total (send and receive) byte less than 26
