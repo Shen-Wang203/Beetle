@@ -59,7 +59,8 @@ class XYscan:
         self.angle_flag = _bool
 
     HPP = BM.BackModel()
-    HPP.set_Pivot(np.array([[0], [0], [28.5], [0]]))
+    # HPP.set_Pivot(np.array([[0], [0], [28.5], [0]]))
+    HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))
     hppcontrol = control.HPP_Control()
 
     def autoRun(self):
