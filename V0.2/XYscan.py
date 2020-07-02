@@ -72,9 +72,13 @@ class XYscan:
         self.hppcontrol.slow_traj_speed()
         P0 = self.starting_point[:]
         P1 = P0[:]
+        # initials
+        self.stepScanCounts = 10
+        self.tolerance = 5
         self.scanmode = 'c'
         retry_num = 0
         self.loss = [-60]
+        self.error_flag = False
         while not self.error_flag:
             # Select mode and parameters as loss
             if self.mode_select(max(self.loss)):
@@ -369,6 +373,8 @@ class XYscan:
                 self.hppcontrol.engage_motor()
             self.hppcontrol.Tx_send_only(x1, x2, x3, 's')
             timeout = 0
+            print('Checking On Target 1')
+            logging.info('Checking On Target 1')
             while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
                 time.sleep(0.1)
                 timeout += 1
@@ -376,6 +382,8 @@ class XYscan:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
                     return False
+            print('Done checking')
+            logging.info('Done checking')            
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
             self.update_current_pos('x', x1, x1_o)
@@ -422,6 +430,8 @@ class XYscan:
             self.hppcontrol.engage_motor()
         self.hppcontrol.Tx_send_only(x1, x2, x3, 's')
         timeout = 0
+        print('Checking On Target 2')
+        logging.info('Checking On Target 2')
         while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
             time.sleep(0.1)
             timeout += 1
@@ -429,6 +439,8 @@ class XYscan:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
                 return False
+        print('Done checking')
+        logging.info('Done checking')
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
         self.update_current_pos('x', x1, x1_o)
@@ -467,6 +479,8 @@ class XYscan:
                 self.hppcontrol.engage_motor()
             self.hppcontrol.Ty_send_only(y1, y2, y3, 's')
             timeout = 0
+            print('Checking On Target 1')
+            logging.info('Checking On Target 1')
             while not self.hppcontrol.Ty_on_target(y1, y2, y3, self.tolerance):
                 time.sleep(0.1)
                 timeout += 1
@@ -474,6 +488,8 @@ class XYscan:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
                     return False
+            print('Done checking')
+            logging.info('Done checking')
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
             self.update_current_pos('y', y1, y1_o)
@@ -520,6 +536,8 @@ class XYscan:
             self.hppcontrol.engage_motor()
         self.hppcontrol.Ty_send_only(y1, y2, y3, 's')
         timeout = 0
+        print('Checking On Target 2')
+        logging.info('Checking On Target 2')
         while not self.hppcontrol.Ty_on_target(y1, y2, y3, self.tolerance):
             time.sleep(0.1)
             timeout += 1
@@ -527,6 +545,8 @@ class XYscan:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
                 return False
+        print('Done checking')
+        logging.info('Done checking')
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
         self.update_current_pos('y', y1, y1_o)
@@ -762,6 +782,7 @@ class XYscan:
         self.save_loss_pos()
         success_num = 0
         loss_o = self.loss[-1]
+        self.check_abnormal_loss(loss_o)
         # Step size is related to loss, for example in -15.72 dB, step size is 15.7 um.
         step_ref = round(abs(self.loss[-1]), 1) * 0.001
         # give step size an amplifier

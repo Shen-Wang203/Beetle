@@ -360,13 +360,9 @@ class HPP_Control:
         var1 = var1.encode('Utf-8')
         var2 = var2.encode('Utf-8')
         var3 = var3.encode('Utf-8')     
-        print('Sending Tx')
-        logging.info('Sending Tx')  
         Tser1.write(var1)
         Tser2.write(var2)
         Tser3.write(var3)
-        print('Done Send')
-        logging.info('Done Send') 
 
 
     def Ty_send_only(self, y1, y2, y3, mode):
@@ -403,13 +399,9 @@ class HPP_Control:
         var1 = var1.encode('Utf-8')
         var2 = var2.encode('Utf-8')
         var3 = var3.encode('Utf-8')     
-        print('Sending Ty')
-        logging.info('Sending Ty')
         Tser1.write(var1)
         Tser2.write(var2)
         Tser3.write(var3)       
-        print('Done Send')
-        logging.info('Done Send') 
         
 
     # # for total (send and receive) byte less than 26

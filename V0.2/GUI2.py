@@ -549,7 +549,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.sig2.connect(self.motor_status)  
 
     def stop_click(self):
-        self.runthread.stop()     
+        self.runthread.stop()    
+        self.disarm_click() 
 
     def reset_click(self):
         logging.info(' ')

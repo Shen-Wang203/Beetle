@@ -263,6 +263,7 @@ class CMDInputThread(QtCore.QThread):
 
         elif commands == 'disarm':
             target_mm = self.currentPosition[:]
+            self.hppcontrol.normal_traj_speed()
         else:
             print('Wrong Input')     
 
