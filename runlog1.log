@@ -1,0 +1,5576 @@
+INFO:root: 
+INFO:root:*************************
+INFO:root:Reset
+INFO:root:*************************
+INFO:root: 
+INFO:root:*************************
+INFO:root:Reset
+INFO:root:*************************
+INFO:root: 
+INFO:root:*************************
+INFO:root:Reset
+INFO:root:*************************
+INFO:root: 
+INFO:root:$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+INFO:root:$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+INFO:root:A New Alignment Starts
+INFO:root:$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+INFO:root:[0, 0, 138, -1.5, 1, 0]
+INFO:root:Scan update starts at: [0, 0, 138, -1.5, 1, 0]
+INFO:root:Start Tcounts: [9501, -64547, 57054, -31116, -8142, 2366]
+INFO:root:-20.39818
+INFO:root:Monitor start (loss then pos)
+INFO:root:-20.39818
+INFO:root:9501
+INFO:root:-20.473815000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9503
+INFO:root:-20.35135
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9504
+INFO:root:-20.006659999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9478
+INFO:root:-19.430205
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9470
+INFO:root:-19.196025
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9458
+INFO:root:-18.648760000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9443
+INFO:root:-18.290300000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9428
+INFO:root:-17.79851
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9411
+INFO:root:-17.389605
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9392
+INFO:root:-16.94945
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9370
+INFO:root:-16.653035
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9348
+INFO:root:-16.368765
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9323
+INFO:root:-16.191595
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9297
+INFO:root:-16.078075
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9270
+INFO:root:-16.104895
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9240
+INFO:root:-16.279505
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9210
+INFO:root:-16.611069999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9180
+INFO:root:-17.107815000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9151
+INFO:root:x scan done: has max
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-16.073645
+INFO:root:Monitor start (loss then pos)
+INFO:root:-16.073645
+INFO:root:-64547
+INFO:root:-16.072515000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64552
+INFO:root:-16.0728
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64553
+INFO:root:-16.07129
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64559
+INFO:root:-16.07018
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64566
+INFO:root:-16.055645
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64575
+INFO:root:-16.06136
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64586
+INFO:root:-16.083910000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64598
+INFO:root:-16.14418
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64612
+INFO:root:-16.250535
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64627
+INFO:root:-16.450094999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64645
+INFO:root:y scan done: decreasing
+INFO:root:Monitor start (loss then pos)
+INFO:root:-16.450094999999997
+INFO:root:-64627
+INFO:root:-16.37379
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64628
+INFO:root:-16.281190000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64625
+INFO:root:-16.225969999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64620
+INFO:root:-16.151490000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64601
+INFO:root:-16.084925
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64590
+INFO:root:-16.06643
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64577
+INFO:root:-16.06746
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64562
+INFO:root:-16.0924
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64545
+INFO:root:-16.15724
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64527
+INFO:root:-16.30037
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64506
+INFO:root:-16.55595
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64484
+INFO:root:-16.94341
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64460
+INFO:root:y scan done: has max
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.0102, -0.00215, 138, -1.5, 1, 0]
+INFO:root:X change: -204; Y change: -43
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.0102, -0.00215, 138, -1.5, 1, 0]
+INFO:root:-16.10277
+INFO:root:[-0.0102, -0.00215, 138.0644, -1.5, 1, 0]
+INFO:root:-14.886199999999999
+INFO:root:[-0.0102, -0.00215, 138.1288, -1.5, 1, 0]
+INFO:root:-16.545949999999998
+INFO:root:[-0.0102, -0.00215, 138.19320000000002, -1.5, 1, 0]
+INFO:root:-34.777455
+INFO:root:[-0.0102, -0.00215, 138.1286, -1.5, 1, 0]
+INFO:root:Z optim ends at: [-0.0102, -0.00215, 138.1286, -1.5, 1, 0]
+INFO:root:Scan update starts at: [-0.0102, -0.00215, 138.1286, -1.5, 1, 0]
+INFO:root:Start Tcounts: [13108, -64657, 59210, -27921, -6233, -617]
+INFO:root:-20.21895
+INFO:root:Monitor start (loss then pos)
+INFO:root:-20.21895
+INFO:root:13108
+INFO:root:-19.944969999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13104
+INFO:root:-19.569125
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13103
+INFO:root:-19.549785
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13095
+INFO:root:-19.165309999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13079
+INFO:root:-18.8206
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13065
+INFO:root:-18.85022
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13050
+INFO:root:-18.651335
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13034
+INFO:root:-18.653545
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13017
+INFO:root:-18.74651
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:12998
+INFO:root:-19.024630000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:12976
+INFO:root:-19.863885
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:12952
+INFO:root:x scan done: has max
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-18.888965
+INFO:root:Monitor start (loss then pos)
+INFO:root:-18.888965
+INFO:root:-64657
+INFO:root:-18.8507
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64658
+INFO:root:-18.905
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64658
+INFO:root:-18.953535000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64658
+INFO:root:-19.161605
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64655
+INFO:root:-20.70849
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64618
+INFO:root:y scan done: decreasing
+INFO:root:Monitor start (loss then pos)
+INFO:root:-20.70849
+INFO:root:-64655
+INFO:root:-18.90776
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64659
+INFO:root:-18.769824999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64663
+INFO:root:-18.453985
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64668
+INFO:root:-17.995415
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64675
+INFO:root:-17.575525
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64683
+INFO:root:-16.576810000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64693
+INFO:root:-15.770354999999999
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64705
+INFO:root:-14.88593
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64720
+INFO:root:-14.02391
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64736
+INFO:root:-13.23451
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64754
+INFO:root:-12.521785
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64774
+INFO:root:-11.886555000000001
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64797
+INFO:root:-11.23234
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64821
+INFO:root:-11.246065
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64884
+INFO:root:-11.91597
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64915
+INFO:root:-12.98896
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64946
+INFO:root:y scan done: has max
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.0131, -0.00915, 138.1286, -1.5, 1, 0]
+INFO:root:X change: -58; Y change: -140
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.0131, -0.00915, 138.1286, -1.5, 1, 0]
+INFO:root:-11.186595
+INFO:root:[-0.0131, -0.00915, 138.151, -1.5, 1, 0]
+INFO:root:-10.41841
+INFO:root:[-0.0131, -0.00915, 138.17340000000002, -1.5, 1, 0]
+INFO:root:-9.953729
+INFO:root:[-0.0131, -0.00915, 138.19580000000002, -1.5, 1, 0]
+INFO:root:-10.07215
+INFO:root:[-0.0131, -0.00915, 138.1732, -1.5, 1, 0]
+INFO:root:Z optim ends at: [-0.0131, -0.00915, 138.1732, -1.5, 1, 0]
+INFO:root:Scan update starts at: [-0.0131, -0.00915, 138.1732, -1.5, 1, 0]
+INFO:root:Start Tcounts: [14378, -64821, 59947, -26933, -5581, -1781]
+INFO:root:-10.69405
+INFO:root:Monitor start (loss then pos)
+INFO:root:-10.69405
+INFO:root:14378
+INFO:root:-10.69952
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14374
+INFO:root:-10.707235
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14374
+INFO:root:-10.60594
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14358
+INFO:root:-10.615725000000001
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14345
+INFO:root:-10.94607
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14333
+INFO:root:-11.394390000000001
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14319
+INFO:root:x scan done: decreasing
+INFO:root:Monitor start (loss then pos)
+INFO:root:-11.394390000000001
+INFO:root:14333
+INFO:root:-11.884105
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14333
+INFO:root:-11.952874999999999
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14335
+INFO:root:-11.92619
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14340
+INFO:root:-11.62529
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14347
+INFO:root:-11.359784999999999
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14355
+INFO:root:-11.054855
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14366
+INFO:root:-10.826335
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14379
+INFO:root:-10.641375
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14393
+INFO:root:-10.612375
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14409
+INFO:root:-10.770904999999999
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14428
+INFO:root:-11.92689
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:14477
+INFO:root:x scan done: has max
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-10.274055
+INFO:root:Monitor start (loss then pos)
+INFO:root:-10.274055
+INFO:root:-64821
+INFO:root:-10.278855
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64821
+INFO:root:-10.290894999999999
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64821
+INFO:root:-10.281285
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64821
+INFO:root:-10.278030000000001
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64820
+INFO:root:-10.06099
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64839
+INFO:root:-9.571635
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64853
+INFO:root:-9.155048
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64866
+INFO:root:-8.796644
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64880
+INFO:root:-8.5608845
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64901
+INFO:root:-9.305922500000001
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64951
+INFO:root:-10.3645465
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64975
+INFO:root:y scan done: has max
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.01235, -0.0121, 138.1732, -1.5, 1, 0]
+INFO:root:X change: 15; Y change: -59
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.01235, -0.0121, 138.1732, -1.5, 1, 0]
+INFO:root:-8.5557105
+INFO:root:[-0.01235, -0.0121, 138.1904, -1.5, 1, 0]
+INFO:root:-7.760847500000001
+INFO:root:[-0.01235, -0.0121, 138.2076, -1.5, 1, 0]
+INFO:root:-6.672537999999999
+INFO:root:[-0.01235, -0.0121, 138.22480000000002, -1.5, 1, 0]
+INFO:root:-8.308738
+INFO:root:[-0.01235, -0.0121, 138.2074, -1.5, 1, 0]
+INFO:root:Z optim ends at: [-0.01235, -0.0121, 138.2074, -1.5, 1, 0]
+INFO:root:Scan update starts at: [-0.01235, -0.0121, 138.2074, -1.5, 1, 0]
+INFO:root:Start Tcounts: [15413, -64897, 60454, -26126, -5140, -2626]
+INFO:root:-7.269254999999999
+INFO:root:Monitor start (loss then pos)
+INFO:root:-7.269254999999999
+INFO:root:15413
+INFO:root:-7.1250515
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15410
+INFO:root:-7.174232
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15411
+INFO:root:-7.147296
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15416
+INFO:root:-7.1379535
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15423
+INFO:root:-7.123972
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15431
+INFO:root:-7.181239
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15442
+INFO:root:-7.220816
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15453
+INFO:root:-7.5299795
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15468
+INFO:root:x scan done: has max
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-6.889917
+INFO:root:Monitor start (loss then pos)
+INFO:root:-6.889917
+INFO:root:-64897
+INFO:root:-6.9108705
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64897
+INFO:root:-6.9082215
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64896
+INFO:root:-6.9229905
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64896
+INFO:root:-6.9124885
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64894
+INFO:root:-6.1728784999999995
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64938
+INFO:root:-6.1330965
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64952
+INFO:root:-6.523153499999999
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64967
+INFO:root:-7.387122
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64984
+INFO:root:y scan done: has max
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.01185, -0.01415, 138.2074, -1.5, 1, 0]
+INFO:root:X change: 10; Y change: -41
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.01185, -0.01415, 138.2074, -1.5, 1, 0]
+INFO:root:-6.22594
+INFO:root:[-0.01185, -0.01415, 138.21980000000002, -1.5, 1, 0]
+INFO:root:-5.971309
+INFO:root:[-0.01185, -0.01415, 138.23220000000003, -1.5, 1, 0]
+INFO:root:-6.96508
+INFO:root:[-0.01185, -0.01415, 138.2196, -1.5, 1, 0]
+INFO:root:Z optim ends at: [-0.01185, -0.01415, 138.2196, -1.5, 1, 0]
+INFO:root:Scan update starts at: [-0.01185, -0.01415, 138.2196, -1.5, 1, 0]
+INFO:root:Start Tcounts: [15787, -64945, 60631, -25857, -4988, -2948]
+INFO:root:-5.7968589999999995
+INFO:root:Monitor start (loss then pos)
+INFO:root:-5.7968589999999995
+INFO:root:15787
+INFO:root:-5.651662
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15784
+INFO:root:-5.7769639999999995
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15784
+INFO:root:-5.501886
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15804
+INFO:root:-5.1965544999999995
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15814
+INFO:root:-5.071718000000001
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15826
+INFO:root:-5.3179335000000005
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15840
+INFO:root:-5.9312515
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:15856
+INFO:root:x scan done: has max
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-5.0807199999999995
+INFO:root:Monitor start (loss then pos)
+INFO:root:-5.0807199999999995
+INFO:root:-64945
+INFO:root:-5.072369999999999
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64944
+INFO:root:-5.0579585
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64944
+INFO:root:-5.063909000000001
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64944
+INFO:root:-5.1531210000000005
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64953
+INFO:root:-5.5138265
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64966
+INFO:root:y scan done: decreasing
+INFO:root:Monitor start (loss then pos)
+INFO:root:-5.5138265
+INFO:root:-64953
+INFO:root:-5.33032
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64950
+INFO:root:-5.2101585
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64944
+INFO:root:-5.0709035
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64937
+INFO:root:-5.037651500000001
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64927
+INFO:root:-5.2226225
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64915
+INFO:root:-5.6755375
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64903
+INFO:root:y scan done: has max
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.010499999999999999, -0.01375, 138.2196, -1.5, 1, 0]
+INFO:root:X change: 27; Y change: 8
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.010499999999999999, -0.01375, 138.2196, -1.5, 1, 0]
+INFO:root:-5.0128295
+INFO:root:[-0.010499999999999999, -0.01375, 138.2296, -1.5, 1, 0]
+INFO:root:-4.555128
+INFO:root:[-0.010499999999999999, -0.01375, 138.2396, -1.5, 1, 0]
+INFO:root:-4.411415
+INFO:root:[-0.010499999999999999, -0.01375, 138.2496, -1.5, 1, 0]
+INFO:root:-6.0658165
+INFO:root:[-0.010499999999999999, -0.01375, 138.2394, -1.5, 1, 0]
+INFO:root:Z optim ends at: [-0.010499999999999999, -0.01375, 138.2394, -1.5, 1, 0]
+INFO:root:Scan update starts at: [-0.010499999999999999, -0.01375, 138.2394, -1.5, 1, 0]
+INFO:root:Start Tcounts: [16406, -64947, 60906, -25346, -4750, -3396]
+INFO:root:-4.7111315000000005
+INFO:root:Monitor start (loss then pos)
+INFO:root:-4.7111315000000005
+INFO:root:16406
+INFO:root:-4.572284
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16403
+INFO:root:-4.7058535
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16403
+INFO:root:-4.541174
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16407
+INFO:root:-4.514281
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16415
+INFO:root:-4.396695
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16424
+INFO:root:-4.4618615
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16434
+INFO:root:-4.5109195
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16446
+INFO:root:-5.129282
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16460
+INFO:root:x scan done: has max
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-4.3093675000000005
+INFO:root:Monitor start (loss then pos)
+INFO:root:-4.3093675000000005
+INFO:root:-64947
+INFO:root:-4.389637499999999
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64947
+INFO:root:-4.3823415
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64947
+INFO:root:-4.3835705
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64942
+INFO:root:-4.428128
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64935
+INFO:root:-4.798807
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64923
+INFO:root:y scan done: decreasing
+INFO:root:Monitor start (loss then pos)
+INFO:root:-4.798807
+INFO:root:-64935
+INFO:root:-5.005739
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64940
+INFO:root:-4.951855500000001
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64943
+INFO:root:-4.658941
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64948
+INFO:root:-4.476299
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64955
+INFO:root:-4.27483
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64963
+INFO:root:-4.1018170000000005
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64974
+INFO:root:-4.266936
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64986
+INFO:root:-6.3374625
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-65023
+INFO:root:y scan done: has max
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.010049999999999998, -0.01455, 138.2394, -1.5, 1, 0]
+INFO:root:X change: 9; Y change: -16
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.010049999999999998, -0.01455, 138.2394, -1.5, 1, 0]
+INFO:root:-4.323869500000001
+INFO:root:[-0.010049999999999998, -0.01455, 138.248, -1.5, 1, 0]
+INFO:root:-4.6381879999999995
+INFO:root:[-0.010049999999999998, -0.01455, 138.24284, -1.5, 1, 0]
+INFO:root:-4.2129885
+INFO:root:[-0.010049999999999998, -0.01455, 138.24628, -1.5, 1, 0]
+INFO:root:-4.579001
+INFO:root:[-0.010049999999999998, -0.01455, 138.24264, -1.5, 1, 0]
+INFO:root:Z optim ends at: [-0.010049999999999998, -0.01455, 138.24264, -1.5, 1, 0]
+INFO:root:Scan update starts at: [-0.010049999999999998, -0.01455, 138.24264, -1.5, 1, 0]
+INFO:root:Start Tcounts: [16512, -64965, 60947, -25280, -4716, -3487]
+INFO:root:-4.110617
+INFO:root:Monitor start (loss then pos)
+INFO:root:-4.110617
+INFO:root:16512
+INFO:root:-4.049662
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16509
+INFO:root:-4.1175945
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16509
+INFO:root:-4.1255365
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16509
+INFO:root:-4.081208500000001
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16518
+INFO:root:-3.932043
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16529
+INFO:root:-3.8461955
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16539
+INFO:root:-4.141401500000001
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16551
+INFO:root:-4.980202
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:16565
+INFO:root:x scan done: has max
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-3.8027024999999997
+INFO:root:Monitor start (loss then pos)
+INFO:root:-3.8027024999999997
+INFO:root:-64965
+INFO:root:-3.800637
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64965
+INFO:root:-3.8086755
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64965
+INFO:root:-3.8036585
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64965
+INFO:root:-3.8108305
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64963
+INFO:root:-4.271467
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-65003
+INFO:root:-6.015144
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-65016
+INFO:root:y scan done: decreasing
+INFO:root:Monitor start (loss then pos)
+INFO:root:-6.015144
+INFO:root:-65003
+INFO:root:-6.787101
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-65004
+INFO:root:-6.592716
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-65001
+INFO:root:-6.3473285
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64996
+INFO:root:-6.000613
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64989
+INFO:root:-5.39409
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64982
+INFO:root:-4.3957525
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64971
+INFO:root:-3.892276
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64959
+INFO:root:-3.8777115
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64945
+INFO:root:-4.4498429999999995
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64929
+INFO:root:-5.8842110000000005
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64911
+INFO:root:y scan done: has max
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.009199999999999998, -0.01425, 138.24264, -1.5, 1, 0]
+INFO:root:X change: 17; Y change: 6
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.009199999999999998, -0.01425, 138.24264, -1.5, 1, 0]
+INFO:root:-3.7914975
+INFO:root:[-0.009199999999999998, -0.01425, 138.24833999999998, -1.5, 1, 0]
+INFO:root:-3.827886
+INFO:root:[-0.009199999999999998, -0.01425, 138.25403999999997, -1.5, 1, 0]
+INFO:root:-3.8572610000000003
+INFO:root:[-0.009199999999999998, -0.01425, 138.24813999999998, -1.5, 1, 0]
+INFO:root:Z optim ends at: [-0.009199999999999998, -0.01425, 138.24813999999998, -1.5, 1, 0]
+INFO:root:Scan update starts at: [-0.009199999999999998, -0.01425, 138.24813999999998, -1.5, 1, 0]
+INFO:root:Start Tcounts: [16693, -64962, 61014, -25134, -4659, -3608]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-3.9251195
+INFO:root:16693
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-4.0155125
+INFO:root:16703
+INFO:root:Change direction
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-4.62472
+INFO:root:16683
+INFO:root:Over
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-3.7384215000000003
+INFO:root:-64962
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-4.1847005
+INFO:root:-64952
+INFO:root:Change direction
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-3.908155
+INFO:root:-64972
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-4.466952
+INFO:root:-64982
+INFO:root:Over
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.009149999999999998, -0.014750000000000001, 138.24813999999998, -1.5, 1, 0]
+INFO:root:X change: 1; Y change: -10
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.009149999999999998, -0.014750000000000001, 138.24813999999998, -1.5, 1, 0]
+INFO:root:-3.7461225000000002
+INFO:root:[-0.009149999999999998, -0.014750000000000001, 138.25368999999998, -1.5, 1, 0]
+INFO:root:-4.106624500000001
+INFO:root:[-0.009149999999999998, -0.014750000000000001, 138.25035999999997, -1.5, 1, 0]
+INFO:root:-3.7269045
+INFO:root:[-0.009149999999999998, -0.014750000000000001, 138.25257999999997, -1.5, 1, 0]
+INFO:root:-4.027087
+INFO:root:[-0.009149999999999998, -0.014750000000000001, 138.25015999999997, -1.5, 1, 0]
+INFO:root:Z optim ends at: [-0.009149999999999998, -0.014750000000000001, 138.25015999999997, -1.5, 1, 0]
+INFO:root:Scan update starts at: [-0.009149999999999998, -0.014750000000000001, 138.25015999999997, -1.5, 1, 0]
+INFO:root:Start Tcounts: [16754, -64973, 61044, -25093, -4633, -3664]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-3.7339510000000002
+INFO:root:16754
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-4.143293
+INFO:root:16744
+INFO:root:Change direction
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-3.736396
+INFO:root:16764
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-4.3605555
+INFO:root:16774
+INFO:root:Over
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-3.8190445
+INFO:root:-64973
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-4.3646335
+INFO:root:-64983
+INFO:root:Change direction
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-3.839077
+INFO:root:-64963
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-4.2772505
+INFO:root:-64953
+INFO:root:Over
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.008649999999999998, -0.01425, 138.25015999999997, -1.5, 1, 0]
+INFO:root:X change: 10; Y change: 10
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.008649999999999998, -0.01425, 138.25015999999997, -1.5, 1, 0]
+INFO:root:-3.7209645
+INFO:root:[-0.008649999999999998, -0.01425, 138.25570999999997, -1.5, 1, 0]
+INFO:root:-3.7567139999999997
+INFO:root:[-0.008649999999999998, -0.01425, 138.26125999999996, -1.5, 1, 0]
+INFO:root:-3.9705215000000003
+INFO:root:[-0.008649999999999998, -0.01425, 138.25550999999996, -1.5, 1, 0]
+INFO:root:Z optim ends at: [-0.008649999999999998, -0.01425, 138.25550999999996, -1.5, 1, 0]
+INFO:root:Scan update starts at: [-0.008649999999999998, -0.01425, 138.25550999999996, -1.5, 1, 0]
+INFO:root:Start Tcounts: [16924, -64966, 61116, -24947, -4572, -3778]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-3.847102
+INFO:root:16924
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-4.406375
+INFO:root:16934
+INFO:root:Change direction
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-3.9023455
+INFO:root:16914
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-4.499409
+INFO:root:16904
+INFO:root:Over
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-4.146686
+INFO:root:-64966
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-4.969939
+INFO:root:-64956
+INFO:root:Change direction
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-3.900456
+INFO:root:-64976
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-4.2411515
+INFO:root:-64986
+INFO:root:Over
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.009149999999999998, -0.014750000000000001, 138.25550999999996, -1.5, 1, 0]
+INFO:root:X change: -10; Y change: -10
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.009149999999999998, -0.014750000000000001, 138.25550999999996, -1.5, 1, 0]
+INFO:root:-3.900397
+INFO:root:[-0.009149999999999998, -0.014750000000000001, 138.26135999999997, -1.5, 1, 0]
+INFO:root:-4.390677999999999
+INFO:root:[-0.009149999999999998, -0.014750000000000001, 138.25784999999996, -1.5, 1, 0]
+INFO:root:-4.097324
+INFO:root:[-0.009149999999999998, -0.014750000000000001, 138.25644599999995, -1.5, 1, 0]
+INFO:root:-3.8928269999999996
+INFO:root:[-0.009149999999999998, -0.014750000000000001, 138.25738199999995, -1.5, 1, 0]
+INFO:root:-4.0904395000000005
+INFO:root:[-0.009149999999999998, -0.014750000000000001, 138.25624599999995, -1.5, 1, 0]
+INFO:root:Z optim ends at: [-0.009149999999999998, -0.014750000000000001, 138.25624599999995, -1.5, 1, 0]
+INFO:root:Scan update starts at: [-0.009149999999999998, -0.014750000000000001, 138.25624599999995, -1.5, 1, 0]
+INFO:root:Start Tcounts: [16936, -64976, 61137, -24938, -4552, -3805]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-3.901685
+INFO:root:16936
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-4.7002714999999995
+INFO:root:16926
+INFO:root:Change direction
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-3.8413965
+INFO:root:16946
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-4.0068515
+INFO:root:16956
+INFO:root:Over
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-3.8389005000000003
+INFO:root:-64976
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-4.430134499999999
+INFO:root:-64986
+INFO:root:Change direction
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-3.895946
+INFO:root:-64966
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-4.277722
+INFO:root:-64956
+INFO:root:Over
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.008649999999999998, -0.01425, 138.25624599999995, -1.5, 1, 0]
+INFO:root:X change: 10; Y change: 10
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.008649999999999998, -0.01425, 138.25624599999995, -1.5, 1, 0]
+INFO:root:-3.7556155
+INFO:root:[-0.008649999999999998, -0.01425, 138.26194599999994, -1.5, 1, 0]
+INFO:root:-4.3684805
+INFO:root:[-0.008649999999999998, -0.01425, 138.25852599999996, -1.5, 1, 0]
+INFO:root:-3.889103
+INFO:root:[-0.008649999999999998, -0.01425, 138.25715799999995, -1.5, 1, 0]
+INFO:root:-4.306647
+INFO:root:[-0.008649999999999998, -0.01425, 138.25661079999995, -1.5, 1, 0]
+INFO:root:-4.1004155
+INFO:root:Z step is too small
+INFO:root:Change to Final_adjust(Z optim failed once)
+INFO:root:Scan update starts at: [-0.008649999999999998, -0.01425, 138.25624599999995, -1.5, 1, 0]
+INFO:root:Start Tcounts: [16946, -64966, 61127, -24928, -4562, -3795]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-4.0976680000000005
+INFO:root:16946
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-4.156953
+INFO:root:16950
+INFO:root:Change direction
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-4.0826995
+INFO:root:16942
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-4.156867
+INFO:root:16938
+INFO:root:Over
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-4.187826
+INFO:root:-64966
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-4.4374804999999995
+INFO:root:-64962
+INFO:root:Change direction
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-3.8623295
+INFO:root:-64970
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-3.7845265
+INFO:root:-64974
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-3.779293
+INFO:root:-64978
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-3.81633
+INFO:root:-64982
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:-3.9699845
+INFO:root:-64986
+INFO:root:Over
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.008849999999999998, -0.015050000000000001, 138.25624599999995, -1.5, 1, 0]
+INFO:root:X change: -4; Y change: -16
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.008849999999999998, -0.015050000000000001, 138.25624599999995, -1.5, 1, 0]
+INFO:root:-3.7733625
+INFO:root:[-0.008849999999999998, -0.015050000000000001, 138.26194599999994, -1.5, 1, 0]
+INFO:root:-4.2292775
+INFO:root:[-0.008849999999999998, -0.015050000000000001, 138.25852599999996, -1.5, 1, 0]
+INFO:root:-3.971363
+INFO:root:[-0.008849999999999998, -0.015050000000000001, 138.25715799999995, -1.5, 1, 0]
+INFO:root:-3.9242695000000003
+INFO:root:[-0.008849999999999998, -0.015050000000000001, 138.25661079999995, -1.5, 1, 0]
+INFO:root:-3.8211744999999997
+INFO:root:[-0.008849999999999998, -0.015050000000000001, 138.25697559999995, -1.5, 1, 0]
+INFO:root:-3.8775905
+INFO:root:Z step is too small
+INFO:root:Another Try
+INFO:root:[-0.008849999999999998, -0.015050000000000001, 138.13924599999996, -1.5, 1, 0]
+INFO:root:Scan update starts at: [-0.008849999999999998, -0.015050000000000001, 138.13924599999996, -1.5, 1, 0]
+INFO:root:Start Tcounts: [13452, -64921, 59345, -27910, -6118, -1119]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-14.515765
+INFO:root:13452
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-13.804845
+INFO:root:13448
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-13.735575
+INFO:root:13444
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-13.59837
+INFO:root:13440
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-13.40428
+INFO:root:13436
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-13.260455
+INFO:root:13432
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-13.096815
+INFO:root:13428
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-12.98172
+INFO:root:13424
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-12.831209999999999
+INFO:root:13420
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-12.703154999999999
+INFO:root:13416
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-12.577235
+INFO:root:13412
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-12.489715
+INFO:root:13408
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-12.378319999999999
+INFO:root:13404
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-12.25503
+INFO:root:13400
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-12.128215
+INFO:root:13396
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-12.09777
+INFO:root:13392
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-12.01923
+INFO:root:13388
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-11.94874
+INFO:root:13384
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-11.907875
+INFO:root:13380
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-11.845005
+INFO:root:13376
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-11.800285
+INFO:root:13372
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-11.791640000000001
+INFO:root:13368
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-11.741395
+INFO:root:13364
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-11.740955
+INFO:root:13360
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-11.723659999999999
+INFO:root:13356
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-11.74878
+INFO:root:13352
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:X step failed
+INFO:root:XY step scan failed
+INFO:root:Auto Alignment Finished
+INFO:root: 
+INFO:root:*************************
+INFO:root:Reset
+INFO:root:*************************
+INFO:root: 
+INFO:root:$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+INFO:root:$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+INFO:root:A New Alignment Starts
+INFO:root:$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+INFO:root:[0, 0, 138, -1.5, 1, 0]
+INFO:root:Scan update starts at: [0, 0, 138, -1.5, 1, 0]
+INFO:root:Start Tcounts: [9501, -64547, 57054, -31116, -8142, 2366]
+INFO:root:-20.51589
+INFO:root:Monitor start (loss then pos)
+INFO:root:-20.51589
+INFO:root:9501
+INFO:root:-20.58436
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9498
+INFO:root:-20.530715
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9494
+INFO:root:-20.22356
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9481
+INFO:root:-19.831795
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9470
+INFO:root:-19.40444
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9458
+INFO:root:-18.964105
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9444
+INFO:root:-18.575375
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9429
+INFO:root:-18.12359
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9413
+INFO:root:-17.729435000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9394
+INFO:root:-17.319375
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9371
+INFO:root:-16.934175000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9348
+INFO:root:-16.648615
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9323
+INFO:root:-16.397914999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9296
+INFO:root:-16.26632
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9268
+INFO:root:-16.23849
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9237
+INFO:root:-16.40535
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9206
+INFO:root:-16.723045
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9175
+INFO:root:-17.209184999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:9145
+INFO:root:x scan done: has max
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:Getting X counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts X got
+INFO:root:-16.2566
+INFO:root:Monitor start (loss then pos)
+INFO:root:-16.2566
+INFO:root:-64547
+INFO:root:-16.25248
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64547
+INFO:root:-16.25111
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64547
+INFO:root:-16.250915
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64546
+INFO:root:-16.235705000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64545
+INFO:root:-16.191955
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64567
+INFO:root:-16.124225
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64580
+INFO:root:-16.068765
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64594
+INFO:root:-16.064525
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64607
+INFO:root:-16.11213
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64623
+INFO:root:-16.215455
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64641
+INFO:root:-16.417355
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64661
+INFO:root:-17.02547
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:-64697
+INFO:root:y scan done: has max
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Getting Y counts
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:T2 getting
+INFO:root:T2 done
+INFO:root:T3 getting
+INFO:root:T3 done
+INFO:root:Counts Y got
+INFO:root:Scan update ends at: [-0.01165, -0.00235, 138, -1.5, 1, 0]
+INFO:root:X change: -233; Y change: -47
+INFO:root:Z optim starts at (pos then loss): 
+INFO:root:[-0.01165, -0.00235, 138, -1.5, 1, 0]
+INFO:root:-16.06006
+INFO:root:[-0.01165, -0.00235, 138.0644, -1.5, 1, 0]
+INFO:root:-14.668695
+INFO:root:[-0.01165, -0.00235, 138.1288, -1.5, 1, 0]
+INFO:root:-15.957519999999999
+INFO:root:[-0.01165, -0.00235, 138.19320000000002, -1.5, 1, 0]
+INFO:root:-38.342240000000004
+INFO:root:[-0.01165, -0.00235, 138.1286, -1.5, 1, 0]
+INFO:root:Z optim ends at: [-0.01165, -0.00235, 138.1286, -1.5, 1, 0]
+INFO:root:Scan update starts at: [-0.01165, -0.00235, 138.1286, -1.5, 1, 0]
+INFO:root:Start Tcounts: [13079, -64661, 59239, -27925, -6204, -621]
+INFO:root:-19.54785
+INFO:root:Monitor start (loss then pos)
+INFO:root:-19.54785
+INFO:root:13079
+INFO:root:-19.642850000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.457655
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.630175
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.390505
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.54401
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.47151
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.418709999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.568715
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.499119999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.415084999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.506205
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.4028
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.467995000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.433795
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.39048
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.501205
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.402775
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.492179999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.40438
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.444015
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.413845000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.40438
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.477694999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.46035
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.440635
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.4178
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.44368
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.433239999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.405655
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.443185
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.403455
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.468875
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.444205
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.471655
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.45458
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.445315
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.434705
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.443044999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.459755
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.458305
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.4727
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-0.45528499999999994
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.43194
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.4667
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.464914999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.438995
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.43305
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.440505
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.461305
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.457065
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.48197
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.466515
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.45929
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.445565000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.45944
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.471780000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.42499
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.43998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.462085000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.476799999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.466525
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.470105
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.44838
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.450375
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.44122
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.42544
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.46368
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.489964999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.474235
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.463585000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.450585
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.446555
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.484225000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.437514999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.468535
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.44719
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.449595000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.451435
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.49208
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.490485
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.47106
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.451805
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.4602
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.45729
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.480685
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.488685
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.478045
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.45656
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.4662
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.443345
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.46788
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.476725000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.508175
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.479464999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.449675
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.464125
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.472360000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.452185
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.481360000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.488225
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.485325
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.46621
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.443905
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.473585
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.485860000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.48746
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.503574999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.46962
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.430095
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.462255
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.497245
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.496645
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.4902
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.477165
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.479745
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.468225
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.42861
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48188
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49297
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.497945
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.456940000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.490735
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.496355
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.481765000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.479075
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.462905
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.460555
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.46974
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.488965
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.460700000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.506970000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.4922
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.497505
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.4779
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.488045
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.516
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.477655
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.477425
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.471275
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.462635
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48285
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.495555
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.525354999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.485765
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.451685
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.46465
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.476385
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.50073
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49383
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.50205
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.485219999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.499315
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.495715
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.497725
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.478405
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.484635
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.461835
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.47943
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.492475
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.46266
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.468585
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.486805
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.487425
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.504469999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.50716
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.49799
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.461644999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.451900000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.482975
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.493445
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.499755
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.505445
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.485464999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.474809999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.47543
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49766
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49063
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.487450000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.475085
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.468809999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.503175
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.50219
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.505985
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47579
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.48779
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.467235000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.482815000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.462555000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49609
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.46015
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47354
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.494915
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.480455
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.503349999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49313
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.448025
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.483995
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48621
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.479435000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49663
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.48209
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.491635000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.491785
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.488745
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.503365000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.501
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47876
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.464545
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.46574
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.482675
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.488585
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.489575000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.484665
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.448995
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48663
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.488825
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.507640000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49751
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47914
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.50505
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.493495000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.489825
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.475740000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.475814999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.491509999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49455
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49302
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.486015000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.455005
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48573
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.486919999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.4905
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.50681
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.473570000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.490795
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.481454999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.475175
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48975
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.497855
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.486395
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49028
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.507325
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.489855
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.476655
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.481125
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.487685
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.481875000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.498435
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.488915
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49564
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.469034999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48993
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48646
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.499850000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.45908
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.45468
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.473165
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48133
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.490665
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.490315000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.479680000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48422
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.474365
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.495185
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.483224999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.488655
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47256
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.43681
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.506605
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.473125
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47286
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.468294999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.476215
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.499935
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47026
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.481685
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.504675
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48822
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.453004999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.46712
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.489155
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.527225
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.499765
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.485395
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.511445000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.494475
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.535255
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.518990000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.467855
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.53481
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.443965
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.470025
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.491590000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.456035
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.485599999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47249
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.494715
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.489404999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49619
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48547
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48528
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.513145
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.50618
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:Loss unchanged
+INFO:root:Monitor start (loss then pos)
+INFO:root:-19.50618
+INFO:root:13074
+INFO:root:-19.466639999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.497565
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.495845
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.50068
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47162
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.485055000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48636
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.499535
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.496270000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.490935
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.482055
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.462429999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.511575
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.507855
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47509
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.45196
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49483
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48474
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.45163
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.462985
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.503435
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.525165
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.46894
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.54034
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.459025
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.45738
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.46094
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.48541
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.507804999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.52735
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.505235
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.503505
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.467895
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.446595000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.482770000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.514470000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.520455
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.46907
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.481025
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.463355
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.490679999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.488875
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47423
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.46865
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.474505
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.501795
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.513065
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.51826
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.525100000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.49311
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.474985
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.46777
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.496630000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.518720000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.503785
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.505519999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.489449999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.522175
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.52949
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.5035
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.461534999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47393
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47706
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.498714999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.506055
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.456845
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.47741
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.458415
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.398145
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.395315
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.35564
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.293135
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.3207
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.266534999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.34006
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.2073
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.313744999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.13407
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.239085000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.11186
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.18762
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.23317
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.237544999999997
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.168835
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.242155
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.18233
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.303710000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.100435
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.26351
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.164825
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.270870000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.213
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.27133
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.284235
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.196755
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.272534999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.15424
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.243724999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.20321
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.25215
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.21342
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.237009999999998
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.183145
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.21629
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.228115000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.214085
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.23402
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.18269
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.218995
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.255470000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.263905
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.24755
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.191305
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.254235
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.187655
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.20839
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.20375
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.21199
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.20001
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.266975000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13073
+INFO:root:-19.167475
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.261515000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.199215
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.250675
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.16935
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.289515
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.21027
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.2603
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.215165
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.173305
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.271700000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.16517
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.280630000000002
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.17585
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.25599
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.16845
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root:-19.286655000000003
+INFO:root:T1 getting
+INFO:root:T1 done
+INFO:root:13074
+INFO:root: 
+INFO:root:*************************
+INFO:root:Reset
+INFO:root:*************************

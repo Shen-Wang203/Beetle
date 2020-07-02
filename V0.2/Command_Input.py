@@ -47,10 +47,6 @@ class CMDInputThread(QtCore.QThread):
     # Append the logg file to the existing one
     logging.basicConfig(filename=logfilename, level=logging.INFO)
 
-
-    xys = XYscan(HPP, hppcontrol)
-    cure = Curing_Active_Alignment(HPP, hppcontrol)
-
     P1 = [  [0, 0, 138, 0, 0, 0],
             [4, 0, 138, 0, 0, 0],
             [-4, 0, 138, 0, 0, 0],
@@ -229,12 +225,13 @@ class CMDInputThread(QtCore.QThread):
             self.currentPosition = target_mm[:]
 
         elif commands == 'align':
+            xys = XYscan(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
             self.sig2.emit(2)
-            P0 = [0,0,138,-0.7,0,0]
-            self.xys.set_starting_point(P0)
+            P0 = [0,0,138,-1.5,1,0]
+            xys.set_starting_point(P0)
             # self.xys.set_loss_criteria(-0.2)
-            P1 = self.xys.autoRun()           
+            P1 = xys.autoRun()           
             self.currentPosition = P1[:]
             target_mm = P1[:]
             real_counts = control.Tcounts_real
@@ -242,10 +239,11 @@ class CMDInputThread(QtCore.QThread):
             target_counts = [0,0,0,0,0,0]
 
         elif commands == 'precure':
+            cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
             self.sig2.emit(3)            
-            self.cure.set_loss_criteria(max(self.xys.loss_rec)-0.03)
-            P1 = self.cure.pre_curing_run(self.currentPosition)
+            cure.set_loss_criteria(max(self.xys.loss_rec)-0.03)
+            P1 = cure.pre_curing_run(self.currentPosition)
             self.currentPosition = P1[:]
             target_mm = P1[:]
             real_counts = control.Tcounts_real
@@ -253,8 +251,9 @@ class CMDInputThread(QtCore.QThread):
             target_counts = [0,0,0,0,0,0]
 
         elif commands == 'curing':
+            cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             self.sig2.emit(4)
-            P1 = self.cure.curing_run(self.currentPosition)
+            P1 = cure.curing_run(self.currentPosition)
             self.currentPosition = P1[:]
             target_mm = P1[:]
             real_counts = control.Tcounts_real

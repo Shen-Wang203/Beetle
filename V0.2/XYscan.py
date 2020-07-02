@@ -240,7 +240,7 @@ class XYscan:
                 # check on target, need to check all of them
                 timeout = 0
                 while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     timeout += 1
                     if timeout > 100:
                         print('Movement Timeout Error')
@@ -260,7 +260,7 @@ class XYscan:
                     self.hppcontrol.Tx_send_only(X1_counts, X2_counts, X3_counts, 's')
                     timeout = 0
                     while not self.hppcontrol.Tx_on_target(X1_counts, X2_counts, X3_counts, self.tolerance):
-                        time.sleep(0.1)
+                        time.sleep(0.2)
                         timeout += 1
                         if timeout > 100:
                             print('Movement Timeout Error')
@@ -307,7 +307,7 @@ class XYscan:
                 # check on target, check all of them
                 timeout = 0
                 while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
-                    time.sleep(0.1)  
+                    time.sleep(0.2)  
                     timeout += 1
                     if timeout > 100:
                         print('Movement Timeout Error')
@@ -327,7 +327,7 @@ class XYscan:
                     self.hppcontrol.Ty_send_only(Y1_counts, Y2_counts, Y3_counts, 's')
                     timeout = 0
                     while not self.hppcontrol.Ty_on_target(Y1_counts, Y2_counts, Y3_counts, self.tolerance):
-                        time.sleep(0.1)     
+                        time.sleep(0.2)     
                         timeout += 1
                         if timeout > 100:
                             print('Movement Timeout Error')
@@ -373,17 +373,13 @@ class XYscan:
                 self.hppcontrol.engage_motor()
             self.hppcontrol.Tx_send_only(x1, x2, x3, 's')
             timeout = 0
-            print('Checking On Target 1')
-            logging.info('Checking On Target 1')
             while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
-                time.sleep(0.1)
+                time.sleep(0.2)
                 timeout += 1
                 if timeout > 100:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
-                    return False
-            print('Done checking')
-            logging.info('Done checking')            
+                    return False           
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
             self.update_current_pos('x', x1, x1_o)
@@ -430,17 +426,13 @@ class XYscan:
             self.hppcontrol.engage_motor()
         self.hppcontrol.Tx_send_only(x1, x2, x3, 's')
         timeout = 0
-        print('Checking On Target 2')
-        logging.info('Checking On Target 2')
         while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
-            time.sleep(0.1)
+            time.sleep(0.2)
             timeout += 1
             if timeout > 100:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
                 return False
-        print('Done checking')
-        logging.info('Done checking')
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
         self.update_current_pos('x', x1, x1_o)
@@ -479,17 +471,13 @@ class XYscan:
                 self.hppcontrol.engage_motor()
             self.hppcontrol.Ty_send_only(y1, y2, y3, 's')
             timeout = 0
-            print('Checking On Target 1')
-            logging.info('Checking On Target 1')
             while not self.hppcontrol.Ty_on_target(y1, y2, y3, self.tolerance):
-                time.sleep(0.1)
+                time.sleep(0.2)
                 timeout += 1
                 if timeout > 100:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
                     return False
-            print('Done checking')
-            logging.info('Done checking')
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
             self.update_current_pos('y', y1, y1_o)
@@ -536,17 +524,13 @@ class XYscan:
             self.hppcontrol.engage_motor()
         self.hppcontrol.Ty_send_only(y1, y2, y3, 's')
         timeout = 0
-        print('Checking On Target 2')
-        logging.info('Checking On Target 2')
         while not self.hppcontrol.Ty_on_target(y1, y2, y3, self.tolerance):
-            time.sleep(0.1)
+            time.sleep(0.2)
             timeout += 1
             if timeout > 100:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
                 return False
-        print('Done checking')
-        logging.info('Done checking')
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
         self.update_current_pos('y', y1, y1_o)
@@ -580,7 +564,7 @@ class XYscan:
             self.hppcontrol.Tx_send_only(x1[i], x2[i], x3[i], 's')
             timeout = 0
             while not self.hppcontrol.Tx_on_target(x1[i], x2[i], x3[i], self.tolerance):
-                time.sleep(0.1)
+                time.sleep(0.2)
                 timeout += 1
                 if timeout > 100:
                     print('Movement Timeout Error')
@@ -602,7 +586,7 @@ class XYscan:
         # check on target, need to check all of them
         timeout = 0
         while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
-            time.sleep(0.1)
+            time.sleep(0.2)
             timeout += 1
             if timeout > 100:
                 print('Movement Timeout Error')
@@ -640,7 +624,7 @@ class XYscan:
             self.hppcontrol.Ty_send_only(y1[i], y2[i], y3[i], 's')
             timeout = 0
             while not self.hppcontrol.Ty_on_target(y1[i], y2[i], y3[i], self.tolerance):
-                time.sleep(0.1)
+                time.sleep(0.2)
                 timeout += 1
                 if timeout > 100:
                     print('Movement Timeout Error')
@@ -662,7 +646,7 @@ class XYscan:
         # check on target, need to check all of them
         timeout = 0
         while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
-            time.sleep(0.1)
+            time.sleep(0.2)
             timeout += 1
             if timeout > 100:
                 print('Movement Timeout Error')
@@ -911,6 +895,8 @@ class XYscan:
             self.loss_fail_improve += 1
             if self.loss_fail_improve == 6:
                 self.loss_criteria = self.loss_current_max - 0.01
+                print('Change Loss Criteria to ', self.loss_criteria)
+                logging.info('Change Loss Criteria to ' + str(self.loss_criteria))
 
 
     def fetch_loss(self):

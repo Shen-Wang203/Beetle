@@ -523,8 +523,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
-        time.sleep(1)
-        sys.exit()
 
     def send_click(self):
         cmdtext = self.textEdit_gotocommands.toPlainText()
@@ -557,7 +555,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         logging.info('*************************')
         logging.info('Reset')
         logging.info('*************************')
-        target_mm_text = '[0,0,138,-0.7,0,0]'
+        target_mm_text = '[0,0,138,-1.5,1,0]'
         cmdtext = 'goto' + target_mm_text[1:-1]
         print(cmdtext)
         self.runthread.setcmd(cmdtext)
