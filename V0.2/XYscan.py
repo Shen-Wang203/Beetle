@@ -23,7 +23,7 @@ class XYscan:
         self.angle_flag = False
         self.final_adjust = False
         self.larger_Z_flag = False
-        self.loss_criteria = -0.3
+        self.loss_criteria = -0.45
         self.final_adjust_threshold = -2.0
         self.stepmode_threshold = -4.0
         self.interpmode_threshold = -12.0
@@ -189,8 +189,8 @@ class XYscan:
                 self.tolerance = 2 
         # if > criteria, then exit
         else:
-            print('Better than criteria')
-            logging.info('Better than criteria')
+            print('Better than criteria ', self.loss_criteria)
+            logging.info('Better than criteria ' + str(self.loss_criteria))
             return True
         
         return None

@@ -137,12 +137,11 @@ import logging
 
 # Control Box #4
 # COM9: T3
-Tser3 = serial.Serial('COM9', 115200, timeout=0.5, stopbits=1)
+Tser3 = serial.Serial('COM9', 115200, timeout=0.2, stopbits=1)
 # COM10: T1
-Tser1 = serial.Serial('COM10', 115200, timeout=0.5, stopbits=1)
+Tser1 = serial.Serial('COM10', 115200, timeout=0.2, stopbits=1)
 # COM8: T2
-Tser2 = serial.Serial('COM8', 115200, timeout=0.5, stopbits=1)
-
+Tser2 = serial.Serial('COM8', 115200, timeout=0.2, stopbits=1)
 
 
 error_log = ''
@@ -155,7 +154,7 @@ backlash_counter = [0,0,0,0,0,0]
 class HPP_Control:
     def __init__(self):    
         # counter backlash, extra counts, default as 4
-        self.backlash = 4
+        self.backlash = 2
         self.limit = []
         self.A = self.define_fixture()
 
@@ -438,8 +437,7 @@ class HPP_Control:
         var = var.encode('utf-8')
         if T == 1:
             Tser1.write(var)
-            Tcount = Tser1.readline().decode('utf-8')
-            # Tcount = Tser1.read_until(terminator=' ').decode('utf-8')            
+            Tcount = Tser1.readline().decode('utf-8')         
             if xy == 'x':
                 Tcounts_real[0] = int(Tcount)
             else:
@@ -447,7 +445,6 @@ class HPP_Control:
         elif T == 2:
             Tser2.write(var)
             Tcount = Tser2.readline().decode('utf-8')
-            # Tcount = Tser2.read_until(terminator=' ').decode('utf-8')
             if xy == 'x':
                 Tcounts_real[2] = int(Tcount)
             else:
@@ -455,13 +452,11 @@ class HPP_Control:
         else:
             Tser3.write(var)
             Tcount = Tser3.readline().decode('utf-8')
-            # Tcount = Tser3.read_until(terminator=' ').decode('utf-8')
             if xy == 'x':
                 Tcounts_real[4] = int(Tcount)
             else:
                 Tcounts_real[5] = int(Tcount)
-        # print('Real counts: ', Tcounts_real)
-        # print('=======')
+
         return int(Tcount)
     
 
@@ -469,9 +464,13 @@ class HPP_Control:
         global backlash_counter
 
         # real counts minus backlash counts
-        x1_current = self.T_get_counts(1, 'x') - backlash_counter[0]
-        x2_current = self.T_get_counts(2, 'x') - backlash_counter[2]
-        x3_current = self.T_get_counts(3, 'x') - backlash_counter[4]
+        # x1_current = self.T_get_counts(1, 'x') - backlash_counter[0]
+        # x2_current = self.T_get_counts(2, 'x') - backlash_counter[2]
+        # x3_current = self.T_get_counts(3, 'x') - backlash_counter[4]
+
+        x1_current = self.real_time_counts(1) - backlash_counter[0]
+        x2_current = self.real_time_counts(3) - backlash_counter[2]
+        x3_current = self.real_time_counts(5) - backlash_counter[4]
 
         # Check if within target
         if x1_current < (x1 - tolerance) or x1_current > (x1 + tolerance):
@@ -488,9 +487,13 @@ class HPP_Control:
         global backlash_counter
 
         # real counts minus backlash counts
-        y1_current = self.T_get_counts(1, 'y') - backlash_counter[1]
-        y2_current = self.T_get_counts(2, 'y') - backlash_counter[3]
-        y3_current = self.T_get_counts(3, 'y') - backlash_counter[5]
+        # y1_current = self.T_get_counts(1, 'y') - backlash_counter[1]
+        # y2_current = self.T_get_counts(2, 'y') - backlash_counter[3]
+        # y3_current = self.T_get_counts(3, 'y') - backlash_counter[5]
+
+        y1_current = self.real_time_counts(2) - backlash_counter[1]
+        y2_current = self.real_time_counts(4) - backlash_counter[3]
+        y3_current = self.real_time_counts(6) - backlash_counter[5]        
 
         # Check if within target
         if y1_current < (y1 - tolerance) or y1_current > (y1 + tolerance):
@@ -731,22 +734,47 @@ class HPP_Control:
             return [T1_real_count, T2_real_count, T3_real_count, T4_real_count, T5_real_count, T6_real_count]
         elif axis == 1:
             var0 = 'r axis0.encoder.shadow_count' + '\n'
-            return int(self.T1_send(var0))
+            try: 
+                Tcounts_real[0] = int(self.T1_send(var0))
+            except:
+                # if fail, return a fake value for on_target check
+                Tcounts_real[0] = 299999
+            return Tcounts_real[0]
         elif axis == 2:
             var1 = 'r axis1.encoder.shadow_count' + '\n'
-            return int(self.T1_send(var1))
+            try:
+                Tcounts_real[1] = int(self.T1_send(var1))
+            except:
+                Tcounts_real[1] = 299999
+            return Tcounts_real[1]
         elif axis == 3:
             var0 = 'r axis0.encoder.shadow_count' + '\n'
-            return int(self.T2_send(var0))
+            try:
+                Tcounts_real[2] = int(self.T2_send(var0))
+            except:
+                Tcounts_real[2] = 299999
+            return Tcounts_real[2]
         elif axis == 4:
             var1 = 'r axis1.encoder.shadow_count' + '\n'
-            return int(self.T2_send(var1))
+            try:
+                Tcounts_real[3] = int(self.T2_send(var1))
+            except:
+                Tcounts_real[3] = 299999
+            return Tcounts_real[3]
         elif axis == 5:
             var0 = 'r axis0.encoder.shadow_count' + '\n'
-            return int(self.T3_send(var0))
+            try:
+                Tcounts_real[4] = int(self.T3_send(var0))
+            except:
+                Tcounts_real[4] = 299999
+            return Tcounts_real[4]
         elif axis == 6:
             var1 = 'r axis1.encoder.shadow_count' + '\n'
-            return int(self.T3_send(var1)) 
+            try:
+                Tcounts_real[5] = int(self.T3_send(var1)) 
+            except:
+                Tcounts_real[5] = 299999
+            return Tcounts_real[5]
         else:
             print("Cannot indentify axis #")
 

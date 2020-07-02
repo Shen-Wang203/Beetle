@@ -1,0 +1,8 @@
+TODO Bugs:
+1. Click close, then auto align again, it will stop in the middle
+2. Check backlash, especially Z
+
+GUI pending:
+1. Close, wait for Idle then close the program
+2. IL display
+3. Starting position setting
