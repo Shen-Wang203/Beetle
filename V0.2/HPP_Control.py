@@ -1,6 +1,13 @@
 import serial
 import time
 import logging
+
+# Timeout:
+# set timeout to x seconds (float allowed) returns immediately when the requested number of bytes are available, 
+# otherwise wait until the timeout expires and return all bytes that were received until then.
+# readline(): read a '\n' terminated line. Do specify a timeout when opening the serial port otherwise it could 
+# block forever if no newline character is received. readlines() ends with either '\n' or timeout
+
 # # Cube PC
 # # COM15: T3
 # Tser3 = serial.Serial('COM15', 115200, timeout=None, stopbits=1)
@@ -130,11 +137,11 @@ import logging
 
 # Control Box #4
 # COM9: T3
-Tser3 = serial.Serial('COM9', 115200, timeout=None, stopbits=1)
+Tser3 = serial.Serial('COM9', 115200, timeout=0.5, stopbits=1)
 # COM10: T1
-Tser1 = serial.Serial('COM10', 115200, timeout=None, stopbits=1)
+Tser1 = serial.Serial('COM10', 115200, timeout=0.5, stopbits=1)
 # COM8: T2
-Tser2 = serial.Serial('COM8', 115200, timeout=None, stopbits=1)
+Tser2 = serial.Serial('COM8', 115200, timeout=0.5, stopbits=1)
 
 
 
