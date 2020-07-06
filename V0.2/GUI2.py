@@ -539,6 +539,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.setcmd('calib')
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status) 
 
     def disarm_click(self):
         self.runthread.setcmd('disarm')
@@ -608,6 +609,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         elif _status == 4:
             self.label_statusdata.setText('Cure Running')
             self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")
+        elif _status == 5:
+            self.label_statusdata.setText('Calibrating')
+            self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")            
         else:
             self.label_statusdata.setText('Idle')
             self.label_statusdata.setStyleSheet("color: rgb(0, 255, 0);")
@@ -637,9 +641,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if _error_flag:
                 self.label_statusdata.setText('Disarmed')
                 self.label_statusdata.setStyleSheet("color: rgb(255, 30, 0);")
-        else:
-                self.label_statusdata.setText('Ready')
-                self.label_statusdata.setStyleSheet("color: rgb(20, 255, 0);")
+        # else:
+        #         self.label_statusdata.setText('Ready')
+        #         self.label_statusdata.setStyleSheet("color: rgb(20, 255, 0);")
 
     def step_choose(self):
         if self.stepSizeComboBox.currentIndex() == 0:

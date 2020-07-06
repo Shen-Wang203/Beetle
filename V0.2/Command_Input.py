@@ -113,14 +113,15 @@ class CMDInputThread(QtCore.QThread):
         if commands == 'calib':
             error_log = ''
             self.hppcontrol.calibration()
+            self.sig2.emit(5)
             # print('Calibrating...')
-            time.sleep(12)
+            time.sleep(18)
             error_flag = False
             if self.hppcontrol.check_errors():
                 error_flag = True
             # Read real time counts for all axis
             control.Tcounts_old = self.hppcontrol.real_time_counts(0)
-        
+
         elif commands == 'clear':
             self.hppcontrol.clear_errors()
         
