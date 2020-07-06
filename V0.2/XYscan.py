@@ -23,7 +23,7 @@ class XYscan:
         self.angle_flag = False
         self.final_adjust = False
         self.larger_Z_flag = False
-        self.loss_criteria = -0.45
+        self.loss_criteria = -0.4
         self.final_adjust_threshold = -2.0
         self.stepmode_threshold = -4.0
         self.interpmode_threshold = -12.0
@@ -141,12 +141,14 @@ class XYscan:
                         P0[2] = P0[2] - step_ref * 30
                         self.hppcontrol.engage_motor()
                         self.send_to_hpp(P0)
-                        self.loss_current_max = -20.0
+                        self.loss_current_max = -40.0
                         retry_num += 1
                     else:
                         if max(self.loss) < self.loss_criteria:
                             P_final = self.scanUpdate(P1, self.scanmode)
                         else:
+                            print('Better than criteria ', self.loss_criteria)
+                            logging.info('Better than criteria ' + str(self.loss_criteria))
                             P_final = P1[:]
                         break
 
@@ -882,20 +884,24 @@ class XYscan:
         if loss0 > self.loss_current_max:
             self.loss_current_max = loss0
             self.loss_fail_improve = 0
-        elif (loss0 < (3 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
-            print('Unexpected High Loss, End Program: ', str(loss0))
-            logging.info('Unexpected High Loss, End Program: ' + str(loss0))
-            self.hppcontrol.engage_motor()
-            self.hppcontrol.normal_traj_speed()
-            self.send_to_hpp(self.starting_point)
-            self.hppcontrol.disengage_motor()
-            import sys
-            sys.exit()
         else:
-            # x,y and z fail to improve 6 times continuesly, then reset the loss_criteria as current max
+            if (loss0 < (3 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
+                print('Unexpected High Loss, End Program: ', str(loss0))
+                logging.info('Unexpected High Loss, End Program: ' + str(loss0))
+                self.hppcontrol.engage_motor()
+                self.hppcontrol.normal_traj_speed()
+                self.send_to_hpp(self.starting_point)
+                self.hppcontrol.disengage_motor()
+                import sys
+                sys.exit()
+
+            # x,y and z fail to improve 8 times continuesly, then reset the loss_criteria as current max
+            # each Z run will call twice of this function, so 2 round of xyz fails
             # this is to faster the process
             self.loss_fail_improve += 1
-            if self.loss_fail_improve == 6:
+            # update loss_criteria only when in final stages
+            if self.loss_fail_improve == 8 and self.final_adjust:
+                self.loss_fail_improve = 0
                 self.loss_criteria = self.loss_current_max - 0.01
                 print('Change Loss Criteria to ', self.loss_criteria)
                 logging.info('Change Loss Criteria to ' + str(self.loss_criteria))

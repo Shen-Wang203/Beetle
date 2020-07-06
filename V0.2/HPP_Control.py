@@ -153,8 +153,10 @@ backlash_counter = [0,0,0,0,0,0]
 
 class HPP_Control:
     def __init__(self):    
-        # counter backlash, extra counts, default as 4
-        self.backlash = 4
+        # counter backlash, extra counts
+        # Beetle #0 use 4 backlash
+        # Beetle #2, use 0 backlash
+        self.backlash = 0
         self.limit = []
         self.A = self.define_fixture()
 

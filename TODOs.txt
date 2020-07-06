@@ -1,6 +1,6 @@
 TODO Bugs:
 1. Click close, then auto align again, it will stop in the middle
-2. Check backlash, especially Z
+2. UART issue, stop in the middle occasionly
 
 GUI pending:
 1. Close, wait for Idle then close the program
