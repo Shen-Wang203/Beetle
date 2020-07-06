@@ -12,7 +12,7 @@ odrivetool --serial-number 20813882304E
 T2
 odrivetool --serial-number 2060388E304E
 T1
-odrivetool --serial-number 20803880304E
+
 
 Control Box #2:
 T1
@@ -25,7 +25,7 @@ Potential Issues: T2x encoder signal is none; some Z signals doesn't work
 
 Control Box #3:
 T1
-odrivetool --serial-number 2064387E304E
+odrivetool --serial-number 20803880304E
 T2
 odrivetool --serial-number 2087388E304E
 T3
@@ -203,7 +203,7 @@ odrv2.axis1.config.calibration_lockin.accel = 10
 odrv2.axis1.encoder.config.use_index = 1
 
 %Request State
-odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+odrv0.axis0.requested_state = odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
 odrv0.axis1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
 odrv1.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
 odrv1.axis1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL

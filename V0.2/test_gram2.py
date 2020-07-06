@@ -1,6 +1,7 @@
-import logging
+loss = []
 
-logfilename = 'runlog.log'
-logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
+loss.append(-1.2)
+loss.append(-3.2)
+loss.append(-0.4)
 
-logging.info('Run')
+print(max(loss))

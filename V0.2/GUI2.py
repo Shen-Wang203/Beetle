@@ -450,7 +450,7 @@ class Ui_MainWindow(object):
         self.pushButton_start.setText(_translate("MainWindow", "Calibration"))
         self.pushButton_close.setText(_translate("MainWindow", "Close"))
         self.pushButton_disarm.setText(_translate("MainWindow", "Disarm"))
-        self.pushButton_stop.setText(_translate("MainWindow", "Stop"))
+        self.pushButton_stop.setText(_translate("MainWindow", "Cancle Run"))
         self.pushButton_Xp.setText(_translate("MainWindow", "+"))
         self.pushButton_Xm.setText(_translate("MainWindow", "-"))
         self.pushButton_Ym.setText(_translate("MainWindow", "-"))
@@ -555,7 +555,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         logging.info('*************************')
         logging.info('Reset')
         logging.info('*************************')
-        target_mm_text = '[0,0,138,-1.5,1,0]'
+        target_mm_text = '[0,0,139,-0.3,0.5,0]'
         cmdtext = 'goto' + target_mm_text[1:-1]
         print(cmdtext)
         self.runthread.setcmd(cmdtext)
@@ -598,14 +598,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def motor_status(self, _status):
         if _status == 1:
             self.label_statusdata.setText('Running')
+            self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")
         elif _status == 2:
             self.label_statusdata.setText('Auto Running')
+            self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")
         elif _status == 3:
             self.label_statusdata.setText('PreCure Running')
+            self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")
         elif _status == 4:
             self.label_statusdata.setText('Cure Running')
+            self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")
         else:
             self.label_statusdata.setText('Idle')
+            self.label_statusdata.setStyleSheet("color: rgb(0, 255, 0);")
 
     def refresh(self, _error_log, _target_mm, _target_counts, _real_counts, _error_flag):
         self.target_mm = _target_mm

@@ -137,11 +137,11 @@ import logging
 
 # Control Box #4
 # COM9: T3
-Tser3 = serial.Serial('COM9', 115200, timeout=0.2, stopbits=1)
+Tser3 = serial.Serial('COM9', 115200, timeout=0.1, stopbits=1)
 # COM10: T1
-Tser1 = serial.Serial('COM10', 115200, timeout=0.2, stopbits=1)
+Tser1 = serial.Serial('COM10', 115200, timeout=0.1, stopbits=1)
 # COM8: T2
-Tser2 = serial.Serial('COM8', 115200, timeout=0.2, stopbits=1)
+Tser2 = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
 
 
 error_log = ''
@@ -154,7 +154,7 @@ backlash_counter = [0,0,0,0,0,0]
 class HPP_Control:
     def __init__(self):    
         # counter backlash, extra counts, default as 4
-        self.backlash = 2
+        self.backlash = 4
         self.limit = []
         self.A = self.define_fixture()
 
@@ -724,12 +724,20 @@ class HPP_Control:
             # var0 = 'f 0' + '\n'
             var1 = 'r axis1.encoder.shadow_count' + '\n'
             # var1 = 'f 1' + '\n'
-            T1_real_count = int(self.T1_send(var0))
-            T2_real_count = int(self.T1_send(var1))
-            T3_real_count = int(self.T2_send(var0))
-            T4_real_count = int(self.T2_send(var1))
-            T5_real_count = int(self.T3_send(var0))
-            T6_real_count = int(self.T3_send(var1))    
+            try: 
+                T1_real_count = int(self.T1_send(var0))
+                T2_real_count = int(self.T1_send(var1))
+                T3_real_count = int(self.T2_send(var0))
+                T4_real_count = int(self.T2_send(var1))
+                T5_real_count = int(self.T3_send(var0))
+                T6_real_count = int(self.T3_send(var1))  
+            except:
+                T1_real_count = 299999
+                T2_real_count = 299999
+                T3_real_count = 299999
+                T4_real_count = 299999
+                T5_real_count = 299999
+                T6_real_count = 299999
             Tcounts_real = [T1_real_count, T2_real_count, T3_real_count, T4_real_count, T5_real_count, T6_real_count]
             return [T1_real_count, T2_real_count, T3_real_count, T4_real_count, T5_real_count, T6_real_count]
         elif axis == 1:

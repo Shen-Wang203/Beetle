@@ -222,6 +222,7 @@ class XYscan:
         x3start = X3_counts + self.scan_radius * self.x_dir
         x3end = X3_counts - self.scan_radius * self.x_dir
 
+        self.loss = []
         self.fetch_loss()
         loss0 = self.loss[-1]
         self.save_loss_pos()
@@ -289,6 +290,7 @@ class XYscan:
         y3start = Y3_counts - self.scan_radius * self.y_dir
         y3end = Y3_counts + self.scan_radius * self.y_dir
 
+        self.loss = []
         self.fetch_loss()
         loss0 = self.loss[-1]
         self.save_loss_pos()

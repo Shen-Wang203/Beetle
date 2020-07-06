@@ -228,7 +228,7 @@ class CMDInputThread(QtCore.QThread):
             xys = XYscan(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
             self.sig2.emit(2)
-            P0 = [0,0,138,-1.5,1,0]
+            P0 = [0,0,139,-0.3,0.5,0]
             xys.set_starting_point(P0)
             # self.xys.set_loss_criteria(-0.2)
             P1 = xys.autoRun()           
