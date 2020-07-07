@@ -1,7 +1,8 @@
-loss = []
+# print([ x if x%2 else x*100 for x in range(1, 10) ])
 
-loss.append(-1.2)
-loss.append(-3.2)
-loss.append(-0.4)
+def a():
+    return [2, 4]
 
-print(max(loss))
+[a, sef] = a()
+print(sef)
+print(a)

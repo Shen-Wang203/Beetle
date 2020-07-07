@@ -232,7 +232,7 @@ class CMDInputThread(QtCore.QThread):
             P0 = [0,0,139,-0.3,0.5,0]
             xys.set_starting_point(P0)
             # self.xys.set_loss_criteria(-0.2)
-            P1 = xys.autoRun()           
+            P1 = xys.autoRun(2)           
             self.currentPosition = P1[:]
             target_mm = P1[:]
             real_counts = control.Tcounts_real

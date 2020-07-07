@@ -20,13 +20,13 @@ class XYscan:
         self.tolerance = 5
         self.Z_amp = 4
         self.stepScanCounts = 10
-        self.angle_flag = False
         self.final_adjust = False
-        self.larger_Z_flag = False
+        self.larger_Z_flag = False       
+        self.aggresive_threshold = -12.0
+        self.scanmode_threshold = -4.0
+        self.stepmode_threshold = -2.0
+        self.interpmode_threshold = -2.0
         self.loss_criteria = -0.4
-        self.final_adjust_threshold = -2.0
-        self.stepmode_threshold = -4.0
-        self.interpmode_threshold = -12.0
         self.scanmode = 'c'
         self.zmode = 'normal'
 
@@ -60,7 +60,10 @@ class XYscan:
     def set_angle_flag(self, _bool):
         self.angle_flag = _bool
 
-    def autoRun(self):
+    # strategy can be:
+    # stepping-at-final --> 1
+    # interp-at-final  --> 2
+    def autoRun(self, strategy):
         print('A New Alignment Starts')
         logging.info(' ')
         logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
@@ -81,7 +84,7 @@ class XYscan:
         self.error_flag = False
         while not self.error_flag:
             # Select mode and parameters as loss
-            if self.mode_select(max(self.loss)):
+            if self.mode_select(max(self.loss), strategy):
                 P_final = P0[:]
                 break
 
@@ -102,17 +105,10 @@ class XYscan:
                         print('XY step scan failed')
                         logging.info('XY step scan failed')                        
                     P_final = P0[:]
-                    break
-            
-            # if max(self.loss) > -15 and self.angle_flag:
-                # P1 = self.optimRxy(P1)
-                # if P1 == False:
-                #     break
-                # # angle flag to determine whether angle are optimized
-                # self.angle_flag = False         
+                    break 
             
             # Select mode and parameters as loss
-            if self.mode_select(max(self.loss)):
+            if self.mode_select(max(self.loss), strategy):
                 P_final = P1[:]
                 break
 
@@ -120,12 +116,10 @@ class XYscan:
             # Return False Reason 1: Z step is too small
             # Return False Reason 2: Unexpected high loss
             if P0 == False:
-                if not self.final_adjust and max(self.loss) > self.stepmode_threshold:
+                if not self.final_adjust and max(self.loss) > self.scanmode_threshold:
                     print('Change to Final_adjust(Z optim failed once)')
                     logging.info('Change to Final_adjust(Z optim failed once)')
-                    self.final_adjust = True
-                    self.stepScanCounts = 4    
-                    self.tolerance = 2           
+                    self.final_adjust = True          
                     P0 = P1[:]      
                 else:
                     # come to here: 
@@ -158,25 +152,38 @@ class XYscan:
         return P_final
 
     # return true if meet criteria, otherwise return none
-    def mode_select(self, loss0):
-        # if <= -12, then continue scan mode
-        if loss0 <= self.interpmode_threshold:
+    def mode_select(self, loss0, strategy):
+        # if <= -12, then continue scan mode, with aggressive zmode
+        if loss0 <= self.aggresive_threshold:
             self.Z_amp = 4
             self.zmode = 'aggressive'
-        # if (-12,-4], then interp(or still continue scan) mode 
-        elif loss0 <= self.stepmode_threshold:
-            # self.scanmode = 'i'
+            self.scanmode = 'c'
+            # self.final_adjust = False
+            self.tolerance = 5
+        # if (-12,-4], still continue scan mode, with normal zmode
+        elif loss0 <= self.scanmode_threshold:
             self.zmode = 'normal'
+            self.scanmode = 'c'
             self.Z_amp = 2
             self.tolerance = 2
-        # if (-4,-2], then step mode
-        elif loss0 <= self.final_adjust_threshold:  
+            # self.final_adjust = False
+        # if (-4,-2], and stepping-at-final strategy, then step mode
+        elif loss0 <= self.stepmode_threshold and strategy == 1:  
             self.zmode = 'normal'
             self.scanmode = 's'
             self.Z_amp = 1.5
             self.tolerance = 2
-        # if (-2,criteria], then final adjust 
-        elif loss0 <= self.loss_criteria:
+            # self.final_adjust = False
+            self.stepScanCounts = 10
+        # if (-4,-2], and interp-at-final strategy, then interp mode
+        elif loss0 <= self.interpmode_threshold and strategy == 2: 
+            self.zmode = 'normal'
+            self.scanmode = 'i'
+            self.Z_amp = 1.5
+            self.tolerance = 2
+            # self.final_adjust = False           
+        # if (-2,criteria], and stepping-at-final strategy, then final adjust 
+        elif loss0 <= self.loss_criteria and strategy == 1:
             print('Change to Final_adjust')
             logging.info('Change to Final_adjust')
             self.zmode = 'normal'
@@ -184,11 +191,16 @@ class XYscan:
             self.final_adjust = True
             self.stepScanCounts = 3 
             self.Z_amp = 1.2
-            if max(self.loss) > -1.0:
-                # self.tolerance = 1
-                pass
-            else:
-                self.tolerance = 2 
+            self.tolerance = 2 
+        # if (-2,criteria], and stepping-at-final strategy, then final adjust 
+        elif loss0 <= self.loss_criteria and strategy == 2:
+            print('Change to Final_adjust')
+            logging.info('Change to Final_adjust')
+            self.zmode = 'normal'
+            self.scanmode = 'i'
+            self.final_adjust = True
+            self.Z_amp = 1.2
+            self.tolerance = 2             
         # if > criteria, then exit
         else:
             print('Better than criteria ', self.loss_criteria)
@@ -239,7 +251,7 @@ class XYscan:
                 # x1_final = self.pos[index] * 0.75 + self.pos[index + 1] * 0.25
                 x2_final = -x1_final + x1start + x2start
                 x3_final = -x1_final + x1start + x3start
-                self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 's')
+                self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 'p')
                 # check on target, need to check all of them
                 timeout = 0
                 while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
@@ -260,7 +272,7 @@ class XYscan:
             else:
                 if i:
                     # if fail, the fixture needs to go back to the original position
-                    self.hppcontrol.Tx_send_only(X1_counts, X2_counts, X3_counts, 's')
+                    self.hppcontrol.Tx_send_only(X1_counts, X2_counts, X3_counts, 'p')
                     timeout = 0
                     while not self.hppcontrol.Tx_on_target(X1_counts, X2_counts, X3_counts, self.tolerance):
                         time.sleep(0.2)
@@ -276,7 +288,7 @@ class XYscan:
                 x1mid = pos0
                 x2mid = -pos0 + X1_counts + X2_counts
                 x3mid = -pos0 + X1_counts + X3_counts
-                self.hppcontrol.Tx_send_only(x1mid, x2mid, x3mid, 's')
+                self.hppcontrol.Tx_send_only(x1mid, x2mid, x3mid, 'p')
                 time.sleep(0.2)    
                 self.update_current_pos('x', x1mid, X1_counts)        
                 self.hppcontrol.Tx_send_only(x1end, x2end, x3end, 't')          
@@ -307,7 +319,7 @@ class XYscan:
                 # y1_final = self.pos[index] * 0.75 + self.pos[index + 1] * 0.25
                 y2_final = y1_final - y1start + y2start
                 y3_final = y1_final - y1start + y3start
-                self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 's')
+                self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 'p')
                 # check on target, check all of them
                 timeout = 0
                 while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
@@ -328,7 +340,7 @@ class XYscan:
             else:
                 if i:
                     # if fail, go back to original position
-                    self.hppcontrol.Ty_send_only(Y1_counts, Y2_counts, Y3_counts, 's')
+                    self.hppcontrol.Ty_send_only(Y1_counts, Y2_counts, Y3_counts, 'p')
                     timeout = 0
                     while not self.hppcontrol.Ty_on_target(Y1_counts, Y2_counts, Y3_counts, self.tolerance):
                         time.sleep(0.2)     
@@ -344,7 +356,7 @@ class XYscan:
                 y1mid = pos0
                 y2mid = pos0 - Y1_counts + Y2_counts
                 y3mid = pos0 - Y1_counts + Y3_counts
-                self.hppcontrol.Ty_send_only(y1mid, y2mid, y3mid, 's')
+                self.hppcontrol.Ty_send_only(y1mid, y2mid, y3mid, 'p')
                 time.sleep(0.2)
                 self.update_current_pos('y', y1mid, Y1_counts)
                 self.hppcontrol.Ty_send_only(y1end, y2end, y3end, 't')               
@@ -375,7 +387,7 @@ class XYscan:
             x3 = x3 + self.stepScanCounts * self.x_dir
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
-            self.hppcontrol.Tx_send_only(x1, x2, x3, 's')
+            self.hppcontrol.Tx_send_only(x1, x2, x3, 'p')
             timeout = 0
             while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
                 time.sleep(0.2)
@@ -428,7 +440,7 @@ class XYscan:
         
         if self.final_adjust:
             self.hppcontrol.engage_motor()
-        self.hppcontrol.Tx_send_only(x1, x2, x3, 's')
+        self.hppcontrol.Tx_send_only(x1, x2, x3, 'p')
         timeout = 0
         while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
             time.sleep(0.2)
@@ -473,7 +485,7 @@ class XYscan:
             y3 = y3 - self.stepScanCounts * self.y_dir
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
-            self.hppcontrol.Ty_send_only(y1, y2, y3, 's')
+            self.hppcontrol.Ty_send_only(y1, y2, y3, 'p')
             timeout = 0
             while not self.hppcontrol.Ty_on_target(y1, y2, y3, self.tolerance):
                 time.sleep(0.2)
@@ -526,7 +538,7 @@ class XYscan:
 
         if self.final_adjust:
             self.hppcontrol.engage_motor()
-        self.hppcontrol.Ty_send_only(y1, y2, y3, 's')
+        self.hppcontrol.Ty_send_only(y1, y2, y3, 'p')
         timeout = 0
         while not self.hppcontrol.Ty_on_target(y1, y2, y3, self.tolerance):
             time.sleep(0.2)
@@ -559,13 +571,22 @@ class XYscan:
         self.save_loss_pos()
         self.pos_ref = self.current_pos[:]    
         # step in counts   
-        step = self.xyinterp_sample_step(self.loss[-1]) / 0.05
+        [step, totalpoints] = self.xyinterp_sample_step(self.loss[-1])
+        if totalpoints == 7:
+            x1 = [x1_o, x1_o-3*step, x1_o+step, x1_o-2*step, x1_o+2*step, x1_o-step, x1_o+3*step]
+            x2 = [x2_o, x2_o+3*step, x2_o-step, x2_o+2*step, x2_o-2*step, x2_o+step, x2_o-3*step]
+            x3 = [x3_o, x3_o+3*step, x3_o-step, x3_o+2*step, x3_o-2*step, x3_o+step, x3_o-3*step]
+            grid = [*range(int(x1_o-3*step), int(x1_o+3*step+1), 1)]
+        elif totalpoints == 5:
+            x1 = [x1_o, x1_o-2*step, x1_o+step, x1_o-step, x1_o+2*step]
+            x2 = [x2_o, x2_o+2*step, x2_o-step, x2_o+step, x2_o-2*step]
+            x3 = [x3_o, x3_o+2*step, x3_o-step, x3_o+step, x3_o-2*step]
+            grid = [*range(int(x1_o-2*step), int(x1_o+2*step+1), 1)]
 
-        x1 = [x1_o, x1_o-step, x1_o-2*step, x1_o-3*step, x1_o+step, x1_o+2*step, x1_o+3*step]
-        x2 = [x2_o, x2_o+step, x2_o+2*step, x2_o+3*step, x2_o-step, x2_o-2*step, x2_o-3*step]
-        x3 = [x3_o, x3_o+step, x3_o+2*step, x3_o+3*step, x3_o-step, x3_o-2*step, x3_o-3*step]
-        for i in range(1,7):
-            self.hppcontrol.Tx_send_only(x1[i], x2[i], x3[i], 's')
+        for i in range(1,totalpoints):
+            if self.final_adjust:
+                self.hppcontrol.engage_motor()
+            self.hppcontrol.Tx_send_only(x1[i], x2[i], x3[i], 'p')
             timeout = 0
             while not self.hppcontrol.Tx_on_target(x1[i], x2[i], x3[i], self.tolerance):
                 time.sleep(0.2)
@@ -574,6 +595,8 @@ class XYscan:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
                     return False
+            if self.final_adjust:
+                self.hppcontrol.disengage_motor()
             self.update_current_pos('x', x1[i], x1_o)
             self.fetch_loss()
             self.pos.append(x1[i])
@@ -581,12 +604,13 @@ class XYscan:
             logging.info(x1[i])
             self.save_loss_pos()
 
-        grid = [*range(int(x1_o-3*step), int(x1_o+3*step+1), 2)]
         s = interpolation.barycenteric_interp(x1,self.loss,grid)
         x1_final = grid[s.index(max(s))]
         x2_final = -x1_final + x1_o + x2_o
         x3_final = -x1_final + x1_o + x3_o
-        self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 's')
+        if self.final_adjust:
+            self.hppcontrol.engage_motor() 
+        self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 'p')
         # check on target, need to check all of them
         timeout = 0
         while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
@@ -596,6 +620,8 @@ class XYscan:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
                 return False
+        if self.final_adjust:
+            self.hppcontrol.disengage_motor()  
         self.update_current_pos('x', x1_final, x1_o)
         print('XInterp final: ',x1_final)
         logging.info('XInterp final: ' + str(x1_final))
@@ -619,13 +645,22 @@ class XYscan:
         self.save_loss_pos()
         self.pos_ref = self.current_pos[:]    
         # step in counts   
-        step = self.xyinterp_sample_step(self.loss[-1]) / 0.05
-
-        y1 = [y1_o, y1_o-step, y1_o-2*step, y1_o-3*step, y1_o+step, y1_o+2*step, y1_o+3*step]
-        y2 = [y2_o, y2_o-step, y2_o-2*step, y2_o-3*step, y2_o+step, y2_o+2*step, y2_o+3*step]
-        y3 = [y3_o, y3_o-step, y3_o-2*step, y3_o-3*step, y3_o+step, y3_o+2*step, y3_o+3*step]
-        for i in range(1,7):
-            self.hppcontrol.Ty_send_only(y1[i], y2[i], y3[i], 's')
+        [step, totalpoints] = self.xyinterp_sample_step(self.loss[-1])
+        if totalpoints == 7:
+            y1 = [y1_o, y1_o-3*step, y1_o+step, y1_o-2*step, y1_o+2*step, y1_o-step, y1_o+3*step]
+            y2 = [y2_o, y2_o-3*step, y2_o+step, y2_o-2*step, y2_o+2*step, y2_o-step, y2_o+3*step]
+            y3 = [y3_o, y3_o-3*step, y3_o+step, y3_o-2*step, y3_o+2*step, y3_o-step, y3_o+3*step]
+            grid = [*range(int(y1_o-3*step), int(y1_o+3*step+1), 1)]
+        elif totalpoints == 5:
+            y1 = [y1_o, y1_o-2*step, y1_o+step, y1_o-step, y1_o+2*step]
+            y2 = [y2_o, y2_o-2*step, y2_o+step, y2_o-step, y2_o+2*step]
+            y3 = [y3_o, y3_o-2*step, y3_o+step, y3_o-step, y3_o+2*step]   
+            grid = [*range(int(y1_o-2*step), int(y1_o+2*step+1), 1)]        
+        
+        for i in range(1, totalpoints):
+            if self.final_adjust:
+                self.hppcontrol.engage_motor()
+            self.hppcontrol.Ty_send_only(y1[i], y2[i], y3[i], 'p')
             timeout = 0
             while not self.hppcontrol.Ty_on_target(y1[i], y2[i], y3[i], self.tolerance):
                 time.sleep(0.2)
@@ -634,6 +669,8 @@ class XYscan:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
                     return False
+            if self.final_adjust:
+                self.hppcontrol.disengage_motor()
             self.update_current_pos('y', y1[i], y1_o)
             self.fetch_loss()
             self.pos.append(y1[i])
@@ -641,12 +678,13 @@ class XYscan:
             logging.info(y1[i])
             self.save_loss_pos()
 
-        grid = [*range(int(y1_o-3*step), int(y1_o+3*step+1), 2)]
         s = interpolation.barycenteric_interp(y1,self.loss,grid)
         y1_final = grid[s.index(max(s))]
         y2_final = y1_final - y1_o + y2_o
         y3_final = y1_final - y1_o + y3_o
-        self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 's')
+        if self.final_adjust:
+            self.hppcontrol.engage_motor()        
+        self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 'p')
         # check on target, need to check all of them
         timeout = 0
         while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
@@ -656,6 +694,8 @@ class XYscan:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
                 return False
+        if self.final_adjust:
+            self.hppcontrol.disengage_motor()        
         self.update_current_pos('y', y1_final, y1_o)
         print('YInterp final: ',y1_final)
         logging.info('YInterp final: ' + str(y1_final))
@@ -665,22 +705,21 @@ class XYscan:
         else:
             return 1
 
-
     # Based on loss to determine xy interpolation sample step size
+    # return step size and total points
     def xyinterp_sample_step(self, loss):
-        # loss = [-20, -15, -10, -5, -1]
-        # step size in um, in counts will be [90, 70, 50, 30, 20]
-        step_size = [5, 4, 3, 1.5, 1]
-        if loss <= -20:
-            return step_size[0]
-        elif loss <= -15:
-            return step_size[1]
-        elif loss <= -10:
-            return step_size[2]
-        elif loss <= -5:
-            return step_size[3]
+        # (-4,-3]: range 54 counts, step is 9, total 7 points 
+        # (-3,-2]: range 42 counts, step is 7, total 7 points
+        # (-2,-1]: range 32 counts, step is 8, total 5 points
+        # (-1,0]: range 24 counts, step is 6, total 5 points
+        if loss <= -3:
+            return [9, 7]
+        elif loss <= -2:
+            return [7, 7]
+        elif loss <= -1:
+            return [8, 5]
         else:
-            return step_size[4]
+            return [6, 5]
 
     # Return P1 after XY scan starting from P0, fixture is at P1, the loss is not updated
     # mode can be 's' (step) or 'c' (continusly) or 'i' (interpolation)
@@ -775,8 +814,11 @@ class XYscan:
         step_ref = round(abs(self.loss[-1]), 1) * 0.001
         # give step size an amplifier
         step = step_ref * self.Z_amp
-        if step < 0.0015:
-            step = 0.0015
+        if step < 0.001:
+            step = 0.001
+        direc0 = 1
+        direc1 = 1
+        z0 = P1[2]
         while True:
             P1[2] = P1[2] + step
 
@@ -794,20 +836,30 @@ class XYscan:
                 logging.info('Regulated by Z limit')
                 P1[2] = P1[2] + step
             
+            # current direction
+            if P1[2] > z0:
+                direc1 = 1
+            else:
+                direc1 = -1
+            # if direction changed, add extra counts
+            if direc1 != direc0:
+                P1[2] = P1[2] + 0.0002 * direc1
+            # goto the position
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
-            if self.send_to_hpp(P1):
-                if self.final_adjust:
-                    # time.sleep(0.1)
-                    self.hppcontrol.disengage_motor()
-                self.fetch_loss()
-                self.current_pos = P1[:]
-                self.save_loss_pos()
-            else:
+            if not self.send_to_hpp(P1):
                 print('Movement Error')
                 logging.info('Movement Error')
                 self.error_flag = True
-            
+            if self.final_adjust:
+                self.hppcontrol.disengage_motor()
+            self.fetch_loss()
+            self.current_pos = P1[:]
+            self.save_loss_pos()
+            # update old position and old direction
+            z0 = P1[2]
+            direc0 = direc1
+
             # aggressive mode: Z goes forward until loss is 2 times of the initial value
             # for instance, loss_o = -15, then until -22.5 dB we stop forwarding Z
             # The purpose is to forward Z more aggressively to faster the process
@@ -826,7 +878,7 @@ class XYscan:
                 # step = self.reduction_ratio * step
                 # radio here should be smaller than 0.5 not 0,5, otherwise two steps will go back to the previous position
                 step = 0.4 * step                    
-                
+
                 # if step size is smaller than minimum resolution, exit
                 if step < 0.0002:
                     print('Z step is too small')
@@ -856,7 +908,16 @@ class XYscan:
                 if success_num:
                     # go back to the best points
                     # give extra value to counter backlash
-                    P1[2] = P1[2] - 0.0002
+                    # P1[2] = P1[2] - 0.0002
+                    # current direction
+                    if P1[2] > z0:
+                        direc1 = 1
+                    else:
+                        direc1 = -1
+                    # if direction changed, add extra counts
+                    if direc1 != direc0:
+                        P1[2] = P1[2] + 0.0002 * direc1
+                    # goto the position
                     if self.final_adjust:
                         self.hppcontrol.engage_motor()
                     if not self.send_to_hpp(P1):
@@ -864,9 +925,11 @@ class XYscan:
                         logging.info('Movement Error')
                         self.error_flag = True
                     if self.final_adjust:
-                        # time.sleep(0.1)
                         self.hppcontrol.disengage_motor()
                     self.current_pos = P1[:]
+                    # update old position and old direction
+                    z0 = P1[2]
+                    direc0 = direc1
                     break
             # if larger than bound, then success and update loss old
             elif diff > bound:

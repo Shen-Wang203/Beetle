@@ -6,3 +6,12 @@ GUI pending:
 1. Close, wait for Idle then close the program
 2. IL display
 3. Starting position setting
+
+
+Beetle:
+#1: Motor 5 calibration issue
+#2: T2x needs to lubricate
+#5: Motor 3 burned
+
+Control Box #1: 
+for Beetle #2 and #5, motors sometimes don't run
