@@ -14,6 +14,17 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.loss_curing_rec = []
         self.pos_curing_rec = []
 
+    # Product 1: VOA
+    # Product 2: 1xN
+    # Overwrite function, step_z is determined by products
+    def product_select(self, _product):
+        if _product == 'VOA':
+            self.product = 1
+            self.step_Z = 0.0005
+        elif _product == '1xN':
+            self.product = 2
+            self.step_Z = 0.001
+
     def pre_curing_run(self, P0):   
         print('Pre-Curing Active Alignment Starts')
         logging.info(' ')
@@ -139,7 +150,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('Movement Error')
                 self.error_flag = True                
             
-            bound = self.loss_resolution(loss_o)
+            bound = self.loss_bound(loss_o)
             diff = self.loss[-1] - loss_o
             if diff <= -bound:
                 # go back to the old position with extra value

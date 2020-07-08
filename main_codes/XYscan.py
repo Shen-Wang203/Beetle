@@ -67,7 +67,7 @@ class XYscan:
     def product_select(self, _product):
         if _product == 'VOA':
             self.product = 1
-        elif _product == '1XN':
+        elif _product == '1xN':
             self.product = 2
 
     # strategy can be:
