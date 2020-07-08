@@ -68,70 +68,70 @@ import logging
 #     time.sleep(.5)
 #     break
 
-# For cube PC
-while True:
-    stationNum = input('Control Box #: ')
-    # Shen's PC
-    # if stationNum == '1':
-    #     # COM15: T3
-    #     Tser3 = serial.Serial('COM23', 115200, timeout=None, stopbits=1)
-    #     # COM17: T1
-    #     Tser1 = serial.Serial('COM24', 115200, timeout=None, stopbits=1)
-    #     # COM20: T2
-    #     Tser2 = serial.Serial('COM26', 115200, timeout=None, stopbits=1)
+# # For cube PC
+# while True:
+#     stationNum = input('Control Box #: ')
+#     # Shen's PC
+#     # if stationNum == '1':
+#     #     # COM15: T3
+#     #     Tser3 = serial.Serial('COM23', 115200, timeout=None, stopbits=1)
+#     #     # COM17: T1
+#     #     Tser1 = serial.Serial('COM24', 115200, timeout=None, stopbits=1)
+#     #     # COM20: T2
+#     #     Tser2 = serial.Serial('COM26', 115200, timeout=None, stopbits=1)
 
-    # Jerry's laptop####################################################
-    if stationNum == '1':
-        # COM15: T3
-        Tser3 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
-        # COM17: T1
-        Tser1 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
-        # COM20: T2
-        Tser2 = serial.Serial('COM8', 115200, timeout=None, stopbits=1)
-    ####################################################################
+#     # Jerry's laptop####################################################
+#     if stationNum == '1':
+#         # COM15: T3
+#         Tser3 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
+#         # COM17: T1
+#         Tser1 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
+#         # COM20: T2
+#         Tser2 = serial.Serial('COM8', 115200, timeout=None, stopbits=1)
+#     ####################################################################
 
-    elif stationNum == '2':
-        # COM27: T2
-        Tser2 = serial.Serial('COM27', 115200, timeout=None, stopbits=1)
-        # COM28: T1
-        Tser1 = serial.Serial('COM28', 115200, timeout=None, stopbits=1)
-        # COM32: T3
-        Tser3 = serial.Serial('COM32', 115200, timeout=None, stopbits=1)
-    elif stationNum == '3':
-        # COM35: T2
-        Tser2 = serial.Serial('COM35', 115200, timeout=None, stopbits=1)
-        # COM36: T1
-        Tser1 = serial.Serial('COM36', 115200, timeout=None, stopbits=1)
-        # COM38: T3
-        Tser3 = serial.Serial('COM38', 115200, timeout=None, stopbits=1)
-    elif stationNum == '4':
-        # COM43: T2
-        Tser2 = serial.Serial('COM43', 115200, timeout=None, stopbits=1)
-        # COM42: T1
-        Tser1 = serial.Serial('COM42', 115200, timeout=None, stopbits=1)
-        # COM46: T3
-        Tser3 = serial.Serial('COM46', 115200, timeout=None, stopbits=1)
-    elif stationNum == '5':
-        # COM50: T2
-        Tser2 = serial.Serial('COM50', 115200, timeout=None, stopbits=1)
-        # COM49: T1
-        Tser1 = serial.Serial('COM49', 115200, timeout=None, stopbits=1)
-        # COM51: T3
-        Tser3 = serial.Serial('COM51', 115200, timeout=None, stopbits=1)
-    elif stationNum == '0':
-        # COM15: T3
-        Tser3 = serial.Serial('COM15', 115200, timeout=None, stopbits=1)
-        # COM17: T1
-        Tser1 = serial.Serial('COM17', 115200, timeout=None, stopbits=1)
-        # COM20: T2
-        Tser2 = serial.Serial('COM20', 115200, timeout=None, stopbits=1)
-    else:
-        print('Wrong input')
-        continue
-    time.sleep(.5)
-    break
+#     elif stationNum == '2':
+#         # COM27: T2
+#         Tser2 = serial.Serial('COM27', 115200, timeout=None, stopbits=1)
+#         # COM28: T1
+#         Tser1 = serial.Serial('COM28', 115200, timeout=None, stopbits=1)
+#         # COM32: T3
+#         Tser3 = serial.Serial('COM32', 115200, timeout=None, stopbits=1)
+#     elif stationNum == '3':
+#         # COM35: T2
+#         Tser2 = serial.Serial('COM35', 115200, timeout=None, stopbits=1)
+#         # COM36: T1
+#         Tser1 = serial.Serial('COM36', 115200, timeout=None, stopbits=1)
+#         # COM38: T3
+#         Tser3 = serial.Serial('COM38', 115200, timeout=None, stopbits=1)
+#     elif stationNum == '4':
+#         # COM43: T2
+#         Tser2 = serial.Serial('COM43', 115200, timeout=None, stopbits=1)
+#         # COM42: T1
+#         Tser1 = serial.Serial('COM42', 115200, timeout=None, stopbits=1)
+#         # COM46: T3
+#         Tser3 = serial.Serial('COM46', 115200, timeout=None, stopbits=1)
+#     elif stationNum == '5':
+#         # COM50: T2
+#         Tser2 = serial.Serial('COM50', 115200, timeout=None, stopbits=1)
+#         # COM49: T1
+#         Tser1 = serial.Serial('COM49', 115200, timeout=None, stopbits=1)
+#         # COM51: T3
+#         Tser3 = serial.Serial('COM51', 115200, timeout=None, stopbits=1)
+#     elif stationNum == '0':
+#         # COM15: T3
+#         Tser3 = serial.Serial('COM15', 115200, timeout=None, stopbits=1)
+#         # COM17: T1
+#         Tser1 = serial.Serial('COM17', 115200, timeout=None, stopbits=1)
+#         # COM20: T2
+#         Tser2 = serial.Serial('COM20', 115200, timeout=None, stopbits=1)
+#     else:
+#         print('Wrong input')
+#         continue
+#     time.sleep(.5)
+#     break
 
-
+# Production Room PC
 # # Control Box #1
 # # COM5: T3
 # Tser3 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
@@ -139,7 +139,6 @@ while True:
 # Tser1 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
 # # COM4: T2
 # Tser2 = serial.Serial('COM4', 115200, timeout=None, stopbits=1)
-
 # # Control Box #4
 # # COM9: T3
 # Tser3 = serial.Serial('COM9', 115200, timeout=0.1, stopbits=1)
@@ -147,7 +146,13 @@ while True:
 # Tser1 = serial.Serial('COM10', 115200, timeout=0.1, stopbits=1)
 # # COM8: T2
 # Tser2 = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
-
+# Control Box #5
+# COM14: T3
+Tser3 = serial.Serial('COM14', 115200, timeout=0.1, stopbits=1)
+# COM13: T1
+Tser1 = serial.Serial('COM13', 115200, timeout=0.1, stopbits=1)
+# COM12: T2
+Tser2 = serial.Serial('COM12', 115200, timeout=0.1, stopbits=1)
 
 error_log = ''
 Tcounts_real = [0,0,0,0,0,0]

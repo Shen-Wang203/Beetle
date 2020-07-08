@@ -231,8 +231,11 @@ class CMDInputThread(QtCore.QThread):
             self.sig2.emit(2)
             P0 = [0,0,139,-0.3,0.5,0]
             xys.set_starting_point(P0)
+            xys.product_select('1XN')
+            xys.second_try = False
             # self.xys.set_loss_criteria(-0.2)
-            P1 = xys.autoRun(2)           
+            P1 = xys.autoRun(strategy=1) 
+            # P1 = xys.autoRun(strategy=2)           
             self.currentPosition = P1[:]
             target_mm = P1[:]
             real_counts = control.Tcounts_real

@@ -1,8 +1,9 @@
 # print([ x if x%2 else x*100 for x in range(1, 10) ])
 
-def a():
-    return [2, 4]
+def ss(anu, bse):
+    anu += 1
+    print(anu)
+    bse += 2
+    print(bse)
 
-[a, sef] = a()
-print(sef)
-print(a)
+ss(bse=5, anu=4)

@@ -21,7 +21,8 @@ class XYscan:
         self.Z_amp = 4
         self.stepScanCounts = 10
         self.final_adjust = False
-        self.larger_Z_flag = False       
+        self.larger_Z_flag = False    
+        self.second_try = True   
         self.aggresive_threshold = -12.0
         self.scanmode_threshold = -4.0
         self.stepmode_threshold = -2.0
@@ -29,6 +30,7 @@ class XYscan:
         self.loss_criteria = -0.4
         self.scanmode = 'c'
         self.zmode = 'normal'
+        self.product = 1
 
         self.loss = []
         self.pos = []
@@ -60,6 +62,14 @@ class XYscan:
     def set_angle_flag(self, _bool):
         self.angle_flag = _bool
 
+    # Product 1: VOA
+    # Product 2: 1xN
+    def product_select(self, _product):
+        if _product == 'VOA':
+            self.product = 1
+        elif _product == '1XN':
+            self.product = 2
+
     # strategy can be:
     # stepping-at-final --> 1
     # interp-at-final  --> 2
@@ -79,7 +89,6 @@ class XYscan:
         self.stepScanCounts = 10
         self.tolerance = 5
         self.scanmode = 'c'
-        retry_num = 0
         self.loss = [-60]
         self.error_flag = False
         while not self.error_flag:
@@ -126,7 +135,7 @@ class XYscan:
                     # 1. Z fail and loss < -5, still interp mode
                     # 2. Z fail and loss between (-5,-2), step mode and final adjust is on
                     # 3. Z fail and loss smaller than -2, step mode and final adjust is on
-                    if max(self.loss) < self.loss_criteria and retry_num < 1:
+                    if max(self.loss) < self.loss_criteria and self.second_try:
                         print('Another Try')
                         logging.info('Another Try')
                         P0 = P1[:]
@@ -136,10 +145,12 @@ class XYscan:
                         self.hppcontrol.engage_motor()
                         self.send_to_hpp(P0)
                         self.loss_current_max = -40.0
-                        retry_num += 1
+                        self.second_try = False
                     else:
                         if max(self.loss) < self.loss_criteria:
                             P_final = self.scanUpdate(P1, self.scanmode)
+                            print('Reach Resolution')
+                            logging.info('Reach Resolution')
                         else:
                             print('Better than criteria ', self.loss_criteria)
                             logging.info('Better than criteria ' + str(self.loss_criteria))
@@ -162,25 +173,34 @@ class XYscan:
             self.tolerance = 5
         # if (-12,-4], still continue scan mode, with normal zmode
         elif loss0 <= self.scanmode_threshold:
-            self.zmode = 'normal'
+            # self.zmode = 'normal'
+            self.zmode = 'aggressive'
             self.scanmode = 'c'
             self.Z_amp = 2
             self.tolerance = 2
             # self.final_adjust = False
         # if (-4,-2], and stepping-at-final strategy, then step mode
         elif loss0 <= self.stepmode_threshold and strategy == 1:  
-            self.zmode = 'normal'
             self.scanmode = 's'
-            self.Z_amp = 1.5
             self.tolerance = 2
             # self.final_adjust = False
-            self.stepScanCounts = 10
+            self.stepScanCounts = 10            
+            if self.product == 1:
+                self.Z_amp = 1.5
+                self.zmode = 'normal'
+            elif self.product == 2:
+                self.Z_amp = 2.5
+                self.zmode = 'aggressive'
         # if (-4,-2], and interp-at-final strategy, then interp mode
         elif loss0 <= self.interpmode_threshold and strategy == 2: 
-            self.zmode = 'normal'
             self.scanmode = 'i'
-            self.Z_amp = 1.5
             self.tolerance = 2
+            if self.product == 1:
+                self.Z_amp = 1.5
+                self.zmode = 'normal'
+            elif self.product == 2:
+                self.Z_amp = 2.5
+                self.zmode = 'aggressive'
             # self.final_adjust = False           
         # if (-2,criteria], and stepping-at-final strategy, then final adjust 
         elif loss0 <= self.loss_criteria and strategy == 1:
@@ -190,8 +210,11 @@ class XYscan:
             self.scanmode = 's'
             self.final_adjust = True
             self.stepScanCounts = 3 
-            self.Z_amp = 1.2
             self.tolerance = 2 
+            if self.product == 1:
+                self.Z_amp = 1.2
+            elif self.product == 2:
+                self.Z_amp = 2
         # if (-2,criteria], and stepping-at-final strategy, then final adjust 
         elif loss0 <= self.loss_criteria and strategy == 2:
             print('Change to Final_adjust')
@@ -199,8 +222,11 @@ class XYscan:
             self.zmode = 'normal'
             self.scanmode = 'i'
             self.final_adjust = True
-            self.Z_amp = 1.2
-            self.tolerance = 2             
+            self.tolerance = 2 
+            if self.product == 1:
+                self.Z_amp = 1.2
+            elif self.product == 2:
+                self.Z_amp = 2
         # if > criteria, then exit
         else:
             print('Better than criteria ', self.loss_criteria)
@@ -405,7 +431,7 @@ class XYscan:
             logging.info(x1)
             self.save_loss_pos()
 
-            bound = self.loss_resolution(loss_o)
+            bound = self.loss_bound(loss_o)
             diff = self.loss[-1] - loss_o
             # if descrease, change direction, go back to the old point
             # if increase or the same, continue
@@ -503,7 +529,7 @@ class XYscan:
             logging.info(y1)
             self.save_loss_pos()
 
-            bound = self.loss_resolution(loss_o)
+            bound = self.loss_bound(loss_o)
             diff = self.loss[-1] - loss_o
             # if descrease, change direction, go back to the old point
             # if increase or the same, continue
@@ -710,14 +736,16 @@ class XYscan:
     def xyinterp_sample_step(self, loss):
         # (-4,-3]: range 54 counts, step is 9, total 7 points 
         # (-3,-2]: range 42 counts, step is 7, total 7 points
-        # (-2,-1]: range 32 counts, step is 8, total 5 points
+        # (-2,-1]: range 42 counts, step is 7, total 7 points
         # (-1,0]: range 24 counts, step is 6, total 5 points
+        if loss <= -12:
+            return [14, 7]
         if loss <= -3:
             return [9, 7]
         elif loss <= -2:
             return [7, 7]
         elif loss <= -1:
-            return [8, 5]
+            return [7, 7]
         else:
             return [6, 5]
 
@@ -781,7 +809,7 @@ class XYscan:
         return P1
 
     # loss bound based on loss value
-    def loss_resolution(self, _loss_ref):
+    def loss_bound(self, _loss_ref):
         x = abs(_loss_ref)
         if x < 0.7:
             bound = 0.002
@@ -794,6 +822,22 @@ class XYscan:
             bound = 0.00003*x**3 - 0.0011*x**2 + 0.0245*x - 0.018
             bound = bound * 0.8
         return bound
+
+    def loss_bound_large(self, _loss_ref_z):
+        x = abs(_loss_ref_z)
+        if x < 0.5:
+            bound_z = 0.25
+        elif x < 1:
+            bound_z = 0.4
+        elif x < 4:
+            bound_z = 0.6
+        elif x > 50:
+            bound_z = 4
+        else:
+            # x = 40,   30,   20,   10,   8,    6,    4
+            # y = 2.46, 1.84, 1.23, 0.61, 0.49, 0.37, 0.24
+            bound_z = 0.06141469*x - 0.001513462
+        return bound_z
 
     # Starting from P0, change only Z to go to P1, 
     # the fixture will be in P1 in the end, and the fixture needs to be in P0 in the beginning
@@ -814,11 +858,11 @@ class XYscan:
         step_ref = round(abs(self.loss[-1]), 1) * 0.001
         # give step size an amplifier
         step = step_ref * self.Z_amp
-        if step < 0.001:
-            step = 0.001
-        direc0 = 1
-        direc1 = 1
-        z0 = P1[2]
+        if step < 0.0015:
+            step = 0.0015
+        _direc0 = 1
+        _direc1 = 1
+        _z0 = P1[2]
         while True:
             P1[2] = P1[2] + step
 
@@ -837,13 +881,13 @@ class XYscan:
                 P1[2] = P1[2] + step
             
             # current direction
-            if P1[2] > z0:
-                direc1 = 1
+            if P1[2] > _z0:
+                _direc1 = 1
             else:
-                direc1 = -1
+                _direc1 = -1
             # if direction changed, add extra counts
-            if direc1 != direc0:
-                P1[2] = P1[2] + 0.0002 * direc1
+            if _direc1 != _direc0:
+                P1[2] = P1[2] + 0.0002 * _direc1
             # goto the position
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
@@ -857,10 +901,10 @@ class XYscan:
             self.current_pos = P1[:]
             self.save_loss_pos()
             # update old position and old direction
-            z0 = P1[2]
-            direc0 = direc1
+            _z0 = P1[2]
+            _direc0 = _direc1
 
-            # aggressive mode: Z goes forward until loss is 2 times of the initial value
+            # aggressive mode: Z goes forward until loss is 1.5 times of the initial value
             # for instance, loss_o = -15, then until -22.5 dB we stop forwarding Z
             # The purpose is to forward Z more aggressively to faster the process
             # make sure the loss is smaller than -5 and larger than -40, so that larger Z stepping won't be problem
@@ -869,9 +913,12 @@ class XYscan:
                     success_num += 1
                     continue
 
-            bound = self.loss_resolution(loss_o)
+            if self.product == 1:
+                bound = self.loss_bound(loss_o)
+            elif self.product == 2:
+                bound = self.loss_bound_large(loss_o)
             diff = self.loss[-1] - loss_o
-            # if fail (smaller), difference should be smaller than -loss_resolution
+            # if fail (smaller), difference should be smaller than -loss_bound
             if diff < -bound:            
                 # if fail, go back to the old point
                 P1[2] = P1[2] - step 
@@ -910,13 +957,13 @@ class XYscan:
                     # give extra value to counter backlash
                     # P1[2] = P1[2] - 0.0002
                     # current direction
-                    if P1[2] > z0:
-                        direc1 = 1
+                    if P1[2] > _z0:
+                        _direc1 = 1
                     else:
-                        direc1 = -1
+                        _direc1 = -1
                     # if direction changed, add extra counts
-                    if direc1 != direc0:
-                        P1[2] = P1[2] + 0.0002 * direc1
+                    if _direc1 != _direc0:
+                        P1[2] = P1[2] + 0.0002 * _direc1
                     # goto the position
                     if self.final_adjust:
                         self.hppcontrol.engage_motor()
@@ -928,8 +975,8 @@ class XYscan:
                         self.hppcontrol.disengage_motor()
                     self.current_pos = P1[:]
                     # update old position and old direction
-                    z0 = P1[2]
-                    direc0 = direc1
+                    _z0 = P1[2]
+                    _direc0 = _direc1
                     break
             # if larger than bound, then success and update loss old
             elif diff > bound:
@@ -1001,7 +1048,7 @@ class XYscan:
             self.save_loss_pos()
             
             loss_diff = self.loss[-1] - loss_o
-            bound = self.loss_resolution(loss_o)
+            bound = self.loss_bound(loss_o)
             if loss_diff <= -bound:
                 trend -= 1
                 loss_o = self.loss[-1]
