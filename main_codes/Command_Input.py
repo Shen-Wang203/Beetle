@@ -4,6 +4,7 @@ import numpy as np
 import time
 from PyQt5 import QtCore
 import logging
+from StaticVar import StaticVar
 from XYscan import XYscan 
 from Curing_Align import Curing_Active_Alignment
 
@@ -16,7 +17,6 @@ class CMDInputThread(QtCore.QThread):
         QtCore.QThread.__init__(self, parent)
         self.cmd = ''
         self.currentPosition = [0,0,138,0,0,0]
-        
     #error_log, target_mm, target_counts, real_counts
     sig1 = QtCore.pyqtSignal(str, list, list, list, bool)
     # Motor status signal
@@ -231,7 +231,11 @@ class CMDInputThread(QtCore.QThread):
             self.sig2.emit(2)
             P0 = [0,0,139,-0.3,0.5,0]
             xys.set_starting_point(P0)
-            xys.product_select('1XN')
+            if StaticVar.productType == "VOA":
+                xys.product_select('VOA')
+            elif StaticVar.productType == "1xN":
+                xys.product_select('1xN')
+                
             xys.second_try = False
             # self.xys.set_loss_criteria(-0.2)
             P1 = xys.autoRun(strategy=1) 

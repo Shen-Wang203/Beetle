@@ -3,11 +3,13 @@ TODO Bugs:
 2. UART issue, stop in the middle occasionly
 3. Fail to imporve 8 times, then go back to the overall best loss position
 
+Jerry
 GUI pending:
-1. Close, wait for Idle then close the program
-2. IL display
-3. Starting position setting
-
+-1. Fix XYZ shortcut bugs
+0. Adding a drop down box to select 1_VOA 2_1xN -- Done 7/9
+1. IL display
+2. Starting position setting: Click a button to save [x,y,z,Rx,Ry,Rz] information as starting position
+3. C# Close, wait for [motors Idle] then close the program
 
 Beetle:
 #1: Motor 5 calibration issue

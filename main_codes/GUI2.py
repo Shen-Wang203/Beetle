@@ -16,6 +16,7 @@ from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 # from PyQt5 import pyqtThread, pyqtSignal
 import Command_Input as cmd
+from StaticVar import StaticVar
 
 import os
 import sys
@@ -314,6 +315,21 @@ class Ui_MainWindow(object):
         font.setPointSize(20)
         self.label_stepsize.setFont(font)
         self.label_stepsize.setObjectName("label_stepsize")
+        
+        self.productComboBox = QtWidgets.QComboBox(self.centralwidget)
+        self.productComboBox.setGeometry(QtCore.QRect(220, 500, 121, 31))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.productComboBox.setFont(font)
+        self.productComboBox.setObjectName("productComboBox")
+        self.productComboBox.addItem("")
+        self.productComboBox.addItem("")
+        self.label_product = QtWidgets.QLabel(self.centralwidget)
+        self.label_product.setGeometry(QtCore.QRect(50, 500, 160, 31))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        self.label_product.setFont(font)
+        self.label_product.setObjectName("label_product")
 
         self.label_key_press = QtWidgets.QLabel(self.centralwidget)
         self.label_key_press.setGeometry(QtCore.QRect(50, 540, 500, 30))
@@ -412,6 +428,7 @@ class Ui_MainWindow(object):
         self.actionDemo_3.triggered.connect(lambda: self.click_to_send('demo3'))
         self.pushButton_gotosend.clicked.connect(self.send_click)
         self.stepSizeComboBox.currentIndexChanged.connect(self.step_choose)
+        self.productComboBox.currentIndexChanged.connect(self.product_choose)
 
         ##################################################
         self.pushButton_Xp.clicked.connect(lambda: self.xplus_click(self.step))
@@ -433,16 +450,16 @@ class Ui_MainWindow(object):
         self.pushButton_curing.clicked.connect(self.curing_click)
 
         # Camera configuration @Jerry
-        # self.available_cameras = QCameraInfo.availableCameras()
-        # if not self.available_cameras:
-        #         pass #quit
-        #
-        # self.viewfinder = QCameraViewfinder(self.centralwidget)
-        # self.viewfinder.setGeometry(QtCore.QRect(-150,50,1000,450))
-        # self.viewfinder.show()
-        # self.select_camera(0)
-        # self.comboBox_camera.addItems([c.description() for c in self.available_cameras])
-        # self.comboBox_camera.currentIndexChanged.connect(self.select_camera)
+        self.available_cameras = QCameraInfo.availableCameras()
+        if not self.available_cameras:
+                pass #quit
+        
+        self.viewfinder = QCameraViewfinder(self.centralwidget)
+        self.viewfinder.setGeometry(QtCore.QRect(20,30,600,400))
+        self.viewfinder.show()
+        self.select_camera(0)
+        self.comboBox_camera.addItems([c.description() for c in self.available_cameras])
+        self.comboBox_camera.currentIndexChanged.connect(self.select_camera)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -487,6 +504,9 @@ class Ui_MainWindow(object):
         self.stepSizeComboBox.setItemText(5, _translate("MainWindow", "0.1degree"))
         self.stepSizeComboBox.setItemText(6, _translate("MainWindow", "0.5degree"))
         self.label_stepsize.setText(_translate("MainWindow", "Step size:"))
+        self.productComboBox.setItemText(0, _translate("MainWindow", "VOA"))
+        self.productComboBox.setItemText(1, _translate("MainWindow", "1xN"))
+        self.label_product.setText(_translate("MainWIndow", "Product type:"))
         # self.label_key_press.setText(_translate("MainWindow", ""))
         self.pushButton_reset.setText(_translate("MainWindow", "Reset"))
         self.pushButton_alignment.setText(_translate("MainWindow", "Alignment"))
@@ -508,6 +528,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         QMainWindow.__init__(self, parent=parent)
         self.setupUi(self)
         self.runthread = cmd.CMDInputThread()
+        
 
     step = 0.0002
     target_mm = [0,0,138,0,0,0]
@@ -662,6 +683,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.step = 0.5
         # print(self.step)
 
+    def product_choose(self):
+        if self.productComboBox.currentIndex() == 0:
+            StaticVar.productType = "VOA"
+        elif self.productComboBox.currentIndex() == 1:
+            StaticVar.productType = "1xN"
+    
     def xplus_click(self, step):
         self.target_mm[0] = self.target_mm[0] + step
         target_mm_text = str(self.target_mm)
