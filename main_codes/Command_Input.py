@@ -231,6 +231,7 @@ class CMDInputThread(QtCore.QThread):
             self.sig2.emit(2)
             P0 = [0,0,139,-0.3,0.5,0]
             xys.set_starting_point(P0)
+            
             if StaticVar.productType == "VOA":
                 xys.product_select('VOA')
             elif StaticVar.productType == "1xN":
@@ -250,6 +251,7 @@ class CMDInputThread(QtCore.QThread):
             cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
             self.sig2.emit(3)            
+            cure.product_select('1xN')
             cure.set_loss_criteria(max(self.xys.loss_rec)-0.03)
             P1 = cure.pre_curing_run(self.currentPosition)
             self.currentPosition = P1[:]
@@ -261,6 +263,7 @@ class CMDInputThread(QtCore.QThread):
         elif commands == 'curing':
             cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             self.sig2.emit(4)
+            cure.product_select('1xN')
             P1 = cure.curing_run(self.currentPosition)
             self.currentPosition = P1[:]
             target_mm = P1[:]
