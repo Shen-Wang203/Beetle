@@ -250,8 +250,11 @@ class CMDInputThread(QtCore.QThread):
         elif commands == 'precure':
             cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
-            self.sig2.emit(3)            
-            cure.product_select('1xN')
+            self.sig2.emit(3)
+            if StaticVar.product_select == "VOA":
+                cure.product_select('VOA')
+            elif StaticVar.product_select == "1xN":
+                cure.product_select('1xN')
             cure.set_loss_criteria(max(self.xys.loss_rec)-0.03)
             P1 = cure.pre_curing_run(self.currentPosition)
             self.currentPosition = P1[:]
@@ -263,7 +266,10 @@ class CMDInputThread(QtCore.QThread):
         elif commands == 'curing':
             cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             self.sig2.emit(4)
-            cure.product_select('1xN')
+            if StaticVar.product_select == "VOA":
+                cure.product_select('VOA')
+            elif StaticVar.product_select == "1xN":
+                cure.product_select('1xN')
             P1 = cure.curing_run(self.currentPosition)
             self.currentPosition = P1[:]
             target_mm = P1[:]
