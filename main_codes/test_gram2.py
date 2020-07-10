@@ -7,6 +7,14 @@ def ss(anu, bse):
     print(bse)
     return anu
 
-b = 2
-b = b + ss(b, 2)
-print(b)
+loss = [1,7,4]
+pos = []
+p0 = [1,2,1]
+p1 = [3,2,1]
+p2 = [5,3,2]
+pos.append(p0)
+pos.append(p1)
+pos.append(p2)
+current_pos = []
+current_pos = pos[loss.index(max(loss))][:]
+print(current_pos)

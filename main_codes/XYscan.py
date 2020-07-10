@@ -37,7 +37,7 @@ class XYscan:
         self.pos = []
         self.loss_rec = []
         self.pos_rec = []
-        self.current_pos = [0,0,138,0,0,0]    
+        self.current_pos = [0,0,138,0,0,0]   
         self.pos_ref = [0,0,138,0,0,0]
         self.x_dir_trend = 1
         self.y_dir_trend = 1
@@ -47,6 +47,7 @@ class XYscan:
         # unit is counts
         self.xy_backlash = 0
         self.loss_current_max = -60.0
+        self.pos_current_max = [0,0,138,0,0,0]
         self.loss_fail_improve = 0
 
 
@@ -125,7 +126,10 @@ class XYscan:
                         logging.info('XY step scan failed')                        
                     P_final = P0[:]
                     break 
-            
+            # check error_flag, check_abnormal_loss function can erect this flag
+            if self.error_flag:
+                continue
+
             # Select mode and parameters as loss
             if self.mode_select(max(self.loss), strategy):
                 P_final = P1[:]
@@ -446,7 +450,7 @@ class XYscan:
                     return False           
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
-                # It's important to delay some time after disengage motor
+                # It's important to delay some time after disengaging motor
                 # to let the motor fully stopped, then fetch the loss.
                 time.sleep(0.2)
             self.update_current_pos('x', x1, x1_o)
@@ -940,8 +944,9 @@ class XYscan:
         logging.info(P0)
         P1 = P0[:]
         self.loss = []
+        self.pos = []
         self.fetch_loss()
-        # self.current_pos = P0[:]
+        self.pos.append(P1)
         self.save_loss_pos()
         success_num = 0
         loss_o = self.loss[-1]
@@ -965,7 +970,7 @@ class XYscan:
                 if step > 0.0007:
                     step = 0.0007
                 if step < 0.0002:
-                    print('Z step is too small')
+                    print('Z step is too small (by Z limit)')
                     logging.info('Z step is too small (by Z limit)')
                     return False 
                 print('Regulated by Z limit')
@@ -995,6 +1000,7 @@ class XYscan:
                 time.sleep(0.2)
             self.fetch_loss()
             self.current_pos = P1[:]
+            self.pos.append(P1[:])
             self.save_loss_pos()
 
             # aggressive mode: Z goes forward until loss is 1.5 times of the initial value
@@ -1046,7 +1052,7 @@ class XYscan:
                     self.larger_Z_flag = False
                 
                 if success_num:
-                    # go back to the best points
+                    # go back to the previous points
                     # give extra value to counter backlash
                     # P1[2] = P1[2] - 0.0002
                     # current direction
@@ -1080,13 +1086,19 @@ class XYscan:
             else:
                 success_num += 1
         print('Z optim ends at: ', P1)
-        logging.info('Z optim ends at: ' + str(P1))      
+        logging.info('Z optim ends at: ' + str(P1))  
+        # set current_pos as max loss position temporarily 
+        # in order to update the max loss position in check_abnormal_loss function
+        self.current_pos = self.pos[self.loss.index(max(self.loss))][:]
         self.check_abnormal_loss(max(self.loss))
+        # change current_pos to the correct one
+        self.current_pos = P1[:]
         return P1
 
     def check_abnormal_loss(self, loss0):
         if loss0 > self.loss_current_max:
             self.loss_current_max = loss0
+            self.pos_current_max = self.current_pos[:]
             self.loss_fail_improve = 0
         else:
             if (loss0 < (3 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
@@ -1096,8 +1108,7 @@ class XYscan:
                 self.hppcontrol.normal_traj_speed()
                 self.send_to_hpp(self.starting_point)
                 self.hppcontrol.disengage_motor()
-                import sys
-                sys.exit()
+                self.error_flag = True
 
             # x,y and z fail to improve 8 times continuesly, then reset the loss_criteria as current max
             # each Z run will call twice of this function, so 2 round of xyz fails
@@ -1106,9 +1117,12 @@ class XYscan:
             # update loss_criteria only when in final stages
             if self.loss_fail_improve == 8 and self.final_adjust:
                 self.loss_fail_improve = 0
-                self.loss_criteria = self.loss_current_max - 0.01
-                print('Change Loss Criteria to ', self.loss_criteria)
-                logging.info('Change Loss Criteria to ' + str(self.loss_criteria))
+                print('Failed to find better loss after tries, go back to current best')
+                logging.info('Failed to find better loss after tries, go back to current best')
+                self.error_flag = True
+                self.hppcontrol.engage_motor()
+                self.send_to_hpp(self.pos_current_max)
+                self.hppcontrol.disengage_motor()
 
 
     def fetch_loss(self):
