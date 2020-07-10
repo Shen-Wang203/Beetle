@@ -2,13 +2,11 @@ TODO Bugs:
 1. Click close, then auto align again, it will stop in the middle
 2. UART issue, stop in the middle occasionly
 3. Fail to imporve 8 times, then go back to the overall best loss position
-4. xy backlash counter
-5. remove print pos in x and y
 
 Jerry
 GUI pending:
 -1. Fix XYZ shortcut bugs
-0. Adding a drop down box to select 1_VOA 2_1xN -- Done 7/9
+0. Adding loss_criteria selection with options: -0.2, -0.25, -0.3, -0.35, -0.4, -0.45, -0.5
 1. IL display
 2. Starting position setting: Click a button to save [x,y,z,Rx,Ry,Rz] information as starting position
 3. C# Close, wait for [motors Idle] then close the program

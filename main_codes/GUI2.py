@@ -297,7 +297,7 @@ class Ui_MainWindow(object):
         self.label_goto.setFont(font)
         self.label_goto.setObjectName("label_goto")
         self.stepSizeComboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.stepSizeComboBox.setGeometry(QtCore.QRect(170, 580, 121, 31))
+        self.stepSizeComboBox.setGeometry(QtCore.QRect(150, 580, 121, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.stepSizeComboBox.setFont(font)
@@ -310,14 +310,14 @@ class Ui_MainWindow(object):
         self.stepSizeComboBox.addItem("")
         self.stepSizeComboBox.addItem("")
         self.label_stepsize = QtWidgets.QLabel(self.centralwidget)
-        self.label_stepsize.setGeometry(QtCore.QRect(50, 580, 121, 31))
+        self.label_stepsize.setGeometry(QtCore.QRect(30, 580, 121, 31))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_stepsize.setFont(font)
         self.label_stepsize.setObjectName("label_stepsize")
         
         self.productComboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.productComboBox.setGeometry(QtCore.QRect(220, 500, 121, 31))
+        self.productComboBox.setGeometry(QtCore.QRect(215, 510, 121, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.productComboBox.setFont(font)
@@ -325,7 +325,7 @@ class Ui_MainWindow(object):
         self.productComboBox.addItem("")
         self.productComboBox.addItem("")
         self.label_product = QtWidgets.QLabel(self.centralwidget)
-        self.label_product.setGeometry(QtCore.QRect(50, 500, 160, 31))
+        self.label_product.setGeometry(QtCore.QRect(30, 510, 165, 31))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_product.setFont(font)
@@ -449,17 +449,17 @@ class Ui_MainWindow(object):
         self.pushButton_pre_curing.clicked.connect(self.pre_curing_click)
         self.pushButton_curing.clicked.connect(self.curing_click)
 
-        # Camera configuration @Jerry
-        self.available_cameras = QCameraInfo.availableCameras()
-        if not self.available_cameras:
-                pass #quit
+        # # Camera configuration @Jerry
+        # self.available_cameras = QCameraInfo.availableCameras()
+        # if not self.available_cameras:
+        #         pass #quit
         
-        self.viewfinder = QCameraViewfinder(self.centralwidget)
-        self.viewfinder.setGeometry(QtCore.QRect(20,30,600,400))
-        self.viewfinder.show()
-        self.select_camera(0)
-        self.comboBox_camera.addItems([c.description() for c in self.available_cameras])
-        self.comboBox_camera.currentIndexChanged.connect(self.select_camera)
+        # self.viewfinder = QCameraViewfinder(self.centralwidget)
+        # self.viewfinder.setGeometry(QtCore.QRect(20,30,600,400))
+        # self.viewfinder.show()
+        # self.select_camera(0)
+        # self.comboBox_camera.addItems([c.description() for c in self.available_cameras])
+        # self.comboBox_camera.currentIndexChanged.connect(self.select_camera)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -487,8 +487,8 @@ class Ui_MainWindow(object):
         "p, li { white-space: pre-wrap; }\n"
         "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
         "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">No Error</p></body></html>"))
-        self.label_status.setText(_translate("MainWindow", "STATUS:"))
-        self.label_statusdata.setText(_translate("MainWindow", "DisArmed"))
+        self.label_status.setText(_translate("MainWindow", "Status:"))
+        self.label_statusdata.setText(_translate("MainWindow", "Disarmed"))
         self.label_X.setText(_translate("MainWindow", "X"))
         self.label_Y.setText(_translate("MainWindow", "Y"))
         self.label_Z.setText(_translate("MainWindow", "Z"))
@@ -503,10 +503,10 @@ class Ui_MainWindow(object):
         self.stepSizeComboBox.setItemText(4, _translate("MainWindow", "200um"))
         self.stepSizeComboBox.setItemText(5, _translate("MainWindow", "0.1degree"))
         self.stepSizeComboBox.setItemText(6, _translate("MainWindow", "0.5degree"))
-        self.label_stepsize.setText(_translate("MainWindow", "Step size:"))
-        self.productComboBox.setItemText(0, _translate("MainWindow", "VOA"))
-        self.productComboBox.setItemText(1, _translate("MainWindow", "1xN"))
-        self.label_product.setText(_translate("MainWIndow", "Product type:"))
+        self.label_stepsize.setText(_translate("MainWindow", "Step Size:"))
+        self.productComboBox.setItemText(0, _translate("MainWindow", "1xN"))
+        self.productComboBox.setItemText(1, _translate("MainWindow", "VOA"))
+        self.label_product.setText(_translate("MainWIndow", "Product Type:"))
         # self.label_key_press.setText(_translate("MainWindow", ""))
         self.pushButton_reset.setText(_translate("MainWindow", "Reset"))
         self.pushButton_alignment.setText(_translate("MainWindow", "Alignment"))
@@ -685,9 +685,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def product_choose(self):
         if self.productComboBox.currentIndex() == 0:
-            StaticVar.productType = "VOA"
-        elif self.productComboBox.currentIndex() == 1:
             StaticVar.productType = "1xN"
+        elif self.productComboBox.currentIndex() == 1:
+            StaticVar.productType = "VOA"
     
     def xplus_click(self, step):
         self.target_mm[0] = self.target_mm[0] + step

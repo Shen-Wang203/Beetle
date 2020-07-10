@@ -28,7 +28,8 @@ class XYscan:
         self.loss_criteria = -0.4
         self.scanmode = 'c'
         self.zmode = 'normal'
-        self.product = 1
+        # Defaul product is 1xN
+        self.product = 2
 
         # self.loss and self.pos record each x or y or z search data, 
         # they will be cleared when a new search in x or y or z starts
@@ -44,7 +45,7 @@ class XYscan:
         self.y_dir_old = 1
         # this backlash is for xy only, not for z
         # unit is counts
-        self.xy_backlash = 2
+        self.xy_backlash = 0
         self.loss_current_max = -60.0
         self.loss_fail_improve = 0
 
@@ -72,8 +73,12 @@ class XYscan:
     def product_select(self, _product):
         if _product == 'VOA':
             self.product = 1
+            print('VOA has been selected')
+            logging.info('VOA has been selected')
         elif _product == '1xN':
             self.product = 2
+            print('1xN has been selected')
+            logging.info('1xN has been selected')              
 
     # strategy can be:
     # stepping-at-final --> 1
@@ -400,8 +405,8 @@ class XYscan:
         self.pos = []
         self.fetch_loss()
         self.pos.append(x1_o)    
-        print(x1_o)  
-        logging.info(x1_o)
+        # print(x1_o)  
+        # logging.info(x1_o)
         self.save_loss_pos()
         self.pos_ref = self.current_pos[:]
 
@@ -447,8 +452,8 @@ class XYscan:
             self.update_current_pos('x', x1, x1_o)
             self.fetch_loss()
             self.pos.append(x1)
-            print(x1)  
-            logging.info(x1)
+            # print(x1)  
+            # logging.info(x1)
             self.save_loss_pos()
 
             bound = self.loss_bound(loss_o)
@@ -521,8 +526,8 @@ class XYscan:
         self.pos = []
         self.fetch_loss()
         self.pos.append(y1_o)    
-        print(y1_o)  
-        logging.info(y1_o)  
+        # print(y1_o)  
+        # logging.info(y1_o)  
         self.save_loss_pos()
         self.pos_ref = self.current_pos[:]
 
@@ -565,8 +570,8 @@ class XYscan:
             self.update_current_pos('y', y1, y1_o)
             self.fetch_loss()
             self.pos.append(y1)
-            print(y1)  
-            logging.info(y1)
+            # print(y1)  
+            # logging.info(y1)
             self.save_loss_pos()
 
             bound = self.loss_bound(loss_o)
@@ -911,8 +916,10 @@ class XYscan:
     def loss_bound_large(self, _loss_ref_z):
         x = abs(_loss_ref_z)
         if x < 0.5:
-            bound_z = 0.25
+            bound_z = 0.1
         elif x < 1:
+            bound_z = 0.2
+        elif x < 2:
             bound_z = 0.4
         elif x < 4:
             bound_z = 0.6
@@ -1146,14 +1153,14 @@ class XYscan:
         print(loss0)
         logging.info(loss0)
         self.pos.append(pos0)
-        print(pos0)    
-        logging.info(pos0)
+        # print(pos0)    
+        # logging.info(pos0)
         while True:
             self.fetch_loss()
 
             self.pos.append(self.hppcontrol.T_get_counts(1, xy))   
-            print(self.pos[-1])  
-            logging.info(self.pos[-1])   
+            # print(self.pos[-1])  
+            # logging.info(self.pos[-1])   
             self.update_current_pos(xy, self.pos[-1], pos0)
 
             self.save_loss_pos()

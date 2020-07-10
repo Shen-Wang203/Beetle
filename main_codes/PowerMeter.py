@@ -7,7 +7,7 @@ import logging
 PM_ADDR = str(13)
 # POWER = str(0)
 rm = visa.ResourceManager()
-# PM = rm.open_resource('GPIB0::'+PM_ADDR+'::INSTR')
+PM = rm.open_resource('GPIB0::'+PM_ADDR+'::INSTR')
 
 def get_loss_simulate(Ipt):
     Rx = Ipt[3] - 1.06 
