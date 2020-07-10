@@ -5,5 +5,8 @@ def ss(anu, bse):
     print(anu)
     bse += 2
     print(bse)
+    return anu
 
-ss(bse=5, anu=4)
+b = 2
+b = b + ss(b, 2)
+print(b)

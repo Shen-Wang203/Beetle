@@ -12,8 +12,6 @@ class XYscan:
 
         self.scan_radius = 5000  # 5000 counts, 5000*0.05um = 250um, +-250um
         self.starting_point = [0,0,138,0,0,0]
-        self.step_Rxy = 0.5
-        self.step_Rz = 0
         self.reduction_ratio = 0.5
         self.error_flag = False
         self.limit_Z = 142
@@ -32,14 +30,21 @@ class XYscan:
         self.zmode = 'normal'
         self.product = 1
 
+        # self.loss and self.pos record each x or y or z search data, 
+        # they will be cleared when a new search in x or y or z starts
         self.loss = []
         self.pos = []
         self.loss_rec = []
         self.pos_rec = []
         self.current_pos = [0,0,138,0,0,0]    
         self.pos_ref = [0,0,138,0,0,0]
-        self.x_dir = 1
-        self.y_dir = 1
+        self.x_dir_trend = 1
+        self.y_dir_trend = 1
+        self.x_dir_old = 1
+        self.y_dir_old = 1
+        # this backlash is for xy only, not for z
+        # unit is counts
+        self.xy_backlash = 2
         self.loss_current_max = -60.0
         self.loss_fail_improve = 0
 
@@ -215,7 +220,7 @@ class XYscan:
                 self.Z_amp = 1.2
             elif self.product == 2:
                 self.Z_amp = 2
-        # if (-2,criteria], and stepping-at-final strategy, then final adjust 
+        # if (-2,criteria], and interp-at-final strategy, then final adjust 
         elif loss0 <= self.loss_criteria and strategy == 2:
             print('Change to Final_adjust')
             logging.info('Change to Final_adjust')
@@ -255,12 +260,12 @@ class XYscan:
         # _dir can only be +1 or -1. When -1 means scan from adding counts
         # Purpose of _dir is to follow last correct direction, instead of substract then add counts every time
         # T1x direction is opposite compare to T2x and T3x
-        x1start = X1_counts - self.scan_radius * self.x_dir
-        x1end = X1_counts + self.scan_radius * self.x_dir
-        x2start = X2_counts + self.scan_radius * self.x_dir
-        x2end = X2_counts - self.scan_radius * self.x_dir
-        x3start = X3_counts + self.scan_radius * self.x_dir
-        x3end = X3_counts - self.scan_radius * self.x_dir
+        x1start = X1_counts - self.scan_radius * self.x_dir_trend
+        x1end = X1_counts + self.scan_radius * self.x_dir_trend
+        x2start = X2_counts + self.scan_radius * self.x_dir_trend
+        x2end = X2_counts - self.scan_radius * self.x_dir_trend
+        x3start = X3_counts + self.scan_radius * self.x_dir_trend
+        x3end = X3_counts - self.scan_radius * self.x_dir_trend
 
         self.loss = []
         self.fetch_loss()
@@ -288,7 +293,7 @@ class XYscan:
                         logging.info('Movement Timeout Error')
                         return False
                 # if i = 0, x_dir = _dir; if i = 1, x_dir = -_dir
-                self.x_dir = self.x_dir * (-2 * i + 1)
+                self.x_dir_trend = self.x_dir_trend * (-2 * i + 1)
                 self.update_current_pos('x', x1_final, X1_counts)
                 self.check_abnormal_loss(max(self.loss))
                 if x1_final - X1_counts:
@@ -323,12 +328,12 @@ class XYscan:
     def Yscan(self, Y1_counts, Y2_counts, Y3_counts):
         # _dir can only be +1 or -1. When -1 means scan from adding counts
         # Purpose of _dir is to follow last correct direction, instead of substracting then adding counts every time
-        y1start = Y1_counts - self.scan_radius * self.y_dir
-        y1end = Y1_counts + self.scan_radius * self.y_dir
-        y2start = Y2_counts - self.scan_radius * self.y_dir
-        y2end = Y2_counts + self.scan_radius * self.y_dir
-        y3start = Y3_counts - self.scan_radius * self.y_dir
-        y3end = Y3_counts + self.scan_radius * self.y_dir
+        y1start = Y1_counts - self.scan_radius * self.y_dir_trend
+        y1end = Y1_counts + self.scan_radius * self.y_dir_trend
+        y2start = Y2_counts - self.scan_radius * self.y_dir_trend
+        y2end = Y2_counts + self.scan_radius * self.y_dir_trend
+        y3start = Y3_counts - self.scan_radius * self.y_dir_trend
+        y3end = Y3_counts + self.scan_radius * self.y_dir_trend
 
         self.loss = []
         self.fetch_loss()
@@ -356,7 +361,7 @@ class XYscan:
                         logging.info('Movement Timeout Error')
                         return False
                 # if i = 0, y_dir = _dir; if i = 1, y_dir = -_dir
-                self.y_dir = self.y_dir * (-2 * i + 1)
+                self.y_dir_trend = self.y_dir_trend * (-2 * i + 1)
                 self.update_current_pos('y', y1_final, Y1_counts)
                 self.check_abnormal_loss(max(self.loss))
                 if y1_final - Y1_counts:
@@ -400,17 +405,29 @@ class XYscan:
         self.save_loss_pos()
         self.pos_ref = self.current_pos[:]
 
+        # reference counts for pos update
         x1 = x1_o
         x2 = x2_o
         x3 = x3_o
+        # old pos for backlash counter
+        x10 = x1      
         loss_o = self.loss[-1]
+        # After z, let's set the previous direc as 0
+        self.x_dir_old = 0
         trend = 1
         same_count = 0
         while True:
             # x2 and x3 are in opposite direction as x1
-            x1 = x1 - self.stepScanCounts * self.x_dir
-            x2 = x2 + self.stepScanCounts * self.x_dir
-            x3 = x3 + self.stepScanCounts * self.x_dir
+            x1 = x1 - self.stepScanCounts * self.x_dir_trend
+            x2 = x2 + self.stepScanCounts * self.x_dir_trend
+            x3 = x3 + self.stepScanCounts * self.x_dir_trend
+            # apply backlash counter
+            counter = self.apply_xy_backlash_counter(x10, x1, 'x')
+            x1 = x1 + counter
+            x2 = x2 - counter
+            x3 = x3 - counter
+            x10 = x1
+
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
             self.hppcontrol.Tx_send_only(x1, x2, x3, 'p')
@@ -424,6 +441,9 @@ class XYscan:
                     return False           
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
+                # It's important to delay some time after disengage motor
+                # to let the motor fully stopped, then fetch the loss.
+                time.sleep(0.2)
             self.update_current_pos('x', x1, x1_o)
             self.fetch_loss()
             self.pos.append(x1)
@@ -437,16 +457,16 @@ class XYscan:
             # if increase or the same, continue
             if diff <= -bound:
                 # go back to the old point
-                x1 = x1 + self.stepScanCounts * self.x_dir
-                x2 = x2 - self.stepScanCounts * self.x_dir
-                x3 = x3 - self.stepScanCounts * self.x_dir
+                x1 = x1 + self.stepScanCounts * self.x_dir_trend
+                x2 = x2 - self.stepScanCounts * self.x_dir_trend
+                x3 = x3 - self.stepScanCounts * self.x_dir_trend
                 trend -= 1
                 # if trend != 0, then exit
                 if trend:
                     print('Over')
                     logging.info('Over')
                     break
-                self.x_dir = -self.x_dir    
+                self.x_dir_trend = -self.x_dir_trend    
                 loss_o = self.loss[-1]    
                 print('Change direction')
                 logging.info('Change direction')     
@@ -459,11 +479,17 @@ class XYscan:
                 trend = 2
                 same_count += 1
                 if same_count >= 5:
-                    x1 = x1 + self.stepScanCounts * self.x_dir * 5
-                    x2 = x2 - self.stepScanCounts * self.x_dir * 5
-                    x3 = x3 - self.stepScanCounts * self.x_dir * 5
+                    x1 = x1 + self.stepScanCounts * self.x_dir_trend * 5
+                    x2 = x2 - self.stepScanCounts * self.x_dir_trend * 5
+                    x3 = x3 - self.stepScanCounts * self.x_dir_trend * 5
                     break
         
+        # apply backlash counter
+        counter = self.apply_xy_backlash_counter(x10, x1, 'x')
+        x1 = x1 + counter
+        x2 = x2 - counter
+        x3 = x3 - counter
+        x10 = x1
         if self.final_adjust:
             self.hppcontrol.engage_motor()
         self.hppcontrol.Tx_send_only(x1, x2, x3, 'p')
@@ -477,6 +503,7 @@ class XYscan:
                 return False
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
+            time.sleep(0.2)
         self.update_current_pos('x', x1, x1_o)
         self.check_abnormal_loss(max(self.loss))
         if same_count >= 5:
@@ -499,16 +526,28 @@ class XYscan:
         self.save_loss_pos()
         self.pos_ref = self.current_pos[:]
 
+        # reference counts for pos update
         y1 = y1_o
         y2 = y2_o
         y3 = y3_o
+        # old pos for backlash counter
+        y10 = y1         
         loss_o = self.loss[-1]
+        # After z, let's set the previous direc as 0
+        self.y_dir_old = 0        
         trend = 1
         same_count = 0
         while True:
-            y1 = y1 - self.stepScanCounts * self.y_dir
-            y2 = y2 - self.stepScanCounts * self.y_dir
-            y3 = y3 - self.stepScanCounts * self.y_dir
+            y1 = y1 - self.stepScanCounts * self.y_dir_trend
+            y2 = y2 - self.stepScanCounts * self.y_dir_trend
+            y3 = y3 - self.stepScanCounts * self.y_dir_trend
+            # apply backlash counter
+            counter = self.apply_xy_backlash_counter(y10, y1, 'y')
+            y1 = y1 + counter
+            y2 = y2 + counter
+            y3 = y3 + counter
+            y10 = y1
+
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
             self.hppcontrol.Ty_send_only(y1, y2, y3, 'p')
@@ -522,6 +561,7 @@ class XYscan:
                     return False
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
+                time.sleep(0.2)
             self.update_current_pos('y', y1, y1_o)
             self.fetch_loss()
             self.pos.append(y1)
@@ -535,16 +575,16 @@ class XYscan:
             # if increase or the same, continue
             if diff <= -bound:
                 # go back to the old point
-                y1 = y1 + self.stepScanCounts * self.y_dir
-                y2 = y2 + self.stepScanCounts * self.y_dir
-                y3 = y3 + self.stepScanCounts * self.y_dir
+                y1 = y1 + self.stepScanCounts * self.y_dir_trend
+                y2 = y2 + self.stepScanCounts * self.y_dir_trend
+                y3 = y3 + self.stepScanCounts * self.y_dir_trend
                 trend -= 1
                 # if trend != 0, exit
                 if trend:
                     print('Over')
                     logging.info('Over')
                     break
-                self.y_dir = -self.y_dir    
+                self.y_dir_trend = -self.y_dir_trend    
                 loss_o = self.loss[-1]   
                 print('Change direction')
                 logging.info('Change direction') 
@@ -557,11 +597,17 @@ class XYscan:
                 trend = 2
                 same_count += 1
                 if same_count >= 5:
-                    y1 = y1 + self.stepScanCounts * self.y_dir * 5
-                    y2 = y2 + self.stepScanCounts * self.y_dir * 5
-                    y3 = y3 + self.stepScanCounts * self.y_dir * 5
+                    y1 = y1 + self.stepScanCounts * self.y_dir_trend * 5
+                    y2 = y2 + self.stepScanCounts * self.y_dir_trend * 5
+                    y3 = y3 + self.stepScanCounts * self.y_dir_trend * 5
                     break              
 
+        # apply backlash counter
+        counter = self.apply_xy_backlash_counter(y10, y1, 'y')
+        y1 = y1 + counter
+        y2 = y2 + counter
+        y3 = y3 + counter
+        y10 = y1
         if self.final_adjust:
             self.hppcontrol.engage_motor()
         self.hppcontrol.Ty_send_only(y1, y2, y3, 'p')
@@ -575,6 +621,7 @@ class XYscan:
                 return False
         if self.final_adjust:
             self.hppcontrol.disengage_motor()
+            time.sleep(0.2)
         self.update_current_pos('y', y1, y1_o)
         self.check_abnormal_loss(max(self.loss))
         if same_count >= 5:
@@ -592,8 +639,8 @@ class XYscan:
         self.pos = []
         self.fetch_loss()
         self.pos.append(x1_o)    
-        print(x1_o)  
-        logging.info(x1_o)  
+        # print(x1_o)  
+        # logging.info(x1_o)  
         self.save_loss_pos()
         self.pos_ref = self.current_pos[:]    
         # step in counts   
@@ -609,7 +656,16 @@ class XYscan:
             x3 = [x3_o, x3_o+2*step, x3_o-step, x3_o+step, x3_o-2*step]
             grid = [*range(int(x1_o-2*step), int(x1_o+2*step+1), 1)]
 
+        # After z, let's set the previous direc as 0
+        self.x_dir_old = 0
+        x10 = x1_o
         for i in range(1,totalpoints):
+            # apply backlash counter
+            counter = self.apply_xy_backlash_counter(x10, x1[i], 'x')
+            x1[i] = x1[i] + counter
+            x2[i] = x2[i] - counter
+            x3[i] = x3[i] - counter
+            x10 = x1[i]            
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
             self.hppcontrol.Tx_send_only(x1[i], x2[i], x3[i], 'p')
@@ -623,17 +679,24 @@ class XYscan:
                     return False
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
+                time.sleep(0.2)
             self.update_current_pos('x', x1[i], x1_o)
             self.fetch_loss()
             self.pos.append(x1[i])
-            print(x1[i])  
-            logging.info(x1[i])
+            # print(x1[i])  
+            # logging.info(x1[i])
             self.save_loss_pos()
 
         s = interpolation.barycenteric_interp(x1,self.loss,grid)
         x1_final = grid[s.index(max(s))]
         x2_final = -x1_final + x1_o + x2_o
         x3_final = -x1_final + x1_o + x3_o
+        # apply backlash counter
+        counter = self.apply_xy_backlash_counter(x10, x1_final, 'x')
+        x1_final = x1_final + counter
+        x2_final = x2_final - counter
+        x3_final = x3_final - counter
+        x10 = x1_final         
         if self.final_adjust:
             self.hppcontrol.engage_motor() 
         self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 'p')
@@ -648,7 +711,10 @@ class XYscan:
                 return False
         if self.final_adjust:
             self.hppcontrol.disengage_motor()  
+            time.sleep(0.2)
         self.update_current_pos('x', x1_final, x1_o)
+        self.fetch_loss()
+        self.pos.append(x1_final)
         print('XInterp final: ',x1_final)
         logging.info('XInterp final: ' + str(x1_final))
         self.check_abnormal_loss(max(self.loss))
@@ -666,8 +732,8 @@ class XYscan:
         self.pos = []
         self.fetch_loss()
         self.pos.append(y1_o)    
-        print(y1_o)  
-        logging.info(y1_o)  
+        # print(y1_o)  
+        # logging.info(y1_o)  
         self.save_loss_pos()
         self.pos_ref = self.current_pos[:]    
         # step in counts   
@@ -683,7 +749,16 @@ class XYscan:
             y3 = [y3_o, y3_o-2*step, y3_o+step, y3_o-step, y3_o+2*step]   
             grid = [*range(int(y1_o-2*step), int(y1_o+2*step+1), 1)]        
         
+        # After z, let's set the previous direc as 0
+        self.y_dir_old = 0
+        y10 = y1_o        
         for i in range(1, totalpoints):
+            # apply backlash counter
+            counter = self.apply_xy_backlash_counter(y10, y1[i], 'y')
+            y1[i] = y1[i] + counter
+            y2[i] = y2[i] + counter
+            y3[i] = y3[i] + counter
+            y10 = y1[i]  
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
             self.hppcontrol.Ty_send_only(y1[i], y2[i], y3[i], 'p')
@@ -697,17 +772,24 @@ class XYscan:
                     return False
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
+                time.sleep(0.2)
             self.update_current_pos('y', y1[i], y1_o)
             self.fetch_loss()
             self.pos.append(y1[i])
-            print(y1[i])  
-            logging.info(y1[i])
+            # print(y1[i])  
+            # logging.info(y1[i])
             self.save_loss_pos()
 
         s = interpolation.barycenteric_interp(y1,self.loss,grid)
         y1_final = grid[s.index(max(s))]
         y2_final = y1_final - y1_o + y2_o
         y3_final = y1_final - y1_o + y3_o
+        # apply backlash counter
+        counter = self.apply_xy_backlash_counter(y10, y1_final, 'y')
+        y1_final = y1_final + counter
+        y2_final = y2_final + counter
+        y3_final = y3_final + counter
+        y10 = y1_final 
         if self.final_adjust:
             self.hppcontrol.engage_motor()        
         self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 'p')
@@ -721,8 +803,11 @@ class XYscan:
                 logging.info('Movement Timeout Error')
                 return False
         if self.final_adjust:
-            self.hppcontrol.disengage_motor()        
+            self.hppcontrol.disengage_motor()   
+            time.sleep(0.2)     
         self.update_current_pos('y', y1_final, y1_o)
+        self.fetch_loss()
+        self.pos.append(y1_final)
         print('YInterp final: ',y1_final)
         logging.info('YInterp final: ' + str(y1_final))
         self.check_abnormal_loss(max(self.loss))
@@ -888,6 +973,9 @@ class XYscan:
             # if direction changed, add extra counts
             if _direc1 != _direc0:
                 P1[2] = P1[2] + 0.0002 * _direc1
+            # update old position and old direction
+            _z0 = P1[2]
+            _direc0 = _direc1            
             # goto the position
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
@@ -897,12 +985,10 @@ class XYscan:
                 self.error_flag = True
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
+                time.sleep(0.2)
             self.fetch_loss()
             self.current_pos = P1[:]
             self.save_loss_pos()
-            # update old position and old direction
-            _z0 = P1[2]
-            _direc0 = _direc1
 
             # aggressive mode: Z goes forward until loss is 1.5 times of the initial value
             # for instance, loss_o = -15, then until -22.5 dB we stop forwarding Z
@@ -964,6 +1050,9 @@ class XYscan:
                     # if direction changed, add extra counts
                     if _direc1 != _direc0:
                         P1[2] = P1[2] + 0.0002 * _direc1
+                    # update old position and old direction
+                    _z0 = P1[2]
+                    _direc0 = _direc1                    
                     # goto the position
                     if self.final_adjust:
                         self.hppcontrol.engage_motor()
@@ -973,10 +1062,8 @@ class XYscan:
                         self.error_flag = True
                     if self.final_adjust:
                         self.hppcontrol.disengage_motor()
+                        time.sleep(0.2)
                     self.current_pos = P1[:]
-                    # update old position and old direction
-                    _z0 = P1[2]
-                    _direc0 = _direc1
                     break
             # if larger than bound, then success and update loss old
             elif diff > bound:
@@ -1019,6 +1106,30 @@ class XYscan:
 
     def fetch_loss(self):
         self.loss.append(PM.power_read())
+
+    def apply_xy_backlash_counter(self, oldpos, newpos, xy):
+        # current direction
+        if newpos > oldpos:
+            _direc = 1
+        else:
+            _direc = -1
+        if xy == 'x':
+            # if direction changed, add extra counts
+            if _direc != self.x_dir_old:
+                _counter = self.xy_backlash * _direc
+            else:
+                _counter = 0
+            # update old direction
+            self.x_dir_old = _direc
+        else:
+            # if direction changed, add extra counts
+            if _direc != self.y_dir_old:
+                _counter = self.xy_backlash * _direc
+            else:
+                _counter = 0
+            # update old direction
+            self.y_dir_old = _direc            
+        return _counter
 
 
     # Use T1's position as position reference
