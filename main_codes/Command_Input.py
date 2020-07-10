@@ -4,6 +4,7 @@ import numpy as np
 import time
 from PyQt5 import QtCore
 import logging
+from StaticVar import StaticVar
 from XYscan import XYscan 
 from Curing_Align import Curing_Active_Alignment
 
@@ -16,7 +17,6 @@ class CMDInputThread(QtCore.QThread):
         QtCore.QThread.__init__(self, parent)
         self.cmd = ''
         self.currentPosition = [0,0,138,0,0,0]
-        
     #error_log, target_mm, target_counts, real_counts
     sig1 = QtCore.pyqtSignal(str, list, list, list, bool)
     # Motor status signal
@@ -231,7 +231,12 @@ class CMDInputThread(QtCore.QThread):
             self.sig2.emit(2)
             P0 = [0,0,139,-0.3,0.5,0]
             xys.set_starting_point(P0)
-            xys.product_select('1xN')
+            
+            if StaticVar.productType == "VOA":
+                xys.product_select('VOA')
+            elif StaticVar.productType == "1xN":
+                xys.product_select('1xN')
+                
             xys.second_try = False
             # self.xys.set_loss_criteria(-0.2)
             P1 = xys.autoRun(strategy=1) 
@@ -245,8 +250,11 @@ class CMDInputThread(QtCore.QThread):
         elif commands == 'precure':
             cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
-            self.sig2.emit(3)            
-            cure.product_select('1xN')
+            self.sig2.emit(3)
+            if StaticVar.product_select == "VOA":
+                cure.product_select('VOA')
+            elif StaticVar.product_select == "1xN":
+                cure.product_select('1xN')
             cure.set_loss_criteria(max(self.xys.loss_rec)-0.03)
             P1 = cure.pre_curing_run(self.currentPosition)
             self.currentPosition = P1[:]
@@ -258,7 +266,10 @@ class CMDInputThread(QtCore.QThread):
         elif commands == 'curing':
             cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             self.sig2.emit(4)
-            cure.product_select('1xN')
+            if StaticVar.product_select == "VOA":
+                cure.product_select('VOA')
+            elif StaticVar.product_select == "1xN":
+                cure.product_select('1xN')
             P1 = cure.curing_run(self.currentPosition)
             self.currentPosition = P1[:]
             target_mm = P1[:]

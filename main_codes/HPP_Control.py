@@ -148,11 +148,11 @@ import logging
 # Tser2 = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
 # Control Box #5
 # COM14: T3
-Tser3 = serial.Serial('COM14', 115200, timeout=0.1, stopbits=1)
+Tser3 = serial.Serial('COM5', 115200, timeout=0.1, stopbits=1)
 # COM13: T1
-Tser1 = serial.Serial('COM13', 115200, timeout=0.1, stopbits=1)
+Tser1 = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
 # COM12: T2
-Tser2 = serial.Serial('COM12', 115200, timeout=0.1, stopbits=1)
+Tser2 = serial.Serial('COM6', 115200, timeout=0.1, stopbits=1)
 
 error_log = ''
 Tcounts_real = [0,0,0,0,0,0]
