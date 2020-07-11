@@ -141,7 +141,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.hppcontrol.engage_motor()
             if self.send_to_hpp(P1):
                 self.hppcontrol.disengage_motor()
-                time.sleep(0.2)
+                time.sleep(0.5)
                 self.fetch_loss()
                 self.current_pos = P1[:]
                 self.save_loss_pos()
@@ -184,7 +184,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             logging.info('Movement Error')
             self.error_flag = True
         self.hppcontrol.disengage_motor()
-        time.sleep(0.2)
+        time.sleep(0.5)
         self.current_pos = P1[:]
         # if same_count >= 5:
         #     return False

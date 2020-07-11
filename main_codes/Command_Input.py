@@ -238,7 +238,7 @@ class CMDInputThread(QtCore.QThread):
                 xys.product_select('1xN')              
             
             xys.second_try = False
-            # xys.set_loss_criteria(-0.35)
+            xys.set_loss_criteria(-0.4)
             P1 = xys.autoRun(strategy=1) 
             # P1 = xys.autoRun(strategy=2)           
             self.currentPosition = P1[:]
