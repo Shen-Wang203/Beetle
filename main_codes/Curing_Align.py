@@ -10,7 +10,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
         self.minutes = 7
         self.step_Z = 0.0005
-        self.z_dir = -1
         self.loss_curing_rec = []
         self.pos_curing_rec = []
 
@@ -47,7 +46,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             P = self.scanUpdate(P, self.scanmode)
             self.final_adjust = True
             self.stepScanCounts = 4         
-            while max(self.loss) < self.loss_criteria:
+            while max(self.loss) < self.loss_criteria and not self.error_flag:
                 P = self.Zstep(P)
                 P = self.scanUpdate(P, self.scanmode)
         
@@ -76,7 +75,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         start_time = time.time()
         curing_active = True
         curing_active_flag = False
-        while True:         
+        while not self.error_flag:         
             end_time = time.time()
             if (end_time - start_time) > self.minutes  * 60:
                 logging.info('Reach Time Limit')
@@ -134,10 +133,20 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
         trend = 1
         same_count = 0
-        self.z_dir = -1
+        _direc1 = -1
+        _direc0 = 1
+        _z0 = P1[2]
         while True:
-            P1[2] = P1[2] + self.step_Z * self.z_dir
+            P1[2] = P1[2] + self.step_Z * _direc1
             
+            if P1[2] > _z0:
+                _direc1 = 1
+            else:
+                _direc1 = -1
+            if _direc1 != _direc0:
+                P1[2] = P1[2] + 0.0002 * _direc1
+            _z0 = P1[2]
+            _direc0 = _direc1
             self.hppcontrol.engage_motor()
             if self.send_to_hpp(P1):
                 self.hppcontrol.disengage_motor()
@@ -153,14 +162,14 @@ class Curing_Active_Alignment(XYscan.XYscan):
             bound = self.loss_bound(loss_o)
             diff = self.loss[-1] - loss_o
             if diff <= -bound:
-                # go back to the old position with extra value
-                P1[2] = P1[2] - self.step_Z * self.z_dir - 0.0002 * self.z_dir
+                # go back to the old position
+                P1[2] = P1[2] - self.step_Z * _direc1
                 trend -= 1
                 if trend:
                     print('Over')
                     logging.info('Over')
                     break
-                self.z_dir = -self.z_dir
+                _direc1 = -_direc1
                 loss_o = self.loss[-1]
                 print('Change direction')
                 logging.info('Change direction')
@@ -173,11 +182,19 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 trend = 2
                 same_count += 1
                 if same_count >= 5:
-                    P1[2] = P1[2] - self.step_Z * self.z_dir * 5 - 0.0002 * self.z_dir
+                    P1[2] = P1[2] - self.step_Z * _direc1 * 5 - 0.0002 * _direc1
                     print('Value doesnt change in Z')
                     logging.info('Value doesnt change in Z')
                     break
-        
+
+        if P1[2] > _z0:
+            _direc1 = 1
+        else:
+            _direc1 = -1
+        if _direc1 != _direc0:
+            P1[2] = P1[2] + 0.0002 * _direc1
+        _z0 = P1[2]
+        _direc0 = _direc1        
         self.hppcontrol.engage_motor()   
         if not self.send_to_hpp(P1):
             print('Movement Error')
@@ -188,6 +205,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.current_pos = P1[:]
         # if same_count >= 5:
         #     return False
+        self.check_abnormal_loss(max(self.loss))
         return P1
 
     # Over-write function, disable loss_fail_improve
@@ -201,5 +219,4 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.hppcontrol.normal_traj_speed()
             self.send_to_hpp(self.starting_point)
             self.hppcontrol.disengage_motor()
-            import sys
-            sys.exit()
+            self.error_flag = True
