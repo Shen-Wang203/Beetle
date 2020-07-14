@@ -31,8 +31,8 @@ def powermeter_init():
 def power_read():
     powerRead = float(PM.query('READ1:POW?'))
     time.sleep(0.02)
-    # powerRead2 = float(PM.query('READ1:POW?'))
-    # powerRead = (powerRead + powerRead2) * 0.5
+    powerRead2 = float(PM.query('READ1:POW?'))
+    powerRead = (powerRead + powerRead2) * 0.5
     while powerRead > 0:
         powerRead = float(PM.query('READ1:POW?'))
     print(powerRead)

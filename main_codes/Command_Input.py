@@ -231,7 +231,7 @@ class CMDInputThread(QtCore.QThread):
             self.hppcontrol.engage_motor()
             self.sig2.emit(2)
             # P0 = [1,0,138,-0.3,0.5,0]
-            P0 = [1,0,140,-0.2,-0.1,0]
+            P0 = [1,0,140,0.2,-1.5,0]
             xys.set_starting_point(P0)
             
             if StaticVar.productType == "VOA":
@@ -240,9 +240,11 @@ class CMDInputThread(QtCore.QThread):
                 xys.product_select('1xN')              
             
             xys.second_try = False
-            xys.set_loss_criteria(-0.32)
-            P1 = xys.autoRun(strategy=1) 
-            # P1 = xys.autoRun(strategy=2)           
+            xys.set_loss_criteria(-0.35)
+            # 1 is step, 2 is interp
+            # xys.strategy = 1
+            xys.strategy = 2
+            P1 = xys.autoRun()           
             self.currentPosition = P1[:]
             target_mm = P1[:]
             real_counts = control.Tcounts_real
@@ -274,9 +276,12 @@ class CMDInputThread(QtCore.QThread):
             elif StaticVar.productType == "1xN":
                 cure.product_select('1xN')
             cure.set_loss_criteria(self.loss_max-0.03)
-            P1 = cure.curing_run(self.currentPosition)
-            self.currentPosition = P1[:]
-            target_mm = P1[:]
+            P1 = cure.curing_run2(self.currentPosition)
+            try:
+                self.currentPosition = P1[:]
+                target_mm = P1[:]
+            except:
+                pass
             real_counts = control.Tcounts_real
             # we don't use target_counts in gui now so just set it as a random value
             target_counts = [0,0,0,0,0,0]
