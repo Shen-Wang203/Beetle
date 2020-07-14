@@ -165,13 +165,15 @@ class XYscan:
                     else:
                         if max(self.loss) < self.loss_criteria:
                             P_final = self.scanUpdate(P1, self.scanmode)
-                            print('Reach Resolution')
-                            logging.info('Reach Resolution')
+                            self.hppcontrol.engage_motor()
+                            self.send_to_hpp(self.pos_current_max)
+                            self.hppcontrol.disengage_motor()        
+                            print('Reach Resolution, go back to overall best')
+                            logging.info('Reach Resolution, go back to overall best')
+                            break
                         else:
-                            print('Better than criteria ', self.loss_criteria)
-                            logging.info('Better than criteria ' + str(self.loss_criteria))
-                            P_final = P1[:]
-                        break
+                            P0 = P1[:]
+                        
             # check error_flag, check_abnormal_loss function can erect this flag
             if self.error_flag:
                 P_final = self.pos_current_max[:]
@@ -196,7 +198,7 @@ class XYscan:
             # self.zmode = 'normal'
             self.zmode = 'aggressive'
             self.scanmode = 'c'
-            self.Z_amp = 2
+            self.Z_amp = 3.0
             self.tolerance = 2
             self.wait_time = 0.2
             # self.final_adjust = False
@@ -211,7 +213,7 @@ class XYscan:
                 self.Z_amp = 1.5
                 self.zmode = 'normal'
             elif self.product == 2:
-                self.Z_amp = 2.5
+                self.Z_amp = 3.0
                 self.zmode = 'aggressive'
         # if (-4,-2], and interp-at-final strategy, then interp mode
         elif loss0 <= self.interpmode_threshold and strategy == 2: 
@@ -222,7 +224,7 @@ class XYscan:
                 self.Z_amp = 1.5
                 self.zmode = 'normal'
             elif self.product == 2:
-                self.Z_amp = 2.5
+                self.Z_amp = 3.0
                 self.zmode = 'aggressive'
             # self.final_adjust = False           
         # if (-2,criteria], and stepping-at-final strategy, then final adjust 
@@ -234,11 +236,11 @@ class XYscan:
             self.final_adjust = True
             self.stepScanCounts = 3 
             self.tolerance = 2 
-            self.wait_time = 0.5
+            self.wait_time = 0.4
             if self.product == 1:
                 self.Z_amp = 1.2
             elif self.product == 2:
-                self.Z_amp = 2
+                self.Z_amp = 2.5
         # if (-2,criteria], and interp-at-final strategy, then final adjust 
         elif loss0 <= self.loss_criteria and strategy == 2:
             print('Change to Final_adjust')
@@ -247,11 +249,11 @@ class XYscan:
             self.scanmode = 'i'
             self.final_adjust = True
             self.tolerance = 2 
-            self.wait_time = 0.5
+            self.wait_time = 0.4
             if self.product == 1:
                 self.Z_amp = 1.2
             elif self.product == 2:
-                self.Z_amp = 2
+                self.Z_amp = 2.5
         # if > criteria, then exit
         else:
             print('Better than criteria ', self.loss_criteria)
@@ -525,7 +527,8 @@ class XYscan:
             self.hppcontrol.disengage_motor()
             time.sleep(self.wait_time)
         self.update_current_pos('x', x1, x1_o)
-        self.check_abnormal_loss(max(self.loss))
+        # only check abnormal_loss on Y
+        # self.check_abnormal_loss(max(self.loss))
         if same_count >= 5:
             return False       
         if x1 - x1_o:
@@ -737,7 +740,7 @@ class XYscan:
         self.pos.append(x1_final)
         print('XInterp final: ',x1_final)
         logging.info('XInterp final: ' + str(x1_final))
-        self.check_abnormal_loss(max(self.loss))
+        # self.check_abnormal_loss(max(self.loss))
         if x1_final - x1_o:
             return x1_final - x1_o 
         else:
@@ -931,14 +934,16 @@ class XYscan:
 
     def loss_bound_large(self, _loss_ref_z):
         x = abs(_loss_ref_z)
-        if x < 0.5:
-            bound_z = 0.08
-        elif x < 1:
-            bound_z = 0.15
+        if x < 0.7:
+            # bound_z = 0.5 * x
+            bound_z = 0.3
+        elif x < 1.2:
+            # bound_z = 0.35 * x
+            bound_z = 0.35
         elif x < 2:
-            bound_z = 0.4
+            bound_z = 0.3 * x 
         elif x < 4:
-            bound_z = 0.6
+            bound_z = 0.3 * x
         elif x > 50:
             bound_z = 4
         else:
@@ -1020,7 +1025,8 @@ class XYscan:
             # The purpose is to forward Z more aggressively to faster the process
             # make sure the loss is smaller than -5 and larger than -40, so that larger Z stepping won't be problem
             if self.zmode == 'aggressive' and max(self.loss) < -5 and min(self.loss) > -40:
-                if self.loss[-1] > 1.5 * loss_o:
+                # for VOA used to be 1.5 times
+                if self.loss[-1] > 2 * loss_o:
                     success_num += 1
                     continue
 
@@ -1037,12 +1043,16 @@ class XYscan:
                 # radio here should be smaller than 0.5 not 0,5, otherwise two steps will go back to the previous position
                 step = 0.4 * step                    
 
-                # if step size is smaller than minimum resolution, exit
-                if step < 0.0002:
+                # for VOA, if step size is smaller than minimum resolution, exit
+                if step < 0.0002 and self.product == 1:
                     print('Z step is too small')
                     logging.info('Z step is too small')
                     return False    
-                
+                # for 1xN, is step size is smaller than 0.5 um, exit
+                elif step < 0.0005 and self.product == 2:
+                    # make sure it can exit
+                    success_num = 1
+
                 # if loss is still high and step size is small enough, we will larger the step to 
                 # jump out of the local minimum
                 if step < step_ref / 12 and max(self.loss) < -15 and self.larger_Z_flag:
@@ -1097,6 +1107,9 @@ class XYscan:
             # if same, then success, but don't update loss old
             else:
                 success_num += 1
+                # if loss is about the same for 5 times, exit to avoid overrun
+                if success_num == 5:
+                    break
         print('Z optim ends at: ', P1)
         logging.info('Z optim ends at: ' + str(P1))  
         # set current_pos as max loss position temporarily 
@@ -1122,12 +1135,12 @@ class XYscan:
                 self.hppcontrol.disengage_motor()
                 self.error_flag = True
 
-            # x,y and z fail to improve 9 times continuesly, then reset the loss_criteria as current max
-            # total 3 rounds of xyz search
+            # x,y and z fail to improve 4 times continuesly, then reset the loss_criteria as current max
+            # total 2 rounds of xyz search, xy is together
             # this is to faster the process
             self.loss_fail_improve += 1
             # update loss_criteria only when in final stages
-            if self.loss_fail_improve == 9 and self.final_adjust:
+            if self.loss_fail_improve == 4 and self.final_adjust:
                 self.loss_fail_improve = 0
                 print('Failed to find better loss after tries, go back to current best')
                 logging.info('Failed to find better loss after tries, go back to current best')

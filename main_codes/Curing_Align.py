@@ -35,6 +35,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.loss_rec.append(0)
         self.pos_rec.append(0)
         self.pos_curing_rec.append(P0)
+        self.loss = []
+        self.wait_time = 0.3
         
         # Alignment after glue
         self.fetch_loss()
@@ -50,6 +52,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 P = self.Zstep(P)
                 P = self.scanUpdate(P, self.scanmode)
         
+        print('Pre-Curing done. Loss criteria ', self.loss_criteria)
+        logging.info('Pre-Curing done. Loss criteria ' + str(self.loss_criteria))
         return P
                    
     # End: time reach or loss doesn't change
@@ -71,7 +75,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
 
         self.final_adjust = True
-        self.stepScanCounts = 4
+        self.stepScanCounts = 3
+        self.wait_time = 0.3
         start_time = time.time()
         curing_active = True
         curing_active_flag = False
@@ -93,8 +98,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 for i in range(0,2):
                     P1 = self.scanUpdate(P, self.scanmode)
                     if P1 == False:
-                        print('XY Value doesnt change')
-                        logging.info('XY Value doesnt change')
+                        print('XY Values dont change')
+                        logging.info('XY Values dont change')
                         if i:
                             print('End program')
                             logging.info('End program')
@@ -150,7 +155,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.hppcontrol.engage_motor()
             if self.send_to_hpp(P1):
                 self.hppcontrol.disengage_motor()
-                time.sleep(0.5)
+                time.sleep(0.3)
                 self.fetch_loss()
                 self.current_pos = P1[:]
                 self.save_loss_pos()
@@ -159,7 +164,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('Movement Error')
                 self.error_flag = True                
             
-            bound = self.loss_bound(loss_o)
+            bound = self.loss_bound_zstep(loss_o)
             diff = self.loss[-1] - loss_o
             if diff <= -bound:
                 # go back to the old position
@@ -201,7 +206,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             logging.info('Movement Error')
             self.error_flag = True
         self.hppcontrol.disengage_motor()
-        time.sleep(0.5)
+        time.sleep(0.3)
         self.current_pos = P1[:]
         # if same_count >= 5:
         #     return False
@@ -215,8 +220,20 @@ class Curing_Active_Alignment(XYscan.XYscan):
         elif (loss0 < (2.5 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
             print('Unexpected High Loss, End Program')
             logging.info('Unexpected High Loss, End Program')
-            self.hppcontrol.engage_motor()
+            # self.hppcontrol.engage_motor()
             self.hppcontrol.normal_traj_speed()
-            self.send_to_hpp(self.starting_point)
+            # self.send_to_hpp(self.starting_point)
             self.hppcontrol.disengage_motor()
             self.error_flag = True
+
+    def loss_bound_zstep(self, _loss_ref_z):
+        x = abs(_loss_ref_z)
+        if x < 0.5:
+            bound_z = 0.03
+        elif x < 1:
+            bound_z = 0.05
+        elif x < 2:
+            bound_z = 0.08
+        else:
+            bound_z = 0.1
+        return bound_z

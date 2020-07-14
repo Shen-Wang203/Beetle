@@ -577,7 +577,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         logging.info('*************************')
         logging.info('Reset')
         logging.info('*************************')
-        target_mm_text = '[0,0,139,-0.3,0.5,0]'
+        target_mm_text = '[1,0,140,-0.2,-0.1,0]'
         cmdtext = 'goto' + target_mm_text[1:-1]
         print(cmdtext)
         self.runthread.setcmd(cmdtext)
@@ -599,7 +599,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
-        self.pushButton_alignment.setStyleSheet("background-color: green")
+        self.pushButton_alignment.setStyleSheet("background-color: yellow")
         self.pushButton_pre_curing.setEnabled(True)
 
     def pre_curing_click(self):
@@ -607,7 +607,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
-        self.pushButton_pre_curing.setStyleSheet("background-color: green")
+        self.pushButton_alignment.setStyleSheet("background-color: green")        
+        self.pushButton_pre_curing.setStyleSheet("background-color: yellow")
         self.pushButton_curing.setEnabled(True)
 
     def curing_click(self):
@@ -615,7 +616,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
-        self.pushButton_curing.setStyleSheet('Background-color: green')
+        self.pushButton_pre_curing.setStyleSheet("background-color: green")
+        self.pushButton_curing.setStyleSheet('Background-color: yellow')
 
     def motor_status(self, _status):
         if _status == 1:
