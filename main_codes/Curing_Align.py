@@ -9,7 +9,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.scanmode = 's'
 
         self.minutes = 7
-        self.step_Z = 0.0005
+        self.step_Z = 0.001
         self.loss_curing_rec = []
         self.pos_curing_rec = []
 
@@ -75,7 +75,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
 
         self.final_adjust = True
-        self.stepScanCounts = 3
+        self.stepScanCounts = 4
         self.wait_time = 0.3
         start_time = time.time()
         curing_active = True
@@ -164,7 +164,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('Movement Error')
                 self.error_flag = True                
             
-            bound = self.loss_bound_zstep(loss_o)
+            if self.product == 2:
+                bound = self.loss_bound_zstep(loss_o)
+            elif self.product == 1:
+                bound = self.loss_bound(loss_o)
             diff = self.loss[-1] - loss_o
             if diff <= -bound:
                 # go back to the old position
