@@ -80,6 +80,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         start_time = time.time()
         curing_active = True
         curing_active_flag = False
+        solid_flag = False
         while not self.error_flag:         
             end_time = time.time()
             if (end_time - start_time) > self.minutes  * 60:
@@ -94,13 +95,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
             if curing_active and self.loss[-1] < self.loss_criteria:
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
-                # If fail, run the second time, if fail again, exit   
-                for i in range(0,2):
+                # Run xy 3 times, then go to z
+                # for VOA used to be 1 time  
+                for i in range(0,3):
                     P1 = self.scanUpdate(P, self.scanmode)
                     if P1 == False:
-                        print('XY Values dont change')
-                        logging.info('XY Values dont change')
-                        if i:
+                        if solid_flag:
                             print('End program')
                             logging.info('End program')
                             curing_active = False
@@ -109,10 +109,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
                                 # sys.exit()
                                 return P
                             else:
-                                break
+                                break                        
+                        print('XY Values dont change')
+                        logging.info('XY Values dont change')
+                        solid_flag = True
                     else:
-                        P = P1[:]    
-                        break     
+                        P = P1[:]       
                 self.pos_curing_rec.append(P)        
                 if curing_active and max(self.loss) < self.loss_criteria:
                     P = self.Zstep(P)

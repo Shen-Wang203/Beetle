@@ -21,10 +21,10 @@ class XYscan:
         self.final_adjust = False
         self.larger_Z_flag = False    
         self.second_try = True   
-        self.aggresive_threshold = -12.0
-        self.scanmode_threshold = -4.0
-        self.stepmode_threshold = -2.0
-        self.interpmode_threshold = -2.0
+        self.aggresive_threshold = -12
+        self.scanmode_threshold = -4
+        self.stepmode_threshold = -1
+        self.interpmode_threshold = -1
         self.loss_criteria = -0.4
         self.scanmode = 'c'
         self.zmode = 'normal'
@@ -75,6 +75,8 @@ class XYscan:
     def product_select(self, _product):
         if _product == 'VOA':
             self.product = 1
+            self.interpmode_threshold = -2
+            self.stepmode_threshold = -2            
             print('VOA has been selected')
             logging.info('VOA has been selected')
         elif _product == '1xN':
@@ -229,8 +231,8 @@ class XYscan:
             # self.final_adjust = False           
         # if (-2,criteria], and stepping-at-final strategy, then final adjust 
         elif loss0 <= self.loss_criteria and strategy == 1:
-            print('Change to Final_adjust')
-            logging.info('Change to Final_adjust')
+            # print('Change to Final_adjust')
+            # logging.info('Change to Final_adjust')
             self.zmode = 'normal'
             self.scanmode = 's'
             self.final_adjust = True
@@ -243,8 +245,8 @@ class XYscan:
                 self.Z_amp = 2.5
         # if (-2,criteria], and interp-at-final strategy, then final adjust 
         elif loss0 <= self.loss_criteria and strategy == 2:
-            print('Change to Final_adjust')
-            logging.info('Change to Final_adjust')
+            # print('Change to Final_adjust')
+            # logging.info('Change to Final_adjust')
             self.zmode = 'normal'
             self.scanmode = 'i'
             self.final_adjust = True
@@ -1024,7 +1026,7 @@ class XYscan:
             # for instance, loss_o = -15, then until -22.5 dB we stop forwarding Z
             # The purpose is to forward Z more aggressively to faster the process
             # make sure the loss is smaller than -5 and larger than -40, so that larger Z stepping won't be problem
-            if self.zmode == 'aggressive' and max(self.loss) < -5 and min(self.loss) > -40:
+            if self.zmode == 'aggressive' and min(self.loss) > -40:
                 # for VOA used to be 1.5 times
                 if self.loss[-1] > 2 * loss_o:
                     success_num += 1

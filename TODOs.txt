@@ -2,7 +2,6 @@ TODO Bugs:
 1. Click close, then auto align again, it will stop in the middle
 2. UART issue, stop in the middle occasionly
 3. Curing, check_abnormal_loss
-4. Z fix step size
 5. curing avoid Z
 
 Jerry
