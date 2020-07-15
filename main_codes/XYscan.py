@@ -903,7 +903,6 @@ class XYscan:
                 logging.info('X scan failed')
                 self.error_flag = True
                 return False                
-        
         # x search can errect the flag
         if self.error_flag:
             return P1
@@ -930,6 +929,10 @@ class XYscan:
                 logging.info('Y scan failed')
                 self.error_flag = True
                 return False                
+        # Select mode and parameters as loss
+        if self.loss_target_check(max(self.loss)):
+            return P1        
+        
         if not self.error_flag:
             print('Scan update ends at: ')
             print(P1)

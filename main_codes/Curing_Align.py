@@ -140,7 +140,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.fetch_loss()
         self.loss_current_max = self.loss[-1]
 
-
         self.final_adjust = True
         self.stepScanCounts = 8
         self.wait_time = 0.1
@@ -163,8 +162,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
             if curing_active and self.loss[-1] < self.loss_criteria:
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
-                # Z back
-                if xycount == 6:
+                # Z back if xy search failed for 8 times
+                if xycount == 8:
                     P = self.Zstep_back(P)
                     self.pos_curing_rec.append(P)  
                     xycount = 0
@@ -193,7 +192,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 xycount = 0
                 print('Loss is high, trying again')
                 logging.info('Loss is high, trying again')
-
 
 
     def Zstep_back(self, P0):
