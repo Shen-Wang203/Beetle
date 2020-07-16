@@ -50,6 +50,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.stepScanCounts = 4         
             while max(self.loss) < self.loss_criteria and not self.error_flag:
                 P = self.Zstep(P)
+                if self.loss_target_check(self.loss[-1]):
+                    break
                 P = self.scanUpdate(P, self.scanmode)
         
         print('Pre-Curing done. Loss criteria ', self.loss_criteria)
@@ -141,7 +143,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.loss_current_max = self.loss[-1]
 
         self.final_adjust = True
-        self.stepScanCounts = 8
+        self.stepScanCounts = 6
         self.wait_time = 0.1
         start_time = time.time()
         curing_active = True

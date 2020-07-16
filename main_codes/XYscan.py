@@ -211,7 +211,7 @@ class XYscan:
             self.tolerance = 2
             self.wait_time = 0.1
             # self.final_adjust = False
-            self.stepScanCounts = 10            
+            self.stepScanCounts = 4            
             if self.product == 1:
                 self.Z_amp = 1.5
                 self.zmode = 'normal'
@@ -852,16 +852,16 @@ class XYscan:
     # Based on loss to determine xy interpolation sample step size
     # return step size and total points
     def xyinterp_sample_step(self, loss):
-        # (-4,-3]: range 52 counts, step is 13, total 5 points 
-        # (-3,-2]: range 44 counts, step is 11, total 5 points
+        # (-4,-3]: range 60 counts, step is 15, total 5 points 
+        # (-3,-2]: range 52 counts, step is 13, total 5 points
         # (-2,-1]: range 40 counts, step is 10, total 5 points
         # (-1,0]: range 24 counts, step is 6, total 5 points
         if loss <= -12:
             return [16, 5]
         if loss <= -3:
-            return [13, 5]
+            return [15, 5]
         elif loss <= -2:
-            return [11, 5]
+            return [13, 5]
         elif loss <= -1:
             return [10, 5]
         else:
@@ -1048,21 +1048,26 @@ class XYscan:
             if self.loss_target_check(self.loss[-1]):
                 return P1
 
-            # aggressive mode: Z goes forward until loss is 1.5 times of the initial value
-            # for instance, loss_o = -15, then until -22.5 dB we stop forwarding Z
-            # The purpose is to forward Z more aggressively to faster the process
-            # make sure the loss is smaller than -5 and larger than -40, so that larger Z stepping won't be problem
-            if self.zmode == 'aggressive' and min(self.loss) > -40:
-                # for VOA used to be 1.5 times
-                if self.loss[-1] > 2 * loss_o:
-                    success_num += 1
-                    continue
 
             if self.product == 1:
                 bound = self.loss_bound(loss_o)
             elif self.product == 2:
                 bound = self.loss_bound_large(loss_o)
             diff = self.loss[-1] - loss_o
+
+            # aggressive mode: Z goes forward until loss is 1.5 times of the initial value
+            # for instance, loss_o = -15, then until -22.5 dB we stop forwarding Z
+            # The purpose is to forward Z more aggressively to faster the process
+            # make sure the loss is smaller than -5 and larger than -40, so that larger Z stepping won't be problem
+            if self.zmode == 'aggressive' and min(self.loss) > -40:
+                if diff > bound:
+                    loss_o = self.loss[-1]
+                    success_num += 1
+                # for VOA used to be 1.5 times
+                if self.loss[-1] > 2 * loss_o:
+                    success_num += 1
+                    continue            
+            
             # if fail (smaller), difference should be smaller than -loss_bound
             if diff < -bound:            
                 # if fail, go back to the old point
@@ -1138,7 +1143,7 @@ class XYscan:
                 # if loss is about the same for 5 times, exit to avoid overrun
                 if success_num == 5:
                     break
-                # for 1xN, if loss decrease, exit directly   
+                # for 1xN, if loss improved, exit directly   
                 if diff > 0.05 and self.product == 2:
                     break
 
@@ -1160,7 +1165,7 @@ class XYscan:
             self.pos_current_max = self.current_pos[:]
             self.loss_fail_improve = 0
         else:
-            if (loss0 < (3 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
+            if (loss0 < (4 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
                 print('Unexpected High Loss, End Program: ', str(loss0))
                 logging.info('Unexpected High Loss, End Program: ' + str(loss0))
                 self.hppcontrol.engage_motor()
@@ -1239,7 +1244,10 @@ class XYscan:
         while True:
             self.fetch_loss()
 
-            self.pos.append(self.hppcontrol.T_get_counts(1, xy))   
+            if xy == 'x':
+                self.pos.append(self.hppcontrol.real_time_counts(1))
+            else:
+                self.pos.append(self.hppcontrol.real_time_counts(2)) 
             # print(self.pos[-1])  
             # logging.info(self.pos[-1])   
             self.update_current_pos(xy, self.pos[-1], pos0)

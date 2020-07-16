@@ -41,6 +41,21 @@ T3
 odrivetool --serial-number 2065387E304E
 Potential Issues: 
 
+Control Box #5:
+T1
+odrivetool --serial-number 205D388E304E
+T2
+odrivetool --serial-number 20853881304E
+T3
+odrivetool --serial-number 2086388F304E
+
+C5 + B1:
+T2x
+pos_gain 850
+vel_gain 0.25/10000
+T2y
+pos_gain 850
+vel_gain 0.4/10000
 
 %Find the serial number
 hex(odrv0.serial_number).upper()
@@ -203,7 +218,7 @@ odrv2.axis1.config.calibration_lockin.accel = 10
 odrv2.axis1.encoder.config.use_index = 1
 
 %Request State
-odrv0.axis0.requested_state = odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
 odrv0.axis1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
 odrv1.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
 odrv1.axis1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL

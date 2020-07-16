@@ -450,16 +450,16 @@ class Ui_MainWindow(object):
         self.pushButton_curing.clicked.connect(self.curing_click)
 
         # # Camera configuration @Jerry
-        # self.available_cameras = QCameraInfo.availableCameras()
-        # if not self.available_cameras:
-        #         pass #quit
+        self.available_cameras = QCameraInfo.availableCameras()
+        if not self.available_cameras:
+                pass #quit
         
-        # self.viewfinder = QCameraViewfinder(self.centralwidget)
-        # self.viewfinder.setGeometry(QtCore.QRect(20,30,600,400))
-        # self.viewfinder.show()
-        # self.select_camera(0)
-        # self.comboBox_camera.addItems([c.description() for c in self.available_cameras])
-        # self.comboBox_camera.currentIndexChanged.connect(self.select_camera)
+        self.viewfinder = QCameraViewfinder(self.centralwidget)
+        self.viewfinder.setGeometry(QtCore.QRect(20,30,600,400))
+        self.viewfinder.show()
+        self.select_camera(0)
+        self.comboBox_camera.addItems([c.description() for c in self.available_cameras])
+        self.comboBox_camera.currentIndexChanged.connect(self.select_camera)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -577,7 +577,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         logging.info('*************************')
         logging.info('Reset')
         logging.info('*************************')
-        target_mm_text = '[1,0,140,0.2,-1.5,0]'
+        target_mm_text = '[0,0,140,-0.3,-0.2,0]'
         cmdtext = 'goto' + target_mm_text[1:-1]
         print(cmdtext)
         self.runthread.setcmd(cmdtext)
