@@ -4,6 +4,7 @@ TODO Bugs:
 
 Jerry
 GUI pending:
+-2. Rotate the camera screen 180 degrees and zoom in
 -1. Fix XYZ shortcut bugs
 0. Adding loss_criteria selection with options: -0.2, -0.25, -0.3, -0.35, -0.4, -0.45, -0.5
 1. IL display

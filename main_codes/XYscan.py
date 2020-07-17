@@ -418,7 +418,8 @@ class XYscan:
                 self.hppcontrol.Ty_send_only(y1end, y2end, y3end, 't')               
 
     # x1_o is counts
-    def Xstep(self, x1_o, x2_o, x3_o):
+    # travelmode can be either 'p' or 't', 't' is to move in traj mode
+    def Xstep(self, x1_o, x2_o, x3_o, travelmode):
         print('Start Xstep (loss then pos)')
         logging.info('Start Xstep (loss then pos)')        
         self.loss = []        
@@ -455,7 +456,7 @@ class XYscan:
 
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
-            self.hppcontrol.Tx_send_only(x1, x2, x3, 'p')
+            self.hppcontrol.Tx_send_only(x1, x2, x3, travelmode)
             timeout = 0
             while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
                 time.sleep(0.2)
@@ -519,7 +520,7 @@ class XYscan:
         x10 = x1
         if self.final_adjust:
             self.hppcontrol.engage_motor()
-        self.hppcontrol.Tx_send_only(x1, x2, x3, 'p')
+        self.hppcontrol.Tx_send_only(x1, x2, x3, travelmode)
         timeout = 0
         while not self.hppcontrol.Tx_on_target(x1, x2, x3, self.tolerance):
             time.sleep(0.2)
@@ -541,7 +542,8 @@ class XYscan:
             return 1
 
     # y1_o is counts
-    def Ystep(self, y1_o, y2_o, y3_o):
+    # travelmode can be either 'p' or 't', 't' is to move in traj mode
+    def Ystep(self, y1_o, y2_o, y3_o, travelmode):
         print('Start Ystep (loss then pos)')
         logging.info('Start Ystep (loss then pos)')  
         self.loss = []        
@@ -577,7 +579,7 @@ class XYscan:
 
             if self.final_adjust:
                 self.hppcontrol.engage_motor()
-            self.hppcontrol.Ty_send_only(y1, y2, y3, 'p')
+            self.hppcontrol.Ty_send_only(y1, y2, y3, travelmode)
             timeout = 0
             while not self.hppcontrol.Ty_on_target(y1, y2, y3, self.tolerance):
                 time.sleep(0.2)
@@ -639,7 +641,7 @@ class XYscan:
         y10 = y1
         if self.final_adjust:
             self.hppcontrol.engage_motor()
-        self.hppcontrol.Ty_send_only(y1, y2, y3, 'p')
+        self.hppcontrol.Ty_send_only(y1, y2, y3, travelmode)
         timeout = 0
         while not self.hppcontrol.Ty_on_target(y1, y2, y3, self.tolerance):
             time.sleep(0.2)
@@ -885,7 +887,7 @@ class XYscan:
         Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
         # logging.info('Start Tcounts: '+str(Tcounts))
         if _mode == 's':
-            xdelta = self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4])
+            xdelta = self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], 'p')
         elif _mode == 'i':
             xdelta = self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4])
         else:
@@ -911,7 +913,7 @@ class XYscan:
             return P1
 
         if _mode == 's':
-            ydelta = self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5])
+            ydelta = self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], 'p')
         elif _mode == 'i':
             ydelta = self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5])
         else:

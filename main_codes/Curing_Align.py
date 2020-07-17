@@ -7,6 +7,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
         super().__init__(HPPModel, hppcontrol)  
         self.tolerance = 2 
         self.scanmode = 's'
+        # this backlash is for xy only, not for z
+        # unit is counts
+        self.xy_backlash = 0
 
         self.minutes = 7
         self.step_Z = 0.001
@@ -35,6 +38,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.loss_rec.append(0)
         self.pos_rec.append(0)
         self.pos_curing_rec.append(P0)
+        self.current_pos = P[:]
         self.loss = []
         self.wait_time = 0.3
         
@@ -45,14 +49,14 @@ class Curing_Active_Alignment(XYscan.XYscan):
         if self.loss[-1] < -30:
             return False
         if self.loss[-1] <= self.loss_criteria:
-            P = self.scanUpdate(P, self.scanmode)
+            P = self.scanUpdate(P)
             self.final_adjust = True
             self.stepScanCounts = 4         
             while max(self.loss) < self.loss_criteria and not self.error_flag:
                 P = self.Zstep(P)
                 if self.loss_target_check(self.loss[-1]):
                     break
-                P = self.scanUpdate(P, self.scanmode)
+                P = self.scanUpdate(P)
         
         print('Pre-Curing done. Loss criteria ', self.loss_criteria)
         logging.info('Pre-Curing done. Loss criteria ' + str(self.loss_criteria))
@@ -74,7 +78,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.pos_curing_rec.append(P0)
         self.fetch_loss()
         self.loss_current_max = self.loss[-1]
-
+        self.current_pos = P[:]
 
         self.final_adjust = True
         self.stepScanCounts = 4
@@ -98,7 +102,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.loss_curing_rec.append(99)    
                 # If fail, run the second time, if fail again, exit   
                 for i in range(0,2):
-                    P1 = self.scanUpdate(P, self.scanmode)
+                    P1 = self.scanUpdate(P)
                     if P1 == False:
                         print('XY Values dont change')
                         logging.info('XY Values dont change')
@@ -141,6 +145,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.pos_curing_rec.append(P0)
         self.fetch_loss()
         self.loss_current_max = self.loss[-1]
+        self.current_pos = P[:]
 
         self.final_adjust = True
         self.stepScanCounts = 6
@@ -170,7 +175,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     self.pos_curing_rec.append(P)  
                     xycount = 0
 
-                P1 = self.scanUpdate(P, self.scanmode)
+                P1 = self.scanUpdate(P)
                 if P1 == False:
                     print('XY Values dont change')
                     logging.info('XY Values dont change')
@@ -205,6 +210,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         if self.send_to_hpp(P1):
             self.hppcontrol.disengage_motor()
             time.sleep(0.2)
+            self.current_pos = P1[:]
         else:
             print('Movement Error')
             logging.info('Movement Error')
@@ -329,3 +335,49 @@ class Curing_Active_Alignment(XYscan.XYscan):
             bound_z = 0.1
         return bound_z
     
+    # Return P1 after XY scan starting from P0, fixture is at P1, the loss is not updated
+    # Need fixture to be at P0 location in the begining, fixture will be at P1 in the end.
+    def scanUpdate(self, P0):
+        print('Scan update starts at: ')
+        print(P0)
+        logging.info('Scan update starts at: ')
+        logging.info(P0)
+        P1 = P0[:]
+        self.current_pos = P0[:]
+        Tmm = self.HPP.findAxialPosition(P0[0], P0[1], P0[2], P0[3], P0[4], P0[5])
+        Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
+        # logging.info('Start Tcounts: '+str(Tcounts))
+        xdelta = self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], 't')
+        if xdelta:
+            P1[0] = P1[0] + 50e-6 * xdelta
+        else:
+            print('X step failed')
+            logging.info('X step failed')
+            self.error_flag = True
+            return False               
+        # x search can errect the flag
+        if self.error_flag:
+            return P1
+        # Select mode and parameters as loss
+        if self.loss_target_check(max(self.loss)):
+            return P1
+
+        ydelta = self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], 't')
+        if ydelta:
+            P1[1] = P1[1] + 50e-6 * ydelta
+        else:
+            print('Y step failed')
+            logging.info('Y step failed')
+            self.error_flag = True
+            return False              
+        # Select mode and parameters as loss
+        if self.loss_target_check(max(self.loss)):
+            return P1        
+        
+        if not self.error_flag:
+            print('Scan update ends at: ')
+            print(P1)
+            logging.info('Scan update ends at: ')
+            logging.info(P1)
+            logging.info('X change: '+str(xdelta)+'; '+'Y change: '+str(ydelta))
+        return P1
