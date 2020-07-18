@@ -23,8 +23,8 @@ class XYscan:
         self.second_try = True   
         self.aggresive_threshold = -12
         self.scanmode_threshold = -4
-        self.stepmode_threshold = -1.5
-        self.interpmode_threshold = -1.5
+        self.stepmode_threshold = -2
+        self.interpmode_threshold = -2
         self.loss_criteria = -0.4
         self.scanmode = 'c'
         self.zmode = 'normal'
@@ -324,7 +324,7 @@ class XYscan:
                 if x1_final - X1_counts:
                     return x1_final - X1_counts 
                 else:
-                    return 1
+                    return .1
             else:
                 if i:
                     # if fail, the fixture needs to go back to the original position
@@ -392,7 +392,7 @@ class XYscan:
                 if y1_final - Y1_counts:
                     return y1_final - Y1_counts
                 else:
-                    return 1
+                    return .1
             else:
                 if i:
                     # if fail, go back to original position
@@ -539,7 +539,7 @@ class XYscan:
         if x1 - x1_o:
             return x1 - x1_o
         else:
-            return 1
+            return .1
 
     # y1_o is counts
     # travelmode can be either 'p' or 't', 't' is to move in traj mode
@@ -660,7 +660,7 @@ class XYscan:
         if y1 - y1_o:
             return y1 - y1_o
         else:
-            return 1
+            return .1
 
     # x1_o is counts, fixture needs to be at x1_o
     def Xinterp(self, x1_o, x2_o, x3_o):
@@ -685,7 +685,7 @@ class XYscan:
             x1 = [x1_o, x1_o-2*step, x1_o+step, x1_o-step, x1_o+2*step]
             x2 = [x2_o, x2_o+2*step, x2_o-step, x2_o+step, x2_o-2*step]
             x3 = [x3_o, x3_o+2*step, x3_o-step, x3_o+step, x3_o-2*step]
-            grid = [*range(int(x1_o-2*step), int(x1_o+2*step+1), 1)]
+            grid = [*range(int(x1_o-2*step), int(x1_o+2*step+1), 1)]          
 
         # After z, let's set the previous direc as 0
         self.x_dir_old = 0
@@ -754,7 +754,7 @@ class XYscan:
         if x1_final - x1_o:
             return x1_final - x1_o 
         else:
-            return 1
+            return .1
 
 
     # y1_o is counts, fixture needs to be at y1_o
@@ -780,8 +780,8 @@ class XYscan:
             y1 = [y1_o, y1_o-2*step, y1_o+step, y1_o-step, y1_o+2*step]
             y2 = [y2_o, y2_o-2*step, y2_o+step, y2_o-step, y2_o+2*step]
             y3 = [y3_o, y3_o-2*step, y3_o+step, y3_o-step, y3_o+2*step]   
-            grid = [*range(int(y1_o-2*step), int(y1_o+2*step+1), 1)]        
-        
+            grid = [*range(int(y1_o-2*step), int(y1_o+2*step+1), 1)]                   
+
         # After z, let's set the previous direc as 0
         self.y_dir_old = 0
         y10 = y1_o        
@@ -849,7 +849,7 @@ class XYscan:
         if y1_final - y1_o:
             return y1_final - y1_o 
         else:
-            return 1
+            return .1
 
     # Based on loss to determine xy interpolation sample step size
     # return step size and total points
@@ -860,7 +860,7 @@ class XYscan:
         # (-1,0]: range 24 counts, step is 6, total 5 points
         if loss <= -12:
             return [16, 5]
-        if loss <= -3:
+        elif loss <= -3:
             return [15, 5]
         elif loss <= -2:
             return [13, 5]
@@ -1061,12 +1061,12 @@ class XYscan:
             # for instance, loss_o = -15, then until -22.5 dB we stop forwarding Z
             # The purpose is to forward Z more aggressively to faster the process
             # make sure the loss is smaller than -5 and larger than -40, so that larger Z stepping won't be problem
+            # the max num of stepping is 6
             if self.zmode == 'aggressive' and min(self.loss) > -40:
                 if diff > bound:
                     loss_o = self.loss[-1]
-                    success_num += 1
                 # for VOA used to be 1.5 times
-                if self.loss[-1] > 2 * loss_o:
+                if self.loss[-1] > 2 * loss_o and success_num < 6:
                     success_num += 1
                     continue            
             

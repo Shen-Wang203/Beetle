@@ -733,8 +733,10 @@ class HPP_Control:
         #Check real counts
         if axis == 0:
             var0 = 'r axis0.encoder.shadow_count' + '\n'
+            # var0 = 'r axis0.encoder.pos_estimate' + '\n'
             # var0 = 'f 0' + '\n'
             var1 = 'r axis1.encoder.shadow_count' + '\n'
+            # var1 = 'r axis1.encoder.pos_estimate' + '\n'
             # var1 = 'f 1' + '\n'
             try: 
                 T1_real_count = int(self.T1_send(var0))
@@ -922,12 +924,12 @@ class HPP_Control:
 
     def slow_traj_speed_2(self):
         # 43 byte, time 43 * 10 / 115200 = 4ms
-        var0 = 'w axis0.trap_traj.config.accel_limit 80' + '\n'
-        var00 = 'w axis0.trap_traj.config.decel_limit 80' + '\n'
-        var000 = 'w axis0.trap_traj.config.vel_limit 80' + '\n'
-        var1 = 'w axis1.trap_traj.config.accel_limit 80' + '\n'
-        var11 = 'w axis1.trap_traj.config.decel_limit 80' + '\n'
-        var111 = 'w axis1.trap_traj.config.vel_limit 80' + '\n'
+        var0 = 'w axis0.trap_traj.config.accel_limit 60' + '\n'
+        var00 = 'w axis0.trap_traj.config.decel_limit 60' + '\n'
+        var000 = 'w axis0.trap_traj.config.vel_limit 60' + '\n'
+        var1 = 'w axis1.trap_traj.config.accel_limit 60' + '\n'
+        var11 = 'w axis1.trap_traj.config.decel_limit 60' + '\n'
+        var111 = 'w axis1.trap_traj.config.vel_limit 60' + '\n'
         self.T123_send_only(var0, var1)
         self.T123_send_only(var00, var11)    
         self.T123_send_only(var000, var111)

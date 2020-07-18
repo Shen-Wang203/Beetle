@@ -230,7 +230,7 @@ class CMDInputThread(QtCore.QThread):
             xys = XYscan(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
             self.sig2.emit(2)
-            P0 = [0,0,140,-0.3,-0.2,0]
+            P0 = [0,0,140,-0.3,0.2,0]
             # P0 = [1,0,140,0.2,-1.5,0]
             xys.set_starting_point(P0)
             
@@ -240,7 +240,7 @@ class CMDInputThread(QtCore.QThread):
                 xys.product_select('1xN')              
             
             xys.second_try = False
-            xys.set_loss_criteria(-0.35)
+            xys.set_loss_criteria(-0.45)
             # 1 is step, 2 is interp
             # xys.strategy = 1
             xys.strategy = 2

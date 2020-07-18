@@ -6,13 +6,13 @@ class Curing_Active_Alignment(XYscan.XYscan):
     def __init__(self, HPPModel, hppcontrol):
         super().__init__(HPPModel, hppcontrol)  
         self.tolerance = 2 
-        self.scanmode = 's'
+        # self.scanmode = 's'
         # this backlash is for xy only, not for z
         # unit is counts
         self.xy_backlash = 0
 
         self.minutes = 7
-        self.step_Z = 0.001
+        self.step_Z = 0.0008
         self.loss_curing_rec = []
         self.pos_curing_rec = []
 
@@ -25,7 +25,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.step_Z = 0.0005
         elif _product == '1xN':
             self.product = 2
-            self.step_Z = 0.001
+            self.step_Z = 0.0008
 
     def pre_curing_run(self, P0):   
         print('Pre-Curing Active Alignment Starts')
@@ -139,6 +139,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         logging.info('Curing Active Alignment Starts. Loss Critera ' + str(self.loss_criteria)) 
         logging.info('++++++++++++++++++++++++++++++')
         P = P0[:]
+        # self.hppcontrol.slow_traj_speed_2()
         # record append number 0 as an indicate to enter curing
         self.loss_rec.append(0)
         self.pos_rec.append(0)
@@ -171,7 +172,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.loss_curing_rec.append(99)    
                 # Z back if xy search failed for 8 times
                 if xycount == 8:
-                    P = self.Zstep_back(P)
+                    P = self.Zstep(P)
                     self.pos_curing_rec.append(P)  
                     xycount = 0
 
@@ -200,7 +201,11 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 print('Loss is high, trying again')
                 logging.info('Loss is high, trying again')
 
-
+        self.hppcontrol.normal_traj_speed()
+        print('End curing program')
+        logging.info('End curing program')
+        
+        
     def Zstep_back(self, P0):
         print('Z Back 0.8um')
         logging.info('Z Back 0.8um')         
@@ -259,7 +264,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 return P1
 
             if self.product == 2:
-                bound = self.loss_bound_zstep(loss_o)
+                # bound = self.loss_bound_zstep(loss_o)
+                bound = self.loss_bound(loss_o)
             elif self.product == 1:
                 bound = self.loss_bound(loss_o)
             diff = self.loss[-1] - loss_o
@@ -346,23 +352,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.current_pos = P0[:]
         Tmm = self.HPP.findAxialPosition(P0[0], P0[1], P0[2], P0[3], P0[4], P0[5])
         Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
-        # logging.info('Start Tcounts: '+str(Tcounts))
-        xdelta = self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], 't')
-        if xdelta:
-            P1[0] = P1[0] + 50e-6 * xdelta
-        else:
-            print('X step failed')
-            logging.info('X step failed')
-            self.error_flag = True
-            return False               
-        # x search can errect the flag
-        if self.error_flag:
-            return P1
-        # Select mode and parameters as loss
-        if self.loss_target_check(max(self.loss)):
-            return P1
 
-        ydelta = self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], 't')
+        # ydelta = self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], 'p')
+        ydelta = self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5])
         if ydelta:
             P1[1] = P1[1] + 50e-6 * ydelta
         else:
@@ -372,7 +364,23 @@ class Curing_Active_Alignment(XYscan.XYscan):
             return False              
         # Select mode and parameters as loss
         if self.loss_target_check(max(self.loss)):
-            return P1        
+            return P1  
+        # previous search can errect the flag
+        if self.error_flag:
+            return P1
+
+        # xdelta = self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], 'p')]
+        xdelta = self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4])
+        if xdelta:
+            P1[0] = P1[0] + 50e-6 * xdelta
+        else:
+            print('X step failed')
+            logging.info('X step failed')
+            self.error_flag = True
+            return False               
+        # Select mode and parameters as loss
+        if self.loss_target_check(max(self.loss)):
+            return P1
         
         if not self.error_flag:
             print('Scan update ends at: ')
@@ -381,3 +389,20 @@ class Curing_Active_Alignment(XYscan.XYscan):
             logging.info(P1)
             logging.info('X change: '+str(xdelta)+'; '+'Y change: '+str(ydelta))
         return P1
+
+    # smaller step size
+    def xyinterp_sample_step(self, loss):
+        # (-4,-3]: range 52 counts, step is 13, total 5 points 
+        # (-3,-2]: range 44 counts, step is 11, total 5 points
+        # (-2,-1]: range 32 counts, step is 8, total 5 points
+        # (-1,0]: range 16 counts, step is 4, total 5 points
+        if loss <= -12:
+            return [16, 5]
+        elif loss <= -3:
+            return [13, 5]
+        elif loss <= -2:
+            return [11, 5]
+        elif loss <= -1:
+            return [8, 5]
+        else:
+            return [4, 5]
