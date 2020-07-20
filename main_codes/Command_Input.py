@@ -240,7 +240,7 @@ class CMDInputThread(QtCore.QThread):
                 xys.product_select('1xN')              
             
             xys.second_try = False
-            xys.set_loss_criteria(-0.45)
+            xys.set_loss_criteria(-0.47)
             # 1 is step, 2 is interp
             # xys.strategy = 1
             xys.strategy = 2

@@ -1,6 +1,7 @@
 TODO Bugs:
 1. Click close, then auto align again, it will stop in the middle
 2. UART issue, stop in the middle occasionly
+3. Pre-cure return false
 
 Jerry
 GUI pending:

@@ -353,7 +353,7 @@ class Ui_MainWindow(object):
         self.pushButton_alignment.setFont(font)
         self.pushButton_alignment.setObjectName("pushButton_alignment")
         self.pushButton_alignment.setStyleSheet("background-color: red")
-        self.pushButton_alignment.setEnabled(False)
+        # self.pushButton_alignment.setEnabled(False)
 
         self.pushButton_pre_curing = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_pre_curing.setGeometry(QtCore.QRect(850, 250, 300, 60))
@@ -362,7 +362,7 @@ class Ui_MainWindow(object):
         self.pushButton_pre_curing.setFont(font)
         self.pushButton_pre_curing.setObjectName("pushButton_pre_curing")
         self.pushButton_pre_curing.setStyleSheet("background-color: red")
-        self.pushButton_pre_curing.setEnabled(False)
+        # self.pushButton_pre_curing.setEnabled(False)
 
         self.pushButton_curing = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_curing.setGeometry(QtCore.QRect(850, 350, 300, 60))
@@ -371,7 +371,7 @@ class Ui_MainWindow(object):
         self.pushButton_curing.setFont(font)
         self.pushButton_curing.setObjectName("pushButton_curing")
         self.pushButton_curing.setStyleSheet("background-color: red")
-        self.pushButton_curing.setEnabled(False)
+        # self.pushButton_curing.setEnabled(False)
 
         self.comboBox_camera = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox_camera.setGeometry(QtCore.QRect(70, 0, 211, 31))
@@ -589,9 +589,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton_alignment.setStyleSheet("background-color: red")
         self.pushButton_alignment.setEnabled(True)
         self.pushButton_pre_curing.setStyleSheet("background-color: red")
-        self.pushButton_pre_curing.setEnabled(False)
+        # self.pushButton_pre_curing.setEnabled(False)
         self.pushButton_curing.setStyleSheet('Background-color: red')
-        self.pushButton_curing.setEnabled(False)
+        # self.pushButton_curing.setEnabled(False)
 
 
     def alignment_click(self):

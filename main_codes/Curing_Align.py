@@ -139,7 +139,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
         logging.info('Curing Active Alignment Starts. Loss Critera ' + str(self.loss_criteria)) 
         logging.info('++++++++++++++++++++++++++++++')
         P = P0[:]
-        # self.hppcontrol.slow_traj_speed_2()
         # record append number 0 as an indicate to enter curing
         self.loss_rec.append(0)
         self.pos_rec.append(0)
@@ -170,9 +169,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
             if curing_active and self.loss[-1] < self.loss_criteria:
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
-                # Z back if xy search failed for 8 times
-                if xycount == 8:
-                    P = self.Zstep(P)
+                # Z back if xy search failed for 3 times
+                if xycount == 3:
+                    # P = self.Zstep(P)
+                    # P = self.Zstep_back(P)
                     self.pos_curing_rec.append(P)  
                     xycount = 0
 
@@ -188,6 +188,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                             return P
                     else:
                         solid_flag = True
+                        self.error_flag = False
                 else:
                     P = P1[:]         
                 self.pos_curing_rec.append(P)    
@@ -201,7 +202,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 print('Loss is high, trying again')
                 logging.info('Loss is high, trying again')
 
-        self.hppcontrol.normal_traj_speed()
         print('End curing program')
         logging.info('End curing program')
         
@@ -379,7 +379,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
             print(P1)
             logging.info('Scan update ends at: ')
             logging.info(P1)
-            logging.info('X change: '+str(xdelta)+'; '+'Y change: '+str(ydelta))
         return P1
 
     # smaller step size
@@ -387,7 +386,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         # (-4,-3]: range 52 counts, step is 13, total 5 points 
         # (-3,-2]: range 44 counts, step is 11, total 5 points
         # (-2,-1]: range 32 counts, step is 8, total 5 points
-        # (-1,0]: range 16 counts, step is 4, total 5 points
+        # (-1,0]: range 24 counts, step is 6, total 5 points
         if loss <= -12:
             return [16, 5]
         elif loss <= -3:
@@ -397,4 +396,4 @@ class Curing_Active_Alignment(XYscan.XYscan):
         elif loss <= -1:
             return [8, 5]
         else:
-            return [4, 5]
+            return [6, 5]

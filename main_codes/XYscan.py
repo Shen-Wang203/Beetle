@@ -104,7 +104,8 @@ class XYscan:
         self.stepScanCounts = 10
         self.tolerance = 5
         self.scanmode = 'c'
-        self.loss = [-60]
+        self.fetch_loss()
+        self.loss_current_max = self.loss[-1]
         self.error_flag = False
         while not self.error_flag:
             # Select mode and parameters as loss
@@ -239,7 +240,7 @@ class XYscan:
             self.final_adjust = True
             self.stepScanCounts = 3 
             self.tolerance = 2 
-            self.wait_time = 0.4
+            self.wait_time = 0.2
             if self.product == 1:
                 self.Z_amp = 1.2
             elif self.product == 2:
@@ -252,7 +253,7 @@ class XYscan:
             self.scanmode = 'i'
             self.final_adjust = True
             self.tolerance = 2 
-            self.wait_time = 0.4
+            self.wait_time = 0.2
             if self.product == 1:
                 self.Z_amp = 1.2
             elif self.product == 2:
@@ -655,42 +656,94 @@ class XYscan:
     # x1_o is counts, fixture needs to be at x1_o
     # when success return true, position is updated in self.current_pos
     def Xinterp(self, x1_o, x2_o, x3_o):
-        print('Start Xinterp (loss then pos)')
-        logging.info('Start Xinterp (loss then pos)')  
-        self.loss = []        
-        self.pos = []
-        self.fetch_loss()
-        self.pos.append(x1_o)    
-        # print(x1_o)  
-        # logging.info(x1_o)  
-        self.save_loss_pos()
-        self.pos_ref = self.current_pos[:]    
-        # step in counts   
-        [step, totalpoints] = self.xyinterp_sample_step(self.loss[-1])
-        if totalpoints == 7:
-            x1 = [x1_o, x1_o-3*step, x1_o+step, x1_o-2*step, x1_o+2*step, x1_o-step, x1_o+3*step]
-            x2 = [x2_o, x2_o+3*step, x2_o-step, x2_o+2*step, x2_o-2*step, x2_o+step, x2_o-3*step]
-            x3 = [x3_o, x3_o+3*step, x3_o-step, x3_o+2*step, x3_o-2*step, x3_o+step, x3_o-3*step]
-        elif totalpoints == 5:
-            x1 = [x1_o, x1_o-2*step, x1_o+step, x1_o-step, x1_o+2*step]
-            x2 = [x2_o, x2_o+2*step, x2_o-step, x2_o+step, x2_o-2*step]
-            x3 = [x3_o, x3_o+2*step, x3_o-step, x3_o+step, x3_o-2*step]        
+        for j in range(0,3):
+            print('Start Xinterp (loss then pos)')
+            logging.info('Start Xinterp (loss then pos)')  
+            self.loss = []        
+            self.pos = []
+            self.fetch_loss()
+            self.pos.append(x1_o)    
+            # print(x1_o)  
+            # logging.info(x1_o)  
+            self.save_loss_pos()
+            self.pos_ref = self.current_pos[:]    
+            # step in counts   
+            [step, totalpoints] = self.xyinterp_sample_step(self.loss[-1])
+            if totalpoints == 7:
+                x1 = [x1_o, x1_o-3*step, x1_o+step, x1_o-2*step, x1_o+2*step, x1_o-step, x1_o+3*step]
+                x2 = [x2_o, x2_o+3*step, x2_o-step, x2_o+2*step, x2_o-2*step, x2_o+step, x2_o-3*step]
+                x3 = [x3_o, x3_o+3*step, x3_o-step, x3_o+2*step, x3_o-2*step, x3_o+step, x3_o-3*step]
+            elif totalpoints == 5:
+                x1 = [x1_o, x1_o-2*step, x1_o+step, x1_o-step, x1_o+2*step]
+                x2 = [x2_o, x2_o+2*step, x2_o-step, x2_o+step, x2_o-2*step]
+                x3 = [x3_o, x3_o+2*step, x3_o-step, x3_o+step, x3_o-2*step]        
 
-        # After z, let's set the previous direc as 0
-        self.x_dir_old = 0
-        x10 = x1_o
-        for i in range(1,totalpoints+1):
+            # After z, let's set the previous direc as 0
+            self.x_dir_old = 0
+            x10 = x1_o
+            for i in range(1,totalpoints+1):
+                # apply backlash counter
+                counter = self.apply_xy_backlash_counter(x10, x1[i], 'x')
+                x1[i] = x1[i] + counter
+                x2[i] = x2[i] - counter
+                x3[i] = x3[i] - counter
+                x10 = x1[i]            
+                if self.final_adjust:
+                    self.hppcontrol.engage_motor()
+                self.hppcontrol.Tx_send_only(x1[i], x2[i], x3[i], 'p')
+                timeout = 0
+                while not self.hppcontrol.Tx_on_target(x1[i], x2[i], x3[i], self.tolerance):
+                    time.sleep(0.2)
+                    timeout += 1
+                    if timeout > 100:
+                        print('Movement Timeout Error')
+                        logging.info('Movement Timeout Error')
+                        return False
+                if self.final_adjust:
+                    self.hppcontrol.disengage_motor()
+                time.sleep(self.wait_time)
+                self.update_current_pos('x', x1[i], x1_o)
+                self.fetch_loss()
+                self.pos.append(x1[i])
+                # print(x1[i])  
+                # logging.info(x1[i])
+                self.save_loss_pos()
+                if self.loss_target_check(self.loss[-1]):
+                    return True
+                if i == totalpoints - 1:
+                    # if unchange return false
+                    if max(self.loss) - min(self.loss) < 0.005:
+                        return False
+                    # max loss is at left edge, need to extend on the left for more steps
+                    if self.loss.index(max(self.loss)) == 1:
+                        x1.append(x1[1] - 2*step)
+                        x2.append(x2[1] + 2*step)
+                        x3.append(x3[1] + 2*step)
+                    # max loss is at right edge, need to extend on the right for 2 more steps
+                    elif self.loss.index(max(self.loss)) == i:
+                        x1.append(x1[i] + 2*step)
+                        x2.append(x2[1] - 2*step)
+                        x3.append(x3[1] - 2*step)                    
+                    else:
+                        break
+
+            grid = [*range(int(min(x1)), int(max(x1)), 1)]  
+            s = interpolation.barycenteric_interp(x1, self.loss, grid)
+            x1_final = grid[s.index(max(s))]
+            x2_final = -x1_final + x1_o + x2_o
+            x3_final = -x1_final + x1_o + x3_o
             # apply backlash counter
-            counter = self.apply_xy_backlash_counter(x10, x1[i], 'x')
-            x1[i] = x1[i] + counter
-            x2[i] = x2[i] - counter
-            x3[i] = x3[i] - counter
-            x10 = x1[i]            
+            counter = self.apply_xy_backlash_counter(x10, x1_final, 'x')
+            x1_final = x1_final + counter
+            x2_final = x2_final - counter
+            x3_final = x3_final - counter
+            x10 = x1_final         
             if self.final_adjust:
-                self.hppcontrol.engage_motor()
-            self.hppcontrol.Tx_send_only(x1[i], x2[i], x3[i], 'p')
+                self.hppcontrol.engage_motor() 
+            self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 'p')
+            # check on target, need to check all of them
             timeout = 0
-            while not self.hppcontrol.Tx_on_target(x1[i], x2[i], x3[i], self.tolerance):
+            while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
                 time.sleep(0.2)
                 timeout += 1
                 if timeout > 100:
@@ -698,107 +751,117 @@ class XYscan:
                     logging.info('Movement Timeout Error')
                     return False
             if self.final_adjust:
-                self.hppcontrol.disengage_motor()
+                self.hppcontrol.disengage_motor()  
             time.sleep(self.wait_time)
-            self.update_current_pos('x', x1[i], x1_o)
+            self.update_current_pos('x', x1_final, x1_o)
             self.fetch_loss()
-            self.pos.append(x1[i])
-            # print(x1[i])  
-            # logging.info(x1[i])
-            self.save_loss_pos()
-            if self.loss_target_check(self.loss[-1]):
-                return True
-            if i == totalpoints - 1:
-                # if unchange return false
-                if max(self.loss) - min(self.loss) < 0.005:
-                    return False
-                # max loss is at left edge, need to extend on the left for more steps
-                if self.loss.index(max(self.loss)) == 1:
-                    x1.append(x1[1] - 2*step)
-                    x2.append(x2[1] + 2*step)
-                    x3.append(x3[1] + 2*step)
-                # max loss is at right edge, need to extend on the right for 2 more steps
-                elif self.loss.index(max(self.loss)) == i:
-                    x1.append(x1[i] + 2*step)
-                    x2.append(x2[1] - 2*step)
-                    x3.append(x3[1] - 2*step)                    
-                else:
-                    break
-
-        grid = [*range(int(min(x1)), int(max(x1)), 1)]  
-        s = interpolation.barycenteric_interp(x1, self.loss, grid)
-        x1_final = grid[s.index(max(s))]
-        x2_final = -x1_final + x1_o + x2_o
-        x3_final = -x1_final + x1_o + x3_o
-        # apply backlash counter
-        counter = self.apply_xy_backlash_counter(x10, x1_final, 'x')
-        x1_final = x1_final + counter
-        x2_final = x2_final - counter
-        x3_final = x3_final - counter
-        x10 = x1_final         
-        if self.final_adjust:
-            self.hppcontrol.engage_motor() 
-        self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 'p')
-        # check on target, need to check all of them
-        timeout = 0
-        while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
-            time.sleep(0.2)
-            timeout += 1
-            if timeout > 100:
-                print('Movement Timeout Error')
-                logging.info('Movement Timeout Error')
-                return False
-        if self.final_adjust:
-            self.hppcontrol.disengage_motor()  
-        time.sleep(self.wait_time)
-        self.update_current_pos('x', x1_final, x1_o)
-        self.fetch_loss()
-        self.pos.append(x1_final)
-        print('XInterp final: ',x1_final)
-        logging.info('XInterp final: ' + str(x1_final))
-        self.check_abnormal_loss(max(self.loss))
+            self.pos.append(x1_final)
+            print('XInterp final: ',x1_final)
+            logging.info('XInterp final: ' + str(x1_final))
+            self.check_abnormal_loss(max(self.loss))
+            # if final loss is not the max, then we redo the search again
+            if self.loss[-1] < max(self.loss) - 0.04:
+                x1_o = x1_final
+                x2_o = x2_final
+                x3_o = x3_final
+                print('X run again')
+                logging.info('X run again')
+            else:
+                break
         return True
 
 
     # y1_o is counts, fixture needs to be at y1_o
     # when success return true, position is updated in self.current_pos
     def Yinterp(self, y1_o, y2_o, y3_o):
-        print('Start Yinterp (loss then pos)')
-        logging.info('Start Yinterp (loss then pos)')  
-        self.loss = []        
-        self.pos = []
-        self.fetch_loss()
-        self.pos.append(y1_o)    
-        # print(y1_o)  
-        # logging.info(y1_o)  
-        self.save_loss_pos()
-        self.pos_ref = self.current_pos[:]    
-        # step in counts   
-        [step, totalpoints] = self.xyinterp_sample_step(self.loss[-1])
-        if totalpoints == 7:
-            y1 = [y1_o, y1_o-3*step, y1_o+step, y1_o-2*step, y1_o+2*step, y1_o-step, y1_o+3*step]
-            y2 = [y2_o, y2_o-3*step, y2_o+step, y2_o-2*step, y2_o+2*step, y2_o-step, y2_o+3*step]
-            y3 = [y3_o, y3_o-3*step, y3_o+step, y3_o-2*step, y3_o+2*step, y3_o-step, y3_o+3*step]
-        elif totalpoints == 5:
-            y1 = [y1_o, y1_o-2*step, y1_o+step, y1_o-step, y1_o+2*step]
-            y2 = [y2_o, y2_o-2*step, y2_o+step, y2_o-step, y2_o+2*step]
-            y3 = [y3_o, y3_o-2*step, y3_o+step, y3_o-step, y3_o+2*step]                   
+        for j in range(0,3):
+            print('Start Yinterp (loss then pos)')
+            logging.info('Start Yinterp (loss then pos)')  
+            self.loss = []        
+            self.pos = []
+            self.fetch_loss()
+            self.pos.append(y1_o)    
+            # print(y1_o)  
+            # logging.info(y1_o)  
+            self.save_loss_pos()
+            self.pos_ref = self.current_pos[:]    
+            # step in counts   
+            [step, totalpoints] = self.xyinterp_sample_step(self.loss[-1])
+            if totalpoints == 7:
+                y1 = [y1_o, y1_o-3*step, y1_o+step, y1_o-2*step, y1_o+2*step, y1_o-step, y1_o+3*step]
+                y2 = [y2_o, y2_o-3*step, y2_o+step, y2_o-2*step, y2_o+2*step, y2_o-step, y2_o+3*step]
+                y3 = [y3_o, y3_o-3*step, y3_o+step, y3_o-2*step, y3_o+2*step, y3_o-step, y3_o+3*step]
+            elif totalpoints == 5:
+                y1 = [y1_o, y1_o-2*step, y1_o+step, y1_o-step, y1_o+2*step]
+                y2 = [y2_o, y2_o-2*step, y2_o+step, y2_o-step, y2_o+2*step]
+                y3 = [y3_o, y3_o-2*step, y3_o+step, y3_o-step, y3_o+2*step]                   
 
-        # After z, let's set the previous direc as 0
-        self.y_dir_old = 0
-        y10 = y1_o        
-        for i in range(1, totalpoints+1):
+            # After z, let's set the previous direc as 0
+            self.y_dir_old = 0
+            y10 = y1_o        
+            for i in range(1, totalpoints+1):
+                # apply backlash counter
+                counter = self.apply_xy_backlash_counter(y10, y1[i], 'y')
+                y1[i] = y1[i] + counter
+                y2[i] = y2[i] + counter
+                y3[i] = y3[i] + counter
+                y10 = y1[i]  
+                if self.final_adjust:
+                    self.hppcontrol.engage_motor()
+                self.hppcontrol.Ty_send_only(y1[i], y2[i], y3[i], 'p')
+                timeout = 0
+                while not self.hppcontrol.Ty_on_target(y1[i], y2[i], y3[i], self.tolerance):
+                    time.sleep(0.2)
+                    timeout += 1
+                    if timeout > 100:
+                        print('Movement Timeout Error')
+                        logging.info('Movement Timeout Error')
+                        return False
+                if self.final_adjust:
+                    self.hppcontrol.disengage_motor()
+                time.sleep(self.wait_time)
+                self.update_current_pos('y', y1[i], y1_o)
+                self.fetch_loss()
+                self.pos.append(y1[i])
+                # print(y1[i])  
+                # logging.info(y1[i])
+                self.save_loss_pos()
+                if self.loss_target_check(self.loss[-1]):
+                    return True
+                if i == totalpoints - 1:
+                    # if unchange return false
+                    if max(self.loss) - min(self.loss) < 0.005:
+                        return False
+                    # max loss is at left edge, need to extend on the left for more steps
+                    if self.loss.index(max(self.loss)) == 1:
+                        y1.append(y1[1] - 2*step)
+                        y2.append(y2[1] - 2*step)
+                        y3.append(y3[1] - 2*step)
+                    # max loss is at right edge, need to extend on the right for 2 more steps
+                    elif self.loss.index(max(self.loss)) == totalpoints - 1:
+                        y1.append(y1[i] + 2*step)
+                        y2.append(y2[1] + 2*step)
+                        y3.append(y3[1] + 2*step)                    
+                    else:
+                        break
+
+            grid = [*range(int(min(y1)), int(max(y1)), 1)]  
+            s = interpolation.barycenteric_interp(y1, self.loss, grid)
+            y1_final = grid[s.index(max(s))]
+            y2_final = y1_final - y1_o + y2_o
+            y3_final = y1_final - y1_o + y3_o
             # apply backlash counter
-            counter = self.apply_xy_backlash_counter(y10, y1[i], 'y')
-            y1[i] = y1[i] + counter
-            y2[i] = y2[i] + counter
-            y3[i] = y3[i] + counter
-            y10 = y1[i]  
+            counter = self.apply_xy_backlash_counter(y10, y1_final, 'y')
+            y1_final = y1_final + counter
+            y2_final = y2_final + counter
+            y3_final = y3_final + counter
+            y10 = y1_final 
             if self.final_adjust:
-                self.hppcontrol.engage_motor()
-            self.hppcontrol.Ty_send_only(y1[i], y2[i], y3[i], 'p')
+                self.hppcontrol.engage_motor()        
+            self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 'p')
+            # check on target, need to check all of them
             timeout = 0
-            while not self.hppcontrol.Ty_on_target(y1[i], y2[i], y3[i], self.tolerance):
+            while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
                 time.sleep(0.2)
                 timeout += 1
                 if timeout > 100:
@@ -806,65 +869,23 @@ class XYscan:
                     logging.info('Movement Timeout Error')
                     return False
             if self.final_adjust:
-                self.hppcontrol.disengage_motor()
-            time.sleep(self.wait_time)
-            self.update_current_pos('y', y1[i], y1_o)
+                self.hppcontrol.disengage_motor()   
+            time.sleep(self.wait_time)     
+            self.update_current_pos('y', y1_final, y1_o)
             self.fetch_loss()
-            self.pos.append(y1[i])
-            # print(y1[i])  
-            # logging.info(y1[i])
-            self.save_loss_pos()
-            if self.loss_target_check(self.loss[-1]):
-                return True
-            if i == totalpoints - 1:
-                # if unchange return false
-                if max(self.loss) - min(self.loss) < 0.005:
-                    return False
-                # max loss is at left edge, need to extend on the left for more steps
-                if self.loss.index(max(self.loss)) == 1:
-                    y1.append(y1[1] - 2*step)
-                    y2.append(y2[1] - 2*step)
-                    y3.append(y3[1] - 2*step)
-                # max loss is at right edge, need to extend on the right for 2 more steps
-                elif self.loss.index(max(self.loss)) == totalpoints - 1:
-                    y1.append(y1[i] + 2*step)
-                    y2.append(y2[1] + 2*step)
-                    y3.append(y3[1] + 2*step)                    
-                else:
-                    break
-
-        grid = [*range(int(min(y1)), int(max(y1)), 1)]  
-        s = interpolation.barycenteric_interp(y1, self.loss, grid)
-        y1_final = grid[s.index(max(s))]
-        y2_final = y1_final - y1_o + y2_o
-        y3_final = y1_final - y1_o + y3_o
-        # apply backlash counter
-        counter = self.apply_xy_backlash_counter(y10, y1_final, 'y')
-        y1_final = y1_final + counter
-        y2_final = y2_final + counter
-        y3_final = y3_final + counter
-        y10 = y1_final 
-        if self.final_adjust:
-            self.hppcontrol.engage_motor()        
-        self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 'p')
-        # check on target, need to check all of them
-        timeout = 0
-        while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
-            time.sleep(0.2)
-            timeout += 1
-            if timeout > 100:
-                print('Movement Timeout Error')
-                logging.info('Movement Timeout Error')
-                return False
-        if self.final_adjust:
-            self.hppcontrol.disengage_motor()   
-        time.sleep(self.wait_time)     
-        self.update_current_pos('y', y1_final, y1_o)
-        self.fetch_loss()
-        self.pos.append(y1_final)
-        print('YInterp final: ',y1_final)
-        logging.info('YInterp final: ' + str(y1_final))
-        self.check_abnormal_loss(max(self.loss)) 
+            self.pos.append(y1_final)
+            print('YInterp final: ',y1_final)
+            logging.info('YInterp final: ' + str(y1_final))
+            self.check_abnormal_loss(max(self.loss)) 
+            # if final loss is not the max, then we redo the search again
+            if self.loss[-1] < max(self.loss) - 0.04:
+                y1_o = y1_final
+                y2_o = y2_final
+                y3_o = y3_final
+                print('Y run again')
+                logging.info('Y run again')     
+            else:
+                break           
         return True
 
     # Based on loss to determine xy interpolation sample step size
@@ -972,7 +993,9 @@ class XYscan:
 
     def loss_bound_large(self, _loss_ref_z):
         x = abs(_loss_ref_z)
-        if x < 0.7:
+        if x < 0.5:
+            bound_z = 0.05
+        elif x < 0.7:
             # bound_z = 0.5 * x
             bound_z = 0.32
         elif x < 1.2:
@@ -1078,7 +1101,7 @@ class XYscan:
                 if diff > bound:
                     loss_o = self.loss[-1]
                 # for VOA used to be 1.5 times
-                if self.loss[-1] > 2 * loss_o and success_num < 6:
+                if self.loss[-1] > 2 * loss_o and success_num < 5:
                     success_num += 1
                     continue            
             
@@ -1158,7 +1181,7 @@ class XYscan:
                 if success_num == 5:
                     break
                 # for 1xN, if loss improved, exit directly   
-                if diff > 0.05 and self.product == 2:
+                if diff > 0.02 and self.product == 2:
                     break
 
         print('Z optim ends at: ')
