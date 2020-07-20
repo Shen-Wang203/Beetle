@@ -1094,4 +1094,3 @@ class XYscan:
         # else:
             # error_flag = False        
         return True  
-

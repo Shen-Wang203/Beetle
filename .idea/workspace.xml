@@ -20,14 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f80f1f8c-2fee-41cf-aa08-afa8e3daec71" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main_codes/StaticVar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Beetle.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Beetle.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODOs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TODOs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_codes/Command_Input.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_codes/Command_Input.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_codes/GUI2.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_codes/GUI2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_codes/HPP_Control.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_codes/HPP_Control.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_codes/PowerMeter.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_codes/PowerMeter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_codes/StaticVar.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_codes/StaticVar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_codes/XYscan.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_codes/XYscan.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +95,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -115,29 +113,49 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1594333907803" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1594334292969">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="186" key="GridCell.Tab.0.bottom" timestamp="1595288802419">
+      <screen x="-1920" y="-444" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594334292969" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1594334292969">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="186" key="GridCell.Tab.0.bottom/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288802419" />
+    <state width="936" height="22" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595287048705" />
+    <state width="1899" height="186" key="GridCell.Tab.0.center" timestamp="1595288802419">
+      <screen x="-1920" y="-444" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594334292969" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1594334292969">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="186" key="GridCell.Tab.0.center/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288802419" />
+    <state width="936" height="22" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595287048705" />
+    <state width="1899" height="186" key="GridCell.Tab.0.left" timestamp="1595288802419">
+      <screen x="-1920" y="-444" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594334292969" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1594334292969">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1899" height="186" key="GridCell.Tab.0.left/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288802419" />
+    <state width="936" height="22" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595287048704" />
+    <state width="1899" height="186" key="GridCell.Tab.0.right" timestamp="1595288802419">
+      <screen x="-1920" y="-444" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594334292969" />
+    <state width="1899" height="186" key="GridCell.Tab.0.right/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288802419" />
+    <state width="936" height="22" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595287048705" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1593541221718">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1593541221718" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1594333878014">
+    <state x="-1368" y="-191" key="Vcs.Push.Dialog.v2" timestamp="1595288758805">
+      <screen x="-1920" y="-444" width="1920" height="1040" />
+    </state>
+    <state x="-1368" y="-191" key="Vcs.Push.Dialog.v2/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288758805" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1595285969817" />
+    <state x="1103" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1595286410923">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1594333878014" />
+    <state x="1103" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1595286410923" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_codes/GUI2.py</url>
+          <line>904</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

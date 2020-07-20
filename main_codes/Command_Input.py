@@ -11,8 +11,6 @@ from Curing_Align import Curing_Active_Alignment
 error_flag = False 
 
 class CMDInputThread(QtCore.QThread):
-    
-
     def __init__(self, parent=None):
         QtCore.QThread.__init__(self, parent)
         self.cmd = ''

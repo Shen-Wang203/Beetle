@@ -22,9 +22,9 @@ import os
 import sys
 import time
 import logging
+import cv2
 
 class Ui_MainWindow(object):
-    # keyPressed = QtCore.pyqtSignal(QtCore.QEvent)
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1248, 878)
@@ -454,12 +454,27 @@ class Ui_MainWindow(object):
         if not self.available_cameras:
                 pass #quit
         
-        self.viewfinder = QCameraViewfinder(self.centralwidget)
-        self.viewfinder.setGeometry(QtCore.QRect(20,30,600,400))
-        self.viewfinder.show()
-        self.select_camera(0)
+        # self.viewfinder = QCameraViewfinder(self.centralwidget)
+        # self.viewfinder.setGeometry(QtCore.QRect(20,30,600,400))
+        # self.viewfinder.show()
+        self.cameraLabel = QLabel(self)
+        self.cameraLabel.setGeometry(QtCore.QRect(20,30,640,480))
+        th = Thread(self)
+        th.changePixmap.connect(self.setImage)
+        th.start()
+        # self.select_camera(0)
         self.comboBox_camera.addItems([c.description() for c in self.available_cameras])
-        self.comboBox_camera.currentIndexChanged.connect(self.select_camera)
+        self.comboBox_camera.currentIndexChanged.connect(self.RefreshCameraThread)
+
+    @pyqtSlot(QImage)
+    def setImage(self, image):
+        self.cameraLabel.setPixmap(QPixmap.fromImage(image))
+
+    @pyqtSlot()
+    def RefreshCameraThread(self, cameraIdx):
+        th = Thread(self)
+        th.changePixmap.connect(self.setImage)
+        th.start()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -528,7 +543,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         QMainWindow.__init__(self, parent=parent)
         self.setupUi(self)
         self.runthread = cmd.CMDInputThread()
-        
+        # Set up timer to update IL
+        # timer = QtCore.QTimer(self)
+        # timer.timeout.connect(self.updateIL)
+        # timer.start(100)
 
     step = 0.0002
     target_mm = [0,0,138,0,0,0]
@@ -859,14 +877,37 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.zplus_click(self.step)
             elif e.key() == Qt.Key_Minus:
                 self.zminus_click(self.step)
+        
+    def updateIL(self):
+        self.label_IL.setText("IL: " + StaticVar.IL)
+        self.label_IL.adjustSize()
+
+class Thread(QThread):
+    changePixmap = pyqtSignal(QImage)
+
+    def run(self):
+        image = cv2.VideoCapture(0)
+        while True:
+            ret, frame = image.read()
+            if ret:
+                rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                h, w, ch = rgbImage.shape
+                center = (w/2, h/2)
+                M = cv2.getRotationMatrix2D(center, 180, 1)
+                rotated180 = cv2.warpAffine(rgbImage, M, (w,h))
+
+                bytePerLine = ch * w
+                convertToQtFormat = QImage(rotated180.data, w, h, bytePerLine, QImage.Format_RGB888)
+                p = convertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
+                self.changePixmap.emit(p)
+
+    def stop(self):
+        self.terminate()
+
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    # MyWin = QtWidgets.QMainWindow()
-    # ui = Ui_MainWindow()
-    # ui.setupUi(MainWindow)
-    # MainWindow.show()
     AppWindow = MainWindow()
     AppWindow.show()
     sys.exit(app.exec_())
