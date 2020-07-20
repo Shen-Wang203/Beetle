@@ -280,7 +280,7 @@ class XYscan:
         self.loss_rec.append(self.loss[-1])
         self.pos_rec.append(self.current_pos)
 
-    # Change the acce to 500 c/s, then 
+    # when success return true, position is updated in self.current_pos
     def Xscan(self, X1_counts, X2_counts, X3_counts):
         # _dir can only be +1 or -1. When -1 means scan from adding counts
         # Purpose of _dir is to follow last correct direction, instead of substract then add counts every time
@@ -321,10 +321,7 @@ class XYscan:
                 self.x_dir_trend = self.x_dir_trend * (-2 * i + 1)
                 self.update_current_pos('x', x1_final, X1_counts)
                 self.check_abnormal_loss(max(self.loss))
-                if x1_final - X1_counts:
-                    return x1_final - X1_counts 
-                else:
-                    return .1
+                return True
             else:
                 if i:
                     # if fail, the fixture needs to go back to the original position
@@ -349,7 +346,7 @@ class XYscan:
                 self.update_current_pos('x', x1mid, X1_counts)        
                 self.hppcontrol.Tx_send_only(x1end, x2end, x3end, 't')          
 
-
+    # when success return true, position is updated in self.current_pos
     def Yscan(self, Y1_counts, Y2_counts, Y3_counts):
         # _dir can only be +1 or -1. When -1 means scan from adding counts
         # Purpose of _dir is to follow last correct direction, instead of substracting then adding counts every time
@@ -389,10 +386,7 @@ class XYscan:
                 self.y_dir_trend = self.y_dir_trend * (-2 * i + 1)
                 self.update_current_pos('y', y1_final, Y1_counts)
                 self.check_abnormal_loss(max(self.loss))
-                if y1_final - Y1_counts:
-                    return y1_final - Y1_counts
-                else:
-                    return .1
+                return True
             else:
                 if i:
                     # if fail, go back to original position
@@ -419,6 +413,7 @@ class XYscan:
 
     # x1_o is counts
     # travelmode can be either 'p' or 't', 't' is to move in traj mode
+    # when success return true, position is updated at self.current_pos
     def Xstep(self, x1_o, x2_o, x3_o, travelmode):
         print('Start Xstep (loss then pos)')
         logging.info('Start Xstep (loss then pos)')        
@@ -467,8 +462,8 @@ class XYscan:
                     return False           
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
-                # It's important to delay some time after disengaging motor
-                # to let the motor fully stopped, then fetch the loss.
+            # It's important to delay some time after disengaging motor
+            # to let the motor fully stopped, then fetch the loss.
             time.sleep(self.wait_time)
             self.update_current_pos('x', x1, x1_o)
             self.fetch_loss()
@@ -477,7 +472,7 @@ class XYscan:
             # logging.info(x1)
             self.save_loss_pos()
             if self.loss_target_check(self.loss[-1]):
-                return x1-x1_o
+                return True
 
             bound = self.loss_bound(loss_o)
             diff = self.loss[-1] - loss_o
@@ -536,13 +531,11 @@ class XYscan:
         self.check_abnormal_loss(max(self.loss))
         if same_count >= 5:
             return False       
-        if x1 - x1_o:
-            return x1 - x1_o
-        else:
-            return .1
+        return True
 
     # y1_o is counts
     # travelmode can be either 'p' or 't', 't' is to move in traj mode
+    # when success return true, position is updated at self.current_pos
     def Ystep(self, y1_o, y2_o, y3_o, travelmode):
         print('Start Ystep (loss then pos)')
         logging.info('Start Ystep (loss then pos)')  
@@ -598,7 +591,7 @@ class XYscan:
             # logging.info(y1)
             self.save_loss_pos()
             if self.loss_target_check(self.loss[-1]):
-                return y1-y1_o
+                return True
 
             bound = self.loss_bound(loss_o)
             diff = self.loss[-1] - loss_o
@@ -657,12 +650,10 @@ class XYscan:
         self.check_abnormal_loss(max(self.loss))
         if same_count >= 5:
             return False
-        if y1 - y1_o:
-            return y1 - y1_o
-        else:
-            return .1
+        return True
 
     # x1_o is counts, fixture needs to be at x1_o
+    # when success return true, position is updated in self.current_pos
     def Xinterp(self, x1_o, x2_o, x3_o):
         print('Start Xinterp (loss then pos)')
         logging.info('Start Xinterp (loss then pos)')  
@@ -680,17 +671,15 @@ class XYscan:
             x1 = [x1_o, x1_o-3*step, x1_o+step, x1_o-2*step, x1_o+2*step, x1_o-step, x1_o+3*step]
             x2 = [x2_o, x2_o+3*step, x2_o-step, x2_o+2*step, x2_o-2*step, x2_o+step, x2_o-3*step]
             x3 = [x3_o, x3_o+3*step, x3_o-step, x3_o+2*step, x3_o-2*step, x3_o+step, x3_o-3*step]
-            grid = [*range(int(x1_o-3*step), int(x1_o+3*step+1), 1)]
         elif totalpoints == 5:
             x1 = [x1_o, x1_o-2*step, x1_o+step, x1_o-step, x1_o+2*step]
             x2 = [x2_o, x2_o+2*step, x2_o-step, x2_o+step, x2_o-2*step]
-            x3 = [x3_o, x3_o+2*step, x3_o-step, x3_o+step, x3_o-2*step]
-            grid = [*range(int(x1_o-2*step), int(x1_o+2*step+1), 1)]          
+            x3 = [x3_o, x3_o+2*step, x3_o-step, x3_o+step, x3_o-2*step]        
 
         # After z, let's set the previous direc as 0
         self.x_dir_old = 0
         x10 = x1_o
-        for i in range(1,totalpoints):
+        for i in range(1,totalpoints+1):
             # apply backlash counter
             counter = self.apply_xy_backlash_counter(x10, x1[i], 'x')
             x1[i] = x1[i] + counter
@@ -718,9 +707,26 @@ class XYscan:
             # logging.info(x1[i])
             self.save_loss_pos()
             if self.loss_target_check(self.loss[-1]):
-                return x1[i]-x1_o
+                return True
+            if i == totalpoints - 1:
+                # if unchange return false
+                if max(self.loss) - min(self.loss) < 0.005:
+                    return False
+                # max loss is at left edge, need to extend on the left for more steps
+                if self.loss.index(max(self.loss)) == 1:
+                    x1.append(x1[1] - 2*step)
+                    x2.append(x2[1] + 2*step)
+                    x3.append(x3[1] + 2*step)
+                # max loss is at right edge, need to extend on the right for 2 more steps
+                elif self.loss.index(max(self.loss)) == i:
+                    x1.append(x1[i] + 2*step)
+                    x2.append(x2[1] - 2*step)
+                    x3.append(x3[1] - 2*step)                    
+                else:
+                    break
 
-        s = interpolation.barycenteric_interp(x1,self.loss,grid)
+        grid = [*range(int(min(x1)), int(max(x1)), 1)]  
+        s = interpolation.barycenteric_interp(x1, self.loss, grid)
         x1_final = grid[s.index(max(s))]
         x2_final = -x1_final + x1_o + x2_o
         x3_final = -x1_final + x1_o + x3_o
@@ -751,13 +757,11 @@ class XYscan:
         print('XInterp final: ',x1_final)
         logging.info('XInterp final: ' + str(x1_final))
         self.check_abnormal_loss(max(self.loss))
-        if x1_final - x1_o:
-            return x1_final - x1_o 
-        else:
-            return .1
+        return True
 
 
     # y1_o is counts, fixture needs to be at y1_o
+    # when success return true, position is updated in self.current_pos
     def Yinterp(self, y1_o, y2_o, y3_o):
         print('Start Yinterp (loss then pos)')
         logging.info('Start Yinterp (loss then pos)')  
@@ -775,17 +779,15 @@ class XYscan:
             y1 = [y1_o, y1_o-3*step, y1_o+step, y1_o-2*step, y1_o+2*step, y1_o-step, y1_o+3*step]
             y2 = [y2_o, y2_o-3*step, y2_o+step, y2_o-2*step, y2_o+2*step, y2_o-step, y2_o+3*step]
             y3 = [y3_o, y3_o-3*step, y3_o+step, y3_o-2*step, y3_o+2*step, y3_o-step, y3_o+3*step]
-            grid = [*range(int(y1_o-3*step), int(y1_o+3*step+1), 1)]
         elif totalpoints == 5:
             y1 = [y1_o, y1_o-2*step, y1_o+step, y1_o-step, y1_o+2*step]
             y2 = [y2_o, y2_o-2*step, y2_o+step, y2_o-step, y2_o+2*step]
-            y3 = [y3_o, y3_o-2*step, y3_o+step, y3_o-step, y3_o+2*step]   
-            grid = [*range(int(y1_o-2*step), int(y1_o+2*step+1), 1)]                   
+            y3 = [y3_o, y3_o-2*step, y3_o+step, y3_o-step, y3_o+2*step]                   
 
         # After z, let's set the previous direc as 0
         self.y_dir_old = 0
         y10 = y1_o        
-        for i in range(1, totalpoints):
+        for i in range(1, totalpoints+1):
             # apply backlash counter
             counter = self.apply_xy_backlash_counter(y10, y1[i], 'y')
             y1[i] = y1[i] + counter
@@ -813,9 +815,26 @@ class XYscan:
             # logging.info(y1[i])
             self.save_loss_pos()
             if self.loss_target_check(self.loss[-1]):
-                return y1[i]-y1_o
+                return True
+            if i == totalpoints - 1:
+                # if unchange return false
+                if max(self.loss) - min(self.loss) < 0.005:
+                    return False
+                # max loss is at left edge, need to extend on the left for more steps
+                if self.loss.index(max(self.loss)) == 1:
+                    y1.append(y1[1] - 2*step)
+                    y2.append(y2[1] - 2*step)
+                    y3.append(y3[1] - 2*step)
+                # max loss is at right edge, need to extend on the right for 2 more steps
+                elif self.loss.index(max(self.loss)) == totalpoints - 1:
+                    y1.append(y1[i] + 2*step)
+                    y2.append(y2[1] + 2*step)
+                    y3.append(y3[1] + 2*step)                    
+                else:
+                    break
 
-        s = interpolation.barycenteric_interp(y1,self.loss,grid)
+        grid = [*range(int(min(y1)), int(max(y1)), 1)]  
+        s = interpolation.barycenteric_interp(y1, self.loss, grid)
         y1_final = grid[s.index(max(s))]
         y2_final = y1_final - y1_o + y2_o
         y3_final = y1_final - y1_o + y3_o
@@ -845,11 +864,8 @@ class XYscan:
         self.pos.append(y1_final)
         print('YInterp final: ',y1_final)
         logging.info('YInterp final: ' + str(y1_final))
-        self.check_abnormal_loss(max(self.loss))
-        if y1_final - y1_o:
-            return y1_final - y1_o 
-        else:
-            return .1
+        self.check_abnormal_loss(max(self.loss)) 
+        return True
 
     # Based on loss to determine xy interpolation sample step size
     # return step size and total points
@@ -875,7 +891,8 @@ class XYscan:
     # interpolation mode won't return false
     # return false when 1. scan mode, decrease in both direction;
     #                   2. step mode, loss doesn't change for several steps
-    #                   3. Motor failed to move, fail on on_target check
+    #                   3. interp mode, loss deosn't change for all the sampling points
+    #                   4. Motor failed to move, fail on on_target check
     def scanUpdate(self, P0, _mode):
         print('Scan update starts at: ')
         print(P0)
@@ -887,60 +904,55 @@ class XYscan:
         Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
         # logging.info('Start Tcounts: '+str(Tcounts))
         if _mode == 's':
-            xdelta = self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], 'p')
-        elif _mode == 'i':
-            xdelta = self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4])
-        else:
-            xdelta = self.Xscan(Tcounts[0], Tcounts[2], Tcounts[4])
-        if xdelta:
-            P1[0] = P1[0] + 50e-6 * xdelta
-        else:
-            if _mode == 's':
+            if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], travelmode='p'):
                 print('X step failed')
                 logging.info('X step failed')
                 self.error_flag = True
                 return False
-            else:
+        elif _mode == 'i':
+            if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4]):
+                print('X interp failed')
+                logging.info('X interp failed')
+                self.error_flag = True
+                return False 
+        else:
+            if not self.Xscan(Tcounts[0], Tcounts[2], Tcounts[4]):
                 print('X scan failed')
                 logging.info('X scan failed')
                 self.error_flag = True
-                return False                
+                return False                                     
+        P1 = self.current_pos[:]
         # x search can errect the flag
-        if self.error_flag:
-            return P1
-        # Select mode and parameters as loss
-        if self.loss_target_check(max(self.loss)):
+        if self.error_flag or self.loss_target_check(max(self.loss)):
             return P1
 
         if _mode == 's':
-            ydelta = self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], 'p')
-        elif _mode == 'i':
-            ydelta = self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5])
-        else:
-            ydelta = self.Yscan(Tcounts[1], Tcounts[3], Tcounts[5])
-        if ydelta:
-            P1[1] = P1[1] + 50e-6 * ydelta
-        else:
-            if _mode == 's':
+            if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], travelmode='p'):
                 print('Y step failed')
                 logging.info('Y step failed')
                 self.error_flag = True
                 return False
-            else:
+        elif _mode == 'i':
+            if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5]):
+                print('Y interp failed')
+                logging.info('Y interp failed')
+                self.error_flag = True
+                return False 
+        else:
+            if not self.Yscan(Tcounts[1], Tcounts[3], Tcounts[5]):
                 print('Y scan failed')
                 logging.info('Y scan failed')
                 self.error_flag = True
-                return False                
-        # Select mode and parameters as loss
-        if self.loss_target_check(max(self.loss)):
-            return P1        
-        
+                return False 
+        P1 = self.current_pos[:]                                 
+        # if self.loss_target_check(max(self.loss)):
+        #     return P1        
         if not self.error_flag:
             print('Scan update ends at: ')
             print(P1)
             logging.info('Scan update ends at: ')
             logging.info(P1)
-            logging.info('X change: '+str(xdelta)+'; '+'Y change: '+str(ydelta))
+            # logging.info('X change: '+str(xdelta)+'; '+'Y change: '+str(ydelta))
         return P1
 
     # loss bound based on loss value

@@ -6,7 +6,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
     def __init__(self, HPPModel, hppcontrol):
         super().__init__(HPPModel, hppcontrol)  
         self.tolerance = 2 
-        # self.scanmode = 's'
+        # self.scanmode = 'i'
         # this backlash is for xy only, not for z
         # unit is counts
         self.xy_backlash = 0
@@ -341,6 +341,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             bound_z = 0.1
         return bound_z
     
+    # Need to over-write this function because we need to search in y first
     # Return P1 after XY scan starting from P0, fixture is at P1, the loss is not updated
     # Need fixture to be at P0 location in the begining, fixture will be at P1 in the end.
     def scanUpdate(self, P0):
@@ -353,35 +354,26 @@ class Curing_Active_Alignment(XYscan.XYscan):
         Tmm = self.HPP.findAxialPosition(P0[0], P0[1], P0[2], P0[3], P0[4], P0[5])
         Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
 
-        # ydelta = self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], 'p')
-        ydelta = self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5])
-        if ydelta:
-            P1[1] = P1[1] + 50e-6 * ydelta
-        else:
+        # if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], travelmode='p'):
+        if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5]):
             print('Y step failed')
             logging.info('Y step failed')
             self.error_flag = True
             return False              
-        # Select mode and parameters as loss
-        if self.loss_target_check(max(self.loss)):
-            return P1  
+        P1 = self.current_pos[:]
         # previous search can errect the flag
-        if self.error_flag:
-            return P1
-
-        # xdelta = self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], 'p')]
-        xdelta = self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4])
-        if xdelta:
-            P1[0] = P1[0] + 50e-6 * xdelta
-        else:
+        if self.loss_target_check(max(self.loss)) or self.error_flag:
+            return P1  
+        
+        # if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], travelmode='p')]:
+        if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4]):
             print('X step failed')
             logging.info('X step failed')
             self.error_flag = True
             return False               
-        # Select mode and parameters as loss
+        P1 = self.current_pos[:]
         if self.loss_target_check(max(self.loss)):
             return P1
-        
         if not self.error_flag:
             print('Scan update ends at: ')
             print(P1)
