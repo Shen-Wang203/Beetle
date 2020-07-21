@@ -50,7 +50,8 @@ class XYscan:
         self.y_dir_old = 1
         # this backlash is for xy only, not for z
         # unit is counts
-        self.xy_backlash = 0
+        self.x_backlash = 4
+        self.y_backlash = 0
         self.loss_current_max = -60.0
         self.pos_current_max = [0,0,138,0,0,0]
         self.loss_fail_improve = 0
@@ -95,6 +96,7 @@ class XYscan:
         logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
         logging.info('A New Alignment Starts') 
         logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+        start_time = time.time()
         self.send_to_hpp(self.starting_point)
         # time.sleep(2)
         self.hppcontrol.slow_traj_speed()
@@ -185,6 +187,9 @@ class XYscan:
         self.hppcontrol.normal_traj_speed()
         print('Auto Alignment Finished, Best Loss: ', self.loss_current_max)
         logging.info('Auto Alignment Finished, Best Loss: ' + str(self.loss_current_max))
+        end_time = time.time()
+        print('Time costs: ', end_time-start_time, ' s')
+        logging.info('Time costs: ' + str(end_time-start_time) + ' s')
         return P_final
 
     # return true if meet criteria, otherwise return none
@@ -722,12 +727,12 @@ class XYscan:
                     # max loss is at right edge, need to extend on the right for 2 more steps
                     elif self.loss.index(max(self.loss)) == i:
                         x1.append(x1[i] + 2*step)
-                        x2.append(x2[1] - 2*step)
-                        x3.append(x3[1] - 2*step)                    
+                        x2.append(x2[i] - 2*step)
+                        x3.append(x3[i] - 2*step)                    
                     else:
                         break
 
-            grid = [*range(int(min(x1)), int(max(x1)), 1)]  
+            grid = [*range(int(min(x1)), int(max(x1))+1, 1)]  
             s = interpolation.barycenteric_interp(x1, self.loss, grid)
             x1_final = grid[s.index(max(s))]
             x2_final = -x1_final + x1_o + x2_o
@@ -840,12 +845,12 @@ class XYscan:
                     # max loss is at right edge, need to extend on the right for 2 more steps
                     elif self.loss.index(max(self.loss)) == totalpoints - 1:
                         y1.append(y1[i] + 2*step)
-                        y2.append(y2[1] + 2*step)
-                        y3.append(y3[1] + 2*step)                    
+                        y2.append(y2[i] + 2*step)
+                        y3.append(y3[i] + 2*step)                    
                     else:
                         break
 
-            grid = [*range(int(min(y1)), int(max(y1)), 1)]  
+            grid = [*range(int(min(y1)), int(max(y1))+1, 1)]  
             s = interpolation.barycenteric_interp(y1, self.loss, grid)
             y1_final = grid[s.index(max(s))]
             y2_final = y1_final - y1_o + y2_o
@@ -1246,7 +1251,7 @@ class XYscan:
         if xy == 'x':
             # if direction changed, add extra counts
             if _direc != self.x_dir_old:
-                _counter = self.xy_backlash * _direc
+                _counter = self.x_backlash * _direc
             else:
                 _counter = 0
             # update old direction
@@ -1254,7 +1259,7 @@ class XYscan:
         else:
             # if direction changed, add extra counts
             if _direc != self.y_dir_old:
-                _counter = self.xy_backlash * _direc
+                _counter = self.y_backlash * _direc
             else:
                 _counter = 0
             # update old direction
