@@ -12,7 +12,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.x_backlash = -1
         self.y_backlash = 0
 
-        self.minutes = 7
+        self.minutes = 15
         self.step_Z = 0.0008
         self.loss_curing_rec = []
         self.pos_curing_rec = []
@@ -84,7 +84,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
         self.final_adjust = True
         self.stepScanCounts = 4
-        self.wait_time = 0.3
+        self.wait_time = 0.2
         start_time = time.time()
         curing_active = True
         curing_active_flag = False
@@ -151,7 +151,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
         self.final_adjust = True
         self.stepScanCounts = 6
-        self.wait_time = 0.3
+        self.wait_time = 0.2
         start_time = time.time()
         curing_active = True
         curing_active_flag = False
@@ -170,8 +170,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
             if curing_active and self.loss[-1] < self.loss_criteria:
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
-                # Z back if xy search failed for 5 times
-                if self.xycount == 5:
+                # Z back if xy search failed for 3 times
+                if self.xycount == 3:
                     P = self.Zstep(P)
                     # P = self.Zstep_back(P)
                     self.pos_curing_rec.append(P)  
@@ -264,11 +264,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
             if self.loss_target_check(self.loss[-1]):
                 return P1
 
-            if self.product == 2:
-                # bound = self.loss_bound_zstep(loss_o)
-                bound = self.loss_bound(loss_o)
-            elif self.product == 1:
-                bound = self.loss_bound(loss_o)
+
+            bound = self.loss_bound(loss_o)
             diff = self.loss[-1] - loss_o
             if diff <= -bound:
                 # go back to the old position
@@ -329,18 +326,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
             # self.send_to_hpp(self.starting_point)
             self.hppcontrol.disengage_motor()
             self.error_flag = True
-
-    def loss_bound_zstep(self, _loss_ref_z):
-        x = abs(_loss_ref_z)
-        if x < 0.5:
-            bound_z = 0.03
-        elif x < 1:
-            bound_z = 0.05
-        elif x < 2:
-            bound_z = 0.08
-        else:
-            bound_z = 0.1
-        return bound_z
     
     # Need to over-write this function because we need to search in y first
     # Return P1 after XY scan starting from P0, fixture is at P1, the loss is not updated
@@ -386,8 +371,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
     def xyinterp_sample_step(self, loss):
         # (-4,-3]: range 52 counts, step is 13, total 5 points 
         # (-3,-2]: range 44 counts, step is 11, total 5 points
-        # (-2,-1]: range 32 counts, step is 8, total 5 points
-        # (-1,0]: range 24 counts, step is 6, total 5 points
+        # (-2,-1]: range 28 counts, step is 7, total 5 points
+        # (-1,0]: range 20 counts, step is 5, total 5 points
         if loss <= -12:
             return [16, 5]
         elif loss <= -3:
@@ -395,9 +380,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
         elif loss <= -2:
             return [11, 5]
         elif loss <= -1:
-            return [8, 5]
+            return [7, 5]
         else:
-            return [6, 5]
+            return [5, 5]
     
     def loss_target_check(self, _loss):
         if _loss >= self.loss_criteria:

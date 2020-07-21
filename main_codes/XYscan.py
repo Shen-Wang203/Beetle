@@ -1002,7 +1002,7 @@ class XYscan:
             bound_z = 0.05
         elif x < 0.7:
             # bound_z = 0.5 * x
-            bound_z = 0.32
+            bound_z = 0.28
         elif x < 1.2:
             # bound_z = 0.35 * x
             bound_z = 0.35

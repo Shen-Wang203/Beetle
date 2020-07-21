@@ -38,5 +38,5 @@ def power_read():
         powerRead = float(PM.query('READ1:POW?'))
     print(powerRead)
     logging.info(powerRead)
-    StaticVar.IL = math.round(powerRead, 3)
+    StaticVar.IL = round(powerRead, 3)
     return powerRead

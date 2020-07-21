@@ -542,15 +542,15 @@ class Ui_MainWindow(object):
         self.label_stepsize.setText(_translate("MainWindow", "Step Size:"))
         self.productComboBox.setItemText(0, _translate("MainWindow", "1xN"))
         self.productComboBox.setItemText(1, _translate("MainWindow", "VOA"))
-        self.criteriaComboBox.setItemText(0, _translate("MainWindow", "-0.2"))
+        self.criteriaComboBox.setItemText(0, _translate("MainWindow", "-0.4"))
         self.criteriaComboBox.setItemText(1, _translate("MainWindow", "-0.25"))
         self.criteriaComboBox.setItemText(2, _translate("MainWindow", "-0.3"))
         self.criteriaComboBox.setItemText(3, _translate("MainWindow", "-0.35"))
-        self.criteriaComboBox.setItemText(4, _translate("MainWindow", "-0.4"))
-        self.criteriaComboBox.setItemText(5, _translate("MainWindow", "-0.45"))
-        self.criteriaComboBox.setItemText(6, _translate("MainWindow", "-0.5"))
+        self.criteriaComboBox.setItemText(4, _translate("MainWindow", "-0.45"))
+        self.criteriaComboBox.setItemText(5, _translate("MainWindow", "-0.5"))
+        self.criteriaComboBox.setItemText(6, _translate("MainWindow", "-0.55"))
         self.label_product.setText(_translate("MainWindow", "Product Type:"))
-        self.label_criteria.setText(_translate("MainWindow", "Criteria"))
+        self.label_criteria.setText(_translate("MainWindow", "Criteria:"))
         # self.label_key_press.setText(_translate("MainWindow", ""))
         self.pushButton_reset.setText(_translate("MainWindow", "Reset"))
         self.pushButton_alignment.setText(_translate("MainWindow", "Alignment"))
@@ -740,7 +740,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def criteria_choose(self):
         if self.criteriaComboBox.currentIndex() == 0:
-            StaticVar.Criteria = -0.2
+            StaticVar.Criteria = -0.4
         elif self.criteriaComboBox.currentIndex() == 1:
             StaticVar.Criteria = -0.25
         elif self.criteriaComboBox.currentIndex() == 2:
@@ -748,11 +748,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         elif self.criteriaComboBox.currentIndex() == 3:
             StaticVar.Criteria = -0.35
         elif self.criteriaComboBox.currentIndex() == 4:
-            StaticVar.Criteria = -0.4
-        elif self.criteriaComboBox.currentIndex() == 5:
             StaticVar.Criteria = -0.45
-        elif self.criteriaComboBox.currentIndex() == 6:
+        elif self.criteriaComboBox.currentIndex() == 5:
             StaticVar.Criteria = -0.5
+        elif self.criteriaComboBox.currentIndex() == 6:
+            StaticVar.Criteria = -0.55
 
     def xplus_click(self, step):
         self.target_mm[0] = self.target_mm[0] + step
