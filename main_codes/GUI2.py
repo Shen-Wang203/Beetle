@@ -927,7 +927,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.zminus_click(self.step)
         
     def updateIL(self):
-        self.label_IL.setText("IL: " + str(StaticVar.IL))
+        self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
         self.label_IL.adjustSize()
 
 class Thread(QThread):
