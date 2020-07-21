@@ -9,12 +9,14 @@ class Curing_Active_Alignment(XYscan.XYscan):
         # self.scanmode = 'i'
         # this backlash is for xy only, not for z
         # unit is counts
-        self.xy_backlash = 0
+        self.x_backlash = -1
+        self.y_backlash = 0
 
         self.minutes = 7
         self.step_Z = 0.0008
         self.loss_curing_rec = []
         self.pos_curing_rec = []
+        self.xycount = 0
 
     # Product 1: VOA
     # Product 2: 1xN
@@ -149,12 +151,11 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
         self.final_adjust = True
         self.stepScanCounts = 6
-        self.wait_time = 0.1
+        self.wait_time = 0.3
         start_time = time.time()
         curing_active = True
         curing_active_flag = False
         solid_flag = False
-        xycount = 0
         while not self.error_flag:         
             end_time = time.time()
             if (end_time - start_time) > self.minutes  * 60:
@@ -162,19 +163,19 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 print('Reach Time Limit')
                 break             
                        
-            # time.sleep(0.5)
+            time.sleep(0.7)
             self.fetch_loss()    
             self.loss_curing_rec.append(self.loss[-1])   
 
             if curing_active and self.loss[-1] < self.loss_criteria:
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
-                # Z back if xy search failed for 3 times
-                if xycount == 3:
-                    # P = self.Zstep(P)
+                # Z back if xy search failed for 5 times
+                if self.xycount == 5:
+                    P = self.Zstep(P)
                     # P = self.Zstep_back(P)
                     self.pos_curing_rec.append(P)  
-                    xycount = 0
+                    self.xycount = 0
 
                 P1 = self.scanUpdate(P)
                 if P1 == False:
@@ -192,13 +193,13 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 else:
                     P = P1[:]         
                 self.pos_curing_rec.append(P)    
-                xycount += 1
+                self.xycount += 1
             elif curing_active and self.loss[-1] >= self.loss_criteria:
-                xycount = 0
+                self.xycount = 0
             elif (not curing_active) and self.loss[-1] < (self.loss_criteria - 0.5):
                 curing_active = True
                 curing_active_flag = True
-                xycount = 0
+                self.xycount = 0
                 print('Loss is high, trying again')
                 logging.info('Loss is high, trying again')
 
@@ -397,3 +398,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
             return [8, 5]
         else:
             return [6, 5]
+    
+    def loss_target_check(self, _loss):
+        if _loss >= self.loss_criteria:
+            self.loss_current_max = _loss
+            self.pos_current_max = self.current_pos[:]
+            print('Meet Criteria')
+            logging.info('Meet Criteria')
+            self.xycount = 0
+            return True

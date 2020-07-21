@@ -50,7 +50,7 @@ class XYscan:
         self.y_dir_old = 1
         # this backlash is for xy only, not for z
         # unit is counts
-        self.x_backlash = 4
+        self.x_backlash = -1
         self.y_backlash = 0
         self.loss_current_max = -60.0
         self.pos_current_max = [0,0,138,0,0,0]
@@ -188,8 +188,8 @@ class XYscan:
         print('Auto Alignment Finished, Best Loss: ', self.loss_current_max)
         logging.info('Auto Alignment Finished, Best Loss: ' + str(self.loss_current_max))
         end_time = time.time()
-        print('Time costs: ', end_time-start_time, ' s')
-        logging.info('Time costs: ' + str(end_time-start_time) + ' s')
+        print('Time costs: ', round(end_time-start_time, 1), ' s')
+        logging.info('Time costs: ' + str(round(end_time-start_time,1)) + ' s')
         return P_final
 
     # return true if meet criteria, otherwise return none
@@ -661,7 +661,7 @@ class XYscan:
     # x1_o is counts, fixture needs to be at x1_o
     # when success return true, position is updated in self.current_pos
     def Xinterp(self, x1_o, x2_o, x3_o):
-        for j in range(0,3):
+        for j in range(0,1):
             print('Start Xinterp (loss then pos)')
             logging.info('Start Xinterp (loss then pos)')  
             self.loss = []        
@@ -779,7 +779,7 @@ class XYscan:
     # y1_o is counts, fixture needs to be at y1_o
     # when success return true, position is updated in self.current_pos
     def Yinterp(self, y1_o, y2_o, y3_o):
-        for j in range(0,3):
+        for j in range(0,1):
             print('Start Yinterp (loss then pos)')
             logging.info('Start Yinterp (loss then pos)')  
             self.loss = []        
