@@ -573,9 +573,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.runthread = cmd.CMDInputThread()
         # Set up timer to update IL
-        # timer = QtCore.QTimer(self)
-        # timer.timeout.connect(self.updateIL)
-        # timer.start(100)
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.updateIL)
+        self.timer.start(100)
 
     step = 0.0002
     target_mm = [0,0,138,0,0,0]
@@ -927,7 +927,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.zminus_click(self.step)
         
     def updateIL(self):
-        self.label_IL.setText("IL: " + StaticVar.IL)
+        self.label_IL.setText("IL: " + str(StaticVar.IL))
         self.label_IL.adjustSize()
 
 class Thread(QThread):
