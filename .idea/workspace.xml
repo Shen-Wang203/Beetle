@@ -20,11 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f80f1f8c-2fee-41cf-aa08-afa8e3daec71" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/main_codes/runlog.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_codes/Command_Input.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_codes/Command_Input.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODOs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TODOs.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_codes/GUI2.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_codes/GUI2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_codes/HPP_Control.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_codes/HPP_Control.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_codes/PowerMeter.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_codes/PowerMeter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_codes/StaticVar.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_codes/StaticVar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_codes/XYscan.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_codes/XYscan.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +35,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/Shen-Wang203/Beetle.git" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1e3D2HMhSLjKhMI5tY10xoelkD3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -47,7 +56,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunManager">
     <configuration name="GUI2" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -85,6 +94,16 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -113,30 +132,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1594333907803" />
-    <state width="1899" height="186" key="GridCell.Tab.0.bottom" timestamp="1595288802419">
-      <screen x="-1920" y="-444" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="186" key="GridCell.Tab.0.bottom/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288802419" />
-    <state width="936" height="22" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595287048705" />
-    <state width="1899" height="186" key="GridCell.Tab.0.center" timestamp="1595288802419">
-      <screen x="-1920" y="-444" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="186" key="GridCell.Tab.0.center/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288802419" />
-    <state width="936" height="22" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595287048705" />
-    <state width="1899" height="186" key="GridCell.Tab.0.left" timestamp="1595288802419">
-      <screen x="-1920" y="-444" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="186" key="GridCell.Tab.0.left/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288802419" />
-    <state width="936" height="22" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595287048704" />
-    <state width="1899" height="186" key="GridCell.Tab.0.right" timestamp="1595288802419">
-      <screen x="-1920" y="-444" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="186" key="GridCell.Tab.0.right/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288802419" />
-    <state width="936" height="22" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595287048705" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1593541221718">
+    <state width="1899" height="305" key="GridCell.Tab.0.bottom" timestamp="1595351448594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1593541221718" />
+    <state width="1899" height="186" key="GridCell.Tab.0.bottom/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288802419" />
+    <state width="1899" height="305" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595351448594" />
+    <state width="1899" height="305" key="GridCell.Tab.0.center" timestamp="1595351448594">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="186" key="GridCell.Tab.0.center/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288802419" />
+    <state width="1899" height="305" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595351448594" />
+    <state width="1899" height="305" key="GridCell.Tab.0.left" timestamp="1595351448594">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="186" key="GridCell.Tab.0.left/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288802419" />
+    <state width="1899" height="305" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595351448594" />
+    <state width="1899" height="305" key="GridCell.Tab.0.right" timestamp="1595351448594">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="186" key="GridCell.Tab.0.right/0.0.1366.728/-1920.-444.1920.1040@-1920.-444.1920.1040" timestamp="1595288802419" />
+    <state width="1899" height="305" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595351448594" />
+    <state x="261" y="65" width="1304" height="886" key="SettingsEditor" timestamp="1595348338065">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="261" y="65" width="1304" height="886" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1595348338065" />
     <state x="-1368" y="-191" key="Vcs.Push.Dialog.v2" timestamp="1595288758805">
       <screen x="-1920" y="-444" width="1920" height="1040" />
     </state>
@@ -152,7 +171,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main_codes/GUI2.py</url>
-          <line>904</line>
+          <line>942</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

@@ -331,6 +331,26 @@ class Ui_MainWindow(object):
         self.label_product.setFont(font)
         self.label_product.setObjectName("label_product")
 
+        self.criteriaComboBox = QtWidgets.QComboBox(self.centralwidget)
+        self.criteriaComboBox.setGeometry(QtCore.QRect(480,510,100,31))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.criteriaComboBox.setFont(font)
+        self.criteriaComboBox.setObjectName("criteriaComboBox")
+        self.criteriaComboBox.addItem("")
+        self.criteriaComboBox.addItem("")
+        self.criteriaComboBox.addItem("")
+        self.criteriaComboBox.addItem("")
+        self.criteriaComboBox.addItem("")
+        self.criteriaComboBox.addItem("")
+        self.criteriaComboBox.addItem("")
+        self.label_criteria = QtWidgets.QLabel(self.centralwidget)
+        self.label_criteria.setGeometry(QtCore.QRect(350,510,121,31))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        self.label_criteria.setFont(font)
+        self.label_criteria.setObjectName("label_criteria")
+
         self.label_key_press = QtWidgets.QLabel(self.centralwidget)
         self.label_key_press.setGeometry(QtCore.QRect(50, 540, 500, 30))
         font = QtGui.QFont()
@@ -429,6 +449,7 @@ class Ui_MainWindow(object):
         self.pushButton_gotosend.clicked.connect(self.send_click)
         self.stepSizeComboBox.currentIndexChanged.connect(self.step_choose)
         self.productComboBox.currentIndexChanged.connect(self.product_choose)
+        self.criteriaComboBox.currentIndexChanged.connect(self.criteria_choose)
 
         ##################################################
         self.pushButton_Xp.clicked.connect(lambda: self.xplus_click(self.step))
@@ -521,7 +542,15 @@ class Ui_MainWindow(object):
         self.label_stepsize.setText(_translate("MainWindow", "Step Size:"))
         self.productComboBox.setItemText(0, _translate("MainWindow", "1xN"))
         self.productComboBox.setItemText(1, _translate("MainWindow", "VOA"))
-        self.label_product.setText(_translate("MainWIndow", "Product Type:"))
+        self.criteriaComboBox.setItemText(0, _translate("MainWindow", "-0.2"))
+        self.criteriaComboBox.setItemText(1, _translate("MainWindow", "-0.25"))
+        self.criteriaComboBox.setItemText(2, _translate("MainWindow", "-0.3"))
+        self.criteriaComboBox.setItemText(3, _translate("MainWindow", "-0.35"))
+        self.criteriaComboBox.setItemText(4, _translate("MainWindow", "-0.4"))
+        self.criteriaComboBox.setItemText(5, _translate("MainWindow", "-0.45"))
+        self.criteriaComboBox.setItemText(6, _translate("MainWindow", "-0.5"))
+        self.label_product.setText(_translate("MainWindow", "Product Type:"))
+        self.label_criteria.setText(_translate("MainWindow", "Criteria"))
         # self.label_key_press.setText(_translate("MainWindow", ""))
         self.pushButton_reset.setText(_translate("MainWindow", "Reset"))
         self.pushButton_alignment.setText(_translate("MainWindow", "Alignment"))
@@ -708,7 +737,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             StaticVar.productType = "1xN"
         elif self.productComboBox.currentIndex() == 1:
             StaticVar.productType = "VOA"
-    
+
+    def criteria_choose(self):
+        if self.criteriaComboBox.currentIndex() == 0:
+            StaticVar.Criteria = -0.2
+        elif self.criteriaComboBox.currentIndex() == 1:
+            StaticVar.Criteria = -0.25
+        elif self.criteriaComboBox.currentIndex() == 2:
+            StaticVar.Criteria = -0.3
+        elif self.criteriaComboBox.currentIndex() == 3:
+            StaticVar.Criteria = -0.35
+        elif self.criteriaComboBox.currentIndex() == 4:
+            StaticVar.Criteria = -0.4
+        elif self.criteriaComboBox.currentIndex() == 5:
+            StaticVar.Criteria = -0.45
+        elif self.criteriaComboBox.currentIndex() == 6:
+            StaticVar.Criteria = -0.5
+
     def xplus_click(self, step):
         self.target_mm[0] = self.target_mm[0] + step
         target_mm_text = str(self.target_mm)
