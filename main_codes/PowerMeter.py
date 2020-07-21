@@ -2,6 +2,7 @@ import time
 import math
 import visa
 import logging
+from StaticVar import StaticVar
 
 
 PM_ADDR = str(13)
@@ -37,4 +38,5 @@ def power_read():
         powerRead = float(PM.query('READ1:POW?'))
     print(powerRead)
     logging.info(powerRead)
-    return powerRead      
+    StaticVar.IL = math.round(powerRead, 3)
+    return powerRead
