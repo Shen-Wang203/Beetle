@@ -237,7 +237,7 @@ class CMDInputThread(QtCore.QThread):
             elif StaticVar.productType == "1xN":
                 xys.product_select('1xN')              
             
-            xys.second_try = False
+            # xys.second_try = False
             xys.set_loss_criteria(StaticVar.Criteria)
             # xys.set_loss_criteria(-0.47)
             # 1 is step, 2 is interp
@@ -252,20 +252,35 @@ class CMDInputThread(QtCore.QThread):
             self.loss_max = xys.loss_current_max
 
         elif commands == 'precure':
-            cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
+            # cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
+            # self.hppcontrol.engage_motor()
+            # self.sig2.emit(3)
+            # if StaticVar.productType == "VOA":
+            #     cure.product_select('VOA')
+            # elif StaticVar.productType == "1xN":
+            #     cure.product_select('1xN')
+            # cure.set_loss_criteria(self.loss_max-0.02)
+            # P1 = cure.pre_curing_run(self.currentPosition)
+
+            xys = XYscan(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
             self.sig2.emit(3)
+            P0 = self.currentPosition[:]
+            P0[2] = P0[2] - 0.005
+            xys.set_starting_point(P0)
             if StaticVar.productType == "VOA":
-                cure.product_select('VOA')
+                xys.product_select('VOA')
             elif StaticVar.productType == "1xN":
-                cure.product_select('1xN')
-            cure.set_loss_criteria(self.loss_max-0.03)
-            P1 = cure.pre_curing_run(self.currentPosition)
+                xys.product_select('1xN') 
+            xys.set_loss_criteria(self.loss_max-0.01)
+            xys.strategy = 2
+            P1 = xys.autoRun() 
             self.currentPosition = P1[:]
             target_mm = P1[:]
             real_counts = control.Tcounts_real
             # we don't use target_counts in gui now so just set it as a random value
             target_counts = [0,0,0,0,0,0]
+            self.loss_max = xys.loss_current_max
 
         elif commands == 'curing':
             cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
@@ -274,7 +289,7 @@ class CMDInputThread(QtCore.QThread):
                 cure.product_select('VOA')
             elif StaticVar.productType == "1xN":
                 cure.product_select('1xN')
-            cure.set_loss_criteria(self.loss_max-0.05)
+            cure.set_loss_criteria(self.loss_max-0.03)
             P1 = cure.curing_run2(self.currentPosition)
             try:
                 self.currentPosition = P1[:]

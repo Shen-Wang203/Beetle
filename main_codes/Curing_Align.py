@@ -12,7 +12,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.x_backlash = -1
         self.y_backlash = 0
 
-        self.minutes = 15
+        self.minutes = 20
         self.step_Z = 0.0008
         self.loss_curing_rec = []
         self.pos_curing_rec = []
@@ -43,7 +43,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.pos_curing_rec.append(P0)
         self.current_pos = P[:]
         self.loss = []
-        self.wait_time = 0.3
+        self.wait_time = 0.2
         
         # Alignment after glue
         self.fetch_loss()
@@ -79,6 +79,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.loss_rec.append(0)
         self.pos_rec.append(0)
         self.pos_curing_rec.append(P0)
+        self.loss = []
         self.fetch_loss()
         self.loss_current_max = self.loss[-1]
         self.current_pos = P[:]
@@ -146,8 +147,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.loss_rec.append(0)
         self.pos_rec.append(0)
         self.pos_curing_rec.append(P0)
+        self.loss = []
         self.fetch_loss()
-        self.loss_current_max = self.loss[-1]
+        self.loss_current_max = self.loss_criteria
         self.current_pos = P[:]
 
         self.final_adjust = True
@@ -163,14 +165,16 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('Reach Time Limit')
                 print('Reach Time Limit')
                 break             
-            elif (end_time - start_time) > 300:
+            elif (end_time - start_time) > 300 and not self.later_time_flag:
                 logging.info('Reach 5 min')
                 print('Reach 5 min')
                 self.later_time_flag = True
+                self.wait_time = 0.4
 
             time.sleep(0.7)
             self.fetch_loss()    
             self.loss_curing_rec.append(self.loss[-1])   
+            self.check_abnormal_loss(self.loss[-1]) 
 
             if curing_active and self.loss[-1] < self.loss_criteria:
                 # as an indicate that we are adjusting the fixture
@@ -211,8 +215,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 print('Loss is high, trying again')
                 logging.info('Loss is high, trying again')
 
-        print('End curing program')
-        logging.info('End curing program')
+        end_time = time.time()
+        print('End curing program, total time: ', round(end_time-start_time,1), ' s')
+        logging.info('End curing program, total time: ' + str(round(end_time-start_time,1)) + ' s')
         
         
     def Zstep_back(self, P0):
@@ -326,6 +331,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
     def check_abnormal_loss(self, loss0):
         if loss0 > self.loss_current_max:
             self.loss_current_max = loss0
+            self.loss_criteria = self.loss_current_max - 0.03
         elif (loss0 < (2.5 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
             print('Unexpected High Loss, End Program')
             logging.info('Unexpected High Loss, End Program')
