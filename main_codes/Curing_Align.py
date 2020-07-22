@@ -390,8 +390,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
         elif loss <= -1:
             return [7, 5]
         else:
+            # for final 5min, change to 3-point interp
+            # step is 6, total 3 points, range 12 counts
             if self.later_time_flag:
-                return [4, 5]
+                return [6, 3]
             else:
                 return [5, 5]
     

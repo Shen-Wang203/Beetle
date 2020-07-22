@@ -681,7 +681,11 @@ class XYscan:
             elif totalpoints == 5:
                 x1 = [x1_o, x1_o-2*step, x1_o+step, x1_o-step, x1_o+2*step]
                 x2 = [x2_o, x2_o+2*step, x2_o-step, x2_o+step, x2_o-2*step]
-                x3 = [x3_o, x3_o+2*step, x3_o-step, x3_o+step, x3_o-2*step]        
+                x3 = [x3_o, x3_o+2*step, x3_o-step, x3_o+step, x3_o-2*step]  
+            elif totalpoints == 3:
+                x1 = [x1_o, x1_o-step, x1_o+step]
+                x2 = [x2_o, x2_o+step, x2_o-step]
+                x3 = [x3_o, x3_o+step, x3_o-step]                       
 
             # After z, let's set the previous direc as 0
             self.x_dir_old = 0
@@ -799,7 +803,11 @@ class XYscan:
             elif totalpoints == 5:
                 y1 = [y1_o, y1_o-2*step, y1_o+step, y1_o-step, y1_o+2*step]
                 y2 = [y2_o, y2_o-2*step, y2_o+step, y2_o-step, y2_o+2*step]
-                y3 = [y3_o, y3_o-2*step, y3_o+step, y3_o-step, y3_o+2*step]                   
+                y3 = [y3_o, y3_o-2*step, y3_o+step, y3_o-step, y3_o+2*step]
+            elif totalpoints == 3：
+                y1 = [y1_o, y1_o-step, y1_o+step]
+                y2 = [y2_o, y2_o-step, y2_o+step]
+                y3 = [y3_o, y3_o-step, y3_o+step]                
 
             # After z, let's set the previous direc as 0
             self.y_dir_old = 0
