@@ -17,6 +17,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.loss_curing_rec = []
         self.pos_curing_rec = []
         self.xycount = 0
+        self.later_time_flag = False
 
     # Product 1: VOA
     # Product 2: 1xN
@@ -162,7 +163,11 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('Reach Time Limit')
                 print('Reach Time Limit')
                 break             
-                       
+            elif (end_time - start_time) > 300:
+                logging.info('Reach 5 min')
+                print('Reach 5 min')
+                self.later_time_flag = True
+
             time.sleep(0.7)
             self.fetch_loss()    
             self.loss_curing_rec.append(self.loss[-1])   
@@ -176,6 +181,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     # P = self.Zstep_back(P)
                     self.pos_curing_rec.append(P)  
                     self.xycount = 0
+                    self.fetch_loss()
+                    if self.loss_target_check(self.loss[-1]):
+                        continue
 
                 P1 = self.scanUpdate(P)
                 if P1 == False:
@@ -382,7 +390,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
         elif loss <= -1:
             return [7, 5]
         else:
-            return [5, 5]
+            if self.later_time_flag:
+                return [4, 5]
+            else:
+                return [5, 5]
     
     def loss_target_check(self, _loss):
         if _loss >= self.loss_criteria:
