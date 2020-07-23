@@ -158,7 +158,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
         start_time = time.time()
         curing_active = True
         curing_active_flag = False
-        solid_flag = False
         while not self.error_flag:         
             end_time = time.time()
             if (end_time - start_time) > self.minutes  * 60:
@@ -193,15 +192,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 if P1 == False:
                     print('XY Values dont change')
                     logging.info('XY Values dont change')
-                    if solid_flag:
-                        print('End program')
-                        logging.info('End program')
-                        curing_active = False
-                        if curing_active_flag:
-                            return P
-                    else:
-                        solid_flag = True
-                        self.error_flag = False
+                    print('Pause program')
+                    logging.info('Pause program')
+                    curing_active = False
+                    if curing_active_flag:
+                        return P
+                    self.error_flag = False
                 else:
                     P = P1[:]         
                 self.pos_curing_rec.append(P)    
@@ -328,11 +324,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
         return P1
 
     # Over-write function, disable loss_fail_improve
-    def check_abnormal_loss(self, loss0):
-        if loss0 > self.loss_current_max:
-            self.loss_current_max = loss0
+    def check_abnormal_loss(self, _loss0):
+        if _loss0 > self.loss_current_max:
+            self.loss_current_max = _loss0
+            self.pos_current_max = self.current_pos[:]
             self.loss_criteria = self.loss_current_max - 0.03
-        elif (loss0 < (2.5 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
+        elif (_loss0 < (2.5 * self.loss_current_max) and _loss0 < -10) or _loss0 < -55:
             print('Unexpected High Loss, End Program')
             logging.info('Unexpected High Loss, End Program')
             # self.hppcontrol.engage_motor()
@@ -405,9 +402,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
     
     def loss_target_check(self, _loss):
         if _loss >= self.loss_criteria:
-            self.loss_current_max = _loss
-            self.pos_current_max = self.current_pos[:]
-            print('Meet Criteria')
-            logging.info('Meet Criteria')
+            print('Meet Criteria: ', round(self.loss_criteria,3))
+            logging.info('Meet Criteria: ' + str(round(self.loss_criteria,3)))
             self.xycount = 0
             return True

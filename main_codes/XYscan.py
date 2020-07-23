@@ -185,6 +185,8 @@ class XYscan:
                 P_final = self.pos_current_max[:]
 
         self.hppcontrol.normal_traj_speed()
+        if max(self.loss) > self.loss_current_max:
+            self.loss_current_max = max(self.loss)
         print('Auto Alignment Finished, Best Loss: ', self.loss_current_max)
         logging.info('Auto Alignment Finished, Best Loss: ' + str(self.loss_current_max))
         end_time = time.time()
@@ -737,7 +739,7 @@ class XYscan:
                 return True
             if i == totalpoints - 1:
                 # if unchange return false
-                if max(self.loss) - min(self.loss) < 0.003:
+                if max(self.loss) - min(self.loss) < 0.005:
                     return False
                 # max loss is at left edge, need to extend on the left for more steps
                 if self.loss.index(max(self.loss)) == 1:
@@ -870,7 +872,7 @@ class XYscan:
                 return True
             if i == totalpoints - 1:
                 # if unchange return false
-                if max(self.loss) - min(self.loss) < 0.003:
+                if max(self.loss) - min(self.loss) < 0.005:
                     return False
                 # max loss is at left edge, need to extend on the left for more steps
                 if self.loss.index(max(self.loss)) == 1:
@@ -1032,10 +1034,10 @@ class XYscan:
             bound_z = 0.05
         elif x < 0.7:
             # bound_z = 0.5 * x
-            bound_z = 0.28
+            bound_z = 0.1
         elif x < 1.2:
             # bound_z = 0.35 * x
-            bound_z = 0.35
+            bound_z = 0.3
         elif x < 2:
             bound_z = 0.3 * x 
         elif x < 4:
@@ -1136,7 +1138,7 @@ class XYscan:
                 if diff > bound:
                     loss_o = self.loss[-1]
                 # for VOA used to be 1.5 times
-                if self.loss[-1] > 2 * loss_o and success_num < 5:
+                if self.loss[-1] > 1.5 * loss_o and success_num < 5:
                     success_num += 1
                     continue            
             
@@ -1266,8 +1268,6 @@ class XYscan:
 
     def loss_target_check(self, _loss):
         if _loss >= self.loss_criteria:
-            self.loss_current_max = _loss
-            self.pos_current_max = self.current_pos[:]
             print('Meet Criteria')
             logging.info('Meet Criteria')
             return True
