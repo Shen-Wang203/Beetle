@@ -174,8 +174,8 @@ class XYscan:
                             self.hppcontrol.engage_motor()
                             self.send_to_hpp(self.pos_current_max)
                             self.hppcontrol.disengage_motor()        
-                            print('Reach Resolution, go back to overall best')
-                            logging.info('Reach Resolution, go back to overall best')
+                            print('Reach Z Resolution, go back to overall best')
+                            logging.info('Reach Z Resolution, go back to overall best')
                             break
                         else:
                             P0 = P1[:]
@@ -306,6 +306,8 @@ class XYscan:
         self.save_loss_pos()
         self.pos_ref = self.current_pos[:]
         pos0 = X1_counts
+        if self.final_adjust:
+            self.hppcontrol.engage_motor()
         # Use T1's position as reference
         self.hppcontrol.Tx_send_only(x1start, x2start, x3start, 't')
         for i in range(0,2):
@@ -371,6 +373,8 @@ class XYscan:
         self.save_loss_pos()
         self.pos_ref = self.current_pos[:]
         pos0 = Y1_counts
+        if self.final_adjust:
+            self.hppcontrol.engage_motor()
         # use T1's position as position reference
         self.hppcontrol.Ty_send_only(y1start, y2start, y3start,'t')       
         for i in range(0,2):
@@ -703,7 +707,10 @@ class XYscan:
         # After z, let's set the previous direc as 0
         self.x_dir_old = 0
         x10 = x1_o
-        for i in range(1,totalpoints+1):
+        # for i in range(1,totalpoints+1):
+        i = 1
+        x_ref = [x1_o]
+        while i < (totalpoints + 1):
             # apply backlash counter
             counter = self.apply_xy_backlash_counter(x10, x1[i], 'x')
             x1[i] = x1[i] + counter
@@ -737,56 +744,68 @@ class XYscan:
                 elif x1[i] < x1[0]:
                     self.x_dir_trend = 1
                 return True
-            if i == totalpoints - 1:
-                # if unchange return false
-                if max(self.loss) - min(self.loss) < 0.005:
-                    return False
+            # if current loss is larger than start loss, meaning the direction is right, we dont'
+            # need to go to the opposite direction, which is the next iteration
+            print(i)
+            logging.info(i)
+            x_ref.append(x1[i])
+            i += 1
+            if self.loss[-1] > self.loss[0]:
+                i += 1               
+            if i == totalpoints or i == (totalpoints + 1):
                 # max loss is at left edge, need to extend on the left for more steps
-                if self.loss.index(max(self.loss)) == 1:
-                    x1.append(x1[1] - 2 * step * self.x_dir_trend)
-                    x2.append(x2[1] + 2 * step * self.x_dir_trend)
-                    x3.append(x3[1] + 2 * step * self.x_dir_trend)
+                if max(self.loss) == self.loss[1] and x_ref[-1] == x1[totalpoints-2]:
+                    x1.append(x1[1] - 1 * step * self.x_dir_trend)
+                    x2.append(x2[1] + 1 * step * self.x_dir_trend)
+                    x3.append(x3[1] + 1 * step * self.x_dir_trend)
                 # max loss is at right edge, need to extend on the right for 2 more steps
-                elif self.loss.index(max(self.loss)) == i:
-                    x1.append(x1[i] + 2 * step * self.x_dir_trend)
-                    x2.append(x2[i] - 2 * step * self.x_dir_trend)
-                    x3.append(x3[i] - 2 * step * self.x_dir_trend)                    
+                # make sure the loss and position are matched
+                elif max(self.loss) == self.loss[-1] and x_ref[-1] == x1[totalpoints-1]:
+                    x1.append(x1[-1] + 1 * step * self.x_dir_trend)
+                    x2.append(x2[-1] - 1 * step * self.x_dir_trend)
+                    x3.append(x3[-1] - 1 * step * self.x_dir_trend)                    
                 else:
                     break
-
-        grid = [*range(int(min(x1)), int(max(x1))+1, 1)]  
-        s = interpolation.barycenteric_interp(x1, self.loss, grid)
+                i = totalpoints
+        
+        # if unchange return false
+        if max(self.loss) - min(self.loss) < 0.005:
+            return False
+        grid = [*range(int(min(x_ref)), int(max(x_ref))+1, 1)]  
+        s = interpolation.barycenteric_interp(x_ref, self.loss, grid)
         x1_final = grid[s.index(max(s))]
         x2_final = -x1_final + x1_o + x2_o
         x3_final = -x1_final + x1_o + x3_o
-        # apply backlash counter
-        counter = self.apply_xy_backlash_counter(x10, x1_final, 'x')
-        x1_final = x1_final + counter
-        x2_final = x2_final - counter
-        x3_final = x3_final - counter
-        x10 = x1_final         
-        if self.final_adjust:
-            self.hppcontrol.engage_motor() 
-        self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 'p')
-        # check on target, need to check all of them
-        timeout = 0
-        while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
-            time.sleep(0.2)
-            timeout += 1
-            if timeout > 100:
-                print('Movement Timeout Error')
-                logging.info('Movement Timeout Error')
-                return False
-        if self.final_adjust:
-            self.hppcontrol.disengage_motor()  
-        time.sleep(self.wait_time)
-        self.update_current_pos('x', x1_final, x1_o)
-        self.fetch_loss()
-        self.pos.append(x1_final)
+        # only if counts difference is larger than 3 then go to that counts
+        if abs(x1_final - x_ref[-1]) > 3:
+            # apply backlash counter
+            counter = self.apply_xy_backlash_counter(x10, x1_final, 'x')
+            x1_final = x1_final + counter
+            x2_final = x2_final - counter
+            x3_final = x3_final - counter
+            x10 = x1_final         
+            if self.final_adjust:
+                self.hppcontrol.engage_motor() 
+            self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 'p')
+            # check on target, need to check all of them
+            timeout = 0
+            while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
+                time.sleep(0.2)
+                timeout += 1
+                if timeout > 100:
+                    print('Movement Timeout Error')
+                    logging.info('Movement Timeout Error')
+                    return False
+            if self.final_adjust:
+                self.hppcontrol.disengage_motor()  
+            time.sleep(self.wait_time)
+            self.update_current_pos('x', x1_final, x1_o)
+            self.fetch_loss()
+            self.pos.append(x1_final)
         print('XInterp final: ',x1_final)
         logging.info('XInterp final: ' + str(x1_final))
         self.check_abnormal_loss(max(self.loss))
-        # if final loss is not the max, then we redo the search again
+        # Final loss is not the max
         if self.loss[-1] < max(self.loss) - 0.04:
             print('X run not best')
             logging.info('X run not best')
@@ -836,7 +855,10 @@ class XYscan:
         # After z, let's set the previous direc as 0
         self.y_dir_old = 0
         y10 = y1_o        
-        for i in range(1, totalpoints+1):
+        # for i in range(1, totalpoints+1):
+        i = 1
+        y_ref = [y1_o]
+        while i < (totalpoints + 1):
             # apply backlash counter
             counter = self.apply_xy_backlash_counter(y10, y1[i], 'y')
             y1[i] = y1[i] + counter
@@ -870,56 +892,68 @@ class XYscan:
                 elif y1[i] < y1[0]:
                     self.y_dir_trend = 1                
                 return True
-            if i == totalpoints - 1:
-                # if unchange return false
-                if max(self.loss) - min(self.loss) < 0.005:
-                    return False
+            # if current loss is larger than start loss, meaning the direction is right, we dont'
+            # need to go to the opposite direction, which is the next iteration
+            print(i)
+            logging.info(i)
+            y_ref.append(y1[i])
+            i += 1
+            if self.loss[-1] > self.loss[0]:
+                i += 1            
+            if i == totalpoints or i == (totalpoints + 1):
                 # max loss is at left edge, need to extend on the left for more steps
-                if self.loss.index(max(self.loss)) == 1:
-                    y1.append(y1[1] - 2 * step * self.y_dir_trend)
-                    y2.append(y2[1] - 2 * step * self.y_dir_trend)
-                    y3.append(y3[1] - 2 * step * self.y_dir_trend)
+                if max(self.loss) == self.loss[1] and y_ref[-1] == y1[totalpoints-2]:
+                    y1.append(y1[1] - 1 * step * self.y_dir_trend)
+                    y2.append(y2[1] - 1 * step * self.y_dir_trend)
+                    y3.append(y3[1] - 1 * step * self.y_dir_trend)
                 # max loss is at right edge, need to extend on the right for 2 more steps
-                elif self.loss.index(max(self.loss)) == totalpoints - 1:
-                    y1.append(y1[i] + 2 * step * self.y_dir_trend)
-                    y2.append(y2[i] + 2 * step * self.y_dir_trend)
-                    y3.append(y3[i] + 2 * step * self.y_dir_trend)                    
+                # make sure the loss and position are matched
+                elif max(self.loss) == self.loss[-1] and y_ref[-1] == y1[totalpoints-1]:
+                    y1.append(y1[-1] + 1 * step * self.y_dir_trend)
+                    y2.append(y2[-1] + 1 * step * self.y_dir_trend)
+                    y3.append(y3[-1] + 1 * step * self.y_dir_trend)      
                 else:
-                    break
+                    break    
+                i = totalpoints 
 
-        grid = [*range(int(min(y1)), int(max(y1))+1, 1)]  
-        s = interpolation.barycenteric_interp(y1, self.loss, grid)
+        # if unchange return false
+        if max(self.loss) - min(self.loss) < 0.005:
+            return False
+        grid = [*range(int(min(y_ref)), int(max(y_ref))+1, 1)]  
+        s = interpolation.barycenteric_interp(y_ref, self.loss, grid)
         y1_final = grid[s.index(max(s))]
         y2_final = y1_final - y1_o + y2_o
         y3_final = y1_final - y1_o + y3_o
-        # apply backlash counter
-        counter = self.apply_xy_backlash_counter(y10, y1_final, 'y')
-        y1_final = y1_final + counter
-        y2_final = y2_final + counter
-        y3_final = y3_final + counter
-        y10 = y1_final 
-        if self.final_adjust:
-            self.hppcontrol.engage_motor()        
-        self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 'p')
-        # check on target, need to check all of them
-        timeout = 0
-        while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
-            time.sleep(0.2)
-            timeout += 1
-            if timeout > 100:
-                print('Movement Timeout Error')
-                logging.info('Movement Timeout Error')
-                return False
-        if self.final_adjust:
-            self.hppcontrol.disengage_motor()   
-        time.sleep(self.wait_time)     
-        self.update_current_pos('y', y1_final, y1_o)
-        self.fetch_loss()
-        self.pos.append(y1_final)
+        # only if counts difference is larger than 3 then go to that counts
+        if abs(y1_final-y_ref[-1]) > 3:
+            # apply backlash counter
+            counter = self.apply_xy_backlash_counter(y10, y1_final, 'y')
+            y1_final = y1_final + counter
+            y2_final = y2_final + counter
+            y3_final = y3_final + counter
+            y10 = y1_final 
+            if self.final_adjust:
+                self.hppcontrol.engage_motor()        
+            self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 'p')
+            # check on target, need to check all of them
+            timeout = 0
+            while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
+                time.sleep(0.2)
+                timeout += 1
+                if timeout > 100:
+                    print('Movement Timeout Error')
+                    logging.info('Movement Timeout Error')
+                    return False
+            if self.final_adjust:
+                self.hppcontrol.disengage_motor()   
+            time.sleep(self.wait_time)     
+            self.update_current_pos('y', y1_final, y1_o)
+            self.fetch_loss()
+            self.pos.append(y1_final)
         print('YInterp final: ',y1_final)
         logging.info('YInterp final: ' + str(y1_final))
         self.check_abnormal_loss(max(self.loss)) 
-        # if final loss is not the max, then we redo the search again
+        # Final loss is not the max
         if self.loss[-1] < max(self.loss) - 0.04:
             print('Y run not best')
             logging.info('Y run not best')               
@@ -1218,7 +1252,7 @@ class XYscan:
                 if success_num == 5:
                     break
                 # for 1xN, if loss improved, exit directly   
-                if diff > 0.02 and self.product == 2:
+                if diff > 0.1 and self.product == 2:
                     break
 
         print('Z optim ends at: ')

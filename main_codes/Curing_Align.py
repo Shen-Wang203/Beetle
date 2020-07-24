@@ -18,6 +18,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.pos_curing_rec = []
         self.xycount = 0
         self.later_time_flag = False
+        self.buffer = 0.05
 
     # Product 1: VOA
     # Product 2: 1xN
@@ -158,6 +159,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         start_time = time.time()
         curing_active = True
         curing_active_flag = False
+        solid = False
         while not self.error_flag:         
             end_time = time.time()
             if (end_time - start_time) > self.minutes  * 60:
@@ -168,14 +170,19 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('Reach 5 min')
                 print('Reach 5 min')
                 self.later_time_flag = True
-                self.wait_time = 0.4
+                self.wait_time = 0.1
+                self.loss_criteria = self.loss_criteria - 0.01
+            elif (end_time - start_time) > 180 and (end_time - start_time) < 190:
+                logging.info('Reach 3 min')
+                print('Reach 3 min')
 
-            time.sleep(0.7)
+            time.sleep(0.5)
             self.fetch_loss()    
             self.loss_curing_rec.append(self.loss[-1])   
             self.check_abnormal_loss(self.loss[-1]) 
 
-            if curing_active and self.loss[-1] < self.loss_criteria:
+            if curing_active and self.loss[-1] < (self.loss_criteria + self.buffer):
+                self.buffer = 0
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
                 # Z back if xy search failed for 3 times
@@ -190,13 +197,15 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
                 P1 = self.scanUpdate(P)
                 if P1 == False:
-                    print('XY Values dont change')
-                    logging.info('XY Values dont change')
-                    print('Pause program')
-                    logging.info('Pause program')
-                    curing_active = False
-                    if curing_active_flag:
-                        return P
+                    print('XY Values dont change or fixture move error')
+                    logging.info('XY Values dont change or fixture move error')
+                    if solid:
+                        print('Pause program')
+                        logging.info('Pause program')
+                        curing_active = False
+                        if curing_active_flag:
+                            return P
+                    solid = True
                     self.error_flag = False
                 else:
                     P = P1[:]         
@@ -204,6 +213,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.xycount += 1
             elif curing_active and self.loss[-1] >= self.loss_criteria:
                 self.xycount = 0
+                self.buffer = 0.05
             elif (not curing_active) and self.loss[-1] < (self.loss_criteria - 0.5):
                 curing_active = True
                 curing_active_flag = True
@@ -328,7 +338,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         if _loss0 > self.loss_current_max:
             self.loss_current_max = _loss0
             self.pos_current_max = self.current_pos[:]
-            self.loss_criteria = self.loss_current_max - 0.03
+            self.loss_criteria = self.loss_current_max - 0.02
         elif (_loss0 < (2.5 * self.loss_current_max) and _loss0 < -10) or _loss0 < -55:
             print('Unexpected High Loss, End Program')
             logging.info('Unexpected High Loss, End Program')
@@ -395,14 +405,16 @@ class Curing_Active_Alignment(XYscan.XYscan):
         else:
             # for final 5min, change to 3-point interp
             # step is 6, total 3 points, range 12 counts
-            if self.later_time_flag:
-                return [6, 3]
-            else:
-                return [5, 5]
+            # if self.later_time_flag:
+            #     return [6, 3]
+            # else:
+            #     return [5, 5]
+            return [10, 3]
     
     def loss_target_check(self, _loss):
         if _loss >= self.loss_criteria:
             print('Meet Criteria: ', round(self.loss_criteria,3))
             logging.info('Meet Criteria: ' + str(round(self.loss_criteria,3)))
             self.xycount = 0
+            self.buffer = 0.05
             return True

@@ -228,7 +228,7 @@ class CMDInputThread(QtCore.QThread):
             xys = XYscan(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
             self.sig2.emit(2)
-            P0 = [0,0,140,-0.3,0.2,0]
+            P0 = [0,0,140,-0.3,-0.1,0]
             # P0 = [1,0,140,0.2,-1.5,0]
             xys.set_starting_point(P0)
             
@@ -289,7 +289,7 @@ class CMDInputThread(QtCore.QThread):
                 cure.product_select('VOA')
             elif StaticVar.productType == "1xN":
                 cure.product_select('1xN')
-            cure.set_loss_criteria(self.loss_max-0.03)
+            cure.set_loss_criteria(self.loss_max-0.02)
             P1 = cure.curing_run2(self.currentPosition)
             try:
                 self.currentPosition = P1[:]

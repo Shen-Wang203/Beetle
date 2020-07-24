@@ -1,16 +1,16 @@
 TODO Bugs:
 1. Click close, then auto align again, it will stop in the middle
 2. UART issue, stop in the middle occasionly
-3. Pre-cure return false
+3. after 5min, x backlash larger 2 more counts
+4. X interp has bad accuracy, before 5min most is Yinterp
+4. double check buffer, use before 5min, or don't even use it
 
 Jerry
 GUI pending:
--2. Rotate the camera screen 180 degrees and zoom in. DONE 7/20
--1. Fix XYZ shortcut bugs
-0. Adding loss_criteria selection with options: -0.2, -0.25, -0.3, -0.35, -0.4, -0.45, -0.5 DONE 7/21
-1. IL display
+1. When clicked curing, add time counts
 2. Starting position setting: Click a button to save [x,y,z,Rx,Ry,Rz] information as starting position
 3. C# Close, wait for [motors Idle] then close the program
+4. Fix XYZ shortcut bugs
 
 Beetle:
 #2: T2x needs to lubricate
