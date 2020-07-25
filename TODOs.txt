@@ -1,9 +1,6 @@
 TODO Bugs:
 1. Click close, then auto align again, it will stop in the middle
 2. UART issue, stop in the middle occasionly
-3. after 5min, x backlash larger 2 more counts
-4. X interp has bad accuracy, before 5min most is Yinterp
-4. double check buffer, use before 5min, or don't even use it
 
 Jerry
 GUI pending:
@@ -18,3 +15,9 @@ Beetle:
 
 Control Box #1: 
 for Beetle #2 and #5, motors sometimes don't run
+
+Notes:
+1. If x or y interp failed constantly during curing, it means the positioning is not 
+   accurate. Need to adjust the PID parameters or/and add some damp on the motor.
+2. Glue needs to be uniform, important.
+   Jig needs to be rigid and has small thermal expansion (Stainless Steel), important.

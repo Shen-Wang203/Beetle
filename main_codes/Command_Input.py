@@ -37,7 +37,9 @@ class CMDInputThread(QtCore.QThread):
 
     #Create a HPP fixture object
     HPP = BM.BackModel()
-    HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))
+    # HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))
+    # TODO: double check this value
+    HPP.set_Pivot(np.array([[0], [0], [51.46], [0]]))
     hppcontrol = control.HPP_Control()
 
     logfilename = 'runlog.log'
@@ -228,7 +230,7 @@ class CMDInputThread(QtCore.QThread):
             xys = XYscan(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
             self.sig2.emit(2)
-            P0 = [0,0,140,-0.3,-0.1,0]
+            P0 = [0,0,140,-0.3,-0.4,0]
             # P0 = [1,0,140,0.2,-1.5,0]
             xys.set_starting_point(P0)
             

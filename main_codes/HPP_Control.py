@@ -988,7 +988,7 @@ class HPP_Control:
             # if errors exist, disengage motors, exit the loop
             time.sleep(0.1)
             timeout += 1
-            if timeout > 100:
+            if timeout > 50:
                 self.disengage_motor()
                 for i in range(0,6):
                     if abs(_Tcounts[i] - Tcounts_real[i]) > 20:

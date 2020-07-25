@@ -724,9 +724,11 @@ class XYscan:
             while not self.hppcontrol.Tx_on_target(x1[i], x2[i], x3[i], self.tolerance):
                 time.sleep(0.2)
                 timeout += 1
-                if timeout > 100:
+                if timeout > 30:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
+                    if self.final_adjust:
+                        break
                     return False
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
@@ -792,9 +794,11 @@ class XYscan:
             while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
                 time.sleep(0.2)
                 timeout += 1
-                if timeout > 100:
+                if timeout > 30:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
+                    if self.final_adjust:
+                        break
                     return False
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()  
@@ -872,9 +876,11 @@ class XYscan:
             while not self.hppcontrol.Ty_on_target(y1[i], y2[i], y3[i], self.tolerance):
                 time.sleep(0.2)
                 timeout += 1
-                if timeout > 100:
+                if timeout > 30:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
+                    if self.final_adjust:
+                        break
                     return False
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
@@ -940,9 +946,11 @@ class XYscan:
             while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
                 time.sleep(0.2)
                 timeout += 1
-                if timeout > 100:
+                if timeout > 30:
                     print('Movement Timeout Error')
                     logging.info('Movement Timeout Error')
+                    if self.final_adjust:
+                        break
                     return False
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()   
@@ -1145,7 +1153,8 @@ class XYscan:
             if not self.send_to_hpp(P1):
                 print('Movement Error')
                 logging.info('Movement Error')
-                self.error_flag = True
+                if not self.final_adjust:
+                    self.error_flag = True
             if self.final_adjust:
                 self.hppcontrol.disengage_motor()
             time.sleep(self.wait_time)
@@ -1235,7 +1244,8 @@ class XYscan:
                     if not self.send_to_hpp(P1):
                         print('Movement Error')
                         logging.info('Movement Error')
-                        self.error_flag = True
+                        if not self.final_adjust:
+                            self.error_flag = True
                     if self.final_adjust:
                         self.hppcontrol.disengage_motor()
                     time.sleep(self.wait_time)

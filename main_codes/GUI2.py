@@ -624,7 +624,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         logging.info('*************************')
         logging.info('Reset')
         logging.info('*************************')
-        target_mm_text = '[0,0,140,-0.3,-0.1,0]'
+        target_mm_text = '[0,0,140,-0.3,-0.4,0]'
         cmdtext = 'goto' + target_mm_text[1:-1]
         print(cmdtext)
         self.runthread.setcmd(cmdtext)

@@ -51,8 +51,8 @@ odrivetool --serial-number 2086388F304E
 
 C5 + B1:
 T2x
-pos_gain 1050   
-vel_gain 0.25/10000  0.15/10000
+pos_gain 1050                       2500
+vel_gain 0.25/10000  0.15/10000     0.25/10000
 T2y
 pos_gain 950
 vel_gain 0.4/10000   0.35/10000
