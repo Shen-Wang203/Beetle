@@ -358,8 +358,15 @@ class Ui_MainWindow(object):
         self.label_key_press.setFont(font)
         self.label_key_press.setObjectName("label_key_press")
 
+        self.pushButton_initial_pos = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_initial_pos.setGeometry(QtCore.QRect(850, 10, 200, 30))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.pushButton_initial_pos.setFont(font)
+        self.pushButton_initial_pos.setObjectName("pushButton_initial_pos")
+
         self.pushButton_reset = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_reset.setGeometry(QtCore.QRect(850, 50, 300, 60))
+        self.pushButton_reset.setGeometry(QtCore.QRect(850, 60, 300, 60))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.pushButton_reset.setFont(font)
@@ -367,7 +374,7 @@ class Ui_MainWindow(object):
         self.pushButton_reset.setStyleSheet("background-color: red")
 
         self.pushButton_alignment = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_alignment.setGeometry(QtCore.QRect(850, 150, 300, 60))
+        self.pushButton_alignment.setGeometry(QtCore.QRect(850, 160, 300, 60))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.pushButton_alignment.setFont(font)
@@ -376,7 +383,7 @@ class Ui_MainWindow(object):
         # self.pushButton_alignment.setEnabled(False)
 
         self.pushButton_pre_curing = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_pre_curing.setGeometry(QtCore.QRect(850, 250, 300, 60))
+        self.pushButton_pre_curing.setGeometry(QtCore.QRect(850, 260, 300, 60))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.pushButton_pre_curing.setFont(font)
@@ -385,7 +392,7 @@ class Ui_MainWindow(object):
         # self.pushButton_pre_curing.setEnabled(False)
 
         self.pushButton_curing = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_curing.setGeometry(QtCore.QRect(850, 350, 300, 60))
+        self.pushButton_curing.setGeometry(QtCore.QRect(850, 360, 300, 60))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.pushButton_curing.setFont(font)
@@ -465,6 +472,7 @@ class Ui_MainWindow(object):
         self.pushButton_Rym.clicked.connect(lambda: self.Ryminus_click(self.step))
         self.pushButton_Rzp.clicked.connect(lambda: self.Rzplus_click(self.step))
         self.pushButton_Rzm.clicked.connect(lambda: self.Rzminus_click(self.step))
+        self.pushButton_initial_pos.clicked.connect(self.initial_pos_click)
         self.pushButton_reset.clicked.connect(self.reset_click)
         self.pushButton_alignment.clicked.connect(self.alignment_click)
         self.pushButton_pre_curing.clicked.connect(self.pre_curing_click)
@@ -552,6 +560,7 @@ class Ui_MainWindow(object):
         self.label_product.setText(_translate("MainWindow", "Product Type:"))
         self.label_criteria.setText(_translate("MainWindow", "Criteria:"))
         # self.label_key_press.setText(_translate("MainWindow", ""))
+        self.pushButton_initial_pos.setText(_translate("MainWindow", "Initial Pos"))
         self.pushButton_reset.setText(_translate("MainWindow", "Reset"))
         self.pushButton_alignment.setText(_translate("MainWindow", "Alignment"))
         self.pushButton_pre_curing.setText(_translate("MainWindow", "Pre-Curing"))
@@ -577,8 +586,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.timer.timeout.connect(self.updateIL)
         self.timer.start(100)
 
-    step = 0.0002
-    target_mm = [0,0,138,0,0,0]
+        self.step = 0.0002
+        self.target_mm = [0,0,138,0,0,0]
 
     def click_to_send(self, _cmd):
         self.runthread.setcmd(_cmd)
@@ -619,18 +628,31 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.stop()    
         self.disarm_click() 
 
+    def initial_pos_click(self):
+        # save to file
+        file1 = open("initial_pos.txt","w+")
+        file1.write(str(self.target_mm))
+        file1.close()
+        print('Initial Position Set')
+        logging.info('Initial Position Set')
+
     def reset_click(self):
         logging.info(' ')
         logging.info('*************************')
         logging.info('Reset')
         logging.info('*************************')
-        target_mm_text = '[0,0,140,-0.3,-0.4,0]'
+        file1 = open("initial_pos.txt","r")
+        target_mm_text = file1.read()
+        file1.close()
+        # target_mm_text = '[0,0,140,-0.3,-0.4,0]'
         cmdtext = 'goto' + target_mm_text[1:-1]
         print(cmdtext)
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
         self.pushButton_reset.setStyleSheet("background-color: green")
         self.pushButton_alignment.setStyleSheet("background-color: red")
@@ -639,7 +661,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.pushButton_pre_curing.setEnabled(False)
         self.pushButton_curing.setStyleSheet('Background-color: red')
         # self.pushButton_curing.setEnabled(False)
-
 
     def alignment_click(self):
         self.runthread.setcmd('align')
@@ -717,19 +738,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def step_choose(self):
         if self.stepSizeComboBox.currentIndex() == 0:
-                self.step = 0.0002
+            self.step = 0.0002
         elif self.stepSizeComboBox.currentIndex() == 1:
-                self.step = 0.001
+            self.step = 0.001
         elif self.stepSizeComboBox.currentIndex() == 2:
-                self.step = 0.005
+            self.step = 0.005
         elif self.stepSizeComboBox.currentIndex() == 3:
-                self.step = 0.02
+            self.step = 0.02
         elif self.stepSizeComboBox.currentIndex() == 4:
-                self.step = 0.2
+            self.step = 0.2
         elif self.stepSizeComboBox.currentIndex() == 5:
-                self.step = 0.1
+            self.step = 0.1
         elif self.stepSizeComboBox.currentIndex() == 6:
-                self.step = 0.5
+            self.step = 0.5
         # print(self.step)
 
     def product_choose(self):
@@ -763,6 +784,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
     def xminus_click(self, step):
         self.target_mm[0] = self.target_mm[0] - step
@@ -772,6 +795,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
     def yplus_click(self, step):
         self.target_mm[1] = self.target_mm[1] + step
@@ -781,6 +806,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
     def yminus_click(self, step):
         self.target_mm[1] = self.target_mm[1] - step
@@ -790,6 +817,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
     def zplus_click(self, step):
         self.target_mm[2] = self.target_mm[2] + step
@@ -799,6 +828,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
     def zminus_click(self, step):
         self.target_mm[2] = self.target_mm[2] - step
@@ -808,6 +839,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
     def Rxplus_click(self, step):
         self.target_mm[3] = self.target_mm[3] + step
@@ -817,6 +850,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
     def Rxminus_click(self, step):
         self.target_mm[3] = self.target_mm[3] - step
@@ -826,6 +861,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
     def Ryplus_click(self, step):
         self.target_mm[4] = self.target_mm[4] + step
@@ -835,6 +872,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
     def Ryminus_click(self, step):
         self.target_mm[4] = self.target_mm[4] - step
@@ -844,6 +883,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
     def Rzplus_click(self, step):
         self.target_mm[5] = self.target_mm[5] + step
@@ -853,6 +894,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
     def Rzminus_click(self, step):
         self.target_mm[5] = self.target_mm[5] - step
@@ -862,6 +905,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
+        # update current position in command_input
+        self.runthread.currentPosition = self.target_mm[:]
 
     # Camera
     def select_camera(self, i):

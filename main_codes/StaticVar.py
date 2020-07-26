@@ -1,4 +1,4 @@
 class StaticVar():
     productType = ""
-    IL = 0
+    IL = -60
     Criteria = -0.4

@@ -230,8 +230,8 @@ class CMDInputThread(QtCore.QThread):
             xys = XYscan(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
             self.sig2.emit(2)
-            P0 = [0,0,140,-0.3,-0.4,0]
-            # P0 = [1,0,140,0.2,-1.5,0]
+            # P0 = [0,0,140,-0.3,-0.4,0]
+            P0 = self.currentPosition[:]
             xys.set_starting_point(P0)
             
             if StaticVar.productType == "VOA":
