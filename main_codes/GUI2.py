@@ -369,7 +369,7 @@ class Ui_MainWindow(object):
         self.pushButton_initial_pos = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_initial_pos.setGeometry(QtCore.QRect(850, 10, 200, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setPointSize(15)
         self.pushButton_initial_pos.setFont(font)
         self.pushButton_initial_pos.setObjectName("pushButton_initial_pos")
 
@@ -568,7 +568,7 @@ class Ui_MainWindow(object):
         self.label_product.setText(_translate("MainWindow", "Product Type:"))
         self.label_criteria.setText(_translate("MainWindow", "Criteria:"))
         # self.label_key_press.setText(_translate("MainWindow", ""))
-        self.pushButton_initial_pos.setText(_translate("MainWindow", "Initial Pos"))
+        self.pushButton_initial_pos.setText(_translate("MainWindow", "Initial Position"))
         self.pushButton_reset.setText(_translate("MainWindow", "Reset"))
         self.pushButton_alignment.setText(_translate("MainWindow", "Alignment"))
         self.pushButton_pre_curing.setText(_translate("MainWindow", "Pre-Curing"))
