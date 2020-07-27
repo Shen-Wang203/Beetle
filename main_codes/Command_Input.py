@@ -16,15 +16,22 @@ class CMDInputThread(QtCore.QThread):
         self.cmd = ''
         self.currentPosition = [0,0,138,0,0,0]
         self.loss_max = -30
-    #error_log, target_mm, target_counts, real_counts
-    sig1 = QtCore.pyqtSignal(str, list, list, list, bool)
-    # Motor status signal
-    # 0: Idle
-    # 1: Running
-    # 2: Auto-alignment runnning
-    # 3: Pre-curing running
-    # 4: Curing running
-    sig2 = QtCore.pyqtSignal(int)
+        #error_log, target_mm, target_counts, real_counts
+        self.sig1 = QtCore.pyqtSignal(str, list, list, list, bool)
+        # Motor status signal
+        # 0: Idle
+        # 1: Running
+        # 2: Auto-alignment runnning
+        # 3: Pre-curing running
+        # 4: Curing running
+        self.sig2 = QtCore.pyqtSignal(int)
+        #Create a HPP fixture object
+        self.HPP = BM.BackModel()
+        # HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))
+        # TODO: double check this value
+        self.HPP.set_Pivot(np.array([[0], [0], [51.46], [0]]))
+        self.hppcontrol = control.HPP_Control()
+
 
     def setcmd(self, cmdtext):
         self.cmd = cmdtext
@@ -34,13 +41,6 @@ class CMDInputThread(QtCore.QThread):
 
     def stop(self):
         self.terminate()
-
-    #Create a HPP fixture object
-    HPP = BM.BackModel()
-    # HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))
-    # TODO: double check this value
-    HPP.set_Pivot(np.array([[0], [0], [51.46], [0]]))
-    hppcontrol = control.HPP_Control()
 
     logfilename = 'runlog.log'
     # Create a new log file each time the program is launched

@@ -3,7 +3,6 @@ TODO Bugs:
 
 Jerry
 GUI pending:
-1. When clicked curing, add time counts
 3. C# Close, wait for [motors Idle] then close the program
 4. Fix XYZ shortcut bugs
 

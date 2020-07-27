@@ -6,3 +6,8 @@ file1.close()
 
 b = a[:]
 print(b)
+
+c = 72
+minute = c // 60
+second = c % 60
+print(str(minute) + "' " + str(second) + "''")

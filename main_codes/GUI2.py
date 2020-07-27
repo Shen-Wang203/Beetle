@@ -243,6 +243,14 @@ class Ui_MainWindow(object):
         self.label_IL.setObjectName("label_IL")
         self.label_IL.setText("IL: ")
 
+        self.label_timer = QtWidgets.QLabel(self.centralwidget)
+        self.label_timer.setGeometry(QtCore.QRect(900, 770, 160, 40))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        self.label_timer.setFont(font)
+        self.label_timer.setObjectName("label_Timer")
+        self.label_timer.setText("Timer: ")        
+
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_statusdata.setFont(font)
@@ -583,8 +591,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread = cmd.CMDInputThread()
         # Set up timer to update IL
         self.timer = QTimer()
-        self.timer.timeout.connect(self.updateIL)
-        self.timer.start(100)
+        # self.timer.timeout.connect(self.updateIL)
+        self.timer.timeout.connect(self.showtime)
+        self.timer.start(1000)
+        self.timer_start = False
+        self.timer_count = 0
 
         self.step = 0.0002
         self.target_mm = [0,0,138,0,0,0]
@@ -662,6 +673,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton_curing.setStyleSheet('Background-color: red')
         # self.pushButton_curing.setEnabled(False)
 
+        self.timer_start = False
+        self.timer_count = 0
+
     def alignment_click(self):
         self.runthread.setcmd('align')
         self.runthread.start()
@@ -669,6 +683,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.sig2.connect(self.motor_status)
         self.pushButton_alignment.setStyleSheet("background-color: yellow")
         self.pushButton_pre_curing.setEnabled(True)
+        self.timer_start = True
+        self.timer_count = 0
 
     def pre_curing_click(self):
         self.runthread.setcmd('precure')
@@ -686,6 +702,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.sig2.connect(self.motor_status)
         self.pushButton_pre_curing.setStyleSheet("background-color: green")
         self.pushButton_curing.setStyleSheet('Background-color: yellow')
+        self.timer_start = True
+        self.timer_count = 0     
 
     def motor_status(self, _status):
         if _status == 1:
@@ -706,6 +724,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             self.label_statusdata.setText('Idle')
             self.label_statusdata.setStyleSheet("color: rgb(0, 255, 0);")
+            self.timer_count = 0
+            self.timer_start = False
 
     def refresh(self, _error_log, _target_mm, _target_counts, _real_counts, _error_flag):
         self.target_mm = _target_mm
@@ -974,6 +994,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def updateIL(self):
         self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
         self.label_IL.adjustSize()
+
+    def showtime(self):
+        if self.timer_start:
+            self.timer_count += 1
+            minute = self.timer_count // 60
+            second = self.timer_count % 60
+            self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
+            self.label_timer.adjustSize()
+        else:
+            self.label_timer.setText('Time: ----')
 
 class Thread(QThread):
     changePixmap = pyqtSignal(QImage)
