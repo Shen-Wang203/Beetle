@@ -422,7 +422,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
             if self.later_time_flag:
                 return [7, 3]
             else:
-                return [10, 3]
+                # return [10, 3]
+                return [7, 3]
     
     def loss_target_check(self, _loss):
         if _loss >= self.loss_criteria:

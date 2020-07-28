@@ -18,3 +18,8 @@ Notes:
    accurate. Need to adjust the PID parameters or/and add some damp on the motor.
 2. Glue needs to be uniform, important.
    Jig needs to be rigid and has small thermal expansion (Stainless Steel), important.
+3. Screws need to be tight
+4. Try to apply epoxy on the lens cap end instead of the side to make sure uniformity
+5. Try stopping vibration by some foam
+6. Just before getting solid during curing, the loss can drift because of the moves. See curing8
+ 
