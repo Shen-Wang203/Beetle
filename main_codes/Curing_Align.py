@@ -9,10 +9,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
         # self.scanmode = 'i'
         # this backlash is for xy only, not for z
         # unit is counts
-        self.x_backlash = -1
+        self.x_backlash = 0
         self.y_backlash = 0
+        self.x_solid = False
+        self.y_solid = False
 
-        self.minutes = 20
+        self.minutes = 30
         self.step_Z = 0.0008
         self.loss_curing_rec = []
         self.pos_curing_rec = []
@@ -162,7 +164,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
         start_time = time.time()
         curing_active = True
         curing_active_flag = False
-        solid = False
         while not self.error_flag:         
             end_time = time.time()
             if (end_time - start_time) > self.minutes  * 60:
@@ -208,15 +209,14 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
                 P1 = self.scanUpdate(P)
                 if P1 == False:
-                    print('XY Values dont change')
-                    logging.info('XY Values dont change')
-                    if solid:
+                    print('X or Y Values dont change')
+                    logging.info('X or Y Values dont change')
+                    if self.x_solid and self.y_solid:
                         print('Pause program')
                         logging.info('Pause program')
                         curing_active = False
                         if curing_active_flag:
                             return P
-                    solid = True
                     self.error_flag = False
                 else:
                     P = P1[:]         
@@ -390,21 +390,23 @@ class Curing_Active_Alignment(XYscan.XYscan):
         Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
 
         # if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag):
-        if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag):
+        if not self.y_solid and not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag):
             print('Y step failed')
             logging.info('Y step failed')
             self.error_flag = True
-            return False              
+            self.y_solid = True
+            return False         
         P1 = self.current_pos[:]
         # previous search can errect the flag
         if self.loss_target_check(max(self.loss)) or self.error_flag:
             return P1  
         
         # if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag):
-        if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag):
+        if not self.x_solid and not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag):
             print('X step failed')
             logging.info('X step failed')
             self.error_flag = True
+            self.x_solid = True
             return False               
         P1 = self.current_pos[:]
         if self.loss_target_check(max(self.loss)):
@@ -438,7 +440,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             # else:
             #     return [5, 5]
             if self.later_time_flag:
-                return [4, 3]
+                return [5, 3]
             else:
                 # return [10, 3]
                 return [7, 3]
