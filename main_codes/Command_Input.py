@@ -220,9 +220,9 @@ class CMDInputThread(QtCore.QThread):
             print('Command mm: ', target_mm)       
             Tmm = self.HPP.findAxialPosition(X, Y, Z, Rx, Ry, Rz)  
             
-            self.hppcontrol.engage_motor()
+            # self.hppcontrol.engage_motor()
             self.sig2.emit(1)
-            target_counts = self.hppcontrol.run_to_Tmm(Tmm, 2)
+            target_counts = self.hppcontrol.run_to_Tmm(Tmm, tolerance=2, doublecheck=True)
             real_counts = control.Tcounts_real
             self.currentPosition = target_mm[:]
 

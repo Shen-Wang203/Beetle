@@ -18,7 +18,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.pos_curing_rec = []
         self.xycount = 0
         self.zcount = 0
+        self.zcount_all = 0
         self.later_time_flag = False
+        self.doublecheck_flag = False
         self.buffer = 0.03
 
     # Product 1: VOA
@@ -167,16 +169,19 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('Reach Time Limit')
                 print('Reach Time Limit')
                 break             
-            elif (end_time - start_time) > 360 and not self.later_time_flag:
-                logging.info('Reach 6 min')
-                print('Reach 6 min')
+            elif (end_time - start_time) > 600 and not self.later_time_flag:
+                logging.info('Reach 10 min')
+                print('Reach 10 min')
                 self.later_time_flag = True
-                self.wait_time = 0.1
+                
                 # for late time, loose the loss criteria to reduce movement times
-                self.loss_criteria = self.loss_criteria - 0.01
-            elif (end_time - start_time) > 180 and (end_time - start_time) < 185:
-                logging.info('Reach 3 min')
-                print('Reach 3 min')
+                # self.loss_criteria = self.loss_criteria - 0.01
+                # self.loss_current_max = self.loss_criteria + 0.02
+            elif (end_time - start_time) > 420 and (end_time - start_time) < 305:
+                logging.info('Reach 7 min')
+                print('Reach 7 min')
+                self.doublecheck_flag = False
+                self.wait_time = 0.1
 
             time.sleep(0.5)
             self.fetch_loss()    
@@ -189,19 +194,22 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.loss_curing_rec.append(99)    
                 # Z back if xy search failed for 3 times
                 if self.xycount == 3:
-                    P = self.Zstep(P)
-                    # P = self.Zstep_back(P)
+                    if self.zcount_all < 12:
+                        P = self.Zstep_back(P)
+                    else:
+                        P = self.Zstep(P)
                     self.pos_curing_rec.append(P)  
                     self.xycount = 0
                     self.zcount += 1
+                    self.zcount_all = 0
                     self.fetch_loss()
                     if self.loss_target_check(self.loss[-1]):
                         continue
 
                 P1 = self.scanUpdate(P)
                 if P1 == False:
-                    print('XY Values dont change or fixture move error')
-                    logging.info('XY Values dont change or fixture move error')
+                    print('XY Values dont change')
+                    logging.info('XY Values dont change')
                     if solid:
                         print('Pause program')
                         logging.info('Pause program')
@@ -215,11 +223,21 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.pos_curing_rec.append(P)    
                 self.xycount += 1
                 # if fail to meet criteria for 3 rounds, then we loose the criteria
-                if self.zcount == 3:
+                if self.zcount == 1 and not self.later_time_flag and self.xycount == 3:
                     self.loss_criteria = self.loss_criteria - 0.01
+                    self.loss_current_max = self.loss_criteria + 0.02
                     print('Lower criteria 0.01dB')
                     logging.info('Lower criteria 0.01dB')
                     self.zcount = 0
+                    # allow two more xy after lower criteria
+                    self.xycount = 1
+                elif self.zcount == 1 and self.later_time_flag and self.xycount == 3:
+                    self.loss_criteria = self.loss_criteria - 0.01
+                    self.loss_current_max = self.loss_criteria + 0.02
+                    print('Lower criteria 0.01dB')
+                    logging.info('Lower criteria 0.01dB')
+                    self.zcount = 0 
+                    self.xycount = 1                   
             elif curing_active and self.loss[-1] >= self.loss_criteria:
                 self.xycount = 0
                 self.zcount = 0
@@ -241,9 +259,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
         logging.info('Z Back 0.8um')         
         P1 = P0[:]
         P1[2] = P1[2] - 0.0008
-        self.hppcontrol.engage_motor()
-        if self.send_to_hpp(P1):
-            self.hppcontrol.disengage_motor()
+        # self.hppcontrol.engage_motor()
+        if self.send_to_hpp(P1, doublecheck=True):
+            # self.hppcontrol.disengage_motor()
             time.sleep(0.2)
             self.current_pos = P1[:]
         else:
@@ -279,9 +297,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 P1[2] = P1[2] + 0.0002 * _direc1
             _z0 = P1[2]
             _direc0 = _direc1
-            self.hppcontrol.engage_motor()
-            if self.send_to_hpp(P1):
-                self.hppcontrol.disengage_motor()
+            # self.hppcontrol.engage_motor()
+            if self.send_to_hpp(P1, doublecheck=True):
+                # self.hppcontrol.disengage_motor()
                 time.sleep(0.2)
                 self.fetch_loss()
                 self.current_pos = P1[:]
@@ -330,12 +348,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
             P1[2] = P1[2] + 0.0002 * _direc1
         _z0 = P1[2]
         _direc0 = _direc1        
-        self.hppcontrol.engage_motor()   
-        if not self.send_to_hpp(P1):
+        # self.hppcontrol.engage_motor()   
+        if not self.send_to_hpp(P1, doublecheck=True):
             print('Movement Error')
             logging.info('Movement Error')
             self.error_flag = True
-        self.hppcontrol.disengage_motor()
+        # self.hppcontrol.disengage_motor()
         time.sleep(0.2)
         self.current_pos = P1[:]
         # if same_count >= 5:
@@ -354,7 +372,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             logging.info('Unexpected High Loss, End Program')
             # self.hppcontrol.engage_motor()
             self.hppcontrol.normal_traj_speed()
-            # self.send_to_hpp(self.starting_point)
+            # self.send_to_hpp(self.starting_point, doublecheck=False)
             self.hppcontrol.disengage_motor()
             self.error_flag = True
     
@@ -371,8 +389,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
         Tmm = self.HPP.findAxialPosition(P0[0], P0[1], P0[2], P0[3], P0[4], P0[5])
         Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
 
-        # if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], travelmode='p'):
-        if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5]):
+        # if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag):
+        if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag):
             print('Y step failed')
             logging.info('Y step failed')
             self.error_flag = True
@@ -382,8 +400,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
         if self.loss_target_check(max(self.loss)) or self.error_flag:
             return P1  
         
-        # if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], travelmode='p')]:
-        if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4]):
+        # if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag):
+        if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag):
             print('X step failed')
             logging.info('X step failed')
             self.error_flag = True
@@ -420,7 +438,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             # else:
             #     return [5, 5]
             if self.later_time_flag:
-                return [7, 3]
+                return [4, 3]
             else:
                 # return [10, 3]
                 return [7, 3]
@@ -432,4 +450,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.xycount = 0
             self.zcount = 0
             self.buffer = 0.03
+
+            if _loss > self.loss_current_max:
+                self.loss_current_max = _loss
+                self.pos_current_max = self.current_pos[:]
+                self.loss_criteria = self.loss_current_max - 0.02
+            
             return True

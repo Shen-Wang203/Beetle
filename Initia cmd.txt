@@ -1,3 +1,11 @@
+Regular commands:
+odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+start_liveplotter(lambda:[odrv0.axis0.encoder.pos_estimate, odrv0.axis0.controller.pos_setpoint])
+odrv0.axis0.controller.pos_setpoint = 1000
+odrv0.axis0.controller.config.pos_gain = 1150
+odrv0.axis0.controller.config.vel_gain = 0.6/10000
+odrv0.axis0.requested_state = AXIS_STATE_IDLE
+
 %Control Box #0
 %T1
 odrivetool --serial-number 208739844D4D
@@ -57,6 +65,7 @@ T2y
 pos_gain 950
 vel_gain 0.4/10000   0.35/10000
 T3y
+pos_gain 950
 vel_gain 0.4/10000
 
 %Find the serial number

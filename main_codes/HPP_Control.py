@@ -969,34 +969,44 @@ class HPP_Control:
                 print('Wrong input, cannot identify motor #')
         return None
 
-    def run_to_Tmm(self, Tmm, tolerance):
+    # doublecheck will disengage the motor and do the check again
+    def run_to_Tmm(self, Tmm, tolerance, doublecheck):
         global error_log
         global Tcounts_real
         _Tcounts = self.translate_to_counts(Tmm) 
         # print('Commands counts: ', _Tcounts)
-        # self.engage_motor()
-        # Do safety check, make sure the commands are within the travel range
-        if self.safecheck(_Tcounts):
-            # Send commands to controllers via UART
-            self.send_counts(_Tcounts)
-        else:
-            self.disengage_motor()
-            return _Tcounts
-        timeout = 0
-        # Set on target tolerance as +-tolerance counts
-        while not self.on_target(_Tcounts, tolerance):
-            # if errors exist, disengage motors, exit the loop
-            time.sleep(0.1)
-            timeout += 1
-            if timeout > 50:
+        # 
+        for i in range(0,3):
+            if doublecheck:
+                self.engage_motor()
+            # Do safety check, make sure the commands are within the travel range
+            if self.safecheck(_Tcounts):
+                # Send commands to controllers via UART
+                self.send_counts(_Tcounts)
+            else:
+                self.disengage_motor()
+                return _Tcounts
+            # Set on target tolerance as +-tolerance counts
+            for timeout in range(0,30):
+                # if errors exist, disengage motors, exit the loop
+                time.sleep(0.1)
+                if self.on_target(_Tcounts, tolerance):
+                    break
+            if timeout >= 29:
                 self.disengage_motor()
                 for i in range(0,6):
-                    if abs(_Tcounts[i] - Tcounts_real[i]) > 20:
+                    if abs(_Tcounts[i] - Tcounts_real[i]) > tolerance:
                         print('Motor ' + str(i+1) + ' Timeout Error')
                         error_log = error_log + 'Motor ' + str(i+1) + ' Timeout Error' + '\n'
                 return _Tcounts
-            # if self.check_errors():
-            #     return _Tcounts
-        # self.disengage_motor()
-        # print('+++++++++')
+            if doublecheck:
+                self.disengage_motor()
+                time.sleep(0.1)
+                if self.on_target(_Tcounts, tolerance):
+                    return _Tcounts
+                else:
+                    continue
+
+            return _Tcounts
+
         return _Tcounts
