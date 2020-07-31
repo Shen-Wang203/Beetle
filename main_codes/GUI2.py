@@ -352,6 +352,7 @@ class Ui_MainWindow(object):
         self.criteriaComboBox.addItem("")
         self.criteriaComboBox.addItem("")
         self.criteriaComboBox.addItem("")
+        self.criteriaComboBox.addItem("")
         self.label_criteria = QtWidgets.QLabel(self.centralwidget)
         self.label_criteria.setGeometry(QtCore.QRect(350,510,121,31))
         font = QtGui.QFont()
@@ -559,12 +560,13 @@ class Ui_MainWindow(object):
         self.productComboBox.setItemText(0, _translate("MainWindow", "1xN"))
         self.productComboBox.setItemText(1, _translate("MainWindow", "VOA"))
         self.criteriaComboBox.setItemText(0, _translate("MainWindow", "-0.4"))
-        self.criteriaComboBox.setItemText(1, _translate("MainWindow", "-0.25"))
-        self.criteriaComboBox.setItemText(2, _translate("MainWindow", "-0.3"))
-        self.criteriaComboBox.setItemText(3, _translate("MainWindow", "-0.35"))
-        self.criteriaComboBox.setItemText(4, _translate("MainWindow", "-0.45"))
-        self.criteriaComboBox.setItemText(5, _translate("MainWindow", "-0.5"))
-        self.criteriaComboBox.setItemText(6, _translate("MainWindow", "-0.55"))
+        self.criteriaComboBox.setItemText(1, _translate("MainWindow", "-0.2"))
+        self.criteriaComboBox.setItemText(2, _translate("MainWindow", "-0.25"))
+        self.criteriaComboBox.setItemText(3, _translate("MainWindow", "-0.3"))
+        self.criteriaComboBox.setItemText(4, _translate("MainWindow", "-0.35"))
+        self.criteriaComboBox.setItemText(5, _translate("MainWindow", "-0.45"))
+        self.criteriaComboBox.setItemText(6, _translate("MainWindow", "-0.5"))
+        self.criteriaComboBox.setItemText(7, _translate("MainWindow", "-0.55"))
         self.label_product.setText(_translate("MainWindow", "Product Type:"))
         self.label_criteria.setText(_translate("MainWindow", "Criteria:"))
         # self.label_key_press.setText(_translate("MainWindow", ""))
@@ -694,6 +696,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton_alignment.setStyleSheet("background-color: green")        
         self.pushButton_pre_curing.setStyleSheet("background-color: yellow")
         self.pushButton_curing.setEnabled(True)
+        self.timer_start = True
+        self.timer_count = 0 
 
     def curing_click(self):
         self.runthread.setcmd('curing')
@@ -783,16 +787,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.criteriaComboBox.currentIndex() == 0:
             StaticVar.Criteria = -0.4
         elif self.criteriaComboBox.currentIndex() == 1:
-            StaticVar.Criteria = -0.25
+            StaticVar.Criteria = -0.2
         elif self.criteriaComboBox.currentIndex() == 2:
-            StaticVar.Criteria = -0.3
+            StaticVar.Criteria = -0.25
         elif self.criteriaComboBox.currentIndex() == 3:
-            StaticVar.Criteria = -0.35
+            StaticVar.Criteria = -0.3
         elif self.criteriaComboBox.currentIndex() == 4:
-            StaticVar.Criteria = -0.45
+            StaticVar.Criteria = -0.35
         elif self.criteriaComboBox.currentIndex() == 5:
-            StaticVar.Criteria = -0.5
+            StaticVar.Criteria = -0.45
         elif self.criteriaComboBox.currentIndex() == 6:
+            StaticVar.Criteria = -0.5
+        elif self.criteriaComboBox.currentIndex() == 7:
             StaticVar.Criteria = -0.55
 
     def xplus_click(self, step):
@@ -1002,8 +1008,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             second = self.timer_count % 60
             self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
             self.label_timer.adjustSize()
-        else:
-            self.label_timer.setText('Time: ----')
+        # else:
+            # self.label_timer.setText('Time: ----')
+
 
 class Thread(QThread):
     changePixmap = pyqtSignal(QImage)

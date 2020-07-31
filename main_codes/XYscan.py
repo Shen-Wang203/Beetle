@@ -142,7 +142,7 @@ class XYscan:
                 P_final = P1[:]
                 break
 
-            P0 = self.optimZ(P1)
+            P0 = self.optimZ(P1, doublecheck=False)
             # Return False Reason 1: Z step is too small
             # Return False Reason 2: Unexpected high loss
             if P0 == False:
@@ -948,13 +948,13 @@ class XYscan:
         Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
         # logging.info('Start Tcounts: '+str(Tcounts))
         if _mode == 's':
-            if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.final_adjust):
+            if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=False):
                 print('X step failed')
                 logging.info('X step failed')
                 self.error_flag = True
                 return False
         elif _mode == 'i':
-            if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.final_adjust):
+            if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=False):
                 print('X interp failed')
                 logging.info('X interp failed')
                 self.error_flag = True
@@ -971,13 +971,13 @@ class XYscan:
             return P1
 
         if _mode == 's':
-            if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.final_adjust):
+            if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=False):
                 print('Y step failed')
                 logging.info('Y step failed')
                 self.error_flag = True
                 return False
         elif _mode == 'i':
-            if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.final_adjust):
+            if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=False):
                 print('Y interp failed')
                 logging.info('Y interp failed')
                 self.error_flag = True
@@ -1038,7 +1038,7 @@ class XYscan:
 
     # Starting from P0, change only Z to go to P1, 
     # the fixture will be in P1 in the end, and the fixture needs to be in P0 in the beginning
-    def optimZ(self, P0):
+    def optimZ(self, P0, doublecheck):
         print('Z optim starts at (pos then loss): ')
         print(P0)
         logging.info('Z optim starts at (pos then loss): ')
@@ -1092,15 +1092,15 @@ class XYscan:
             _z0 = P1[2]
             _direc0 = _direc1            
             # goto the position
-            # if self.final_adjust:
-            #     self.hppcontrol.engage_motor()
-            if not self.send_to_hpp(P1, doublecheck=self.final_adjust):
+            if self.final_adjust and not doublecheck:
+                self.hppcontrol.engage_motor()
+            if not self.send_to_hpp(P1, doublecheck=doublecheck):
                 print('Movement Error')
                 logging.info('Movement Error')
                 if not self.final_adjust:
                     self.error_flag = True
-            # if self.final_adjust:
-            #     self.hppcontrol.disengage_motor()
+            if self.final_adjust and not doublecheck:
+                self.hppcontrol.disengage_motor()
             time.sleep(self.wait_time)
             self.fetch_loss()
             self.current_pos = P1[:]
@@ -1183,15 +1183,15 @@ class XYscan:
                     _z0 = P1[2]
                     _direc0 = _direc1                    
                     # goto the position
-                    # if self.final_adjust:
-                    #     self.hppcontrol.engage_motor()
-                    if not self.send_to_hpp(P1, doublecheck=self.final_adjust):
+                    if self.final_adjust and not doublecheck:
+                        self.hppcontrol.engage_motor()
+                    if not self.send_to_hpp(P1, doublecheck=doublecheck):
                         print('Movement Error')
                         logging.info('Movement Error')
                         if not self.final_adjust:
                             self.error_flag = True
-                    # if self.final_adjust:
-                    #     self.hppcontrol.disengage_motor()
+                    if self.final_adjust and not doublecheck:
+                        self.hppcontrol.disengage_motor()
                     time.sleep(self.wait_time)
                     self.current_pos = P1[:]
                     break

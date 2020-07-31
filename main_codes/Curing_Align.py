@@ -20,7 +20,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.pos_curing_rec = []
         self.xycount = 0
         self.zcount = 0
-        self.zcount_all = 0
+        self.zcount_loop = 0
         self.later_time_flag = False
         self.doublecheck_flag = False
         self.buffer = 0.03
@@ -193,16 +193,17 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.buffer = 0
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
-                # Z back if xy search failed for 3 times
-                if self.xycount == 3:
-                    if self.zcount_all < 12:
+                # Z back if xy search failed for 2 times
+                if self.xycount == 2:
+                    if self.zcount_loop < 2:
                         P = self.Zstep_back(P)
+                        self.zcount_loop += 1
                     else:
                         P = self.Zstep(P)
+                        self.zcount_loop = 0
                     self.pos_curing_rec.append(P)  
                     self.xycount = 0
                     self.zcount += 1
-                    self.zcount_all = 0
                     self.fetch_loss()
                     if self.loss_target_check(self.loss[-1]):
                         continue
@@ -223,7 +224,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.pos_curing_rec.append(P)    
                 self.xycount += 1
                 # if fail to meet criteria for 3 rounds, then we loose the criteria
-                if self.zcount == 1 and not self.later_time_flag and self.xycount == 3:
+                if self.zcount == 1 and not self.later_time_flag and self.xycount == 2:
                     self.loss_criteria = self.loss_criteria - 0.01
                     self.loss_current_max = self.loss_criteria + 0.02
                     print('Lower criteria 0.01dB')
@@ -231,7 +232,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     self.zcount = 0
                     # allow two more xy after lower criteria
                     self.xycount = 1
-                elif self.zcount == 1 and self.later_time_flag and self.xycount == 3:
+                elif self.zcount == 1 and self.later_time_flag and self.xycount == 2:
                     self.loss_criteria = self.loss_criteria - 0.01
                     self.loss_current_max = self.loss_criteria + 0.02
                     print('Lower criteria 0.01dB')
@@ -284,7 +285,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         trend = 1
         same_count = 0
         _direc1 = -1
-        _direc0 = 1
+        _direc0 = -1
         _z0 = P1[2]
         while True:
             P1[2] = P1[2] + self.step_Z * _direc1
@@ -398,7 +399,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             return False         
         P1 = self.current_pos[:]
         # previous search can errect the flag
-        if self.loss_target_check(max(self.loss)) or self.error_flag:
+        if not self.y_solid and (self.loss_target_check(max(self.loss)) or self.error_flag):
             return P1  
         
         # if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag):
@@ -409,8 +410,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.x_solid = True
             return False               
         P1 = self.current_pos[:]
-        if self.loss_target_check(max(self.loss)):
+        if not self.x_solid and self.loss_target_check(max(self.loss)):
             return P1
+        
         if not self.error_flag:
             print('Scan update ends at: ')
             print(P1)
@@ -447,10 +449,11 @@ class Curing_Active_Alignment(XYscan.XYscan):
     
     def loss_target_check(self, _loss):
         if _loss >= self.loss_criteria:
-            print('Meet Criteria: ', round(self.loss_criteria,3))
-            logging.info('Meet Criteria: ' + str(round(self.loss_criteria,3)))
+            print('Meet Criteria: ', round(self.loss_criteria,4))
+            logging.info('Meet Criteria: ' + str(round(self.loss_criteria,4)))
             self.xycount = 0
             self.zcount = 0
+            self.zcount_loop = 0
             self.buffer = 0.03
 
             if _loss > self.loss_current_max:

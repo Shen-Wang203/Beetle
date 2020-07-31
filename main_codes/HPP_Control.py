@@ -987,12 +987,12 @@ class HPP_Control:
                 self.disengage_motor()
                 return _Tcounts
             # Set on target tolerance as +-tolerance counts
-            for timeout in range(0,30):
+            for timeout in range(0,50):
                 # if errors exist, disengage motors, exit the loop
                 time.sleep(0.1)
                 if self.on_target(_Tcounts, tolerance):
                     break
-            if timeout >= 29:
+            if timeout >= 49:
                 self.disengage_motor()
                 for i in range(0,6):
                     if abs(_Tcounts[i] - Tcounts_real[i]) > tolerance:
