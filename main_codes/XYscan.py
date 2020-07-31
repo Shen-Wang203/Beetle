@@ -425,6 +425,7 @@ class XYscan:
 
     # x1_o is counts
     # when success return true, position is updated at self.current_pos
+    # return false: 1. movement error (not in final_adjust); 2. loss doesn't change
     def Xstep(self, x1_o, x2_o, x3_o, doublecheck):
         print('Start Xstep (loss then pos)')
         logging.info('Start Xstep (loss then pos)')        
@@ -524,6 +525,7 @@ class XYscan:
 
     # y1_o is counts
     # when success return true, position is updated at self.current_pos
+    # return false: 1. movement error (not in final_adjust); 2. loss doesn't change
     def Ystep(self, y1_o, y2_o, y3_o, doublecheck):
         print('Start Ystep (loss then pos)')
         logging.info('Start Ystep (loss then pos)')  
@@ -712,16 +714,26 @@ class XYscan:
                     break
                 i = totalpoints
         
-        # if unchange return false
-        if max(self.loss) - min(self.loss) < 0.005:
+        # if unchange return false and return to original position
+        if max(self.loss) - min(self.loss) < 0.008:
+            # apply backlash counter
+            counter = self.apply_xy_backlash_counter(x10, x1_o, 'x')
+            x1_o = x1_o + counter
+            x2_o = x2_o - counter
+            x3_o = x3_o - counter
+            x10 = x1_o         
+            self.gotoxy(x1_o, x2_o, x3_o, xy='x', doublecheck=doublecheck)
+            self.update_current_pos('x', x1_o, x1_o)
+            self.pos.append(x1_o)
+            self.save_loss_pos()
             return False
         grid = [*range(int(min(x_ref)), int(max(x_ref))+1, 1)]  
         s = interpolation.barycenteric_interp(x_ref, self.loss, grid)
         x1_final = grid[s.index(max(s))]
         x2_final = -x1_final + x1_o + x2_o
         x3_final = -x1_final + x1_o + x3_o
-        # only if counts difference is larger than 3 then go to that counts
-        if abs(x1_final - x_ref[-1]) > 3:
+        # only if counts difference is larger than 2 then go to that counts
+        if abs(x1_final - x_ref[-1]) > 2:
             # apply backlash counter
             counter = self.apply_xy_backlash_counter(x10, x1_final, 'x')
             x1_final = x1_final + counter
@@ -838,16 +850,26 @@ class XYscan:
                     break    
                 i = totalpoints 
 
-        # if unchange return false
-        if max(self.loss) - min(self.loss) < 0.005:
+        # if unchange return false and return to original point
+        if max(self.loss) - min(self.loss) < 0.008:
+            # apply backlash counter
+            counter = self.apply_xy_backlash_counter(y10, y1_o, 'y')
+            y1_o = y1_o + counter
+            y2_o = y2_o + counter
+            y3_o = y3_o + counter
+            y10 = y1_o         
+            self.gotoxy(y1_o, y2_o, y3_o, xy='y', doublecheck=doublecheck)
+            self.update_current_pos('y', y1_o, y1_o)
+            self.pos.append(y1_o)
+            self.save_loss_pos()
             return False
         grid = [*range(int(min(y_ref)), int(max(y_ref))+1, 1)]  
         s = interpolation.barycenteric_interp(y_ref, self.loss, grid)
         y1_final = grid[s.index(max(s))]
         y2_final = y1_final - y1_o + y2_o
         y3_final = y1_final - y1_o + y3_o
-        # only if counts difference is larger than 3 then go to that counts
-        if abs(y1_final-y_ref[-1]) > 3:
+        # only if counts difference is larger than 2 then go to that counts
+        if abs(y1_final-y_ref[-1]) > 2:
             # apply backlash counter
             counter = self.apply_xy_backlash_counter(y10, y1_final, 'y')
             y1_final = y1_final + counter
@@ -872,6 +894,7 @@ class XYscan:
     # a1,a2,a3 is the T1,T2,T3 target position
     # xy is either 'x' or 'y'
     # doublecheck is to when disengaged, check again the position, is a bool. 
+    # return false when movement error and final_adjust is false
     def gotoxy(self, a1, a2, a3, xy, doublecheck):
         for i in range(0,3):
             if self.final_adjust:
@@ -880,7 +903,7 @@ class XYscan:
                 self.hppcontrol.Ty_send_only(a1, a2, a3, 'p')
             else:
                 self.hppcontrol.Tx_send_only(a1, a2, a3, 'p')
-            for timeout in range(0, 30):
+            for timeout in range(0, 50):
                 time.sleep(0.1)
                 if xy == 'y':
                     if self.hppcontrol.Ty_on_target(a1, a2, a3, self.tolerance):
@@ -888,7 +911,7 @@ class XYscan:
                 else:
                     if self.hppcontrol.Tx_on_target(a1, a2, a3, self.tolerance):
                         break
-            if timeout >= 29:
+            if timeout >= 49:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
                 if not self.final_adjust:

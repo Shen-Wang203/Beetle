@@ -1,3 +1,3 @@
-a = True
-if not a and (1>2 or 4>1):
-    print('ef')
+loss = [23,24,1,2]
+loss.append(5)
+print(len(loss))

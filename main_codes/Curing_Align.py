@@ -174,7 +174,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('Reach 10 min')
                 print('Reach 10 min')
                 self.later_time_flag = True
-                
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
                 # self.loss_current_max = self.loss_criteria + 0.02
@@ -188,6 +187,13 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.fetch_loss()    
             self.loss_curing_rec.append(self.loss[-1])   
             self.check_abnormal_loss(self.loss[-1]) 
+            # if loss is within the buffer range for 30s, then we assume the epoxy is solid already
+            if self.later_time_flag and len(self.loss) > 60:
+                print('Loss is stable, pause the program')
+                logging.info('Loss is stable, pause the program')
+                curing_active = False
+                if curing_active_flag:
+                    return P
 
             if curing_active and self.loss[-1] < (self.loss_criteria - self.buffer):
                 self.buffer = 0
@@ -195,17 +201,18 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.loss_curing_rec.append(99)    
                 # Z back if xy search failed for 2 times
                 if self.xycount == 2:
-                    if self.zcount_loop < 2:
-                        P = self.Zstep_back(P)
-                        self.zcount_loop += 1
-                    else:
+                    if self.zcount_loop >= 2:
                         P = self.Zstep(P)
                         self.zcount_loop = 0
+                    else:
+                        P = self.Zstep_back(P)
+                        self.zcount_loop += 1
                     self.pos_curing_rec.append(P)  
                     self.xycount = 0
                     self.zcount += 1
                     self.fetch_loss()
                     if self.loss_target_check(self.loss[-1]):
+                        self.loss = []
                         continue
 
                 P1 = self.scanUpdate(P)
@@ -223,6 +230,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     P = P1[:]         
                 self.pos_curing_rec.append(P)    
                 self.xycount += 1
+                self.loss = []
                 # if fail to meet criteria for 3 rounds, then we loose the criteria
                 if self.zcount == 1 and not self.later_time_flag and self.xycount == 2:
                     self.loss_criteria = self.loss_criteria - 0.01
@@ -242,7 +250,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
             elif curing_active and self.loss[-1] >= self.loss_criteria:
                 self.xycount = 0
                 self.zcount = 0
-                self.buffer = 0.03
+                if self.later_time_flag:
+                    self.buffer = 0.02
+                else:
+                    self.buffer = 0.03
             elif (not curing_active) and self.loss[-1] < (self.loss_criteria - 0.5):
                 curing_active = True
                 curing_active_flag = True
@@ -390,25 +401,29 @@ class Curing_Active_Alignment(XYscan.XYscan):
         Tmm = self.HPP.findAxialPosition(P0[0], P0[1], P0[2], P0[3], P0[4], P0[5])
         Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
 
+        # Return false only when unchanged
         # if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag):
         if not self.y_solid and not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag):
-            print('Y step failed')
-            logging.info('Y step failed')
-            self.error_flag = True
-            self.y_solid = True
-            return False         
+            print('Y step unchange')
+            logging.info('Y step unchange')
+            if self.later_time_flag:
+                self.error_flag = True
+                self.y_solid = True
+                return False         
         P1 = self.current_pos[:]
         # previous search can errect the flag
         if not self.y_solid and (self.loss_target_check(max(self.loss)) or self.error_flag):
             return P1  
         
+        # Return false only when unchanged
         # if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag):
         if not self.x_solid and not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag):
-            print('X step failed')
-            logging.info('X step failed')
-            self.error_flag = True
-            self.x_solid = True
-            return False               
+            print('X step unchange')
+            logging.info('X step unchange')
+            if self.later_time_flag:
+                self.error_flag = True
+                self.x_solid = True
+                return False               
         P1 = self.current_pos[:]
         if not self.x_solid and self.loss_target_check(max(self.loss)):
             return P1
@@ -454,7 +469,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.xycount = 0
             self.zcount = 0
             self.zcount_loop = 0
-            self.buffer = 0.03
+            if self.later_time_flag:
+                self.buffer = 0.02
+            else:
+                self.buffer = 0.03
 
             if _loss > self.loss_current_max:
                 self.loss_current_max = _loss

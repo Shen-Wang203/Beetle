@@ -1,8 +1,9 @@
 TODO Bugs:
 1. Click close, then auto align again, it will stop in the middle
 2. During curing, when failed continuesly for many times, then we loose the criteria larger
-   Curing final stages when meeting criteria, if loss change is slow, pause the program 
    consider Final stages, use only z back
+   Loss drift: 1. thermal expansion on top and bot maaterial
+               2. Strain, avoid high torque drag from Beetle
 
 
 Jerry
