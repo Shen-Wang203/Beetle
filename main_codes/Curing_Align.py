@@ -188,7 +188,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.loss_curing_rec.append(self.loss[-1])   
             self.check_abnormal_loss(self.loss[-1]) 
             # if loss is within the buffer range for 30s, then we assume the epoxy is solid already
-            if self.later_time_flag and len(self.loss) > 60:
+            if self.later_time_flag and len(self.loss) == 60:
                 print('Loss is stable, pause the program')
                 logging.info('Loss is stable, pause the program')
                 curing_active = False
