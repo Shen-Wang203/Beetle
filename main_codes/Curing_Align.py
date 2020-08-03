@@ -14,7 +14,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.x_solid = False
         self.y_solid = False
 
-        self.minutes = 30
+        self.minutes = 35
         self.step_Z = 0.0008
         self.loss_curing_rec = []
         self.pos_curing_rec = []
@@ -170,9 +170,14 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('Reach Time Limit')
                 print('Reach Time Limit')
                 break             
-            elif (end_time - start_time) > 600 and not self.later_time_flag:
-                logging.info('Reach 10 min')
-                print('Reach 10 min')
+            elif (end_time - start_time) == 1800:
+                print('Reach 30 min')
+                logging.info('Reach 30 min')
+            elif (end_time - start_time) > 540 and not self.later_time_flag:
+                # 3min to 120 degree; 7min to 240 degree. Later time is 10min
+                # 3min to 120 degree; 6min to 210 degree, later time is 9min
+                logging.info('Reach 9 min')
+                print('Reach 9 min')
                 self.later_time_flag = True
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
@@ -188,7 +193,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.loss_curing_rec.append(self.loss[-1])   
             self.check_abnormal_loss(self.loss[-1]) 
             # if loss is within the buffer range for 30s, then we assume the epoxy is solid already
-            if self.later_time_flag and len(self.loss) == 60:
+            if self.later_time_flag and len(self.loss) == 60 and curing_active:
                 print('Loss is stable, pause the program')
                 logging.info('Loss is stable, pause the program')
                 curing_active = False
