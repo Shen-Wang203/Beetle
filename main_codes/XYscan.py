@@ -723,6 +723,7 @@ class XYscan:
             x3_o = x3_o - counter
             x10 = x1_o         
             self.gotoxy(x1_o, x2_o, x3_o, xy='x', doublecheck=doublecheck)
+            time.sleep(self.wait_time)
             self.update_current_pos('x', x1_o, x1_o)
             self.pos.append(x1_o)
             self.save_loss_pos()
@@ -859,6 +860,7 @@ class XYscan:
             y3_o = y3_o + counter
             y10 = y1_o         
             self.gotoxy(y1_o, y2_o, y3_o, xy='y', doublecheck=doublecheck)
+            time.sleep(self.wait_time)
             self.update_current_pos('y', y1_o, y1_o)
             self.pos.append(y1_o)
             self.save_loss_pos()

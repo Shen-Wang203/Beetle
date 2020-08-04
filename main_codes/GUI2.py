@@ -1008,6 +1008,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             second = self.timer_count % 60
             self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
             self.label_timer.adjustSize()
+            if second == 0:
+                print('Time: ', minute, 'min')
+                logging.info('Time: ' + str(minute) + 'min')
         # else:
             # self.label_timer.setText('Time: ----')
 

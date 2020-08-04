@@ -1,9 +1,11 @@
 TODO Bugs:
 1. Click close, then auto align again, it will stop in the middle
 2. During curing, when failed continuesly for many times, then we loose the criteria larger
-   consider Final stages, use only z back
-   Loss drift: 1. thermal expansion on top and bot maaterial
-               2. Strain, avoid high torque drag from Beetle
+   Loss drift: 1. avoid unequal material expansion from top and bot, meaning top and bot should have
+                  about the same length; and they should be shorter
+               2. should be stable earlier than epoxy solid
+               3. Epoxy should be even for uniform cooling down. 
+               4. When starting cooling, unscrew the bot first cause bot cooling can be slower and uneven
 
 
 Jerry
