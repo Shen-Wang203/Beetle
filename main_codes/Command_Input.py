@@ -20,7 +20,7 @@ class CMDInputThread(QtCore.QThread):
         self.HPP = BM.BackModel()
         # HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))
         # TODO: double check this value
-        self.HPP.set_Pivot(np.array([[0], [0], [51.46], [0]]))
+        self.HPP.set_Pivot(np.array([[-8], [-15], [44.6], [0]]))
         self.hppcontrol = control.HPP_Control()
 
     #error_log, target_mm, target_counts, real_counts

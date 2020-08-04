@@ -11,11 +11,27 @@ from Curing_Align import Curing_Active_Alignment
 logfilename = 'runlog.log'
 logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
 
-HPP = BM.BackModel()
-HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))
-hppcontrol = control.HPP_Control()
+start_time = time.time()
+while True:
+    loss = PM.power_read()
+    time.sleep(2)
+    mid_time = time.time()
+    counts = mid_time - start_time
+    counts = int(counts)
+    minute = counts // 60
+    second = counts % 60
+    if second == 0 or second == 30:
+        print('Time: ' + str(minute) + "' " + str(second) + "''")
+        logging.info('Time: ' + str(minute) + "' " + str(second) + "''")
+    if minute == 30:
+        break
 
-hppcontrol.close_ports()
+
+# HPP = BM.BackModel()
+# HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))
+# hppcontrol = control.HPP_Control()
+
+# hppcontrol.close_ports()
 
 # P0 = [0,0,138,-1.5,1,0]
 
