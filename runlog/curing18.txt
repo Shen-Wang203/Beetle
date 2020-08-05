@@ -1,6 +1,7 @@
 3min to 120C; 8min to 190C
 solid at 9min 
-the small jig, same length as top one
+no stable, drift up all the way to end
+the small jig, same length as top one, jig is glued on
 INFO:root:++++++++++++++++++++++++++++++
 INFO:root:Curing Active Alignment Starts. Loss Critera -0.40828855
 INFO:root:++++++++++++++++++++++++++++++

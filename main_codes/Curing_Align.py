@@ -159,7 +159,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.current_pos = P[:]
 
         self.final_adjust = True
-        self.stepScanCounts = 6
+        self.stepScanCounts = 4
         self.wait_time = 0.2
         start_time = time.time()
         curing_active = True
@@ -411,13 +411,14 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
         # Return false only when unchanged
         # if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag):
-        if not self.y_solid and not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag):
-            print('Y step unchange')
-            logging.info('Y step unchange')
-            if self.later_time_flag:
-                self.error_flag = True
-                self.y_solid = True
-                return False         
+        if not self.y_solid:
+            if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag, mode='t'):
+                print('Y step unchange')
+                logging.info('Y step unchange')
+                if self.later_time_flag:
+                    self.error_flag = True
+                    self.y_solid = True
+                    return False         
         P1 = self.current_pos[:]
         # previous search can errect the flag
         if not self.y_solid and (self.loss_target_check(max(self.loss)) or self.error_flag):
@@ -425,13 +426,14 @@ class Curing_Active_Alignment(XYscan.XYscan):
         
         # Return false only when unchanged
         # if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag):
-        if not self.x_solid and not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag):
-            print('X step unchange')
-            logging.info('X step unchange')
-            if self.later_time_flag:
-                self.error_flag = True
-                self.x_solid = True
-                return False               
+        if not self.x_solid:
+            if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag, mode='t'):
+                print('X step unchange')
+                logging.info('X step unchange')
+                if self.later_time_flag:
+                    self.error_flag = True
+                    self.x_solid = True
+                    return False               
         P1 = self.current_pos[:]
         if not self.x_solid and self.loss_target_check(max(self.loss)):
             return P1
@@ -465,7 +467,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             # else:
             #     return [5, 5]
             if self.later_time_flag:
-                return [5, 3]
+                return [4, 3]
             else:
                 # return [10, 3]
                 return [7, 3]

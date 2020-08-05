@@ -1,3 +1,10 @@
+the small jig, same length as top one, jig is screwed on
+heating rod: 120C 3min; 190C 4min
+epoxy is inside
+solid at 9.5min
+11min released bot screw
+heating stopped at 25min
+
 INFO:root:++++++++++++++++++++++++++++++
 INFO:root:Curing Active Alignment Starts. Loss Critera -0.38948165
 INFO:root:++++++++++++++++++++++++++++++
@@ -2063,6 +2070,9 @@ INFO:root:-0.53301385
 INFO:root:-0.5331576
 INFO:root:-0.5333597999999999
 INFO:root:-0.5335711000000001
+
+release bot screw
+
 INFO:root:-0.5224362
 INFO:root:-0.5158364
 INFO:root:-0.51313655
@@ -3522,7 +3532,9 @@ INFO:root:-0.4927225
 INFO:root:-0.49217025000000003
 INFO:root:-0.4920356
 INFO:root:-0.4919683
+
 Heating off
+
 INFO:root:-0.4918201
 INFO:root:-0.4917528
 INFO:root:-0.49161815

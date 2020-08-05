@@ -1,3 +1,8 @@
+120C 3min; 190C 5min
+use Wesley's jig
+solid at 14-16min
+after program paused, loss was drifting away, use piezo to pull the loss back, 
+then keep stable all the way to end
 INFO:root:++++++++++++++++++++++++++++++
 INFO:root:Curing Active Alignment Starts. Loss Critera -0.3636032
 INFO:root:++++++++++++++++++++++++++++++
@@ -2392,6 +2397,7 @@ INFO:root:-0.3804805
 INFO:root:-0.37861875
 INFO:root:-0.37752575
 INFO:root:Loss is stable, pause the program
+time is about at 14-16min
 INFO:root:-0.3781423
 INFO:root:-0.3805419
 INFO:root:-0.3809513
@@ -2477,6 +2483,9 @@ INFO:root:-0.4497312
 INFO:root:-0.4477003
 INFO:root:-0.4444966
 INFO:root:-0.44093994999999997
+
+use piezo to adjust
+
 INFO:root:-0.435025
 INFO:root:-0.43362535
 INFO:root:-0.4274424
@@ -3869,7 +3878,10 @@ INFO:root:-0.37436625
 INFO:root:-0.37477530000000003
 INFO:root:-0.3708677
 INFO:root:-0.37059335
+
 about at 30min and release screws
+
+
 INFO:root:-0.36949695
 INFO:root:-0.36826625
 INFO:root:-0.36751144999999996

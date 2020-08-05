@@ -1,11 +1,8 @@
 TODO Bugs:
-1. Click close, then auto align again, it will stop in the middle
-2. During curing, when failed continuesly for many times, then we loose the criteria larger
-   Loss drift: 1. avoid unequal material expansion from top and bot, meaning top and bot should have
-                  about the same length; and they should be shorter
-               2. should be stable earlier than epoxy solid
-               3. Epoxy should be even for uniform cooling down. 
-               4. When starting cooling, unscrew the bot first cause bot cooling can be slower and uneven
+1. check two heating rod temp, if they are the same
+2. release the bot screw when program paused
+3. try step in the final stage of curing
+
 
 
 Jerry
@@ -29,4 +26,8 @@ Notes:
 4. Try to apply epoxy on the lens cap end instead of the side to make sure uniformity
 5. Try stopping vibration by some foam
 6. Just before getting solid during curing, the loss can drift because of the moves. See curing8 and curing10
- 
+7. Loss drift: 1. avoid unequal material expansion from top and bot, meaning top and bot should have
+                  about the same length; and they should be shorter
+               2. should be stable earlier than epoxy solid
+               3. Epoxy should be even for uniform cooling down. 
+               4. When starting cooling, unscrew the bot first cause bot cooling can be slower and uneven

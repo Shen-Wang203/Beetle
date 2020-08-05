@@ -1,3 +1,5 @@
-loss = [23,24,1,2]
-loss.append(5)
-print(len(loss))
+def test(a,b,c=2):
+    print(a+b)
+    print(c)
+
+test(1,2)

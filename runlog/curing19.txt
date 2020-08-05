@@ -1,7 +1,8 @@
 stop heating at 22min
 3min 120C; 4min at 190C
 solid at about 7.5min
-the small jig, same length as top one
+no stable, drift up all the way to end
+the small jig, same length as top one, jig is glued on
 INFO:root:++++++++++++++++++++++++++++++
 INFO:root:Curing Active Alignment Starts. Loss Critera -0.47094775
 INFO:root:++++++++++++++++++++++++++++++

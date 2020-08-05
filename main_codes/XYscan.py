@@ -426,7 +426,8 @@ class XYscan:
     # x1_o is counts
     # when success return true, position is updated at self.current_pos
     # return false: 1. movement error (not in final_adjust); 2. loss doesn't change
-    def Xstep(self, x1_o, x2_o, x3_o, doublecheck):
+    # mode is either 't' or 'p' for traj or step positioning mode, default is 'p'
+    def Xstep(self, x1_o, x2_o, x3_o, doublecheck, mode='p'):
         print('Start Xstep (loss then pos)')
         logging.info('Start Xstep (loss then pos)')        
         self.loss = []        
@@ -461,7 +462,7 @@ class XYscan:
             x3 = x3 - counter
             x10 = x1
 
-            if not self.gotoxy(x1, x2, x3, xy='x', doublecheck=doublecheck):
+            if not self.gotoxy(x1, x2, x3, xy='x', doublecheck=doublecheck, mode=mode):
                 return False
             # It's important to delay some time after disengaging motor
             # to let the motor fully stopped, then fetch the loss.
@@ -502,10 +503,10 @@ class XYscan:
             else:
                 trend = 2
                 same_count += 1
-                if same_count >= 5:
-                    x1 = x1 + self.stepScanCounts * self.x_dir_trend * 5
-                    x2 = x2 - self.stepScanCounts * self.x_dir_trend * 5
-                    x3 = x3 - self.stepScanCounts * self.x_dir_trend * 5
+                if same_count >= 2:
+                    x1 = x1 + self.stepScanCounts * self.x_dir_trend * 2
+                    x2 = x2 - self.stepScanCounts * self.x_dir_trend * 2
+                    x3 = x3 - self.stepScanCounts * self.x_dir_trend * 2
                     break
         
         # apply backlash counter
@@ -514,19 +515,20 @@ class XYscan:
         x2 = x2 - counter
         x3 = x3 - counter
         x10 = x1
-        if not self.gotoxy(x1, x2, x3, xy='x', doublecheck=doublecheck):
+        if not self.gotoxy(x1, x2, x3, xy='x', doublecheck=doublecheck, mode=mode):
             return False
         time.sleep(self.wait_time)
         self.update_current_pos('x', x1, x1_o)
         self.check_abnormal_loss(max(self.loss))
-        if same_count >= 5:
+        if same_count >= 2:
             return False       
         return True
 
     # y1_o is counts
     # when success return true, position is updated at self.current_pos
     # return false: 1. movement error (not in final_adjust); 2. loss doesn't change
-    def Ystep(self, y1_o, y2_o, y3_o, doublecheck):
+    # mode is either 't' or 'p' for traj or step positioning mode, default is 'p'
+    def Ystep(self, y1_o, y2_o, y3_o, doublecheck, mode='p'):
         print('Start Ystep (loss then pos)')
         logging.info('Start Ystep (loss then pos)')  
         self.loss = []        
@@ -560,7 +562,7 @@ class XYscan:
             y3 = y3 + counter
             y10 = y1
 
-            if not self.gotoxy(y1, y2, y3, xy='y', doublecheck=doublecheck):
+            if not self.gotoxy(y1, y2, y3, xy='y', doublecheck=doublecheck, mode=mode):
                 return False
             time.sleep(self.wait_time)
             self.update_current_pos('y', y1, y1_o)
@@ -599,10 +601,10 @@ class XYscan:
             else:
                 trend = 2
                 same_count += 1
-                if same_count >= 5:
-                    y1 = y1 + self.stepScanCounts * self.y_dir_trend * 5
-                    y2 = y2 + self.stepScanCounts * self.y_dir_trend * 5
-                    y3 = y3 + self.stepScanCounts * self.y_dir_trend * 5
+                if same_count >= 2:
+                    y1 = y1 + self.stepScanCounts * self.y_dir_trend * 2
+                    y2 = y2 + self.stepScanCounts * self.y_dir_trend * 2
+                    y3 = y3 + self.stepScanCounts * self.y_dir_trend * 2
                     break              
 
         # apply backlash counter
@@ -611,7 +613,7 @@ class XYscan:
         y2 = y2 + counter
         y3 = y3 + counter
         y10 = y1
-        if not self.gotoxy(y1, y2, y3, xy='y', doublecheck=doublecheck):
+        if not self.gotoxy(y1, y2, y3, xy='y', doublecheck=doublecheck, mode=mode):
             return False
         time.sleep(self.wait_time)
         self.update_current_pos('y', y1, y1_o)
@@ -623,7 +625,8 @@ class XYscan:
     # x1_o is counts, fixture needs to be at x1_o
     # when success return true, position is updated in self.current_pos
     # return false when: 1. loss doesn't change; 2. motor failed (not in final_adjust)
-    def Xinterp(self, x1_o, x2_o, x3_o, doublecheck):
+    # mode is either 't' or 'p' for traj or step positioning mode, default is 'p'
+    def Xinterp(self, x1_o, x2_o, x3_o, doublecheck, mode='p'):
         print('Start Xinterp (loss then pos)')
         logging.info('Start Xinterp (loss then pos)')  
         self.loss = []        
@@ -674,7 +677,7 @@ class XYscan:
             x2[i] = x2[i] - counter
             x3[i] = x3[i] - counter
             x10 = x1[i]            
-            if not self.gotoxy(x1[i], x2[i], x3[i], xy='x', doublecheck=doublecheck):
+            if not self.gotoxy(x1[i], x2[i], x3[i], xy='x', doublecheck=doublecheck, mode=mode):
                 return False
             time.sleep(self.wait_time)
             self.update_current_pos('x', x1[i], x1_o)
@@ -722,7 +725,7 @@ class XYscan:
             x2_o = x2_o - counter
             x3_o = x3_o - counter
             x10 = x1_o         
-            self.gotoxy(x1_o, x2_o, x3_o, xy='x', doublecheck=doublecheck)
+            self.gotoxy(x1_o, x2_o, x3_o, xy='x', doublecheck=True, mode=mode)
             time.sleep(self.wait_time)
             self.update_current_pos('x', x1_o, x1_o)
             self.pos.append(x1_o)
@@ -741,7 +744,7 @@ class XYscan:
             x2_final = x2_final - counter
             x3_final = x3_final - counter
             x10 = x1_final         
-            if not self.gotoxy(x1_final, x2_final, x3_final, xy='x', doublecheck=True):
+            if not self.gotoxy(x1_final, x2_final, x3_final, xy='x', doublecheck=True, mode=mode):
                 return False
             time.sleep(self.wait_time)
             self.update_current_pos('x', x1_final, x1_o)
@@ -760,7 +763,8 @@ class XYscan:
     # y1_o is counts, fixture needs to be at y1_o
     # when success return true, position is updated in self.current_pos
     # return false when: 1. loss doesn't change; 2. motor failed (not in final_adjust)
-    def Yinterp(self, y1_o, y2_o, y3_o, doublecheck):
+    # mode is either 't' or 'p' for traj or step positioning mode, default is 'p'
+    def Yinterp(self, y1_o, y2_o, y3_o, doublecheck, mode='p'):
         print('Start Yinterp (loss then pos)')
         logging.info('Start Yinterp (loss then pos)')  
         self.loss = []        
@@ -811,7 +815,7 @@ class XYscan:
             y2[i] = y2[i] + counter
             y3[i] = y3[i] + counter
             y10 = y1[i]  
-            if not self.gotoxy(y1[i], y2[i], y3[i], xy='y', doublecheck=doublecheck):
+            if not self.gotoxy(y1[i], y2[i], y3[i], xy='y', doublecheck=doublecheck, mode=mode):
                 return False
             time.sleep(self.wait_time)
             self.update_current_pos('y', y1[i], y1_o)
@@ -859,7 +863,7 @@ class XYscan:
             y2_o = y2_o + counter
             y3_o = y3_o + counter
             y10 = y1_o         
-            self.gotoxy(y1_o, y2_o, y3_o, xy='y', doublecheck=doublecheck)
+            self.gotoxy(y1_o, y2_o, y3_o, xy='y', doublecheck=True, mode=mode)
             time.sleep(self.wait_time)
             self.update_current_pos('y', y1_o, y1_o)
             self.pos.append(y1_o)
@@ -878,7 +882,7 @@ class XYscan:
             y2_final = y2_final + counter
             y3_final = y3_final + counter
             y10 = y1_final 
-            if not self.gotoxy(y1_final, y2_final, y3_final, xy='y', doublecheck=True):
+            if not self.gotoxy(y1_final, y2_final, y3_final, xy='y', doublecheck=True, mode=mode):
                 return False
             time.sleep(self.wait_time)     
             self.update_current_pos('y', y1_final, y1_o)
@@ -897,14 +901,15 @@ class XYscan:
     # xy is either 'x' or 'y'
     # doublecheck is to when disengaged, check again the position, is a bool. 
     # return false when movement error and final_adjust is false
-    def gotoxy(self, a1, a2, a3, xy, doublecheck):
+    # mode is either 't' or 'p' for traj or step positioning mode, default is 'p'
+    def gotoxy(self, a1, a2, a3, xy, doublecheck, mode):
         for i in range(0,3):
             if self.final_adjust:
                 self.hppcontrol.engage_motor()       
             if xy == 'y': 
-                self.hppcontrol.Ty_send_only(a1, a2, a3, 'p')
+                self.hppcontrol.Ty_send_only(a1, a2, a3, mode)
             else:
-                self.hppcontrol.Tx_send_only(a1, a2, a3, 'p')
+                self.hppcontrol.Tx_send_only(a1, a2, a3, mode)
             for timeout in range(0, 50):
                 time.sleep(0.1)
                 if xy == 'y':
@@ -1028,7 +1033,7 @@ class XYscan:
     def loss_bound(self, _loss_ref):
         x = abs(_loss_ref)
         if x < 0.7:
-            bound = 0.002
+            bound = 0.003
         elif x < 1.5:
             bound = 0.005
         elif x > 50:

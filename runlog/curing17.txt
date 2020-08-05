@@ -1,6 +1,8 @@
 3min to 120C; 5min to 190C;
 solid at 8min
-the small jig, same length as top one
+the small jig, same length as top one, jig is glued on
+11min loss is stable all the way to end
+
 INFO:root:++++++++++++++++++++++++++++++
 INFO:root:Curing Active Alignment Starts. Loss Critera -0.4513948
 INFO:root:++++++++++++++++++++++++++++++
@@ -3855,6 +3857,9 @@ INFO:root:-0.4042335
 INFO:root:-0.40491330000000003
 INFO:root:-0.40531825
 INFO:root:-0.405929
+
+stop heating
+
 INFO:root:-0.4061972
 INFO:root:-0.40734715
 INFO:root:-0.4093125
