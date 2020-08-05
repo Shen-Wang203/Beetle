@@ -1,3 +1,6 @@
+120C 3min; 190C 5min
+use Wesley's jig
+solid at 7-8min
 INFO:root:++++++++++++++++++++++++++++++
 INFO:root:Curing Active Alignment Starts. Loss Critera -0.4184469
 INFO:root:++++++++++++++++++++++++++++++

@@ -741,7 +741,7 @@ class XYscan:
             x2_final = x2_final - counter
             x3_final = x3_final - counter
             x10 = x1_final         
-            if not self.gotoxy(x1_final, x2_final, x3_final, xy='x', doublecheck=doublecheck):
+            if not self.gotoxy(x1_final, x2_final, x3_final, xy='x', doublecheck=True):
                 return False
             time.sleep(self.wait_time)
             self.update_current_pos('x', x1_final, x1_o)
@@ -878,7 +878,7 @@ class XYscan:
             y2_final = y2_final + counter
             y3_final = y3_final + counter
             y10 = y1_final 
-            if not self.gotoxy(y1_final, y2_final, y3_final, xy='y', doublecheck=doublecheck):
+            if not self.gotoxy(y1_final, y2_final, y3_final, xy='y', doublecheck=True):
                 return False
             time.sleep(self.wait_time)     
             self.update_current_pos('y', y1_final, y1_o)

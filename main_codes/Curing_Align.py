@@ -173,21 +173,23 @@ class Curing_Active_Alignment(XYscan.XYscan):
             elif (end_time - start_time) > 1800 and (end_time - start_time) < 1802:
                 print('Reach 30 min')
                 logging.info('Reach 30 min')
-            elif (end_time - start_time) > 540 and not self.later_time_flag:
+            elif (end_time - start_time) > 300 and not self.later_time_flag:
                 # 3min to 120 degree; 7min to 240 degree. Later time is 10min, epoxy solid at about 12min
                 # 3min to 120 degree; 6min to 210 degree, later time is 9min, epoxy solid at about 11-12min
-                # 3min to 120 degree; 5min to 190 degree, later time is 9min, epoxy solid at about 15min
-                logging.info('Reach 9 min')
-                print('Reach 9 min')
+                # 3min to 120 degree; 5min to 190 degree, later time is 6min, epoxy solid at about 8min
+                # 3min to 120 degree; 8min to 190 degree, later time is 7min, epoxy solid at about 
+                logging.info('Reach 5 min')
+                print('Reach 5 min')
                 self.later_time_flag = True
+                self.wait_time = 0.1
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
                 # self.loss_current_max = self.loss_criteria + 0.02
-            elif (end_time - start_time) > 420 and (end_time - start_time) < 425:
-                logging.info('Reach 7 min')
-                print('Reach 7 min')
-                self.doublecheck_flag = False
-                self.wait_time = 0.1
+            # elif (end_time - start_time) > 420 and (end_time - start_time) < 425:
+            #     logging.info('Reach 7 min')
+            #     print('Reach 7 min')
+            #     self.doublecheck_flag = False
+            #     self.wait_time = 0.1
 
             time.sleep(0.5)
             self.fetch_loss()    
