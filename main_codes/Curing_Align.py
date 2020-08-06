@@ -15,13 +15,15 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.y_solid = False
 
         self.minutes = 35
-        self.step_Z = 0.0008
+        self.step_Z = 0.001
         self.loss_curing_rec = []
         self.pos_curing_rec = []
         self.xycount = 0
         self.zcount = 0
         self.zcount_loop = 0
         self.later_time_flag = False
+        self.epoxy_about_to_solid_flag = False
+        self.mode = 'p'
         self.doublecheck_flag = False
         self.buffer = 0.03
 
@@ -34,7 +36,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.step_Z = 0.0005
         elif _product == '1xN':
             self.product = 2
-            self.step_Z = 0.0008
+            self.step_Z = 0.001
 
     def pre_curing_run(self, P0):   
         print('Pre-Curing Active Alignment Starts')
@@ -149,6 +151,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         logging.info('Curing Active Alignment Starts. Loss Critera ' + str(self.loss_criteria)) 
         logging.info('++++++++++++++++++++++++++++++')
         P = P0[:]
+        # self.hppcontrol.slow_traj_speed_2()
         # record append number 0 as an indicate to enter curing
         self.loss_rec.append(0)
         self.pos_rec.append(0)
@@ -160,6 +163,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
         self.final_adjust = True
         self.stepScanCounts = 4
+        # wait time only works during interp, if doublecheck is on, no need to wait
         self.wait_time = 0.2
         start_time = time.time()
         curing_active = True
@@ -173,23 +177,26 @@ class Curing_Active_Alignment(XYscan.XYscan):
             elif (end_time - start_time) > 1800 and (end_time - start_time) < 1802:
                 print('Reach 30 min')
                 logging.info('Reach 30 min')
-            elif (end_time - start_time) > 300 and not self.later_time_flag:
+            elif (end_time - start_time) > 240 and not self.later_time_flag:
                 # 3min to 120 degree; 7min to 240 degree. Later time is 10min, epoxy solid at about 12min
                 # 3min to 120 degree; 6min to 210 degree, later time is 9min, epoxy solid at about 11-12min
                 # 3min to 120 degree; 5min to 190 degree, later time is 6min, epoxy solid at about 8min
                 # 3min to 120 degree; 8min to 190 degree, later time is 7min, epoxy solid at about 
-                logging.info('Reach 5 min')
-                print('Reach 5 min')
+                logging.info('Reach 4 min')
+                print('Reach 4 min')
                 self.later_time_flag = True
                 self.wait_time = 0.1
+                # self.mode = 't'
+                
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
                 # self.loss_current_max = self.loss_criteria + 0.02
-            # elif (end_time - start_time) > 420 and (end_time - start_time) < 425:
-            #     logging.info('Reach 7 min')
-            #     print('Reach 7 min')
-            #     self.doublecheck_flag = False
-            #     self.wait_time = 0.1
+            elif (end_time - start_time) > 420 and (end_time - start_time) < 425:
+                logging.info('Reach 7 min')
+                print('Reach 7 min')
+                # self.doublecheck_flag = False
+                # self.wait_time = 0.07
+                # self.epoxy_about_to_solid_flag = True
 
             time.sleep(0.5)
             self.fetch_loss()    
@@ -222,7 +229,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     if self.loss_target_check(self.loss[-1]):
                         self.loss = []
                         continue
-
+                
+                self.xycount += 1
                 P1 = self.scanUpdate(P)
                 if P1 == False:
                     print('X or Y Values dont change')
@@ -237,7 +245,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 else:
                     P = P1[:]         
                 self.pos_curing_rec.append(P)    
-                self.xycount += 1
                 self.loss = []
                 # if fail to meet criteria for 3 rounds, then we loose the criteria
                 if self.zcount == 1 and not self.later_time_flag and self.xycount == 2:
@@ -270,6 +277,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('Loss is high, trying again')
 
         end_time = time.time()
+        self.hppcontrol.normal_traj_speed()
         print('End curing program, total time: ', round(end_time-start_time,1), ' s')
         logging.info('End curing program, total time: ' + str(round(end_time-start_time,1)) + ' s')
         
@@ -282,7 +290,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
         # self.hppcontrol.engage_motor()
         if self.send_to_hpp(P1, doublecheck=True):
             # self.hppcontrol.disengage_motor()
-            time.sleep(0.2)
+            # doublecheck is true, no need to wait
+            # time.sleep(0.2)
             self.current_pos = P1[:]
         else:
             print('Movement Error')
@@ -320,7 +329,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
             # self.hppcontrol.engage_motor()
             if self.send_to_hpp(P1, doublecheck=True):
                 # self.hppcontrol.disengage_motor()
-                time.sleep(0.2)
+                # if doublecheck is true, no need to wait
+                # time.sleep(0.2)
                 self.fetch_loss()
                 self.current_pos = P1[:]
                 self.save_loss_pos()
@@ -374,7 +384,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             logging.info('Movement Error')
             self.error_flag = True
         # self.hppcontrol.disengage_motor()
-        time.sleep(0.2)
+        # time.sleep(0.2)
         self.current_pos = P1[:]
         # if same_count >= 5:
         #     return False
@@ -406,28 +416,14 @@ class Curing_Active_Alignment(XYscan.XYscan):
         logging.info(P0)
         P1 = P0[:]
         self.current_pos = P0[:]
+        about_to_solid = False
         Tmm = self.HPP.findAxialPosition(P0[0], P0[1], P0[2], P0[3], P0[4], P0[5])
         Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
 
         # Return false only when unchanged
-        # if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag):
-        if not self.y_solid:
-            if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag, mode='t'):
-                print('Y step unchange')
-                logging.info('Y step unchange')
-                if self.later_time_flag:
-                    self.error_flag = True
-                    self.y_solid = True
-                    return False         
-        P1 = self.current_pos[:]
-        # previous search can errect the flag
-        if not self.y_solid and (self.loss_target_check(max(self.loss)) or self.error_flag):
-            return P1  
-        
-        # Return false only when unchanged
         # if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag):
         if not self.x_solid:
-            if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag, mode='t'):
+            if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag, mode=self.mode):
                 print('X step unchange')
                 logging.info('X step unchange')
                 if self.later_time_flag:
@@ -435,9 +431,35 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     self.x_solid = True
                     return False               
         P1 = self.current_pos[:]
-        if not self.x_solid and self.loss_target_check(max(self.loss)):
+        # previous search can errect the flag
+        if not self.x_solid and (self.loss_target_check(max(self.loss)) or self.error_flag):
+            return P1  
+        # Epoxy is about to be solid
+        if (max(self.loss) - min(self.loss)) < 0.05 and not self.epoxy_about_to_solid_flag:
+            about_to_solid = True
+
+        # Return false only when unchanged
+        # if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag):
+        if not self.y_solid:
+            if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag, mode=self.mode):
+                print('Y step unchange')
+                logging.info('Y step unchange')
+                if self.later_time_flag:
+                    self.error_flag = True
+                    self.y_solid = True
+                    return False         
+        P1 = self.current_pos[:]        
+        if not self.y_solid and self.loss_target_check(max(self.loss)):
             return P1
-        
+        # Epoxy is about to be solid
+        if (max(self.loss) - min(self.loss)) < 0.05 and not self.epoxy_about_to_solid_flag and about_to_solid:
+            print('Epoxy is about to be solid')
+            logging.info('Epoxy is about to be solid')
+            self.epoxy_about_to_solid_flag = True
+            self.wait_time = 0.1
+            # self.tolerance = 1
+            # self.doublecheck_flag = True
+
         if not self.error_flag:
             print('Scan update ends at: ')
             print(P1)
@@ -467,7 +489,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
             # else:
             #     return [5, 5]
             if self.later_time_flag:
-                return [4, 3]
+                return [5, 3]
+            elif self.epoxy_about_to_solid_flag:
+                return [3, 3]
             else:
                 # return [10, 3]
                 return [7, 3]

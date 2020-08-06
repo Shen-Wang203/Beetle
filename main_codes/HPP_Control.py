@@ -924,12 +924,12 @@ class HPP_Control:
 
     def slow_traj_speed_2(self):
         # 43 byte, time 43 * 10 / 115200 = 4ms
-        var0 = 'w axis0.trap_traj.config.accel_limit 60' + '\n'
-        var00 = 'w axis0.trap_traj.config.decel_limit 60' + '\n'
-        var000 = 'w axis0.trap_traj.config.vel_limit 60' + '\n'
-        var1 = 'w axis1.trap_traj.config.accel_limit 60' + '\n'
-        var11 = 'w axis1.trap_traj.config.decel_limit 60' + '\n'
-        var111 = 'w axis1.trap_traj.config.vel_limit 60' + '\n'
+        var0 = 'w axis0.trap_traj.config.accel_limit 100' + '\n'
+        var00 = 'w axis0.trap_traj.config.decel_limit 100' + '\n'
+        var000 = 'w axis0.trap_traj.config.vel_limit 100' + '\n'
+        var1 = 'w axis1.trap_traj.config.accel_limit 100' + '\n'
+        var11 = 'w axis1.trap_traj.config.decel_limit 100' + '\n'
+        var111 = 'w axis1.trap_traj.config.vel_limit 100' + '\n'
         self.T123_send_only(var0, var1)
         self.T123_send_only(var00, var11)    
         self.T123_send_only(var000, var111)

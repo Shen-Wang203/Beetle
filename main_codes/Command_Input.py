@@ -253,6 +253,16 @@ class CMDInputThread(QtCore.QThread):
             target_counts = [0,0,0,0,0,0]
             self.loss_max = xys.loss_current_max
 
+            file1 = open("pos.txt","w+")
+            file2 = open("loss.txt","w+")
+            a = xys.pos_rec[:]
+            b = xys.loss_rec[:]
+            for i in range(0,len(a)):
+                file1.writelines(str(a[i]) + '\n')
+            for i in range(0,len(b)):
+                file2.writelines(str(b[i]) + '\n')
+       
+
         elif commands == 'precure':
             # cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             # self.hppcontrol.engage_motor()
@@ -268,7 +278,7 @@ class CMDInputThread(QtCore.QThread):
             self.hppcontrol.engage_motor()
             self.sig2.emit(3)
             P0 = self.currentPosition[:]
-            P0[2] = P0[2] - 0.005
+            P0[2] = P0[2] - 0.01
             xys.set_starting_point(P0)
             if StaticVar.productType == "VOA":
                 xys.product_select('VOA')
@@ -291,7 +301,7 @@ class CMDInputThread(QtCore.QThread):
                 cure.product_select('VOA')
             elif StaticVar.productType == "1xN":
                 cure.product_select('1xN')
-            cure.set_loss_criteria(self.loss_max-0.01)
+            cure.set_loss_criteria(self.loss_max)
             P1 = cure.curing_run2(self.currentPosition)
             try:
                 self.currentPosition = P1[:]

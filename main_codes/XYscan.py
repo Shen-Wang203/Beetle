@@ -217,7 +217,7 @@ class XYscan:
             self.scanmode = 's'
             self.tolerance = 2
             self.wait_time = 0.1
-            # self.final_adjust = False
+            self.final_adjust = False
             self.stepScanCounts = 4            
             if self.product == 1:
                 self.Z_amp = 1.5
@@ -726,7 +726,7 @@ class XYscan:
             x3_o = x3_o - counter
             x10 = x1_o         
             self.gotoxy(x1_o, x2_o, x3_o, xy='x', doublecheck=True, mode=mode)
-            time.sleep(self.wait_time)
+            # time.sleep(self.wait_time)
             self.update_current_pos('x', x1_o, x1_o)
             self.pos.append(x1_o)
             self.save_loss_pos()
@@ -736,22 +736,30 @@ class XYscan:
         x1_final = grid[s.index(max(s))]
         x2_final = -x1_final + x1_o + x2_o
         x3_final = -x1_final + x1_o + x3_o
-        # only if counts difference is larger than 2 then go to that counts
-        if abs(x1_final - x_ref[-1]) > 2:
+        # only if counts difference is larger than 1 then go to that counts
+        if abs(x1_final - x_ref[-1]) > 1:
             # apply backlash counter
             counter = self.apply_xy_backlash_counter(x10, x1_final, 'x')
             x1_final = x1_final + counter
             x2_final = x2_final - counter
             x3_final = x3_final - counter
             x10 = x1_final         
+            # print('move')
+            # logging.info('move')
             if not self.gotoxy(x1_final, x2_final, x3_final, xy='x', doublecheck=True, mode=mode):
                 return False
-            time.sleep(self.wait_time)
+            # no need to wait if doublecheck is true
+            # time.sleep(self.wait_time)
             self.update_current_pos('x', x1_final, x1_o)
             self.fetch_loss()
             self.pos.append(x1_final)
         print('XInterp final: ',x1_final)
         logging.info('XInterp final: ' + str(x1_final))
+        # larger than start position, then plus steps first, dir_trend is -1
+        if x1_final > x1_o:
+            self.x_dir_trend = -1
+        elif x1_final < x1_o:
+            self.x_dir_trend = 1
         self.check_abnormal_loss(max(self.loss))
         # Final loss is not the max
         if self.loss[-1] < max(self.loss) - 0.04:
@@ -815,6 +823,8 @@ class XYscan:
             y2[i] = y2[i] + counter
             y3[i] = y3[i] + counter
             y10 = y1[i]  
+            # print(y1[i], y2[i], y3[i])
+            # logging.info(str(y1[i])+','+str(y2[i])+','+str(y3[i]))
             if not self.gotoxy(y1[i], y2[i], y3[i], xy='y', doublecheck=doublecheck, mode=mode):
                 return False
             time.sleep(self.wait_time)
@@ -864,7 +874,7 @@ class XYscan:
             y3_o = y3_o + counter
             y10 = y1_o         
             self.gotoxy(y1_o, y2_o, y3_o, xy='y', doublecheck=True, mode=mode)
-            time.sleep(self.wait_time)
+            # time.sleep(self.wait_time)
             self.update_current_pos('y', y1_o, y1_o)
             self.pos.append(y1_o)
             self.save_loss_pos()
@@ -874,22 +884,30 @@ class XYscan:
         y1_final = grid[s.index(max(s))]
         y2_final = y1_final - y1_o + y2_o
         y3_final = y1_final - y1_o + y3_o
-        # only if counts difference is larger than 2 then go to that counts
-        if abs(y1_final-y_ref[-1]) > 2:
+        # only if counts difference is larger than 1 then go to that counts
+        if abs(y1_final-y_ref[-1]) > 1:
             # apply backlash counter
             counter = self.apply_xy_backlash_counter(y10, y1_final, 'y')
             y1_final = y1_final + counter
             y2_final = y2_final + counter
             y3_final = y3_final + counter
             y10 = y1_final 
+            # print('move')
+            # logging.info('move')
             if not self.gotoxy(y1_final, y2_final, y3_final, xy='y', doublecheck=True, mode=mode):
                 return False
-            time.sleep(self.wait_time)     
+            # no need to wait if doublecheck is true
+            # time.sleep(self.wait_time)     
             self.update_current_pos('y', y1_final, y1_o)
             self.fetch_loss()
             self.pos.append(y1_final)
         print('YInterp final: ',y1_final)
         logging.info('YInterp final: ' + str(y1_final))
+        # larger than start position, then plus steps first, dir_trend is -1
+        if y1_final > y1_o:
+            self.y_dir_trend = -1
+        elif y1_final < y1_o:
+            self.y_dir_trend = 1
         self.check_abnormal_loss(max(self.loss)) 
         # Final loss is not the max
         if self.loss[-1] < max(self.loss) - 0.04:
@@ -907,11 +925,13 @@ class XYscan:
             if self.final_adjust:
                 self.hppcontrol.engage_motor()       
             if xy == 'y': 
+                # print('sending y', a1)
+                # logging.info('sending y ' + str(a1))
                 self.hppcontrol.Ty_send_only(a1, a2, a3, mode)
             else:
                 self.hppcontrol.Tx_send_only(a1, a2, a3, mode)
             for timeout in range(0, 50):
-                time.sleep(0.1)
+                time.sleep(0.07)
                 if xy == 'y':
                     if self.hppcontrol.Ty_on_target(a1, a2, a3, self.tolerance):
                         break

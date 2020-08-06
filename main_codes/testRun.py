@@ -1,37 +1,24 @@
-import PowerMeter as PM
+# import PowerMeter as PM
 import Back_Model as BM
 import numpy as np 
 import time
 import logging
-from XYscan import XYscan 
+# from XYscan import XYscan 
 # import HPP_Control_Odrive as control
 import HPP_Control as control
-from Curing_Align import Curing_Active_Alignment
+# from Curing_Align import Curing_Active_Alignment
 
-logfilename = 'runlog.log'
-logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
+# logfilename = 'runlog.log'
+# logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
 
-start_time = time.time()
-while True:
-    loss = PM.power_read()
-    time.sleep(2)
-    mid_time = time.time()
-    counts = mid_time - start_time
-    counts = int(counts)
-    minute = counts // 60
-    second = counts % 60
-    if second == 0 or second == 30:
-        print('Time: ' + str(minute) + "' " + str(second) + "''")
-        logging.info('Time: ' + str(minute) + "' " + str(second) + "''")
-    if minute == 30:
-        break
 
 
 # HPP = BM.BackModel()
 # HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))
-# hppcontrol = control.HPP_Control()
+hppcontrol = control.HPP_Control()
 
-# hppcontrol.close_ports()
+# hppcontrol.slow_traj_speed_2()
+hppcontrol.close_ports()
 
 # P0 = [0,0,138,-1.5,1,0]
 

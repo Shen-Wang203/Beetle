@@ -1,5 +1,4 @@
 TODO Bugs:
-1. check two heating rod temp, if they are the same
 2. release the bot screw when program paused
 3. try step in the final stage of curing
 
