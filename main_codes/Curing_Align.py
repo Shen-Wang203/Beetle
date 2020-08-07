@@ -5,12 +5,13 @@ import XYscan
 class Curing_Active_Alignment(XYscan.XYscan):
     def __init__(self, HPPModel, hppcontrol):
         super().__init__(HPPModel, hppcontrol)  
-        self.tolerance = 2 
+        self.tolerance = 2
         # self.scanmode = 'i'
         # this backlash is for xy only, not for z
         # unit is counts
-        self.x_backlash = 0
-        self.y_backlash = 0
+        # backlash 2 when stepscancounts is 4
+        self.x_backlash = 2
+        self.y_backlash = 2
         self.x_solid = False
         self.y_solid = False
 
@@ -23,6 +24,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.zcount_loop = 0
         self.later_time_flag = False
         self.epoxy_about_to_solid_flag = False
+        self.xsearch_first= True
         self.mode = 'p'
         self.doublecheck_flag = False
         self.buffer = 0.03
@@ -163,8 +165,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
         self.final_adjust = True
         self.stepScanCounts = 4
-        # wait time only works during interp, if doublecheck is on, no need to wait
-        self.wait_time = 0.2
+        self.doublecheck_flag = False
+        # wait time only works during interp, if doublecheck is on, no need to wait or wait for a short time for powermeter to response
+        self.wait_time = 0.3
         start_time = time.time()
         curing_active = True
         curing_active_flag = False
@@ -177,27 +180,26 @@ class Curing_Active_Alignment(XYscan.XYscan):
             elif (end_time - start_time) > 1800 and (end_time - start_time) < 1802:
                 print('Reach 30 min')
                 logging.info('Reach 30 min')
-            elif (end_time - start_time) > 240 and not self.later_time_flag:
+            elif (end_time - start_time) > 300 and not self.later_time_flag:
                 # 3min to 120 degree; 7min to 240 degree. Later time is 10min, epoxy solid at about 12min
                 # 3min to 120 degree; 6min to 210 degree, later time is 9min, epoxy solid at about 11-12min
                 # 3min to 120 degree; 5min to 190 degree, later time is 6min, epoxy solid at about 8min
                 # 3min to 120 degree; 8min to 190 degree, later time is 7min, epoxy solid at about 
-                logging.info('Reach 4 min')
-                print('Reach 4 min')
+                logging.info('Reach 5 min')
+                print('Reach 5 min')
                 self.later_time_flag = True
-                self.wait_time = 0.1
-                # self.mode = 't'
-                
+                # self.doublecheck_flag = True
+                self.wait_time = 0.3
+                # self.mode = 't'               
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
                 # self.loss_current_max = self.loss_criteria + 0.02
-            elif (end_time - start_time) > 420 and (end_time - start_time) < 425:
-                logging.info('Reach 7 min')
-                print('Reach 7 min')
+            elif (end_time - start_time) > 360 and (end_time - start_time) < 365:
+                logging.info('Reach 6 min')
+                print('Reach 6 min')
+                self.step_Z = 0.0007
                 # self.doublecheck_flag = False
-                # self.wait_time = 0.07
-                # self.epoxy_about_to_solid_flag = True
-
+    
             time.sleep(0.5)
             self.fetch_loss()    
             self.loss_curing_rec.append(self.loss[-1])   
@@ -231,7 +233,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                         continue
                 
                 self.xycount += 1
-                P1 = self.scanUpdate(P)
+                P1 = self.scanUpdate2(P)
                 if P1 == False:
                     print('X or Y Values dont change')
                     logging.info('X or Y Values dont change')
@@ -249,15 +251,15 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 # if fail to meet criteria for 3 rounds, then we loose the criteria
                 if self.zcount == 1 and not self.later_time_flag and self.xycount == 2:
                     self.loss_criteria = self.loss_criteria - 0.01
-                    self.loss_current_max = self.loss_criteria + 0.02
+                    # self.loss_current_max = self.loss_criteria + 0.02
                     print('Lower criteria 0.01dB')
                     logging.info('Lower criteria 0.01dB')
                     self.zcount = 0
-                    # allow two more xy after lower criteria
+                    # allow one more xy after lower criteria
                     self.xycount = 1
-                elif self.zcount == 1 and self.later_time_flag and self.xycount == 2:
+                elif self.zcount == 1 and self.later_time_flag and self.xycount == 1:
                     self.loss_criteria = self.loss_criteria - 0.01
-                    self.loss_current_max = self.loss_criteria + 0.02
+                    # self.loss_current_max = self.loss_criteria + 0.02
                     print('Lower criteria 0.01dB')
                     logging.info('Lower criteria 0.01dB')
                     self.zcount = 0 
@@ -265,10 +267,13 @@ class Curing_Active_Alignment(XYscan.XYscan):
             elif curing_active and self.loss[-1] >= self.loss_criteria:
                 self.xycount = 0
                 self.zcount = 0
+                self.zcount_loop = 0
                 if self.later_time_flag:
                     self.buffer = 0.02
                 else:
                     self.buffer = 0.03
+                # powermeter error is about 0.002, need to cancel that
+                self.loss_criteria = self.loss[-1] - 0.002
             elif (not curing_active) and self.loss[-1] < (self.loss_criteria - 0.5):
                 curing_active = True
                 curing_active_flag = True
@@ -283,10 +288,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
         
         
     def Zstep_back(self, P0):
-        print('Z Back 0.8um')
-        logging.info('Z Back 0.8um')         
+        print('Z Back ', self.step_Z*1000, 'um')
+        logging.info('Z Back ' + str(self.step_Z*1000) + 'um')         
         P1 = P0[:]
-        P1[2] = P1[2] - 0.0008
+        P1[2] = P1[2] - self.step_Z
         # self.hppcontrol.engage_motor()
         if self.send_to_hpp(P1, doublecheck=True):
             # self.hppcontrol.disengage_motor()
@@ -396,7 +401,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         if _loss0 > self.loss_current_max:
             self.loss_current_max = _loss0
             self.pos_current_max = self.current_pos[:]
-            self.loss_criteria = self.loss_current_max - 0.02
+            self.loss_criteria = self.loss_current_max - 0.01
         elif (_loss0 < (2.5 * self.loss_current_max) and _loss0 < -10) or _loss0 < -55:
             print('Unexpected High Loss, End Program')
             logging.info('Unexpected High Loss, End Program')
@@ -467,6 +472,73 @@ class Curing_Active_Alignment(XYscan.XYscan):
             logging.info(P1)
         return P1
 
+    # Need to over-write this function because we need to search in y first
+    # Return P1 after XY scan starting from P0, fixture is at P1, the loss is not updated
+    # Need fixture to be at P0 location in the begining, fixture will be at P1 in the end.
+    def scanUpdate2(self, P0):
+        print('Scan update starts at: ')
+        print(P0)
+        logging.info('Scan update starts at: ')
+        logging.info(P0)
+        P1 = P0[:]
+        self.current_pos = P0[:]
+        about_to_solid = False
+        Tmm = self.HPP.findAxialPosition(P0[0], P0[1], P0[2], P0[3], P0[4], P0[5])
+        Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
+
+        # Add search sequence option
+        for i in range(0,2):
+            if self.xsearch_first:
+                # Return false only when unchanged
+                if not self.x_solid and not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag, mode=self.mode):
+                # if not self.x_solid and not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag, mode=self.mode):
+                    print('X step unchange')
+                    logging.info('X step unchange')
+                    if self.later_time_flag:
+                        self.error_flag = True
+                        self.x_solid = True
+                        return False               
+                P1 = self.current_pos[:]
+                # previous search can errect the flag
+                if not self.x_solid and (self.loss_target_check(max(self.loss)) or self.error_flag):
+                    # if meet target on x, then x first
+                    if not self.xsearch_first:
+                        self.xsearch_first = True
+                    return P1  
+                self.xsearch_first = False
+                continue
+                
+            # Return false only when unchanged
+            if not self.y_solid and not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag, mode=self.mode):
+            # if not self.y_solid and not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag, mode=self.mode):
+                print('Y step unchange')
+                logging.info('Y step unchange')
+                if self.later_time_flag:
+                    self.error_flag = True
+                    self.y_solid = True
+                    return False         
+            P1 = self.current_pos[:]        
+            if not self.y_solid and (self.loss_target_check(max(self.loss)) or self.error_flag):
+                # Change x or y search priority based on which one has larger movements
+                if self.xsearch_first:
+                    self.xsearch_first = False
+                return P1
+            self.xsearch_first = True
+
+        # Change x or y search priority based on which one has larger movements
+        if abs(P1[0] - P0[0]) > (abs(P1[1] - P0[1])+0.0001) and not self.xsearch_first:
+            self.xsearch_first = True
+        elif (abs(P1[0] - P0[0])+0.0001) < abs(P1[1] - P0[1]) and self.xsearch_first:
+            self.xsearch_first = False
+
+        if not self.error_flag:
+            print('Scan update ends at: ')
+            print(P1)
+            logging.info('Scan update ends at: ')
+            logging.info(P1)
+        return P1
+
+
     # smaller step size
     def xyinterp_sample_step(self, loss):
         # (-4,-3]: range 52 counts, step is 13, total 5 points 
@@ -496,6 +568,21 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 # return [10, 3]
                 return [7, 3]
     
+    # loss bound based on loss value
+    def loss_bound(self, _loss_ref):
+        x = abs(_loss_ref)
+        if x < 0.7:
+            bound = 0.004
+        elif x < 1.5:
+            bound = 0.005
+        elif x > 50:
+            bound = 4
+        else:
+            # 50->2.2; 40->1.12; 30->0.54; 20->0.27; 15->0.2; 10->0.15; 8->0.12; 6->0.1; 4->0.064; 3->0.046; 2->0.027; 1-> 0.005
+            bound = 0.00003*x**3 - 0.0011*x**2 + 0.0245*x - 0.018
+            bound = bound * 0.8
+        return bound
+
     def loss_target_check(self, _loss):
         if _loss >= self.loss_criteria:
             print('Meet Criteria: ', round(self.loss_criteria,4))
@@ -507,10 +594,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.buffer = 0.02
             else:
                 self.buffer = 0.03
+            # powermeter error is about 0.002, need to cancel that
+            self.loss_criteria = _loss - 0.002
 
             if _loss > self.loss_current_max:
                 self.loss_current_max = _loss
                 self.pos_current_max = self.current_pos[:]
-                self.loss_criteria = self.loss_current_max - 0.02
+                self.loss_criteria = self.loss_current_max - 0.01
             
             return True

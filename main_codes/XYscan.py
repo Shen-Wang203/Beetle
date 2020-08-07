@@ -214,10 +214,11 @@ class XYscan:
             # self.final_adjust = False
         # if (-4,-2], and stepping-at-final self.strategy, then step mode
         elif loss0 <= self.stepmode_threshold and self.strategy == 1:  
-            self.scanmode = 's'
+            # self.scanmode = 's'
+            self.scanmode = 'i'
+            self.final_adjust = True
             self.tolerance = 2
             self.wait_time = 0.1
-            self.final_adjust = False
             self.stepScanCounts = 4            
             if self.product == 1:
                 self.Z_amp = 1.5
@@ -245,7 +246,7 @@ class XYscan:
             self.zmode = 'normal'
             self.scanmode = 's'
             self.final_adjust = True
-            self.stepScanCounts = 3 
+            self.stepScanCounts = 4 
             self.tolerance = 2 
             self.wait_time = 0.2
             if self.product == 1:
@@ -437,6 +438,8 @@ class XYscan:
         # print(x1_o)  
         # logging.info(x1_o)
         self.save_loss_pos()
+        if self.loss_target_check(self.loss[-1]):
+            return True
         self.pos_ref = self.current_pos[:]
 
         # reference counts for pos update
@@ -450,6 +453,8 @@ class XYscan:
         self.x_dir_old = 0
         trend = 1
         same_count = 0
+        print('Direction ', self.x_dir_trend)
+        logging.info('Direction ' + str(self.x_dir_trend))
         while True:
             # x2 and x3 are in opposite direction as x1
             x1 = x1 - self.stepScanCounts * self.x_dir_trend
@@ -538,6 +543,8 @@ class XYscan:
         # print(y1_o)  
         # logging.info(y1_o)  
         self.save_loss_pos()
+        if self.loss_target_check(self.loss[-1]):
+            return True
         self.pos_ref = self.current_pos[:]
 
         # reference counts for pos update
@@ -551,6 +558,8 @@ class XYscan:
         self.y_dir_old = 0        
         trend = 1
         same_count = 0
+        print('Direction ', self.y_dir_trend)
+        logging.info('Direction ' + str(self.y_dir_trend))
         while True:
             y1 = y1 - self.stepScanCounts * self.y_dir_trend
             y2 = y2 - self.stepScanCounts * self.y_dir_trend
@@ -618,7 +627,7 @@ class XYscan:
         time.sleep(self.wait_time)
         self.update_current_pos('y', y1, y1_o)
         self.check_abnormal_loss(max(self.loss))
-        if same_count >= 5:
+        if same_count >= 2:
             return False
         return True
 
@@ -636,6 +645,8 @@ class XYscan:
         # print(x1_o)  
         # logging.info(x1_o)  
         self.save_loss_pos()
+        if self.loss_target_check(self.loss[-1]):
+            return True
         self.pos_ref = self.current_pos[:]    
         # step in counts   
         [step, totalpoints] = self.xyinterp_sample_step(self.loss[-1])
@@ -782,6 +793,8 @@ class XYscan:
         # print(y1_o)  
         # logging.info(y1_o)  
         self.save_loss_pos()
+        if self.loss_target_check(self.loss[-1]):
+            return True
         self.pos_ref = self.current_pos[:]    
         # step in counts   
         [step, totalpoints] = self.xyinterp_sample_step(self.loss[-1])
@@ -998,7 +1011,7 @@ class XYscan:
         Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
         # logging.info('Start Tcounts: '+str(Tcounts))
         if _mode == 's':
-            if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=False):
+            if not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.final_adjust):
                 print('X step failed')
                 logging.info('X step failed')
                 self.error_flag = True
@@ -1021,7 +1034,7 @@ class XYscan:
             return P1
 
         if _mode == 's':
-            if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=False):
+            if not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.final_adjust):
                 print('Y step failed')
                 logging.info('Y step failed')
                 self.error_flag = True
@@ -1053,7 +1066,7 @@ class XYscan:
     def loss_bound(self, _loss_ref):
         x = abs(_loss_ref)
         if x < 0.7:
-            bound = 0.003
+            bound = 0.002
         elif x < 1.5:
             bound = 0.005
         elif x > 50:
