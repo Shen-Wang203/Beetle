@@ -525,7 +525,8 @@ class XYscan:
         time.sleep(self.wait_time)
         self.update_current_pos('x', x1, x1_o)
         self.check_abnormal_loss(max(self.loss))
-        if same_count >= 2:
+        # if same_count is larger than some value and moves within 4 steps, then we assume its solid
+        if same_count >= 2 and abs(x1-x1_o) < self.stepScanCounts*4:
             return False       
         return True
 
@@ -627,7 +628,8 @@ class XYscan:
         time.sleep(self.wait_time)
         self.update_current_pos('y', y1, y1_o)
         self.check_abnormal_loss(max(self.loss))
-        if same_count >= 2:
+        # if same_count is larger than some value and moves within 4 steps, then we assume its solid
+        if same_count >= 2 and abs(y1-y1_o) < self.stepScanCounts*4:
             return False
         return True
 
@@ -729,7 +731,9 @@ class XYscan:
                 i = totalpoints
         
         # if unchange return false and return to original position
-        if max(self.loss) - min(self.loss) < 0.008:
+        if max(self.loss) - min(self.loss) < 0.004:
+            print('Unchange, go back to previous position')
+            logging.info('Unchange, go back to previous position')
             # apply backlash counter
             counter = self.apply_xy_backlash_counter(x10, x1_o, 'x')
             x1_o = x1_o + counter
@@ -760,7 +764,7 @@ class XYscan:
             if not self.gotoxy(x1_final, x2_final, x3_final, xy='x', doublecheck=True, mode=mode):
                 return False
             # no need to wait if doublecheck is true
-            # time.sleep(self.wait_time)
+            time.sleep(self.wait_time)
             self.update_current_pos('x', x1_final, x1_o)
             self.fetch_loss()
             self.pos.append(x1_final)
@@ -879,7 +883,9 @@ class XYscan:
                 i = totalpoints 
 
         # if unchange return false and return to original point
-        if max(self.loss) - min(self.loss) < 0.008:
+        if max(self.loss) - min(self.loss) < 0.004:
+            print('Unchange, go back to previous position')
+            logging.info('Unchange, go back to previous position')            
             # apply backlash counter
             counter = self.apply_xy_backlash_counter(y10, y1_o, 'y')
             y1_o = y1_o + counter
@@ -910,7 +916,7 @@ class XYscan:
             if not self.gotoxy(y1_final, y2_final, y3_final, xy='y', doublecheck=True, mode=mode):
                 return False
             # no need to wait if doublecheck is true
-            # time.sleep(self.wait_time)     
+            time.sleep(self.wait_time)     
             self.update_current_pos('y', y1_final, y1_o)
             self.fetch_loss()
             self.pos.append(y1_final)
