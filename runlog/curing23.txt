@@ -1,6 +1,7 @@
 120C 3min, 190C 5min
 use wesley's big clamp and base
 solid at about 15min
+stable at 15min
 INFO:root:++++++++++++++++++++++++++++++
 INFO:root:Curing Active Alignment Starts. Loss Critera -0.39619360000000003
 INFO:root:++++++++++++++++++++++++++++++

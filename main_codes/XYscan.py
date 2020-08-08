@@ -524,10 +524,16 @@ class XYscan:
             return False
         time.sleep(self.wait_time)
         self.update_current_pos('x', x1, x1_o)
+        self.fetch_loss()
+        self.pos.append(x1)
+        self.save_loss_pos()
         self.check_abnormal_loss(max(self.loss))
-        # if same_count is larger than some value and moves within 4 steps, then we assume its solid
-        if same_count >= 2 and abs(x1-x1_o) < self.stepScanCounts*4:
-            return False       
+        # unchange
+        if max(self.loss) - min(self.loss) < 0.003:
+            return False
+        if self.loss[-1] < max(self.loss) - 0.04:
+            print('X step not best')
+            logging.info('X step not best')       
         return True
 
     # y1_o is counts
@@ -627,10 +633,16 @@ class XYscan:
             return False
         time.sleep(self.wait_time)
         self.update_current_pos('y', y1, y1_o)
+        self.fetch_loss()
+        self.pos.append(y1)
+        self.save_loss_pos()
         self.check_abnormal_loss(max(self.loss))
-        # if same_count is larger than some value and moves within 4 steps, then we assume its solid
-        if same_count >= 2 and abs(y1-y1_o) < self.stepScanCounts*4:
+        # unchange
+        if max(self.loss) - min(self.loss) < 0.003:
             return False
+        if self.loss[-1] < max(self.loss) - 0.04:
+            print('Y step not best')
+            logging.info('Y step not best')
         return True
 
     # x1_o is counts, fixture needs to be at x1_o

@@ -180,12 +180,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
             elif (end_time - start_time) > 1800 and (end_time - start_time) < 1802:
                 print('Reach 30 min')
                 logging.info('Reach 30 min')
-            elif not self.later_time_flag and (end_time - start_time) > 480:
+            elif not self.later_time_flag and (end_time - start_time) > 360:
                 # 3min to 120 degree; 7min to 240 degree. Later time is 10min, epoxy solid at about 12min
                 # 3min to 120 degree; 6min to 210 degree, later time is 9min, epoxy solid at about 11-12min
                 # 3min to 120 degree; 5min to 190 degree, later time is 6min, epoxy solid at about 8min
-                logging.info('Reach 8 min')
-                print('Reach 8 min')
+                logging.info('Reach 6 min')
+                print('Reach 6 min')
                 self.later_time_flag = True
                 # self.doublecheck_flag = True
                 self.wait_time = 0.3
@@ -271,8 +271,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     self.buffer = 0.02
                 else:
                     self.buffer = 0.03
-                # powermeter error is about 0.002, need to cancel that
+                # TODO: verify
                 self.loss_criteria = self.loss[-1] - 0.002
+                print('New Criteria: ', round(self.loss_criteria,4))
+                logging.info('New Criteria ' + str(round(self.loss_criteria,4)))
             elif (not curing_active) and self.loss[-1] < (self.loss_criteria - 0.5):
                 curing_active = True
                 curing_active_flag = True
@@ -488,8 +490,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
         for i in range(0,2):
             if self.xsearch_first:
                 # Return false only when unchanged
-                # if not self.x_solid and not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag, mode=self.mode):
-                if not self.x_solid and not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag, mode=self.mode):
+                if not self.x_solid and not self.Xstep(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag, mode=self.mode):
+                # if not self.x_solid and not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.doublecheck_flag, mode=self.mode):
                     print('X step unchange')
                     logging.info('X step unchange')
                     if self.later_time_flag:
@@ -507,8 +509,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 continue
                 
             # Return false only when unchanged
-            # if not self.y_solid and not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag, mode=self.mode):
-            if not self.y_solid and not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag, mode=self.mode):
+            if not self.y_solid and not self.Ystep(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag, mode=self.mode):
+            # if not self.y_solid and not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.doublecheck_flag, mode=self.mode):
                 print('Y step unchange')
                 logging.info('Y step unchange')
                 if self.later_time_flag:
@@ -592,8 +594,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.buffer = 0.02
             else:
                 self.buffer = 0.03
-            # powermeter error is about 0.002, need to cancel that
             self.loss_criteria = _loss - 0.002
+            print('New Criteria: ', round(self.loss_criteria,4))
+            logging.info('New Criteria ' + str(round(self.loss_criteria,4)))
 
             if _loss > self.loss_current_max:
                 self.loss_current_max = _loss
