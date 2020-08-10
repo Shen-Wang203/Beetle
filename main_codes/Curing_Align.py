@@ -217,7 +217,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.loss_curing_rec.append(99)    
                 # Z back if xy search failed for 2 times
                 if self.xycount == 2:
-                    if self.zcount_loop >= 2 and not self.later_time_flag:
+                    # if self.zcount_loop >= 2 and not self.later_time_flag:
+                    if self.zcount_loop >= 2: 
                         P = self.Zstep(P)
                         self.zcount_loop = 0
                     else:
@@ -271,10 +272,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     self.buffer = 0.02
                 else:
                     self.buffer = 0.03
-                # TODO: verify
-                self.loss_criteria = self.loss[-1] - 0.002
-                print('New Criteria: ', round(self.loss_criteria,4))
-                logging.info('New Criteria ' + str(round(self.loss_criteria,4)))
+                if self.loss[-1] > (self.loss_criteria + 0.002):
+                    self.loss_criteria = self.loss[-1] - 0.002
+                    print('New Criteria: ', round(self.loss_criteria,4))
+                    logging.info('New Criteria ' + str(round(self.loss_criteria,4)))
             elif (not curing_active) and self.loss[-1] < (self.loss_criteria - 0.5):
                 curing_active = True
                 curing_active_flag = True
@@ -594,9 +595,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.buffer = 0.02
             else:
                 self.buffer = 0.03
-            self.loss_criteria = _loss - 0.002
-            print('New Criteria: ', round(self.loss_criteria,4))
-            logging.info('New Criteria ' + str(round(self.loss_criteria,4)))
+            if _loss > (self.loss_criteria + 0.002):
+                self.loss_criteria = _loss - 0.002
+                print('New Criteria: ', round(self.loss_criteria,4))
+                logging.info('New Criteria ' + str(round(self.loss_criteria,4)))
 
             if _loss > self.loss_current_max:
                 self.loss_current_max = _loss
