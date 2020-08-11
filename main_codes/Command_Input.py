@@ -285,7 +285,7 @@ class CMDInputThread(QtCore.QThread):
                 xys.product_select('VOA')
             elif StaticVar.productType == "1xN":
                 xys.product_select('1xN') 
-            xys.set_loss_criteria(self.loss_max-0.01)
+            xys.set_loss_criteria(self.loss_max-0.02)
             xys.strategy = 2
             P1 = xys.autoRun() 
             self.currentPosition = P1[:]

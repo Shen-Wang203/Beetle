@@ -6,6 +6,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
     def __init__(self, HPPModel, hppcontrol):
         super().__init__(HPPModel, hppcontrol)  
         self.tolerance = 2
+        self.xystep_limit = True
         # self.scanmode = 'i'
         # this backlash is for xy only, not for z
         # unit is counts

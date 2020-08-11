@@ -10,7 +10,7 @@ class XYscan:
         self.HPP = HPPModel
         self.hppcontrol = hppcontrol
 
-        self.scan_radius = 5000  # 5000 counts, 5000*0.05um = 250um, +-250um
+        self.scan_radius = 3000  # 3000 counts, 3000*0.05um = 150um, +-150um
         self.starting_point = [0,0,138,0,0,0]
         self.reduction_ratio = 0.5
         self.error_flag = False
@@ -21,6 +21,7 @@ class XYscan:
         self.final_adjust = False
         self.larger_Z_flag = False    
         self.second_try = False   
+        self.xystep_limit = False
         self.aggresive_threshold = -12
         self.scanmode_threshold = -4
         self.stepmode_threshold = -2
@@ -35,7 +36,6 @@ class XYscan:
         # stepping-at-final --> 1
         # interp-at-final  --> 2
         self.strategy = 1
-
         # self.loss and self.pos record each x or y or z search data, 
         # they will be cleared when a new search in x or y or z starts
         self.loss = []
@@ -52,7 +52,7 @@ class XYscan:
         # unit is counts
         self.x_backlash = 0
         self.y_backlash = 0
-        self.loss_current_max = -60.0
+        self.loss_current_max = -50.0
         self.pos_current_max = [0,0,138,0,0,0]
         self.loss_fail_improve = 0
 
@@ -453,6 +453,7 @@ class XYscan:
         self.x_dir_old = 0
         trend = 1
         same_count = 0
+        totalstep = 0
         print('Direction ', self.x_dir_trend)
         logging.info('Direction ' + str(self.x_dir_trend))
         while True:
@@ -478,8 +479,16 @@ class XYscan:
             # print(x1)  
             # logging.info(x1)
             self.save_loss_pos()
+            totalstep += 1
             if self.loss_target_check(self.loss[-1]):
                 return True
+            if self.xystep_limit and totalstep >= 4:
+                print('Reach step search limit')
+                logging.info('Reach step search limit')
+                x1 = x1 + self.stepScanCounts * self.x_dir_trend
+                x2 = x2 - self.stepScanCounts * self.x_dir_trend
+                x3 = x3 - self.stepScanCounts * self.x_dir_trend
+                break  
 
             bound = self.loss_bound(loss_o)
             diff = self.loss[-1] - loss_o
@@ -495,12 +504,14 @@ class XYscan:
                 if trend:
                     print('Over')
                     logging.info('Over')
+                    totalstep -= 1
                     break
                 self.x_dir_trend = -self.x_dir_trend    
                 loss_o = self.loss[-1]    
                 print('Change direction')
                 logging.info('Change direction')     
                 same_count = 0   
+                totalstep = 0
             elif diff >= bound:
                 trend = 2
                 loss_o = self.loss[-1]
@@ -565,6 +576,7 @@ class XYscan:
         self.y_dir_old = 0        
         trend = 1
         same_count = 0
+        totalstep = 0
         print('Direction ', self.y_dir_trend)
         logging.info('Direction ' + str(self.y_dir_trend))
         while True:
@@ -587,8 +599,16 @@ class XYscan:
             # print(y1)  
             # logging.info(y1)
             self.save_loss_pos()
+            totalstep += 1
             if self.loss_target_check(self.loss[-1]):
                 return True
+            if self.xystep_limit and totalstep >= 4:
+                print('Reach step search limit')
+                logging.info('Reach step search limit')
+                y1 = y1 + self.stepScanCounts * self.y_dir_trend
+                y2 = y2 + self.stepScanCounts * self.y_dir_trend
+                y3 = y3 + self.stepScanCounts * self.y_dir_trend
+                break  
 
             bound = self.loss_bound(loss_o)
             diff = self.loss[-1] - loss_o
@@ -604,12 +624,14 @@ class XYscan:
                 if trend:
                     print('Over')
                     logging.info('Over')
+                    totalstep -= 1
                     break
                 self.y_dir_trend = -self.y_dir_trend    
                 loss_o = self.loss[-1]   
                 print('Change direction')
                 logging.info('Change direction') 
                 same_count = 0          
+                totalstep = 0
             elif diff >= bound:
                 loss_o = self.loss[-1]
                 trend = 2
@@ -949,7 +971,7 @@ class XYscan:
     # a1,a2,a3 is the T1,T2,T3 target position
     # xy is either 'x' or 'y'
     # doublecheck is to when disengaged, check again the position, is a bool. 
-    # return false when movement error and final_adjust is false
+    # return false when movement error (final_adjust is false)
     # mode is either 't' or 'p' for traj or step positioning mode, default is 'p'
     def gotoxy(self, a1, a2, a3, xy, doublecheck, mode):
         for i in range(0,3):
