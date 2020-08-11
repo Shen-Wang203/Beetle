@@ -180,12 +180,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
             elif (end_time - start_time) > 1800 and (end_time - start_time) < 1802:
                 print('Reach 30 min')
                 logging.info('Reach 30 min')
-            elif not self.later_time_flag and (end_time - start_time) > 360:
+            elif not self.later_time_flag and (end_time - start_time) > 180:
                 # 3min to 120 degree; 7min to 240 degree. Later time is 10min, epoxy solid at about 12min
                 # 3min to 120 degree; 6min to 210 degree, later time is 9min, epoxy solid at about 11-12min
                 # 3min to 120 degree; 5min to 190 degree, later time is 6min, epoxy solid at about 8min
-                logging.info('Reach 6 min')
-                print('Reach 6 min')
+                logging.info('Reach 3 min')
+                print('Reach 3 min')
                 self.later_time_flag = True
                 # self.doublecheck_flag = True
                 self.wait_time = 0.3
@@ -249,19 +249,19 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.pos_curing_rec.append(P)    
                 self.loss = []
                 # if fail to meet criteria for 3 rounds, then we loose the criteria
-                if self.zcount == 1 and not self.later_time_flag and self.xycount == 2:
-                    self.loss_criteria = self.loss_criteria - 0.01
+                if self.zcount == 1 and not self.later_time_flag and self.xycount >= 2:
+                    self.loss_criteria = self.loss_criteria - 0.015
                     # self.loss_current_max = self.loss_criteria + 0.02
-                    print('Lower criteria 0.01dB')
-                    logging.info('Lower criteria 0.01dB')
+                    print('Lower criteria 0.015dB')
+                    logging.info('Lower criteria 0.015dB')
                     self.zcount = 0
                     # allow one more xy after lower criteria
                     self.xycount = 1
-                elif self.zcount == 1 and self.later_time_flag and self.xycount == 1:
-                    self.loss_criteria = self.loss_criteria - 0.01
+                elif self.zcount == 1 and self.later_time_flag and self.xycount >= 1:
+                    self.loss_criteria = self.loss_criteria - 0.015
                     # self.loss_current_max = self.loss_criteria + 0.02
-                    print('Lower criteria 0.01dB')
-                    logging.info('Lower criteria 0.01dB')
+                    print('Lower criteria 0.015dB')
+                    logging.info('Lower criteria 0.015dB')
                     self.zcount = 0 
                     self.xycount = 1                   
             elif curing_active and self.loss[-1] >= self.loss_criteria:
