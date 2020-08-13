@@ -1,8 +1,4 @@
 TODO Bugs:
-2. release the bot screw when program paused
-3. try step in the final stage of curing
-
-
 
 Jerry
 GUI pending:
@@ -21,12 +17,11 @@ Notes:
    accurate. Need to adjust the PID parameters or/and add some damp on the motor.
 2. Glue needs to be uniform, important. For cooling, if not uniform, it can drift.
    Jig needs to be rigid and has small thermal expansion (Stainless Steel), important.
-3. Screws cannot be too tight
-4. Try to apply epoxy on the lens cap end instead of the side to make sure uniformity
+3. Screws cannot be too tight, use spring loaded clamp for clamping force consistancy. 
 5. Try stopping vibration by some foam
-6. Just before getting solid during curing, the loss can drift because of the moves. See curing8 and curing10
 7. Loss drift: 1. avoid unequal material expansion from top and bot, meaning top and bot should have
-                  about the same length; and they should be shorter
-               2. should be stable earlier than epoxy solid
+                  about the same length and expand along the same direction.
+               2. Jigs should be thermal stable earlier than epoxy solid. Can preheating to make it quicker 
+                  to reach stable temprature. Epoxy is usually solid at 7-9min when 190C curng. This is very important!!!
                3. Epoxy should be even for uniform cooling down. 
                4. When starting cooling, unscrew the bot first cause bot cooling can be slower and uneven
