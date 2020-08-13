@@ -17,6 +17,7 @@ from PyQt5.QtMultimediaWidgets import *
 # from PyQt5 import pyqtThread, pyqtSignal
 import Command_Input as cmd
 from StaticVar import StaticVar
+import PowerMeter as PM
 
 import os
 import sys
@@ -227,16 +228,16 @@ class Ui_MainWindow(object):
         self.textBrowser.setGeometry(QtCore.QRect(500, 750, 320, 80))
         self.textBrowser.setObjectName("textBrowser")
         self.label_status = QtWidgets.QLabel(self.centralwidget)
-        self.label_status.setGeometry(QtCore.QRect(360, 580, 121, 41))
+        self.label_status.setGeometry(QtCore.QRect(340, 580, 121, 40))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_status.setFont(font)
         self.label_status.setObjectName("label_status")
         self.label_statusdata = QtWidgets.QLabel(self.centralwidget)
-        self.label_statusdata.setGeometry(QtCore.QRect(480, 580, 161, 40))
+        self.label_statusdata.setGeometry(QtCore.QRect(450, 580, 161, 40))
 
         self.label_IL = QtWidgets.QLabel(self.centralwidget)
-        self.label_IL.setGeometry(QtCore.QRect(680, 580, 121, 41))
+        self.label_IL.setGeometry(QtCore.QRect(660, 580, 121, 40))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_IL.setFont(font)
@@ -495,6 +496,7 @@ class Ui_MainWindow(object):
         # self.viewfinder = QCameraViewfinder(self.centralwidget)
         # self.viewfinder.setGeometry(QtCore.QRect(20,30,600,400))
         # self.viewfinder.show()
+
         self.cameraLabel = QLabel(self)
         self.cameraLabel.setGeometry(QtCore.QRect(20,30,640,480))
         th = Thread(self)
@@ -594,7 +596,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Set up timer to update IL
         self.timer = QTimer()
         # self.timer.timeout.connect(self.updateIL)
-        self.timer.timeout.connect(self.showtime)
+        self.timer.timeout.connect(self.showtime_loss)
+        # 1s one interupt
         self.timer.start(1000)
         self.timer_start = False
         self.timer_count = 0
@@ -642,8 +645,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.disarm_click() 
 
     def initial_pos_click(self):
-        # save to file
+        # save to filea
         file1 = open("initial_pos.txt","w+")
+        self.target_mm = [round(num, 5) for num in self.target_mm]
         file1.write(str(self.target_mm))
         file1.close()
         print('Initial Position Set')
@@ -732,6 +736,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.timer_start = False
 
     def refresh(self, _error_log, _target_mm, _target_counts, _real_counts, _error_flag):
+        _target_mm = [round(num, 5) for num in _target_mm]
         self.target_mm = _target_mm
 
         self.textBrowser.setText(_error_log)
@@ -996,14 +1001,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.zplus_click(self.step)
             elif e.key() == Qt.Key_Minus:
                 self.zminus_click(self.step)
-        
-    def updateIL(self):
-        self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
-        self.label_IL.adjustSize()
 
-    def showtime(self):
+    def showtime_loss(self):
         if self.timer_start:
             self.timer_count += 1
+            # half second on interupt
+            # totalseconds = self.timer_count // 2
+            # minute = totalseconds // 60
+            # second = totalseconds % 60
             minute = self.timer_count // 60
             second = self.timer_count % 60
             self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
@@ -1011,8 +1016,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if second == 0:
                 print('Time: ', minute, 'min')
                 logging.info('Time: ' + str(minute) + 'min')
-        # else:
-            # self.label_timer.setText('Time: ----')
+        else:
+            PM.power_read_noprint()
+        # update IL
+        self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
+        self.label_IL.adjustSize()
 
 
 class Thread(QThread):

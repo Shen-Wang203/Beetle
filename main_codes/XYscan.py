@@ -4,6 +4,7 @@ import numpy as np
 import logging
 import interpolation
 import HPP_Control as control
+import datetime
 
 class XYscan:
     def __init__(self, HPPModel, hppcontrol):
@@ -94,7 +95,9 @@ class XYscan:
         logging.info(' ')
         logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
         logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
-        logging.info('A New Alignment Starts') 
+        logging.info('A New Alignment Starts, Criteria '+ str(self.loss_criteria)) 
+        now = datetime.datetime.now()
+        logging.info(now.strftime("%Y-%m-%d %H:%M:%S"))
         logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
         start_time = time.time()
         self.send_to_hpp(self.starting_point, doublecheck=False)
@@ -742,8 +745,8 @@ class XYscan:
                 return True
             # if current loss is larger than start loss, meaning the direction is right, we dont'
             # need to go to the opposite direction, which is the next iteration
-            print(i)
-            logging.info(i)
+            # print(i)
+            # logging.info(i)
             x_ref.append(x1[i])
             i += 1
             if self.loss[-1] > self.loss[0]:
@@ -894,8 +897,8 @@ class XYscan:
                 return True
             # if current loss is larger than start loss, meaning the direction is right, we dont'
             # need to go to the opposite direction, which is the next iteration
-            print(i)
-            logging.info(i)
+            # print(i)
+            # logging.info(i)
             y_ref.append(y1[i])
             i += 1
             if self.loss[-1] > self.loss[0]:
@@ -1096,6 +1099,7 @@ class XYscan:
         #     return P1        
         if not self.error_flag:
             print('Scan update ends at: ')
+            P1 = [round(num, 5) for num in P1]
             print(P1)
             logging.info('Scan update ends at: ')
             logging.info(P1)
@@ -1143,6 +1147,7 @@ class XYscan:
     # the fixture will be in P1 in the end, and the fixture needs to be in P0 in the beginning
     def optimZ(self, P0, doublecheck):
         print('Z optim starts at (pos then loss): ')
+        P0 = [round(num, 5) for num in P0]
         print(P0)
         logging.info('Z optim starts at (pos then loss): ')
         logging.info(P0)
@@ -1297,6 +1302,9 @@ class XYscan:
                         self.hppcontrol.disengage_motor()
                     time.sleep(self.wait_time)
                     self.current_pos = P1[:]
+                    self.fetch_loss()
+                    self.pos.append(P1[:])
+                    self.save_loss_pos()
                     break
             # if larger than bound, then success and update loss old
             elif diff > bound:
@@ -1313,6 +1321,7 @@ class XYscan:
                     break
 
         print('Z optim ends at: ')
+        P1 = [round(num, 5) for num in P1]
         print(P1)
         logging.info('Z optim ends at: ')  
         logging.info(P1)
@@ -1451,6 +1460,7 @@ class XYscan:
     # if doublecheck is true, don't need engage and disengage before and after this function
     def send_to_hpp(self, R, doublecheck):   
         target_mm = R[:]
+        target_mm = [round(num, 5) for num in target_mm]
         print(target_mm)
         logging.info(target_mm)
         # Read real time counts        

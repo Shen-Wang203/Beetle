@@ -479,6 +479,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
     # Need fixture to be at P0 location in the begining, fixture will be at P1 in the end.
     def scanUpdate2(self, P0):
         print('Scan update starts at: ')
+        P0 = [round(num, 5) for num in P0]
         print(P0)
         logging.info('Scan update starts at: ')
         logging.info(P0)
@@ -535,6 +536,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
         if not self.error_flag:
             print('Scan update ends at: ')
+            P1 = [round(num, 5) for num in P1]
             print(P1)
             logging.info('Scan update ends at: ')
             logging.info(P1)

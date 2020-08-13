@@ -36,7 +36,17 @@ def power_read():
     powerRead = (powerRead + powerRead2) * 0.5
     while powerRead > 0:
         powerRead = float(PM.query('READ1:POW?'))
+    powerRead = round(powerRead, 4)
     print(powerRead)
     logging.info(powerRead)
     StaticVar.IL = round(powerRead, 3)
     return powerRead
+
+def power_read_noprint():
+    powerRead = float(PM.query('READ1:POW?'))
+    time.sleep(0.02)
+    powerRead2 = float(PM.query('READ1:POW?'))
+    powerRead = (powerRead + powerRead2) * 0.5
+    while powerRead > 0:
+        powerRead = float(PM.query('READ1:POW?'))
+    StaticVar.IL = round(powerRead, 3)

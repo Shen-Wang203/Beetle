@@ -179,7 +179,8 @@ class HPP_Control:
         # A3y = 179350 - 92.122182 / 50e-6  = -1.66309364e6
         # Beetle #
         while True:
-            BeetleNum = input('Beetle #: ')
+            # BeetleNum = input('Beetle #: ')
+            BeetleNum = '1'
             if BeetleNum == '1':
                 x1 = 193050
                 y1 = 187450
