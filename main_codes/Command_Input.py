@@ -254,15 +254,14 @@ class CMDInputThread(QtCore.QThread):
             target_counts = [0,0,0,0,0,0]
             self.loss_max = xys.loss_current_max
 
-            file1 = open("pos.txt","w+")
-            file2 = open("loss.txt","w+")
-            a = xys.pos_rec[:]
-            b = xys.loss_rec[:]
-            for i in range(0,len(a)):
-                file1.writelines(str(a[i]) + '\n')
-            for i in range(0,len(b)):
-                file2.writelines(str(b[i]) + '\n')
-       
+            # file1 = open("pos.txt","w+")
+            # file2 = open("loss.txt","w+")
+            # a = xys.pos_rec[:]
+            # b = xys.loss_rec[:]
+            # for i in range(0,len(a)):
+            #     file1.writelines(str(a[i]) + '\n')
+            # for i in range(0,len(b)):
+            #     file2.writelines(str(b[i]) + '\n')       
 
         elif commands == 'precure':
             # cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)

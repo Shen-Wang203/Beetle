@@ -13,7 +13,6 @@ class XYscan:
 
         self.scan_radius = 3000  # 3000 counts, 3000*0.05um = 150um, +-150um
         self.starting_point = [0,0,138,0,0,0]
-        self.reduction_ratio = 0.5
         self.error_flag = False
         self.limit_Z = 142
         self.tolerance = 5
@@ -57,6 +56,13 @@ class XYscan:
         self.pos_current_max = [0,0,138,0,0,0]
         self.loss_fail_improve = 0
 
+        # for pattern search
+        self.reduction_ratio = 0.5
+        # step size for xy and z
+        self.ps_step = [0.01, 0.01, 0.02]
+        # xyz detective search direction trend
+        self.detective_direction = [1, 1, 1]
+        self.acceleration = 2
 
     def set_loss_criteria(self, _loss_criteria):
         self.loss_criteria = _loss_criteria
@@ -1241,7 +1247,6 @@ class XYscan:
             if diff < -bound:            
                 # if fail, go back to the old point
                 P1[2] = P1[2] - step 
-                # step = self.reduction_ratio * step
                 # radio here should be smaller than 0.5 not 0,5, otherwise two steps will go back to the previous position
                 step = 0.4 * step                    
 
@@ -1476,3 +1481,156 @@ class XYscan:
         # else:
             # error_flag = False        
         return True  
+    
+    # -------------------------------------
+    # -------------------------------------
+    # Pattern search functions
+    # Input is P0, output is P1
+    # return false if reach step limit
+    def detecting_move(self, P0, doublecheck):
+        print('Detective search starts at (pos then loss): ')
+        P0 = [round(num, 5) for num in P0]
+        print(P0)
+        logging.info('Detective search starts at (pos then loss): ')
+        logging.info(P0)
+        P1 = P0[:]
+        self.loss = []
+        self.pos = []
+        self.fetch_loss()
+        self.pos.append(P1)
+        self.save_loss_pos()
+        _loss_P0 = self.loss[-1]
+        _loss_P1 = _loss_P0
+        step_ref = round(abs(_loss_P0), 1) * 0.001
+        self.ps_step[2] = step_ref * self.Z_amp
+        if self.ps_step[2] < 0.002:
+            self.ps_step[2] = 0.002
+        if step_ref > 0.01:
+            self.ps_step[0] = 0.005
+            self.ps_step[1] = 0.005
+        elif step_ref > 0.005:
+            self.ps_step[0] = 0.001
+            self.ps_step[1] = 0.001
+        else:
+            self.ps_step[0] = 0.0004
+            self.ps_step[1] = 0.0004
+        while not self.error_flag:        
+            for i in range(0, 3):
+                P1_try = P1[:] 
+                P1_try[i] = P1[i] - self.ps_step[i] * self.detective_direction[i]
+                # goto the position
+                if self.final_adjust and not doublecheck:
+                    self.hppcontrol.engage_motor()
+                if not self.send_to_hpp(P1_try, doublecheck=doublecheck):
+                    print('Movement Error')
+                    logging.info('Movement Error')
+                    if not self.final_adjust:
+                        self.error_flag = True
+                if self.final_adjust and not doublecheck:
+                    self.hppcontrol.disengage_motor()
+                time.sleep(self.wait_time)
+
+                self.fetch_loss()
+                bound = self.loss_bound(self.loss[-1])
+                if self.loss[-1] >= (_loss_P1 + bound):
+                    P1 = P1_try[:]
+                    _loss_P1 = self.loss[-1]
+                else:
+                    P1_try[i] = P1[i] + self.ps_step[i] * self.detective_direction[i]
+                    # goto the position
+                    if self.final_adjust and not doublecheck:
+                        self.hppcontrol.engage_motor()
+                    if not self.send_to_hpp(P1_try, doublecheck=doublecheck):
+                        print('Movement Error')
+                        logging.info('Movement Error')
+                        if not self.final_adjust:
+                            self.error_flag = True
+                    if self.final_adjust and not doublecheck:
+                        self.hppcontrol.disengage_motor()
+                    time.sleep(self.wait_time)
+                    self.fetch_loss()    
+                    bound = self.loss_bound(self.loss[-1])                 
+                    if self.loss[-1] >= (_loss_P1 + bound):
+                        self.detective_direction[i] = -self.detective_direction[i]
+                        P1 = P1_try[:]
+                        _loss_P1 = self.loss[-1]
+            
+            if _loss_P1 >= _loss_P0:
+                return P1
+            else:
+                self.ps_step = [self.reduction_ratio*num for num in self.ps_step]
+                # self.ps_step = self.reduction_ratio * self.ps_step
+                P1 = P0[:]
+                if self.ps_step[0] < 0.0002:
+                    print('Reach min step size')
+                    logging.info('Reach min step size')
+                    return False
+        return False
+
+    def pattern_move(self, R0, R1, doublecheck):
+        print('Pattern search starts at (pos then loss): ')
+        R0 = [round(num, 5) for num in R0]
+        print(R0)
+        logging.info('Pattern search starts at (pos then loss): ')
+        logging.info(R0)
+        self.fetch_loss()
+        _loss_R1 = self.loss[-1]
+        # Pattern Move 
+        while not self.error_flag:
+            # Tentative Pattern Move
+            # R2 = acceleration*R1 - R0
+            R2_t = R1[:]
+            for j in range(0, 3):
+                R2_t[j] = self.acceleration * R1[j] - R0[j] 
+            # goto the position
+            if self.final_adjust and not doublecheck:
+                self.hppcontrol.engage_motor()
+            if not self.send_to_hpp(R2_t, doublecheck=doublecheck):
+                print('Movement Error')
+                logging.info('Movement Error')
+                if not self.final_adjust:
+                    self.error_flag = True
+            if self.final_adjust and not doublecheck:
+                self.hppcontrol.disengage_motor()
+            time.sleep(self.wait_time)
+
+            self.fetch_loss()
+            loss_R2_t = self.loss[-1]
+            # # Final Pattern Move     
+            # results = self.detecting_move(R2_t, loss_R2_t)
+            # R2_f = results[0]
+            # loss_R2_f = results[1]
+            # if R2_f == False:
+            #     if loss_R2_f == 99.0:
+            #         # _error = True
+            #         return False
+            #     R2_f = R2_t[:]
+
+            bound = self.loss_bound(loss_R2_t)
+            # if loss is better, keep it and continue another pattern move
+            if loss_R2_t > (_loss_R1 + bound):
+                R0 = R1[:]
+                R1 = R2_t[:]
+                _loss_R1 = loss_R2_t
+            # if loss is worse, exit pattern move, go to detection move
+            else:
+                R0 = R1[:]
+                _loss_R0 = _loss_R1
+                break
+        
+        return R0   
+    
+    def ps_run(self):
+        P0 = self.starting_point[:]
+        while not self.error_flag:
+            P1 = self.detecting_move(P0, doublecheck=False)
+            self.fetch_loss()
+            if self.loss_target_check(self.loss[-1]):
+                return True
+            if P1:
+                P0 = self.pattern_move(P0, P1, doublecheck=False)[:]
+                self.fetch_loss()
+                if self.loss_target_check(self.loss[-1]):
+                    return True
+            else:
+                return False

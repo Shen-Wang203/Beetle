@@ -1,6 +1,7 @@
 import time
 import logging
 import XYscan
+import datetime
 
 class Curing_Active_Alignment(XYscan.XYscan):
     def __init__(self, HPPModel, hppcontrol):
@@ -151,7 +152,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
         print('Curing Active Alignment Starts')
         logging.info(' ')
         logging.info('++++++++++++++++++++++++++++++')
-        logging.info('Curing Active Alignment Starts. Loss Critera ' + str(self.loss_criteria)) 
+        logging.info('Curing Active Alignment Starts. Loss Critera ' + str(self.loss_criteria))
+        now = datetime.datetime.now()
+        logging.info(now.strftime("%Y-%m-%d %H:%M:%S")) 
         logging.info('++++++++++++++++++++++++++++++')
         P = P0[:]
         # self.hppcontrol.slow_traj_speed_2()
