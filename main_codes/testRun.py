@@ -30,6 +30,7 @@ xys.set_starting_point(P0)
 # xys.set_limit_Z(145)
 xys.set_loss_criteria(-4)
 P1 = xys.ps_run()
+hppcontrol.disengage_motor()
 
 # cure = Curing_Active_Alignment(HPP, hppcontrol)
 # cure.set_starting_point(P0)

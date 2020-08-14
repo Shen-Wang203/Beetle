@@ -1484,7 +1484,7 @@ class XYscan:
     
     # -------------------------------------
     # -------------------------------------
-    # Pattern search functions
+    # Pattern search functions, still needs to debug
     # Input is P0, output is P1
     # return false if reach step limit
     def detecting_move(self, P0, doublecheck):
@@ -1506,8 +1506,8 @@ class XYscan:
         if self.ps_step[2] < 0.002:
             self.ps_step[2] = 0.002
         if step_ref > 0.01:
-            self.ps_step[0] = 0.005
-            self.ps_step[1] = 0.005
+            self.ps_step[0] = 0.01
+            self.ps_step[1] = 0.01
         elif step_ref > 0.005:
             self.ps_step[0] = 0.001
             self.ps_step[1] = 0.001
