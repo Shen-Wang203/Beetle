@@ -498,7 +498,7 @@ class Ui_MainWindow(object):
         # self.viewfinder.show()
 
         self.cameraLabel = QLabel(self)
-        self.cameraLabel.setGeometry(QtCore.QRect(20,30,640,480))
+        self.cameraLabel.setGeometry(QtCore.QRect(20,45,640,480))
         th = Thread(self)
         th.changePixmap.connect(self.setImage)
         th.start()
@@ -602,6 +602,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.timer_start = False
         self.timer_count = 0
 
+        self.isControllingX = False
+        self.isControllingY = False
+        self.isControllingZ = False
+
         self.step = 0.0002
         self.target_mm = [0,0,138,0,0,0]
 
@@ -620,9 +624,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def send_click(self):
         cmdtext = self.textEdit_gotocommands.toPlainText()
         if cmdtext == 'clear':
-                pass
+            pass
         else:
-                cmdtext = 'goto' + cmdtext
+            cmdtext = 'goto' + cmdtext
         self.runthread.setcmd(cmdtext)
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
@@ -759,11 +763,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.label_targetcountsdata.setText(string)
 
         if _error_flag:
-                self.label_statusdata.setText('Disarmed')
-                self.label_statusdata.setStyleSheet("color: rgb(255, 30, 0);")
+            self.label_statusdata.setText('Disarmed')
+            self.label_statusdata.setStyleSheet("color: rgb(255, 30, 0);")
         # else:
-        #         self.label_statusdata.setText('Ready')
-        #         self.label_statusdata.setStyleSheet("color: rgb(20, 255, 0);")
+        #     self.label_statusdata.setText('Ready')
+        #     elf.label_statusdata.setStyleSheet("color: rgb(20, 255, 0);")
 
     def step_choose(self):
         if self.stepSizeComboBox.currentIndex() == 0:
@@ -961,27 +965,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         err = QErrorMessage(self)
         err.showMessage(s)
 
-    isControllingX = False
-    isControllingY = False
-    isControllingZ = False
     def keyPressEvent(self, e):
-        if e.key()==Qt.Key_X:
-            self.label_key_press.setText("Controlling X-axis:+/-")
+        if e.key() == Qt.Key_X:
+            self.label_key_press.setText("Press +/- to control X")
             self.isControllingX = True
             self.isControllingY = False
             self.isControllingZ = False
-        elif e.key()==Qt.Key_Y:
-            self.label_key_press.setText("Controlling Y-axis:+/-")
+        elif e.key() == Qt.Key_Y:
+            self.label_key_press.setText("Press +/- to control Y")
             self.isControllingX = False
             self.isControllingY = True
             self.isControllingZ = False
-        elif e.key()==Qt.Key_Z:
-            self.label_key_press.setText("Controlling Z-axis:+/-")
+        elif e.key() == Qt.Key_Z:
+            self.label_key_press.setText("Press +/- to control Z")
             self.isControllingX = False
             self.isControllingY = False
             self.isControllingZ = True
-        elif e.key()==Qt.Key_Escape:
-            self.label_key_press.setText("Press X/Y/Z to activate keyboard shortcut")
+        elif e.key() == Qt.Key_Escape:
+            self.label_key_press.setText("Press X/Y/Z to use keyboard")
             self.isControllingX = False
             self.isControllingY = False
             self.isControllingZ = False
