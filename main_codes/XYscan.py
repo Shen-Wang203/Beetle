@@ -463,8 +463,8 @@ class XYscan:
         trend = 1
         same_count = 0
         totalstep = 0
-        print('Direction ', self.x_dir_trend)
-        logging.info('Direction ' + str(self.x_dir_trend))
+        # print('Direction ', self.x_dir_trend)
+        # logging.info('Direction ' + str(self.x_dir_trend))
         while True:
             # x2 and x3 are in opposite direction as x1
             x1 = x1 - self.stepScanCounts * self.x_dir_trend
@@ -586,8 +586,8 @@ class XYscan:
         trend = 1
         same_count = 0
         totalstep = 0
-        print('Direction ', self.y_dir_trend)
-        logging.info('Direction ' + str(self.y_dir_trend))
+        # print('Direction ', self.y_dir_trend)
+        # logging.info('Direction ' + str(self.y_dir_trend))
         while True:
             y1 = y1 - self.stepScanCounts * self.y_dir_trend
             y2 = y2 - self.stepScanCounts * self.y_dir_trend

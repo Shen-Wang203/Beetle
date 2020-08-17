@@ -598,7 +598,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.timer.timeout.connect(self.updateIL)
         self.timer.timeout.connect(self.showtime_loss)
         # 1s one interupt
-        self.timer.start(1000)
+        self.timer.start(500)
+        # self.timer.start(1000)
         self.timer_start = False
         self.timer_count = 0
 
@@ -1007,14 +1008,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.timer_start:
             self.timer_count += 1
             # half second on interupt
-            # totalseconds = self.timer_count // 2
-            # minute = totalseconds // 60
-            # second = totalseconds % 60
-            minute = self.timer_count // 60
-            second = self.timer_count % 60
+            totalseconds = self.timer_count // 2
+            minute = totalseconds // 60
+            second = totalseconds % 60
+            # minute = self.timer_count // 60
+            # second = self.timer_count % 60
             self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
             self.label_timer.adjustSize()
-            if second == 0:
+            if second == 0 and totalseconds % 2 == 0:
                 print('Time: ', minute, 'min')
                 logging.info('Time: ' + str(minute) + 'min')
         else:

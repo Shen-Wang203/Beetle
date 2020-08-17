@@ -15,13 +15,17 @@ for Beetle #2 and #5, motors sometimes don't run
 Notes:
 1. If x or y interp failed constantly during curing, it means the positioning is not 
    accurate. Need to adjust the PID parameters or/and add some damp on the motor.
-2. Glue needs to be uniform, important. For cooling, if not uniform, it can drift.
-   Jig needs to be rigid and has small thermal expansion (Stainless Steel), important.
+2. Jig needs to be rigid and has small thermal expansion (Stainless Steel), important.
 3. Screws cannot be too tight, use spring loaded clamp for clamping force consistancy. 
-5. Try stopping vibration by some foam
-7. Loss drift: 1. avoid unequal material expansion from top and bot, meaning top and bot should have
+4. Try stopping vibration by some foam
+5. Loss drift: 1. avoid unequal material expansion from top and bot, meaning top and bot should have
                   about the same length and expand along the same direction.
                2. Jigs should be thermal stable earlier than epoxy solid. Can preheating to make it quicker 
                   to reach stable temprature. Epoxy is usually solid at 7-9min when 190C curng. This is very important!!!
-               3. Epoxy should be even for uniform cooling down. 
-               4. When starting cooling, unscrew the bot first cause bot cooling can be slower and uneven
+               3. Epoxy should be even for uniform cooling down. If applying on lens cap top surface, then 
+                  rotate the sleeve to even the epoxy, important! Because uneven epoxy in the gap between sleeve and lens cap
+                  will shrink unequally which will have loss drift. 
+               4. If the gap between sleeve and lens cap is not uniform because of incorrect tilt angles, the epoxy in this gap
+                  will be uneven too, causing loss drift during curing. 
+               5. Don't make the screw too tight. If too tight, during cooling the loss can drift. Important!
+               6. When starting cooling, unscrew the bot first cause bot cooling can be slower and uneven

@@ -181,15 +181,14 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('Reach Time Limit')
                 print('Reach Time Limit')
                 break             
-            elif (end_time - start_time) > 1800 and (end_time - start_time) < 1802:
-                print('Reach 30 min')
-                logging.info('Reach 30 min')
+            # elif (end_time - start_time) > 1800 and (end_time - start_time) < 1802:
+            #     print('Reach 30 min')
+            #     logging.info('Reach 30 min')
             elif not self.later_time_flag and (end_time - start_time) > 180:
-                # 3min to 120 degree; 7min to 240 degree. Later time is 10min, epoxy solid at about 12min
-                # 3min to 120 degree; 6min to 210 degree, later time is 9min, epoxy solid at about 11-12min
-                # 3min to 120 degree; 5min to 190 degree, later time is 6min, epoxy solid at about 8min
-                logging.info('Reach 3 min')
-                print('Reach 3 min')
+                # logging.info('Reach 3 min')
+                # print('Reach 3 min')
+                logging.info('Late time flag is on')
+                print('Late time flag is on')
                 self.later_time_flag = True
                 # self.doublecheck_flag = True
                 self.wait_time = 0.3
