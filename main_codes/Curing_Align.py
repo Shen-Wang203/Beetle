@@ -2,6 +2,7 @@ import time
 import logging
 import XYscan
 import datetime
+import serial
 
 class Curing_Active_Alignment(XYscan.XYscan):
     def __init__(self, HPPModel, hppcontrol):
@@ -30,6 +31,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.mode = 'p'
         self.doublecheck_flag = False
         self.buffer = 0.03
+        # arduino temp read serial connection
+        self.Arduino = serial.Serial('COM4', 115200, timeout=0.1, stopbits=1)
 
     # Product 1: VOA
     # Product 2: 1xN
@@ -156,6 +159,13 @@ class Curing_Active_Alignment(XYscan.XYscan):
         now = datetime.datetime.now()
         logging.info(now.strftime("%Y-%m-%d %H:%M:%S")) 
         logging.info('++++++++++++++++++++++++++++++')
+
+        # this time delay is for temp read uart communication connection
+        time.sleep(2)
+        self.fetch_temperature()
+        print('Temperature fetch time 0')
+        logging.info('Temperature fetch time 0')
+
         P = P0[:]
         # self.hppcontrol.slow_traj_speed_2()
         # record append number 0 as an indicate to enter curing
@@ -173,10 +183,21 @@ class Curing_Active_Alignment(XYscan.XYscan):
         # wait time only works during interp, if doublecheck is on, no need to wait or wait for a short time for powermeter to response
         self.wait_time = 0.3
         start_time = time.time()
+        temp_time = start_time
         curing_active = True
         curing_active_flag = False
         while not self.error_flag:         
             end_time = time.time()
+
+            # temperature read
+            fetch_second = int(end_time - temp_time)
+            # fetch temp every 20s
+            if fetch_second >= 20:
+                self.fetch_temperature()
+                print('Temperature fetch time ', fetch_second)
+                logging.info('Temperature fetch time ' + str(fetch_second))
+                temp_time = time.time()
+
             if (end_time - start_time) > self.minutes  * 60:
                 logging.info('Reach Time Limit')
                 print('Reach Time Limit')
@@ -487,7 +508,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
         logging.info(P0)
         P1 = P0[:]
         self.current_pos = P0[:]
-        about_to_solid = False
         Tmm = self.HPP.findAxialPosition(P0[0], P0[1], P0[2], P0[3], P0[4], P0[5])
         Tcounts = self.hppcontrol.translate_to_counts(Tmm) 
 
@@ -611,3 +631,20 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.loss_criteria = self.loss_current_max - 0.01
             
             return True
+    
+    def fetch_temperature(self):
+        var = 'b' + '\n'
+        var = var.encode('Utf-8')
+        self.Arduino.write(var)
+        time.sleep(0.5)
+        T = self.Arduino.readline().decode('utf-8')
+        print(T[0:-1])
+        logging.info(T[0:-1])
+
+        var = 't' + '\n'
+        var = var.encode('Utf-8')
+        self.Arduino.write(var)
+        time.sleep(0.5)
+        T = self.Arduino.readline().decode('utf-8')
+        print(T[0:-1])
+        logging.info(T[0:-1])
