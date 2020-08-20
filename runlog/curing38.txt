@@ -1,6 +1,7 @@
 120C 2min 190C 4min
 no preheat
 invar jigs
+top jig not grounded
 INFO:root:++++++++++++++++++++++++++++++
 INFO:root:Curing Active Alignment Starts. Loss Critera -0.3583
 INFO:root:2020-08-19 16:18:49

@@ -30,12 +30,15 @@ def powermeter_init():
     print('PM receiving power: '+PM.query('READ:CHAN1:POW?'))
 
 def power_read():
-    powerRead = float(PM.query('READ1:POW?'))
+    powerRead1 = float(PM.query('READ1:POW?'))
     time.sleep(0.02)
     powerRead2 = float(PM.query('READ1:POW?'))
-    powerRead = (powerRead + powerRead2) * 0.5
-    while powerRead > 0:
-        powerRead = float(PM.query('READ1:POW?'))
+    powerRead = (powerRead1 + powerRead2) * 0.5
+    if powerRead > 0:
+        if abs(powerRead1 - powerRead2) > 100:
+            powerRead = float(PM.query('READ1:POW?'))
+        else:
+            powerRead = -90.0
     powerRead = round(powerRead, 4)
     print(powerRead)
     logging.info(powerRead)
@@ -43,10 +46,13 @@ def power_read():
     return powerRead
 
 def power_read_noprint():
-    powerRead = float(PM.query('READ1:POW?'))
+    powerRead1 = float(PM.query('READ1:POW?'))
     time.sleep(0.02)
     powerRead2 = float(PM.query('READ1:POW?'))
-    powerRead = (powerRead + powerRead2) * 0.5
-    while powerRead > 0:
-        powerRead = float(PM.query('READ1:POW?'))
+    powerRead = (powerRead1 + powerRead2) * 0.5
+    if powerRead > 0:
+        if abs(powerRead1 - powerRead2) > 100:
+            powerRead = float(PM.query('READ1:POW?'))
+        else:
+            powerRead = -90.0
     StaticVar.IL = round(powerRead, 3)

@@ -1038,10 +1038,11 @@ class Thread(QThread):
                 rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 h, w, ch = rgbImage.shape
                 center = (w/2, h/2)
-                M = cv2.getRotationMatrix2D(center, 180, 1)
-                rotated180 = cv2.warpAffine(rgbImage, M, (w,h))
+                # M = cv2.getRotationMatrix2D(center, 180, 1)
+                # rotated180 = cv2.warpAffine(rgbImage, M, (w,h))
 
                 bytePerLine = ch * w
+                rotated180 = cv2.flip(rgbImage, 0)
                 convertToQtFormat = QImage(rotated180.data, w, h, bytePerLine, QImage.Format_RGB888)
                 p = convertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
                 self.changePixmap.emit(p)

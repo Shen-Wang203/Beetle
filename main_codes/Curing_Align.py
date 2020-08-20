@@ -213,6 +213,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 # self.doublecheck_flag = True
                 self.wait_time = 0.3
                 self.step_Z = 0.0007
+                self.buffer = 0.02
                 # self.mode = 't'               
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
@@ -226,8 +227,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.fetch_loss()    
             self.loss_curing_rec.append(self.loss[-1])   
             self.check_abnormal_loss(self.loss[-1]) 
-            # if loss is within the buffer range for 50s, then we assume the epoxy is solid already
-            if self.later_time_flag and len(self.loss) == 100 and curing_active:
+            # if loss is within the buffer range for 60s, then we assume the epoxy is solid already
+            if self.later_time_flag and len(self.loss) == 120 and curing_active:
                 print('Loss is stable, pause the program')
                 logging.info('Loss is stable, pause the program')
                 curing_active = False
