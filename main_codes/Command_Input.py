@@ -18,10 +18,10 @@ class CMDInputThread(QtCore.QThread):
         self.loss_max = -30
         #Create a HPP fixture object
         self.HPP = BM.BackModel()
-        # HPP.set_Pivot(np.array([[0], [0], [52.62], [0]]))
-        # TODO: double check this value
-        # self.HPP.set_Pivot(np.array([[-4], [-0.8], [40.95], [0]]))
-        self.HPP.set_Pivot(np.array([[5], [5], [51.3], [0]]))
+        # for station 1
+        # self.HPP.set_Pivot(np.array([[5], [5], [51.3], [0]]))
+        # for station 2
+        self.HPP.set_Pivot(np.array([[0], [0], [33.4], [0]]))
         self.hppcontrol = control.HPP_Control()
 
     #error_log, target_mm, target_counts, real_counts

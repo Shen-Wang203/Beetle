@@ -7,10 +7,14 @@ GUI pending:
 
 Beetle:
 #2: T2x needs to lubricate
-#5: Motor 3 burned
 
 Control Box #1: 
 for Beetle #2 and #5, motors sometimes don't run
+
+Station #1:
+Initial position: [0.0, 0.0, 140.5, 0.5, -0.8, 0.0]
+Station #2:
+Initial position: [0.0, 0.0, 140.5, 0.3, -0.6, 0.0]
 
 Notes:
 1. If x or y interp failed constantly during curing, it means the positioning is not 

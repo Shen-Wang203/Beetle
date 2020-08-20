@@ -5,8 +5,8 @@
 // two steps.
 
 #include <Adafruit_MAX31856.h>
-#define T_topjig 10
-#define T_botjig 9
+#define T_topjig 5
+#define T_botjig 7
 
 String inString = "";
 
@@ -50,10 +50,12 @@ void setup() {
   topjigthermo.setConversionMode(MAX31856_ONESHOT_NOWAIT);
   botjigthermo.setConversionMode(MAX31856_ONESHOT_NOWAIT);
 
-  pinMode (T_topjig, OUTPUT);
-  pinMode (T_botjig, OUTPUT);
-  digitalWrite(T_topjig,HIGH);
-  digitalWrite(T_botjig,HIGH);
+  pinMode(T_topjig, OUTPUT);
+  pinMode(T_botjig, OUTPUT);
+//  digitalWrite(T_topjig,LOW);
+//  digitalWrite(T_botjig,HIGH);
+//  digitalWrite(T_topjig,HIGH);
+//  digitalWrite(T_botjig,LOW);
 }
 
 void loop() {
@@ -68,29 +70,36 @@ void loop() {
   
   if (inString == "t") {
     digitalWrite(T_topjig,LOW);
-    digitalWrite(T_botjig,HIGH);
     delay(10);
+    
     // trigger a conversion, returns immediately
     topjigthermo.triggerOneShot();
     // check for conversion complete and read temperature
-    while (!topjigthermo.conversionComplete()) delay(10);
-    Serial.print("Top Temp: ");
-    Serial.println(topjigthermo.readThermocoupleTemperature());
+    if (topjigthermo.conversionComplete()) {
+//      Serial.print("Top Temp: "); 
+      Serial.println(topjigthermo.readThermocoupleTemperature());
+    } else {
+      Serial.println("Conversion not complete!");
+    }
+
     digitalWrite(T_topjig,HIGH);
-    digitalWrite(T_botjig,HIGH);
+    delay(10);
   }
   if (inString == "b") {
-    digitalWrite(T_topjig,HIGH);
     digitalWrite(T_botjig,LOW);
     delay(10);
+    
     // trigger a conversion, returns immediately
     botjigthermo.triggerOneShot();
     // check for conversion complete and read temperature
-    while (!botjigthermo.conversionComplete()) delay(10);
-    Serial.print("Bot Temp: ");
-    Serial.println(botjigthermo.readThermocoupleTemperature());
-    digitalWrite(T_topjig,HIGH);
+    if (botjigthermo.conversionComplete()) {
+//      Serial.print("Bot Temp: "); 
+      Serial.println(botjigthermo.readThermocoupleTemperature());
+    } else {
+      Serial.println("Conversion not complete!");
+    }
     digitalWrite(T_botjig,HIGH);
+    delay(10);
    }
 
 }

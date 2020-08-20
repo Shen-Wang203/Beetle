@@ -646,6 +646,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.sig2.connect(self.motor_status)  
 
     def stop_click(self):
+        print('Program is cancelled')
+        logging.info('Program is cancelled')
         self.runthread.stop()    
         self.disarm_click() 
 

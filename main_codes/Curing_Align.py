@@ -32,7 +32,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.doublecheck_flag = False
         self.buffer = 0.03
         # arduino temp read serial connection
-        self.Arduino = serial.Serial('COM4', 115200, timeout=0.1, stopbits=1)
+        # self.Arduino = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
 
     # Product 1: VOA
     # Product 2: 1xN
@@ -161,10 +161,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
         logging.info('++++++++++++++++++++++++++++++')
 
         # this time delay is for temp read uart communication connection
-        time.sleep(2)
-        self.fetch_temperature()
-        print('Temperature fetch time 0')
-        logging.info('Temperature fetch time 0')
+        # time.sleep(2)
+        # self.fetch_temperature()
+        # print('Temperature fetch time 0')
+        # logging.info('Temperature fetch time 0')
 
         P = P0[:]
         # self.hppcontrol.slow_traj_speed_2()
@@ -190,13 +190,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
             end_time = time.time()
 
             # temperature read
-            fetch_second = int(end_time - temp_time)
             # fetch temp every 20s
-            if fetch_second >= 20:
-                self.fetch_temperature()
-                print('Temperature fetch time ', fetch_second)
-                logging.info('Temperature fetch time ' + str(fetch_second))
-                temp_time = time.time()
+            # if int(end_time - temp_time) >= 20:
+            #     self.fetch_temperature()
+            #     print('Temperature fetch time ', int(end_time-start_time))
+            #     logging.info('Temperature fetch time ' + str(int(end_time-start_time)))
+            #     temp_time = time.time()
 
             if (end_time - start_time) > self.minutes  * 60:
                 logging.info('Reach Time Limit')
