@@ -579,12 +579,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
         elif loss <= -1:
             return [7, 5]
         else:
-            # for final 5min, change to 3-point interp
-            # step is 6, total 3 points, range 12 counts
-            # if self.later_time_flag:
-            #     return [6, 3]
-            # else:
-            #     return [5, 5]
             if self.later_time_flag:
                 return [4, 3]
             elif self.epoxy_about_to_solid_flag:
@@ -635,7 +629,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         var = 'b' + '\n'
         var = var.encode('Utf-8')
         self.Arduino.write(var)
-        time.sleep(0.5)
+        time.sleep(0.1)
         T = self.Arduino.readline().decode('utf-8')
         print(T[0:-1])
         logging.info(T[0:-1])
@@ -643,7 +637,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         var = 't' + '\n'
         var = var.encode('Utf-8')
         self.Arduino.write(var)
-        time.sleep(0.5)
+        time.sleep(0.1)
         T = self.Arduino.readline().decode('utf-8')
         print(T[0:-1])
         logging.info(T[0:-1])

@@ -624,8 +624,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def send_click(self):
         cmdtext = self.textEdit_gotocommands.toPlainText()
-        if cmdtext == 'clear':
-            pass
+        if cmdtext == 'clear' or cmdtext == '':
+            cmdtext = 'clear'
         else:
             cmdtext = 'goto' + cmdtext
         self.runthread.setcmd(cmdtext)
@@ -1017,7 +1017,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # second = self.timer_count % 60
             self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
             self.label_timer.adjustSize()
-            if second == 0 and totalseconds % 2 == 0:
+            if second == 0 and self.timer_count % 2 == 0:
                 print('Time: ', minute, 'min')
                 logging.info('Time: ' + str(minute) + 'min')
         else:
