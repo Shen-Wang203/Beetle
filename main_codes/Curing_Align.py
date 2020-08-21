@@ -18,7 +18,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.x_solid = False
         self.y_solid = False
 
-        self.minutes = 35
+        self.minutes = 25
         self.step_Z = 0.001
         self.loss_curing_rec = []
         self.pos_curing_rec = []
