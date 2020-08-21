@@ -32,6 +32,9 @@ class CMDInputThread(QtCore.QThread):
     # 2: Auto-alignment runnning
     # 3: Pre-curing running
     # 4: Curing running
+    # 5: Calibrating
+    # 6: Meet criteria
+    # 7: Fail meet criteria, Best loss display
     sig2 = QtCore.pyqtSignal(int)
 
     def setcmd(self, cmdtext):
@@ -253,6 +256,13 @@ class CMDInputThread(QtCore.QThread):
             # we don't use target_counts in gui now so just set it as a random value
             target_counts = [0,0,0,0,0,0]
             self.loss_max = xys.loss_current_max
+            if xys.meet_crit:
+                self.sig2.emit(6)
+                time.sleep(0.3)
+            else:
+                StaticVar.bestloss = xys.loss_current_max
+                self.sig2.emit(7)
+                time.sleep(0.3)
 
             # file1 = open("pos.txt","w+")
             # file2 = open("loss.txt","w+")
@@ -262,6 +272,8 @@ class CMDInputThread(QtCore.QThread):
             #     file1.writelines(str(a[i]) + '\n')
             # for i in range(0,len(b)):
             #     file2.writelines(str(b[i]) + '\n')       
+
+            del xys
 
         elif commands == 'precure':
             # cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
@@ -294,6 +306,8 @@ class CMDInputThread(QtCore.QThread):
             target_counts = [0,0,0,0,0,0]
             self.loss_max = xys.loss_current_max
 
+            del xys
+
         elif commands == 'curing':
             cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             self.sig2.emit(4)
@@ -311,6 +325,8 @@ class CMDInputThread(QtCore.QThread):
             real_counts = control.Tcounts_real
             # we don't use target_counts in gui now so just set it as a random value
             target_counts = [0,0,0,0,0,0]
+
+            del cure
 
         elif commands == 'disarm':
             target_mm = self.currentPosition[:]

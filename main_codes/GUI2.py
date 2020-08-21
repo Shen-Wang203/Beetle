@@ -245,12 +245,20 @@ class Ui_MainWindow(object):
         self.label_IL.setText("IL: ")
 
         self.label_timer = QtWidgets.QLabel(self.centralwidget)
-        self.label_timer.setGeometry(QtCore.QRect(900, 770, 160, 40))
+        self.label_timer.setGeometry(QtCore.QRect(840, 740, 160, 40))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_timer.setFont(font)
         self.label_timer.setObjectName("label_Timer")
         self.label_timer.setText("Timer: ")        
+
+        self.label_meetcrit = QtWidgets.QLabel(self.centralwidget)
+        self.label_meetcrit.setGeometry(QtCore.QRect(840, 800, 160, 40))
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.label_meetcrit.setFont(font)
+        self.label_meetcrit.setObjectName("label_meetcrit")
+        self.label_meetcrit.setText("")         
 
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -561,11 +569,11 @@ class Ui_MainWindow(object):
         self.label_stepsize.setText(_translate("MainWindow", "Step Size:"))
         self.productComboBox.setItemText(0, _translate("MainWindow", "1xN"))
         self.productComboBox.setItemText(1, _translate("MainWindow", "VOA"))
-        self.criteriaComboBox.setItemText(0, _translate("MainWindow", "-0.4"))
-        self.criteriaComboBox.setItemText(1, _translate("MainWindow", "-0.2"))
-        self.criteriaComboBox.setItemText(2, _translate("MainWindow", "-0.25"))
-        self.criteriaComboBox.setItemText(3, _translate("MainWindow", "-0.3"))
-        self.criteriaComboBox.setItemText(4, _translate("MainWindow", "-0.35"))
+        self.criteriaComboBox.setItemText(0, _translate("MainWindow", "-0.2"))
+        self.criteriaComboBox.setItemText(1, _translate("MainWindow", "-0.25"))
+        self.criteriaComboBox.setItemText(2, _translate("MainWindow", "-0.3"))
+        self.criteriaComboBox.setItemText(3, _translate("MainWindow", "-0.35"))
+        self.criteriaComboBox.setItemText(4, _translate("MainWindow", "-0.4"))
         self.criteriaComboBox.setItemText(5, _translate("MainWindow", "-0.45"))
         self.criteriaComboBox.setItemText(6, _translate("MainWindow", "-0.5"))
         self.criteriaComboBox.setItemText(7, _translate("MainWindow", "-0.55"))
@@ -724,18 +732,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if _status == 1:
             self.label_statusdata.setText('Running')
             self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")
+            self.label_meetcrit.setText("")
         elif _status == 2:
             self.label_statusdata.setText('Auto Running')
             self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")
+            self.label_meetcrit.setText("")
         elif _status == 3:
             self.label_statusdata.setText('PreCure Running')
             self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")
+            self.label_meetcrit.setText("")
         elif _status == 4:
             self.label_statusdata.setText('Cure Running')
             self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")
+            self.label_meetcrit.setText("")
         elif _status == 5:
             self.label_statusdata.setText('Calibrating')
-            self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")            
+            self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")   
+            self.label_meetcrit.setText("")
+        elif _status == 6:
+            self.label_meetcrit.setText('Meet Target, Consider Lower Criteria') 
+            self.label_meetcrit.adjustSize()     
+        elif _status == 7:
+            self.label_meetcrit.setText('Overall Best IL: '+str(round(StaticVar.bestloss, 3))) 
+            self.label_meetcrit.adjustSize() 
         else:
             self.label_statusdata.setText('Idle')
             self.label_statusdata.setStyleSheet("color: rgb(0, 255, 0);")
@@ -797,15 +816,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def criteria_choose(self):
         if self.criteriaComboBox.currentIndex() == 0:
-            StaticVar.Criteria = -0.4
-        elif self.criteriaComboBox.currentIndex() == 1:
             StaticVar.Criteria = -0.2
-        elif self.criteriaComboBox.currentIndex() == 2:
+        elif self.criteriaComboBox.currentIndex() == 1:
             StaticVar.Criteria = -0.25
-        elif self.criteriaComboBox.currentIndex() == 3:
+        elif self.criteriaComboBox.currentIndex() == 2:
             StaticVar.Criteria = -0.3
-        elif self.criteriaComboBox.currentIndex() == 4:
+        elif self.criteriaComboBox.currentIndex() == 3:
             StaticVar.Criteria = -0.35
+        elif self.criteriaComboBox.currentIndex() == 4:
+            StaticVar.Criteria = -0.4
         elif self.criteriaComboBox.currentIndex() == 5:
             StaticVar.Criteria = -0.45
         elif self.criteriaComboBox.currentIndex() == 6:

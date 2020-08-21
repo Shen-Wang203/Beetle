@@ -55,6 +55,7 @@ class XYscan:
         self.loss_current_max = -50.0
         self.pos_current_max = [0,0,138,0,0,0]
         self.loss_fail_improve = 0
+        self.meet_crit = False
 
         # for pattern search
         self.reduction_ratio = 0.5
@@ -117,6 +118,7 @@ class XYscan:
         self.scanmode = 'c'
         self.fetch_loss()
         self.loss_current_max = self.loss[-1]
+        self.meet_crit = False
         self.error_flag = False
         while not self.error_flag:
             # Select mode and parameters as loss
@@ -279,6 +281,7 @@ class XYscan:
         else:
             print('Better than criteria ', self.loss_criteria)
             logging.info('Better than criteria ' + str(self.loss_criteria))
+            self.meet_crit = True
             return True
         
         return None
@@ -1321,8 +1324,8 @@ class XYscan:
                 # if loss is about the same for 5 times, exit to avoid overrun
                 if success_num == 5:
                     break
-                # for 1xN, if loss improved, exit directly   
-                if diff > 0.1 and self.product == 2:
+                # for 1xN, if loss improved a lot, exit directly   
+                if diff > 0.12 and self.product == 2:
                     break
 
         print('Z optim ends at: ')
@@ -1375,6 +1378,7 @@ class XYscan:
         if _loss >= self.loss_criteria:
             print('Meet Criteria')
             logging.info('Meet Criteria')
+            self.meet_crit = True
             return True
 
     def apply_xy_backlash_counter(self, oldpos, newpos, xy):
