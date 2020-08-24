@@ -275,7 +275,7 @@ class CMDInputThread(QtCore.QThread):
 
             del xys
 
-        elif commands == 'precure':
+        elif commands == 'backalign':
             # cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             # self.hppcontrol.engage_motor()
             # self.sig2.emit(3)

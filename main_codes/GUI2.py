@@ -400,14 +400,14 @@ class Ui_MainWindow(object):
         self.pushButton_alignment.setStyleSheet("background-color: red")
         # self.pushButton_alignment.setEnabled(False)
 
-        self.pushButton_pre_curing = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_pre_curing.setGeometry(QtCore.QRect(850, 260, 300, 60))
+        self.pushButton_back_align = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_back_align.setGeometry(QtCore.QRect(850, 260, 300, 60))
         font = QtGui.QFont()
         font.setPointSize(20)
-        self.pushButton_pre_curing.setFont(font)
-        self.pushButton_pre_curing.setObjectName("pushButton_pre_curing")
-        self.pushButton_pre_curing.setStyleSheet("background-color: red")
-        # self.pushButton_pre_curing.setEnabled(False)
+        self.pushButton_back_align.setFont(font)
+        self.pushButton_back_align.setObjectName("pushButton_back_align")
+        self.pushButton_back_align.setStyleSheet("background-color: red")
+        self.pushButton_back_align.setEnabled(False)
 
         self.pushButton_curing = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_curing.setGeometry(QtCore.QRect(850, 360, 300, 60))
@@ -416,7 +416,7 @@ class Ui_MainWindow(object):
         self.pushButton_curing.setFont(font)
         self.pushButton_curing.setObjectName("pushButton_curing")
         self.pushButton_curing.setStyleSheet("background-color: red")
-        # self.pushButton_curing.setEnabled(False)
+        self.pushButton_curing.setEnabled(False)
 
         self.comboBox_camera = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox_camera.setGeometry(QtCore.QRect(70, 0, 211, 31))
@@ -493,7 +493,7 @@ class Ui_MainWindow(object):
         self.pushButton_initial_pos.clicked.connect(self.initial_pos_click)
         self.pushButton_reset.clicked.connect(self.reset_click)
         self.pushButton_alignment.clicked.connect(self.alignment_click)
-        self.pushButton_pre_curing.clicked.connect(self.pre_curing_click)
+        self.pushButton_back_align.clicked.connect(self.back_align_click)
         self.pushButton_curing.clicked.connect(self.curing_click)
 
         # # Camera configuration @Jerry
@@ -583,7 +583,7 @@ class Ui_MainWindow(object):
         self.pushButton_initial_pos.setText(_translate("MainWindow", "Initial Position"))
         self.pushButton_reset.setText(_translate("MainWindow", "Reset"))
         self.pushButton_alignment.setText(_translate("MainWindow", "Alignment"))
-        self.pushButton_pre_curing.setText(_translate("MainWindow", "Pre-Curing"))
+        self.pushButton_back_align.setText(_translate("MainWindow", "Back-Align"))
         self.pushButton_curing.setText(_translate("MainWindow", "Curing"))
         self.label_camera.setText(_translate("MainWindow", "Camera:"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
@@ -689,10 +689,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton_reset.setStyleSheet("background-color: green")
         self.pushButton_alignment.setStyleSheet("background-color: red")
         self.pushButton_alignment.setEnabled(True)
-        self.pushButton_pre_curing.setStyleSheet("background-color: red")
-        # self.pushButton_pre_curing.setEnabled(False)
+        self.pushButton_back_align.setStyleSheet("background-color: red")
+        self.pushButton_back_align.setEnabled(False)
         self.pushButton_curing.setStyleSheet('Background-color: red')
-        # self.pushButton_curing.setEnabled(False)
+        self.pushButton_curing.setEnabled(False)
 
         self.timer_start = False
         self.timer_count = 0
@@ -703,17 +703,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
         self.pushButton_alignment.setStyleSheet("background-color: yellow")
-        self.pushButton_pre_curing.setEnabled(True)
+        self.pushButton_back_align.setEnabled(True)
         self.timer_start = True
         self.timer_count = 0
 
-    def pre_curing_click(self):
-        self.runthread.setcmd('precure')
+    def back_align_click(self):
+        self.runthread.setcmd('backalign')
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
         self.pushButton_alignment.setStyleSheet("background-color: green")        
-        self.pushButton_pre_curing.setStyleSheet("background-color: yellow")
+        self.pushButton_back_align.setStyleSheet("background-color: yellow")
         self.pushButton_curing.setEnabled(True)
         self.timer_start = True
         self.timer_count = 0 
@@ -723,7 +723,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
         self.runthread.sig2.connect(self.motor_status)
-        self.pushButton_pre_curing.setStyleSheet("background-color: green")
+        self.pushButton_back_align.setStyleSheet("background-color: green")
         self.pushButton_curing.setStyleSheet('Background-color: yellow')
         self.timer_start = True
         self.timer_count = 0     

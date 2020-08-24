@@ -1,43 +1,10 @@
-import serial
-import time
-import logging
+a = 4
+import test_gram4
+# print(test_gram3.a)
 
-logfilename = 'templog.log'
-logging.basicConfig(filename=logfilename, level=logging.INFO)
-
-Arduino = serial.Serial('COM8', 115200, stopbits=1)
-# Arduino.close()
-time.sleep(2)
-
-def fetch_temperature():
-    var = 'b' + '\n'
-    var = var.encode('Utf-8')
-    Arduino.write(var)
-    time.sleep(0.2)
-    T = Arduino.readline().decode('utf-8')
-    print(T[0:-1])
-    logging.info(T[0:-1])
-
-    var = 't' + '\n'
-    var = var.encode('Utf-8')
-    Arduino.write(var)
-    time.sleep(0.2)
-    T = Arduino.readline().decode('utf-8')
-    print(T[0:-1])
-    logging.info(T[0:-1])
+from test_gram3 import static
 
 
-fetch_temperature()
-print('Temperature fetch time 0')
-logging.info('Temperature fetch time 0')
-start_time = time.time()
-temp_time = start_time
-while True:
-    end_time = time.time()
-    # temperature read
-    # fetch temp every 20s
-    if int(end_time - temp_time) >= 5:
-        fetch_temperature()
-        print('Temperature fetch time ', int(end_time-start_time))
-        logging.info('Temperature fetch time ' + str(int(end_time-start_time)))
-        temp_time = time.time()
+print(static.c + 4)
+print(test_gram4.test_gram3.static.d)
+print(test_gram4.test_gram3.b)
