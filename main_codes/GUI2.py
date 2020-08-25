@@ -377,11 +377,18 @@ class Ui_MainWindow(object):
         self.label_key_press.setObjectName("label_key_press")
 
         self.pushButton_initial_pos = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_initial_pos.setGeometry(QtCore.QRect(850, 10, 200, 30))
+        self.pushButton_initial_pos.setGeometry(QtCore.QRect(1010, 10, 150, 30))
         font = QtGui.QFont()
         font.setPointSize(15)
         self.pushButton_initial_pos.setFont(font)
         self.pushButton_initial_pos.setObjectName("pushButton_initial_pos")
+
+        self.pushButton_takeRef = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_takeRef.setGeometry(QtCore.QRect(850, 10, 150, 30))
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.pushButton_takeRef.setFont(font)
+        self.pushButton_takeRef.setObjectName("pushButton_takeRef")
 
         self.pushButton_reset = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_reset.setGeometry(QtCore.QRect(850, 60, 300, 60))
@@ -491,6 +498,7 @@ class Ui_MainWindow(object):
         self.pushButton_Rzp.clicked.connect(lambda: self.Rzplus_click(self.step))
         self.pushButton_Rzm.clicked.connect(lambda: self.Rzminus_click(self.step))
         self.pushButton_initial_pos.clicked.connect(self.initial_pos_click)
+        self.pushButton_takeRef.clicked.connect(self.takeRef_click)
         self.pushButton_reset.clicked.connect(self.reset_click)
         self.pushButton_alignment.clicked.connect(self.alignment_click)
         self.pushButton_back_align.clicked.connect(self.back_align_click)
@@ -581,6 +589,7 @@ class Ui_MainWindow(object):
         self.label_criteria.setText(_translate("MainWindow", "Criteria:"))
         # self.label_key_press.setText(_translate("MainWindow", ""))
         self.pushButton_initial_pos.setText(_translate("MainWindow", "Initial Position"))
+        self.pushButton_takeRef.setText(_translate("MainWindow", "Take Reference"))
         self.pushButton_reset.setText(_translate("MainWindow", "Reset"))
         self.pushButton_alignment.setText(_translate("MainWindow", "Alignment"))
         self.pushButton_back_align.setText(_translate("MainWindow", "Back-Align"))
@@ -667,6 +676,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         file1.close()
         print('Initial Position Set')
         logging.info('Initial Position Set')
+    
+    def takeRef_click(self):
+        pw_ref = PM.power_read_dBm()
+        pw_ref = round(pw_ref, 4)
+        # save to filea
+        file1 = open("refs.txt","w+")
+        file1.write(str(pw_ref))
+        file1.close()
+        StaticVar.PW_ref = pw_ref
+        print('Power Reference Set')
+        logging.info('Power Reference Set')
 
     def reset_click(self):
         logging.info(' ')

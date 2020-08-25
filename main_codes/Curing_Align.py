@@ -32,7 +32,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.doublecheck_flag = False
         self.buffer = 0.03
         # arduino temp read serial connection
-        # self.Arduino = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
+        self.Arduino = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
 
     # Product 1: VOA
     # Product 2: 1xN
@@ -161,10 +161,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
         logging.info('++++++++++++++++++++++++++++++')
 
         # this time delay is for temp read uart communication connection
-        # time.sleep(2)
-        # self.fetch_temperature()
-        # print('Temperature fetch time 0')
-        # logging.info('Temperature fetch time 0')
+        time.sleep(2)
+        self.fetch_temperature()
+        print('Temperature fetch time 0')
+        logging.info('Temperature fetch time 0')
 
         P = P0[:]
         # self.hppcontrol.slow_traj_speed_2()
@@ -191,11 +191,11 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
             # temperature read
             # fetch temp every 20s
-            # if int(end_time - temp_time) >= 20:
-            #     self.fetch_temperature()
-            #     print('Temperature fetch time ', int(end_time-start_time))
-            #     logging.info('Temperature fetch time ' + str(int(end_time-start_time)))
-            #     temp_time = time.time()
+            if int(end_time - temp_time) >= 20:
+                self.fetch_temperature()
+                print('Temperature fetch time ', int(end_time-start_time))
+                logging.info('Temperature fetch time ' + str(int(end_time-start_time)))
+                temp_time = time.time()
 
             if (end_time - start_time) > self.minutes  * 60:
                 logging.info('Reach Time Limit')
@@ -627,18 +627,18 @@ class Curing_Active_Alignment(XYscan.XYscan):
             return True
     
     def fetch_temperature(self):
-        var = 'b' + '\n'
-        var = var.encode('Utf-8')
-        self.Arduino.write(var)
-        time.sleep(0.1)
-        T = self.Arduino.readline().decode('utf-8')
-        print(T[0:-1])
-        logging.info(T[0:-1])
+        # var = 'b' + '\n'
+        # var = var.encode('Utf-8')
+        # self.Arduino.write(var)
+        # # time.sleep(0.1)
+        # T = self.Arduino.readline().decode('utf-8')
+        # print('B'+T[0:-1])
+        # logging.info('B'+T[0:-1])
 
         var = 't' + '\n'
         var = var.encode('Utf-8')
         self.Arduino.write(var)
-        time.sleep(0.1)
+        # time.sleep(0.1)
         T = self.Arduino.readline().decode('utf-8')
-        print(T[0:-1])
-        logging.info(T[0:-1])
+        print('T'+T[0:-1])
+        logging.info('T'+T[0:-1])

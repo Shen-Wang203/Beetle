@@ -10,35 +10,25 @@ PM_ADDR = str(12)
 rm = visa.ResourceManager()
 PM = rm.open_resource('GPIB0::'+PM_ADDR+'::INSTR')
 
-def get_loss_simulate(Ipt):
-    Rx = Ipt[3] - 1.06 
-    Ry = Ipt[4] - 0.32
-    Rz = Ipt[5]
-    x = Ipt[0] + 0.101 - 1.2 * math.sin(math.radians(Ry)) * math.cos(math.radians(Rx))
-    y = Ipt[1] + 0.4518 + 1.2 * math.sin(math.radians(Rx)) * math.cos(math.radians(Ry))
-    z = Ipt[2] - 139.0434    
-
-    # loss = -1.25 + math.exp(-4*(x**2+y**2+z**2+Rx**2+Ry**2+Rz**2)) + 0.5*math.exp(-((x**2+y**2+z**2+Rx**2+Ry**2+Rz**2)**0.5-1.5)**2)
-    loss = -1.18 + math.exp(-4*(x**2+y**2+z**2+Rx**2+Ry**2+Rz**2))
-    # time.sleep(0.02)
-    return loss
-
-def powermeter_init():
-    time.sleep(0.5)
-    print('PM wavelength: '+ PM.query('SENS:CHAN1:POW:WAV?'))
-    time.sleep(0.2)
-    print('PM receiving power: '+PM.query('READ:CHAN1:POW?'))
+# PW_ref = float(PM.query('sens1:pow:ref? toref'))
+# print(PW_ref)
+file1 = open("refs.txt","r")
+StaticVar.PW_ref = float(file1.read())
+file1.close()
 
 def power_read():
+    # Read unit is in dBm
     powerRead1 = float(PM.query('READ1:POW?'))
     time.sleep(0.02)
     powerRead2 = float(PM.query('READ1:POW?'))
     powerRead = (powerRead1 + powerRead2) * 0.5
-    if powerRead > 0:
+    if powerRead > 10:
         if abs(powerRead1 - powerRead2) > 100:
             powerRead = float(PM.query('READ1:POW?'))
         else:
             powerRead = -90.0
+    # Minuse reference to get dB
+    powerRead = powerRead - StaticVar.PW_ref
     powerRead = round(powerRead, 4)
     print(powerRead)
     logging.info(powerRead)
@@ -46,6 +36,22 @@ def power_read():
     return powerRead
 
 def power_read_noprint():
+    # read unit is in dBm
+    powerRead1 = float(PM.query('READ1:POW?'))
+    time.sleep(0.02)
+    powerRead2 = float(PM.query('READ1:POW?'))
+    powerRead = (powerRead1 + powerRead2) * 0.5
+    if powerRead > 10:
+        if abs(powerRead1 - powerRead2) > 100:
+            powerRead = float(PM.query('READ1:POW?'))
+        else:
+            powerRead = -90.0
+    # Change to dB
+    powerRead = powerRead - StaticVar.PW_ref
+    StaticVar.IL = round(powerRead, 3)
+
+def power_read_dBm():
+    # read unit is in dBm
     powerRead1 = float(PM.query('READ1:POW?'))
     time.sleep(0.02)
     powerRead2 = float(PM.query('READ1:POW?'))
@@ -55,4 +61,4 @@ def power_read_noprint():
             powerRead = float(PM.query('READ1:POW?'))
         else:
             powerRead = -90.0
-    StaticVar.IL = round(powerRead, 3)
+    return powerRead

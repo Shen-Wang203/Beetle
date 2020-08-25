@@ -13,7 +13,7 @@ def fetch_temperature():
     var = 'b' + '\n'
     var = var.encode('Utf-8')
     Arduino.write(var)
-    time.sleep(0.2)
+    # time.sleep(0.1)
     T = Arduino.readline().decode('utf-8')
     print(T[0:-1])
     logging.info(T[0:-1])
@@ -21,10 +21,10 @@ def fetch_temperature():
     var = 't' + '\n'
     var = var.encode('Utf-8')
     Arduino.write(var)
-    time.sleep(0.2)
+    # time.sleep(0.1)
     T = Arduino.readline().decode('utf-8')
-    print(T[0:-1])
-    logging.info(T[0:-1])
+    print('T'+T[0:-1])
+    logging.info('T'+T[0:-1])
 
 
 fetch_temperature()
