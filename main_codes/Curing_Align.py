@@ -431,7 +431,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         if _loss0 > self.loss_current_max:
             self.loss_current_max = _loss0
             self.pos_current_max = self.current_pos[:]
-            self.loss_criteria = self.loss_current_max - 0.01
+            self.loss_criteria = self.loss_current_max - 0.002
         elif (_loss0 < (2.5 * self.loss_current_max) and _loss0 < -10) or _loss0 < -55:
             print('Unexpected High Loss, End Program')
             logging.info('Unexpected High Loss, End Program')
@@ -612,6 +612,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
         if _loss >= self.loss_criteria:
             print('Meet Criteria: ', round(self.loss_criteria,4))
             logging.info('Meet Criteria: ' + str(round(self.loss_criteria,4)))
+            print('Current Position: ')
+            print(self.current_pos)
+            logging.info('Current Position: ')
+            logging.info(str(self.current_pos))
             self.xycount = 0
             self.zcount = 0
             self.zcount_loop = 0
@@ -627,7 +631,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             if _loss > self.loss_current_max:
                 self.loss_current_max = _loss
                 self.pos_current_max = self.current_pos[:]
-                self.loss_criteria = self.loss_current_max - 0.01
+                self.loss_criteria = self.loss_current_max - 0.002
             
             return True
     
