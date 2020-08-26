@@ -8,7 +8,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
     def __init__(self, HPPModel, hppcontrol):
         super().__init__(HPPModel, hppcontrol)  
         self.tolerance = 2
-        self.xystep_limit = True
+        self.xystep_limit = False
         # self.scanmode = 'i'
         # this backlash is for xy only, not for z
         # unit is counts
@@ -32,7 +32,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.doublecheck_flag = False
         self.buffer = 0.03
         # arduino temp read serial connection
-        self.Arduino = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
+        # self.Arduino = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
 
     # Product 1: VOA
     # Product 2: 1xN
@@ -161,10 +161,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
         logging.info('++++++++++++++++++++++++++++++')
 
         # this time delay is for temp read uart communication connection
-        time.sleep(2)
-        self.fetch_temperature()
-        print('Temperature fetch time 0')
-        logging.info('Temperature fetch time 0')
+        # time.sleep(2)
+        # self.fetch_temperature()
+        # print('Temperature fetch time 0')
+        # logging.info('Temperature fetch time 0')
 
         P = P0[:]
         # self.hppcontrol.slow_traj_speed_2()
@@ -191,11 +191,11 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
             # temperature read
             # fetch temp every 20s
-            if int(end_time - temp_time) >= 20:
-                self.fetch_temperature()
-                print('Temperature fetch time ', int(end_time-start_time))
-                logging.info('Temperature fetch time ' + str(int(end_time-start_time)))
-                temp_time = time.time()
+            # if int(end_time - temp_time) >= 20:
+            #     self.fetch_temperature()
+            #     print('Temperature fetch time ', int(end_time-start_time))
+            #     logging.info('Temperature fetch time ' + str(int(end_time-start_time)))
+            #     temp_time = time.time()
 
             if (end_time - start_time) > self.minutes  * 60:
                 logging.info('Reach Time Limit')
@@ -214,6 +214,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.wait_time = 0.3
                 self.step_Z = 0.0007
                 self.buffer = 0.02
+                self.xystep_limit = True
                 # self.mode = 't'               
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
@@ -234,6 +235,10 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 curing_active = False
                 if curing_active_flag:
                     return P
+            if self.later_time_flag and len(self.loss) == 50 and curing_active:
+                print('Smaller the buffer to 0.01')
+                logging.info('Smaller the buffer to 0.01')
+                self.buffer = 0.01
 
             if curing_active and self.loss[-1] < (self.loss_criteria - self.buffer):
                 self.buffer = 0

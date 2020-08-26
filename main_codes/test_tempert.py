@@ -10,13 +10,13 @@ Arduino = serial.Serial('COM8', 115200, stopbits=1)
 time.sleep(2)
 
 def fetch_temperature():
-    var = 'b' + '\n'
-    var = var.encode('Utf-8')
-    Arduino.write(var)
-    # time.sleep(0.1)
-    T = Arduino.readline().decode('utf-8')
-    print(T[0:-1])
-    logging.info(T[0:-1])
+    # var = 'b' + '\n'
+    # var = var.encode('Utf-8')
+    # Arduino.write(var)
+    # # time.sleep(0.1)
+    # T = Arduino.readline().decode('utf-8')
+    # print(T[0:-1])
+    # logging.info(T[0:-1])
 
     var = 't' + '\n'
     var = var.encode('Utf-8')

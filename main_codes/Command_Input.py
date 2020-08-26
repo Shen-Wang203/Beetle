@@ -304,7 +304,7 @@ class CMDInputThread(QtCore.QThread):
             real_counts = control.Tcounts_real
             # we don't use target_counts in gui now so just set it as a random value
             target_counts = [0,0,0,0,0,0]
-            self.loss_max = xys.loss_current_max
+            # self.loss_max = xys.loss_current_max
 
             del xys
 
@@ -315,7 +315,7 @@ class CMDInputThread(QtCore.QThread):
                 cure.product_select('VOA')
             elif StaticVar.productType == "1xN":
                 cure.product_select('1xN')
-            cure.set_loss_criteria(self.loss_max)
+            cure.set_loss_criteria(self.loss_max-0.01)
             P1 = cure.curing_run2(self.currentPosition)
             try:
                 self.currentPosition = P1[:]
