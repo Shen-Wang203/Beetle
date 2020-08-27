@@ -1173,28 +1173,14 @@ class XYscan:
         # give step size an amplifier
         step = step_ref * self.Z_amp
         if step < 0.0015 and self.product == 1:
-                step = 0.0015
+            step = 0.0015
         elif step < 0.002 and self.product == 2:
-                step = 0.002
+            step = 0.0025
         _direc0 = 1
         _direc1 = 1
         _z0 = P1[2]
         while True:
             P1[2] = P1[2] + step
-
-            if P1[2] > self.limit_Z:
-                P1[2] = P1[2] - step
-                # step size is 0.45 of the gap
-                step = 0.45 * (self.limit_Z - P1[2])
-                if step > 0.0007:
-                    step = 0.0007
-                if step < 0.0002:
-                    print('Z step is too small (by Z limit)')
-                    logging.info('Z step is too small (by Z limit)')
-                    return False 
-                print('Regulated by Z limit')
-                logging.info('Regulated by Z limit')
-                P1[2] = P1[2] + step
             
             # current direction
             if P1[2] > _z0:
@@ -1253,35 +1239,16 @@ class XYscan:
                 step = 0.4 * step                    
 
                 # for VOA, if step size is smaller than minimum resolution, exit
-                if step < 0.0002 and self.product == 1:
+                if self.product == 1 and step < 0.0002:
                     print('Z step is too small')
                     logging.info('Z step is too small')
                     return False    
-                # for 1xN, is step size is smaller than 0.7 um, exit
-                elif step < 0.0007 and self.product == 2:
-                    # make sure it can exit
-                    success_num = 1
-
-                # if loss is still high and step size is small enough, we will larger the step to 
-                # jump out of the local minimum
-                if step < step_ref / 12 and max(self.loss) < -15 and self.larger_Z_flag:
-                    # A larger step size
-                    step = step_ref * 15
-                    P1[2] = P1[2] + step
-                    print('A larger Z step')
-                    logging.info('A larger Z step')
-                    if P1[2] > self.limit_Z:
-                        P1[2] = P1[2] - step
-                        # step size is 0.45 of the gap
-                        step = 0.45 * (self.limit_Z - P1[2])
-                        P1[2] = P1[2] + step
-                        print('Larger Z step is regulated by Z limit')
-                        logging.info('Larger Z step is regulated by Z limit')
-                    # make sure it will exit for next XY scan round
-                    success_num = 1           
-                    # Only do larger Z step once 
-                    self.larger_Z_flag = False
-                
+                # for 1xN, is step size is smaller than 1 um, exit
+                elif self.product == 2 and step < 0.001:
+                    # don't go back, we want at least 1um forwarding
+                    P1[2] = P1[2] + step/0.4
+                    break
+                                
                 if success_num:
                     # go back to the previous points
                     # give extra value to counter backlash
@@ -1323,9 +1290,9 @@ class XYscan:
                 # if loss is about the same for 5 times, exit to avoid overrun
                 if success_num == 5:
                     break
-                # for 1xN, if loss improved a lot, exit directly   
-                if diff > 0.12 and self.product == 2:
-                    break
+                # # for 1xN, if loss improved a lot, exit directly   
+                # if diff > 0.12 and self.product == 2:
+                #     break
 
         print('Z optim ends at: ')
         P1 = [round(num, 5) for num in P1]

@@ -612,6 +612,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         if _loss >= self.loss_criteria:
             print('Meet Criteria: ', round(self.loss_criteria,4))
             logging.info('Meet Criteria: ' + str(round(self.loss_criteria,4)))
+            self.current_pos = [round(num, 5) for num in self.current_pos]
             print('Current Position: ')
             print(self.current_pos)
             logging.info('Current Position: ')
