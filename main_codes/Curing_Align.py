@@ -18,7 +18,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.x_solid = False
         self.y_solid = False
 
-        self.minutes = 25
+        self.minutes = 23
         self.step_Z = 0.001
         self.loss_curing_rec = []
         self.pos_curing_rec = []
@@ -204,7 +204,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             # elif (end_time - start_time) > 1800 and (end_time - start_time) < 1802:
             #     print('Reach 30 min')
             #     logging.info('Reach 30 min')
-            elif not self.later_time_flag and (end_time - start_time) > 180:
+            elif not self.later_time_flag and (end_time - start_time) > 210:
                 # logging.info('Reach 3 min')
                 # print('Reach 3 min')
                 logging.info('Late time flag is on')
@@ -215,6 +215,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.step_Z = 0.0007
                 self.buffer = 0.02
                 self.xystep_limit = True
+                self.loss = []
                 # self.mode = 't'               
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
@@ -235,7 +236,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 curing_active = False
                 if curing_active_flag:
                     return P
-            if self.later_time_flag and len(self.loss) == 50 and curing_active:
+            if len(self.loss) == 30 and curing_active:
                 print('Smaller the buffer to 0.01')
                 logging.info('Smaller the buffer to 0.01')
                 self.buffer = 0.01
@@ -305,12 +306,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     self.loss_criteria = self.loss[-1] - 0.002
                     print('New Criteria: ', round(self.loss_criteria,4))
                     logging.info('New Criteria ' + str(round(self.loss_criteria,4)))
-            elif (not curing_active) and self.loss[-1] < (self.loss_criteria - 0.5):
-                curing_active = True
-                curing_active_flag = True
-                self.xycount = 0
-                print('Loss is high, trying again')
-                logging.info('Loss is high, trying again')
+            # elif (not curing_active) and self.loss[-1] < (self.loss_criteria - 0.5):
+            #     curing_active = True
+            #     curing_active_flag = True
+            #     self.xycount = 0
+            #     print('Loss is high, trying again')
+            #     logging.info('Loss is high, trying again')
 
         end_time = time.time()
         self.hppcontrol.normal_traj_speed()

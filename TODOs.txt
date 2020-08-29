@@ -1,4 +1,5 @@
 TODO Bugs:
+If motor timeout, detect it and restart
 
 Jerry
 GUI pending:

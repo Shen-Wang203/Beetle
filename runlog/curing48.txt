@@ -1,5 +1,5 @@
 Invar jig, extended top
-120C 2min; 190C 2min; no preheat
+120C 2min; 190C 2min;  preheat a little
 INFO:root:++++++++++++++++++++++++++++++
 INFO:root:Curing Active Alignment Starts. Loss Critera -0.1836
 INFO:root:2020-08-26 16:54:44

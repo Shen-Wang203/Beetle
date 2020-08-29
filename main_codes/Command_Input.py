@@ -19,9 +19,9 @@ class CMDInputThread(QtCore.QThread):
         #Create a HPP fixture object
         self.HPP = BM.BackModel()
         # for Table 2
-        # self.HPP.set_Pivot(np.array([[5], [5], [51.3], [0]]))
+        # self.HPP.set_Pivot(np.array([[5], [5], [42.7], [0]]))
         # for Table 1
-        self.HPP.set_Pivot(np.array([[0], [0], [33.4], [0]]))
+        self.HPP.set_Pivot(np.array([[0], [0], [41], [0]]))
         self.hppcontrol = control.HPP_Control()
 
     #error_log, target_mm, target_counts, real_counts
@@ -290,8 +290,11 @@ class CMDInputThread(QtCore.QThread):
             self.hppcontrol.engage_motor()
             self.sig2.emit(3)
             P0 = self.currentPosition[:]
-            P0[2] = P0[2] - 0.01
+            # NO back, it will bring gap between lens cap and sleeve
+            # P0[2] = P0[2] - 0.01
             xys.set_starting_point(P0)
+            # Use interp method when loss is larger than -8 to have more accurate xy scan
+            xys.scanmode_threshold = -8
             if StaticVar.productType == "VOA":
                 xys.product_select('VOA')
             elif StaticVar.productType == "1xN":

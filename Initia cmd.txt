@@ -87,6 +87,8 @@ T1y
 vel_gain 0.4/10000
 T3y
 vel_gain 0.4/10000
+T2x
+vel_gain 0.4/10000
 
 
 
