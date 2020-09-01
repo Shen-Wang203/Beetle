@@ -9,6 +9,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         super().__init__(HPPModel, hppcontrol)  
         self.tolerance = 2
         self.xystep_limit = False
+        self.xystep_gobacktolast = False
         # self.scanmode = 'i'
         # this backlash is for xy only, not for z
         # unit is counts
@@ -181,7 +182,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.stepScanCounts = 4
         self.doublecheck_flag = False
         # wait time only works during interp, if doublecheck is on, no need to wait or wait for a short time for powermeter to response
-        self.wait_time = 0.3
+        self.wait_time = 0.2
         start_time = time.time()
         temp_time = start_time
         curing_active = True
@@ -204,7 +205,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             # elif (end_time - start_time) > 1800 and (end_time - start_time) < 1802:
             #     print('Reach 30 min')
             #     logging.info('Reach 30 min')
-            elif not self.later_time_flag and (end_time - start_time) > 210:
+            elif not self.later_time_flag and (end_time - start_time) > 180:
                 # logging.info('Reach 3 min')
                 # print('Reach 3 min')
                 logging.info('Late time flag is on')
@@ -215,6 +216,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.step_Z = 0.0007
                 self.buffer = 0.02
                 self.xystep_limit = True
+                self.xystep_gobacktolast = True
                 self.loss = []
                 # self.mode = 't'               
                 # for late time, loose the loss criteria to reduce movement times
