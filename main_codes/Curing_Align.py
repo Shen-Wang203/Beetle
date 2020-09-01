@@ -204,7 +204,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             # elif (end_time - start_time) > 1800 and (end_time - start_time) < 1802:
             #     print('Reach 30 min')
             #     logging.info('Reach 30 min')
-            elif not self.later_time_flag and (end_time - start_time) > 210:
+            elif not self.later_time_flag and (end_time - start_time) > 180:
                 # logging.info('Reach 3 min')
                 # print('Reach 3 min')
                 logging.info('Late time flag is on')
@@ -433,7 +433,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.loss_current_max = _loss0
             self.pos_current_max = self.current_pos[:]
             self.loss_criteria = self.loss_current_max - 0.002
-        elif (_loss0 < (2.5 * self.loss_current_max) and _loss0 < -10) or _loss0 < -55:
+        elif _loss0 < -20:
             print('Unexpected High Loss, End Program')
             logging.info('Unexpected High Loss, End Program')
             # self.hppcontrol.engage_motor()

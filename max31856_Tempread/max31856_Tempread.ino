@@ -64,7 +64,7 @@ void loop() {
   if (inString == "t") {
     // trigger a conversion, returns immediately
     topjigthermo.triggerOneShot();
-    delay(200);
+    delay(500);
     // check for conversion complete and read temperature
     if (topjigthermo.conversionComplete()) {
 //      Serial.print("Top Temp: "); 
@@ -76,7 +76,7 @@ void loop() {
   if (inString == "b") {
     // trigger a conversion, returns immediately
     botjigthermo.triggerOneShot();
-    delay(200);
+    delay(500);
     // check for conversion complete and read temperature
     if (botjigthermo.conversionComplete()) {
 //      Serial.print("Bot Temp: "); 
@@ -84,6 +84,6 @@ void loop() {
     } else {
       Serial.println("Conversion not complete!");
     }
-   }
+  }
 
 }

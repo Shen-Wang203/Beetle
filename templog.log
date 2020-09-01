@@ -105,3 +105,867 @@ INFO:root:TConversion not complete!
 INFO:root:Temperature fetch time 0
 INFO:root:TConversion not complete!
 INFO:root:Temperature fetch time 5
+INFO:root:T21.67
+INFO:root:Temperature fetch time 0
+INFO:root:T21.55
+INFO:root:Temperature fetch time 5
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 10
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 15
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 20
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 25
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 31
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 36
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 41
+INFO:root:T20.99
+INFO:root:Temperature fetch time 0
+INFO:root:T20.93
+INFO:root:Temperature fetch time 5
+INFO:root:T20.91
+INFO:root:Temperature fetch time 10
+INFO:root:T20.95
+INFO:root:Temperature fetch time 16
+INFO:root:T20.97
+INFO:root:Temperature fetch time 21
+INFO:root:T20.95
+INFO:root:Temperature fetch time 27
+INFO:root:T20.98
+INFO:root:Temperature fetch time 32
+INFO:root:T20.95
+INFO:root:Temperature fetch time 38
+INFO:root:T20.88
+INFO:root:Temperature fetch time 43
+INFO:root:T20.82
+INFO:root:Temperature fetch time 49
+INFO:root:T20.88
+INFO:root:Temperature fetch time 54
+INFO:root:T20.92
+INFO:root:Temperature fetch time 60
+INFO:root:T20.90
+INFO:root:Temperature fetch time 65
+INFO:root:T20.86
+INFO:root:Temperature fetch time 71
+INFO:root:T20.86
+INFO:root:Temperature fetch time 76
+INFO:root:T20.88
+INFO:root:Temperature fetch time 82
+INFO:root:T20.90
+INFO:root:Temperature fetch time 87
+INFO:root:T20.99
+INFO:root:Temperature fetch time 93
+INFO:root:T21.04
+INFO:root:Temperature fetch time 98
+INFO:root:T20.92
+INFO:root:Temperature fetch time 104
+INFO:root:T21.03
+INFO:root:Temperature fetch time 109
+INFO:root:T21.01
+INFO:root:Temperature fetch time 115
+INFO:root:T21.03
+INFO:root:Temperature fetch time 120
+INFO:root:T20.95
+INFO:root:Temperature fetch time 126
+INFO:root:20.64
+INFO:root:T21.02
+INFO:root:Temperature fetch time 0
+INFO:root:20.59
+INFO:root:T20.95
+INFO:root:Temperature fetch time 5
+INFO:root:20.62
+INFO:root:T21.05
+INFO:root:Temperature fetch time 11
+INFO:root:20.67
+INFO:root:T21.03
+INFO:root:Temperature fetch time 17
+INFO:root:20.70
+INFO:root:T21.05
+INFO:root:Temperature fetch time 23
+INFO:root:20.75
+INFO:root:T21.02
+INFO:root:Temperature fetch time 29
+INFO:root:20.78
+INFO:root:T20.98
+INFO:root:Temperature fetch time 35
+INFO:root:20.75
+INFO:root:T21.02
+INFO:root:Temperature fetch time 41
+INFO:root:27.80
+INFO:root:T21.17
+INFO:root:Temperature fetch time 47
+INFO:root:28.83
+INFO:root:T21.23
+INFO:root:Temperature fetch time 53
+INFO:root:26.67
+INFO:root:T26.80
+INFO:root:Temperature fetch time 59
+INFO:root:24.52
+INFO:root:T28.47
+INFO:root:Temperature fetch time 65
+INFO:root:23.82
+INFO:root:T27.12
+INFO:root:Temperature fetch time 71
+INFO:root:22.91
+INFO:root:T24.81
+INFO:root:Temperature fetch time 77
+INFO:root:22.33
+INFO:root:T23.84
+INFO:root:Temperature fetch time 83
+INFO:root:22.16
+INFO:root:T23.23
+INFO:root:Temperature fetch time 89
+INFO:root:21.96
+INFO:root:T22.88
+INFO:root:Temperature fetch time 95
+INFO:root:21.67
+INFO:root:T22.55
+INFO:root:Temperature fetch time 101
+INFO:root:21.59
+INFO:root:T22.27
+INFO:root:Temperature fetch time 107
+INFO:root:21.34
+INFO:root:T22.02
+INFO:root:Temperature fetch time 113
+INFO:root:21.12
+INFO:root:T21.78
+INFO:root:Temperature fetch time 119
+INFO:root:21.17
+INFO:root:T21.73
+INFO:root:Temperature fetch time 125
+INFO:root:21.15
+INFO:root:T21.61
+INFO:root:Temperature fetch time 131
+INFO:root:21.03
+INFO:root:T21.55
+INFO:root:Temperature fetch time 137
+INFO:root:20.99
+INFO:root:T21.52
+INFO:root:Temperature fetch time 143
+INFO:root:20.97
+INFO:root:T21.52
+INFO:root:Temperature fetch time 149
+INFO:root:20.97
+INFO:root:T21.43
+INFO:root:Temperature fetch time 155
+INFO:root:21.02
+INFO:root:T21.39
+INFO:root:Temperature fetch time 161
+INFO:root:20.84
+INFO:root:T21.30
+INFO:root:Temperature fetch time 167
+INFO:root:21.01
+INFO:root:T21.34
+INFO:root:Temperature fetch time 173
+INFO:root:20.91
+INFO:root:T21.41
+INFO:root:Temperature fetch time 179
+INFO:root:20.95
+INFO:root:T21.41
+INFO:root:Temperature fetch time 185
+INFO:root:20.93
+INFO:root:T21.32
+INFO:root:Temperature fetch time 191
+INFO:root:20.92
+INFO:root:T21.28
+INFO:root:Temperature fetch time 197
+INFO:root:20.91
+INFO:root:T21.21
+INFO:root:Temperature fetch time 203
+INFO:root:20.81
+INFO:root:T21.16
+INFO:root:Temperature fetch time 209
+INFO:root:20.95
+INFO:root:T21.21
+INFO:root:Temperature fetch time 215
+INFO:root:20.98
+INFO:root:T21.28
+INFO:root:Temperature fetch time 221
+INFO:root:20.99
+INFO:root:T21.25
+INFO:root:Temperature fetch time 227
+INFO:root:21.05
+INFO:root:T21.32
+INFO:root:Temperature fetch time 233
+INFO:root:21.08
+INFO:root:T21.36
+INFO:root:Temperature fetch time 239
+INFO:root:21.06
+INFO:root:T21.27
+INFO:root:Temperature fetch time 245
+INFO:root:21.05
+INFO:root:T21.32
+INFO:root:Temperature fetch time 251
+INFO:root:21.06
+INFO:root:T21.30
+INFO:root:Temperature fetch time 257
+INFO:root:24.55
+INFO:root:T21.80
+INFO:root:Temperature fetch time 0
+INFO:root:Conversion not complete!
+INFO:root:T21.93
+INFO:root:Temperature fetch time 5
+INFO:root:Conversion not complete!
+INFO:root:T21.87
+INFO:root:Temperature fetch time 11
+INFO:root:Conversion not complete!
+INFO:root:T21.72
+INFO:root:Temperature fetch time 17
+INFO:root:Conversion not complete!
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 23
+INFO:root:Conversion not complete!
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 29
+INFO:root:Conversion not complete!
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 35
+INFO:root:21.72
+INFO:root:T21.78
+INFO:root:Temperature fetch time 0
+INFO:root:21.68
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 5
+INFO:root:21.71
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 11
+INFO:root:21.67
+INFO:root:T28.91
+INFO:root:Temperature fetch time 17
+INFO:root:21.77
+INFO:root:T30.21
+INFO:root:Temperature fetch time 23
+INFO:root:21.72
+INFO:root:T31.91
+INFO:root:Temperature fetch time 29
+INFO:root:21.74
+INFO:root:T32.63
+INFO:root:Temperature fetch time 35
+INFO:root:21.72
+INFO:root:T32.86
+INFO:root:Temperature fetch time 41
+INFO:root:21.87
+INFO:root:T33.19
+INFO:root:Temperature fetch time 47
+INFO:root:21.82
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 53
+INFO:root:21.94
+INFO:root:T31.93
+INFO:root:Temperature fetch time 59
+INFO:root:21.78
+INFO:root:T31.36
+INFO:root:Temperature fetch time 65
+INFO:root:21.74
+INFO:root:T31.57
+INFO:root:Temperature fetch time 71
+INFO:root:21.74
+INFO:root:T23.83
+INFO:root:Temperature fetch time 77
+INFO:root:21.79
+INFO:root:T22.62
+INFO:root:Temperature fetch time 83
+INFO:root:21.76
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 89
+INFO:root:21.91
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 95
+INFO:root:21.79
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 101
+INFO:root:21.79
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 107
+INFO:root:21.76
+INFO:root:T29.73
+INFO:root:Temperature fetch time 113
+INFO:root:21.87
+INFO:root:T27.79
+INFO:root:Temperature fetch time 119
+INFO:root:21.85
+INFO:root:T29.12
+INFO:root:Temperature fetch time 125
+INFO:root:21.83
+INFO:root:T23.50
+INFO:root:Temperature fetch time 131
+INFO:root:21.72
+INFO:root:T22.98
+INFO:root:Temperature fetch time 137
+INFO:root:21.61
+INFO:root:T22.63
+INFO:root:Temperature fetch time 143
+INFO:root:21.67
+INFO:root:T22.37
+INFO:root:Temperature fetch time 149
+INFO:root:21.63
+INFO:root:T22.20
+INFO:root:Temperature fetch time 155
+INFO:root:28.42
+INFO:root:T22.07
+INFO:root:Temperature fetch time 161
+INFO:root:32.40
+INFO:root:T22.04
+INFO:root:Temperature fetch time 167
+INFO:root:33.08
+INFO:root:T21.95
+INFO:root:Temperature fetch time 173
+INFO:root:29.41
+INFO:root:T29.86
+INFO:root:Temperature fetch time 179
+INFO:root:28.45
+INFO:root:T29.20
+INFO:root:Temperature fetch time 185
+INFO:root:26.56
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 191
+INFO:root:25.17
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 197
+INFO:root:23.99
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 203
+INFO:root:23.25
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 209
+INFO:root:22.91
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 215
+INFO:root:22.41
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 221
+INFO:root:21.91
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 227
+INFO:root:21.74
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 233
+INFO:root:21.65
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 239
+INFO:root:21.52
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 245
+INFO:root:21.36
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 251
+INFO:root:21.39
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 257
+INFO:root:21.38
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 263
+INFO:root:21.25
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 269
+INFO:root:21.27
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 275
+INFO:root:21.42
+INFO:root:T27.97
+INFO:root:Temperature fetch time 281
+INFO:root:21.36
+INFO:root:T28.89
+INFO:root:Temperature fetch time 287
+INFO:root:21.32
+INFO:root:T26.87
+INFO:root:Temperature fetch time 293
+INFO:root:21.36
+INFO:root:T27.49
+INFO:root:Temperature fetch time 299
+INFO:root:21.34
+INFO:root:T29.61
+INFO:root:Temperature fetch time 305
+INFO:root:21.41
+INFO:root:T27.91
+INFO:root:Temperature fetch time 311
+INFO:root:29.48
+INFO:root:T25.73
+INFO:root:Temperature fetch time 317
+INFO:root:30.39
+INFO:root:T24.84
+INFO:root:Temperature fetch time 323
+INFO:root:30.91
+INFO:root:T23.83
+INFO:root:Temperature fetch time 329
+INFO:root:31.06
+INFO:root:T23.41
+INFO:root:Temperature fetch time 335
+INFO:root:31.13
+INFO:root:T23.08
+INFO:root:Temperature fetch time 341
+INFO:root:29.39
+INFO:root:T22.52
+INFO:root:Temperature fetch time 347
+INFO:root:26.87
+INFO:root:T22.58
+INFO:root:Temperature fetch time 353
+INFO:root:25.24
+INFO:root:T22.60
+INFO:root:Temperature fetch time 359
+INFO:root:24.71
+INFO:root:T22.35
+INFO:root:Temperature fetch time 365
+INFO:root:25.90
+INFO:root:T22.37
+INFO:root:Temperature fetch time 371
+INFO:root:25.08
+INFO:root:T22.00
+INFO:root:Temperature fetch time 377
+INFO:root:24.52
+INFO:root:T22.18
+INFO:root:Temperature fetch time 383
+INFO:root:24.09
+INFO:root:T22.22
+INFO:root:Temperature fetch time 389
+INFO:root:24.16
+INFO:root:T22.00
+INFO:root:Temperature fetch time 395
+INFO:root:Conversion not complete!
+INFO:root:T21.91
+INFO:root:Temperature fetch time 401
+INFO:root:Conversion not complete!
+INFO:root:T21.87
+INFO:root:Temperature fetch time 407
+INFO:root:23.41
+INFO:root:T21.77
+INFO:root:Temperature fetch time 413
+INFO:root:22.85
+INFO:root:T21.52
+INFO:root:Temperature fetch time 419
+INFO:root:22.82
+INFO:root:T21.38
+INFO:root:Temperature fetch time 426
+INFO:root:22.91
+INFO:root:T21.27
+INFO:root:Temperature fetch time 432
+INFO:root:22.85
+INFO:root:T21.25
+INFO:root:Temperature fetch time 438
+INFO:root:22.88
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 444
+INFO:root:22.91
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 450
+INFO:root:22.90
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 456
+INFO:root:22.91
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 462
+INFO:root:22.80
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 468
+INFO:root:22.80
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 474
+INFO:root:22.81
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 480
+INFO:root:22.73
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 486
+INFO:root:22.74
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 492
+INFO:root:22.73
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 498
+INFO:root:22.66
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 504
+INFO:root:22.66
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 510
+INFO:root:22.60
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 516
+INFO:root:22.60
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 522
+INFO:root:22.48
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 528
+INFO:root:22.53
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 534
+INFO:root:22.49
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 540
+INFO:root:22.47
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 546
+INFO:root:22.38
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 552
+INFO:root:22.44
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 558
+INFO:root:22.38
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 564
+INFO:root:22.44
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 570
+INFO:root:22.32
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 576
+INFO:root:22.30
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 582
+INFO:root:22.37
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 588
+INFO:root:22.27
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 594
+INFO:root:22.28
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 600
+INFO:root:22.28
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 606
+INFO:root:22.28
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 612
+INFO:root:22.17
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 618
+INFO:root:22.16
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 624
+INFO:root:22.20
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 630
+INFO:root:22.18
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 636
+INFO:root:22.15
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 642
+INFO:root:22.16
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 648
+INFO:root:22.15
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 654
+INFO:root:22.18
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 660
+INFO:root:22.11
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 666
+INFO:root:22.02
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 672
+INFO:root:22.13
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 678
+INFO:root:22.09
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 684
+INFO:root:22.02
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 690
+INFO:root:22.04
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 696
+INFO:root:22.02
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 702
+INFO:root:21.95
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 708
+INFO:root:22.04
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 714
+INFO:root:21.98
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 720
+INFO:root:21.98
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 726
+INFO:root:22.02
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 732
+INFO:root:21.91
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 738
+INFO:root:21.96
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 744
+INFO:root:21.93
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 750
+INFO:root:21.84
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 756
+INFO:root:22.00
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 762
+INFO:root:21.94
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 768
+INFO:root:21.89
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 775
+INFO:root:21.85
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 781
+INFO:root:22.02
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 787
+INFO:root:21.84
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 793
+INFO:root:21.89
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 799
+INFO:root:21.87
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 805
+INFO:root:21.82
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 811
+INFO:root:21.83
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 817
+INFO:root:21.84
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 823
+INFO:root:21.84
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 829
+INFO:root:21.89
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 835
+INFO:root:21.82
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 841
+INFO:root:21.78
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 847
+INFO:root:21.83
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 853
+INFO:root:21.72
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 859
+INFO:root:21.76
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 865
+INFO:root:21.72
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 871
+INFO:root:21.72
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 877
+INFO:root:21.76
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 883
+INFO:root:21.68
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 889
+INFO:root:21.67
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 895
+INFO:root:21.70
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 901
+INFO:root:21.71
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 907
+INFO:root:21.73
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 913
+INFO:root:21.73
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 919
+INFO:root:21.68
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 925
+INFO:root:21.68
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 931
+INFO:root:21.61
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 937
+INFO:root:21.66
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 943
+INFO:root:21.65
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 949
+INFO:root:21.65
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 955
+INFO:root:21.60
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 961
+INFO:root:21.63
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 967
+INFO:root:21.63
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 973
+INFO:root:21.52
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 979
+INFO:root:21.54
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 985
+INFO:root:21.52
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 991
+INFO:root:21.52
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 997
+INFO:root:21.57
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1003
+INFO:root:21.52
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1009
+INFO:root:21.60
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1015
+INFO:root:21.61
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1021
+INFO:root:21.61
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1027
+INFO:root:21.59
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1033
+INFO:root:21.59
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1039
+INFO:root:21.55
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1045
+INFO:root:21.59
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1051
+INFO:root:21.52
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1057
+INFO:root:21.57
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1063
+INFO:root:21.55
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1069
+INFO:root:21.55
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1075
+INFO:root:21.54
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1081
+INFO:root:21.55
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1087
+INFO:root:21.52
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1093
+INFO:root:21.50
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1099
+INFO:root:21.43
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1105
+INFO:root:21.44
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1111
+INFO:root:21.48
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1118
+INFO:root:21.43
+INFO:root:TConversion not complete!
+INFO:root:Temperature fetch time 1124
+INFO:root:21.55
+INFO:root:T28.58
+INFO:root:Temperature fetch time 1130
+INFO:root:21.43
+INFO:root:T30.62
+INFO:root:Temperature fetch time 1136
+INFO:root:21.46
+INFO:root:T32.01
+INFO:root:Temperature fetch time 1142
+INFO:root:21.45
+INFO:root:T29.77
+INFO:root:Temperature fetch time 1148
+INFO:root:21.48
+INFO:root:T26.83
+INFO:root:Temperature fetch time 1154
+INFO:root:21.39
+INFO:root:T25.28
+INFO:root:Temperature fetch time 1160
+INFO:root:21.43
+INFO:root:T24.13
+INFO:root:Temperature fetch time 1166
+INFO:root:21.54
+INFO:root:T23.16
+INFO:root:Temperature fetch time 1172
+INFO:root:21.42
+INFO:root:T22.66
+INFO:root:Temperature fetch time 1178
+INFO:root:21.48
+INFO:root:T22.02
+INFO:root:Temperature fetch time 1184
+INFO:root:21.48
+INFO:root:T21.83
+INFO:root:Temperature fetch time 1190
+INFO:root:21.45
+INFO:root:T21.66
+INFO:root:Temperature fetch time 1196
+INFO:root:21.37
+INFO:root:T21.46
+INFO:root:Temperature fetch time 1202
+INFO:root:21.46
+INFO:root:T21.46
+INFO:root:Temperature fetch time 1208
+INFO:root:21.43
+INFO:root:T21.39
+INFO:root:Temperature fetch time 1214
+INFO:root:21.39
+INFO:root:T21.30
+INFO:root:Temperature fetch time 1220
+INFO:root:21.38
+INFO:root:T21.21
+INFO:root:Temperature fetch time 1226
+INFO:root:21.38
+INFO:root:T21.16
+INFO:root:Temperature fetch time 1232
+INFO:root:21.46
+INFO:root:T21.10
+INFO:root:Temperature fetch time 1238
+INFO:root:21.39
+INFO:root:T21.04
+INFO:root:Temperature fetch time 1244
+INFO:root:21.42
+INFO:root:T21.12
+INFO:root:Temperature fetch time 1250
+INFO:root:21.52
+INFO:root:T21.03
+INFO:root:Temperature fetch time 1256
+INFO:root:21.41
+INFO:root:T21.04
+INFO:root:Temperature fetch time 1262
+INFO:root:21.41
+INFO:root:T21.14
+INFO:root:Temperature fetch time 1268
+INFO:root:21.41
+INFO:root:T21.12
+INFO:root:Temperature fetch time 1274
+INFO:root:21.43
+INFO:root:T21.36
+INFO:root:Temperature fetch time 1280
+INFO:root:20.84
+INFO:root:T20.99
+INFO:root:Temperature fetch time 0
