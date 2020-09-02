@@ -501,7 +501,7 @@ class XYscan:
             if diff <= -bound:
                 # Sometimes during curing, going back will make the loss worse because the mim loss position
                 # is drifting along the forwarding direction
-                if not self.xystep_gobacktolast and totalstep >= 4:
+                if not self.xystep_gobacktolast and totalstep >= 2:
                     print('Exit without going back')
                     logging.info('Exit without going back')
                     return True
@@ -550,7 +550,7 @@ class XYscan:
         self.save_loss_pos()
         self.check_abnormal_loss(max(self.loss))
         # unchange
-        if max(self.loss) - min(self.loss) < 0.003:
+        if max(self.loss) - min(self.loss) < 0.002:
             return False
         if self.loss[-1] < max(self.loss) - 0.04:
             print('X step not best')
@@ -627,7 +627,7 @@ class XYscan:
             if diff <= -bound:
                 # Sometimes during curing, going back will make the loss worse because the mim loss position
                 # is drifting along the forwarding direction
-                if not self.xystep_gobacktolast and totalstep >= 4:
+                if not self.xystep_gobacktolast and totalstep >= 2:
                     print('Exit without going back')
                     logging.info('Exit without going back')
                     return True              
@@ -676,7 +676,7 @@ class XYscan:
         self.save_loss_pos()
         self.check_abnormal_loss(max(self.loss))
         # unchange
-        if max(self.loss) - min(self.loss) < 0.003:
+        if max(self.loss) - min(self.loss) < 0.002:
             return False
         if self.loss[-1] < max(self.loss) - 0.04:
             print('Y step not best')
@@ -781,7 +781,7 @@ class XYscan:
                 i = totalpoints
         
         # if unchange return false and return to original position
-        if max(self.loss) - min(self.loss) < 0.004:
+        if max(self.loss) - min(self.loss) < 0.002:
             print('Unchange, go back to previous position')
             logging.info('Unchange, go back to previous position')
             # apply backlash counter
@@ -933,7 +933,7 @@ class XYscan:
                 i = totalpoints 
 
         # if unchange return false and return to original point
-        if max(self.loss) - min(self.loss) < 0.004:
+        if max(self.loss) - min(self.loss) < 0.002:
             print('Unchange, go back to previous position')
             logging.info('Unchange, go back to previous position')            
             # apply backlash counter

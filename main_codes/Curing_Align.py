@@ -216,16 +216,15 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.step_Z = 0.0007
                 self.buffer = 0.02
                 self.xystep_limit = True
-                self.xystep_gobacktolast = True
                 self.loss = []
                 # self.mode = 't'               
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
                 # self.loss_current_max = self.loss_criteria + 0.02
-            # elif (end_time - start_time) > 360 and (end_time - start_time) < 365:
-            #     logging.info('Reach 6 min')
-            #     print('Reach 6 min')
-                # self.doublecheck_flag = False
+            elif not self.xystep_gobacktolast and (end_time - start_time) > 90:
+                logging.info('XY step always go back is on')
+                print('XY step always go back is on')
+                self.xystep_gobacktolast = True
     
             time.sleep(0.5)
             self.fetch_loss()    
@@ -238,10 +237,11 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 curing_active = False
                 if curing_active_flag:
                     return P
-            if len(self.loss) == 30 and curing_active:
+            if curing_active and len(self.loss) > 30:
+                self.buffer = 0.01
+            elif curing_active and len(self.loss) == 30:
                 print('Smaller the buffer to 0.01')
                 logging.info('Smaller the buffer to 0.01')
-                self.buffer = 0.01
 
             if curing_active and self.loss[-1] < (self.loss_criteria - self.buffer):
                 self.buffer = 0
