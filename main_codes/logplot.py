@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-f = open('runlog\curing62.txt', 'r')
+f = open('runlog\curing79.txt', 'r')
 fetch = True
 loss = []
 loss_minute = []
@@ -43,7 +43,7 @@ for i in range(0,len(loss)-len(time)):
 plt.plot(time, loss)
 plt.xlabel('Time(s)')
 plt.ylabel('IL(dB)')
-plt.title('Curing #62 Loss vs Time')
+plt.title('Curing #79 Loss vs Time')
 plt.grid()
 # yticks for curing25
 # plt.yticks([-0.60, -0.55, -0.50, -0.45, -0.40])

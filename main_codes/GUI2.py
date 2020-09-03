@@ -341,6 +341,7 @@ class Ui_MainWindow(object):
         self.productComboBox.setObjectName("productComboBox")
         self.productComboBox.addItem("")
         self.productComboBox.addItem("")
+        self.productComboBox.addItem("")
         self.label_product = QtWidgets.QLabel(self.centralwidget)
         self.label_product.setGeometry(QtCore.QRect(30, 510, 165, 31))
         font = QtGui.QFont()
@@ -577,6 +578,7 @@ class Ui_MainWindow(object):
         self.label_stepsize.setText(_translate("MainWindow", "Step Size:"))
         self.productComboBox.setItemText(0, _translate("MainWindow", "1xN"))
         self.productComboBox.setItemText(1, _translate("MainWindow", "VOA"))
+        self.productComboBox.setItemText(2, _translate("MainWindow", "Multimode"))
         self.criteriaComboBox.setItemText(0, _translate("MainWindow", "-0.2"))
         self.criteriaComboBox.setItemText(1, _translate("MainWindow", "-0.25"))
         self.criteriaComboBox.setItemText(2, _translate("MainWindow", "-0.3"))
@@ -833,6 +835,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             StaticVar.productType = "1xN"
         elif self.productComboBox.currentIndex() == 1:
             StaticVar.productType = "VOA"
+        elif self.productComboBox.currentIndex() == 2:
+            StaticVar.productType = 'Multimode'
 
     def criteria_choose(self):
         if self.criteriaComboBox.currentIndex() == 0:

@@ -87,7 +87,13 @@ class XYscan:
         elif _product == '1xN':
             self.product = 2
             print('1xN has been selected')
-            logging.info('1xN has been selected')              
+            logging.info('1xN has been selected')     
+        elif _product == 'Multimode':
+            self.product = 3      
+            self.scanmode_threshold = -3  
+            self.interpmode_threshold = -1.5   
+            print('Multimode has been selected')
+            logging.info('Multimode has been selected')         
 
     def autoRun(self):
         print('A New Alignment Starts')
@@ -229,6 +235,9 @@ class XYscan:
             elif self.product == 2:
                 self.Z_amp = 3.0
                 self.zmode = 'aggressive'
+            elif self.product == 3:
+                self.Z_amp = 3.5
+                self.zmode = 'normal'
         # if (-4,-2], and interp-at-final self.strategy, then interp mode
         elif loss0 <= self.interpmode_threshold and self.strategy == 2: 
             self.scanmode = 'i'
@@ -241,6 +250,9 @@ class XYscan:
             elif self.product == 2:
                 self.Z_amp = 3.0
                 self.zmode = 'aggressive'
+            elif self.product == 3:
+                self.Z_amp = 3.5
+                self.zmode = 'normal'
             # self.final_adjust = False           
         # if (-2,criteria], and stepping-at-final self.strategy, then final adjust 
         elif loss0 <= self.loss_criteria and self.strategy == 1:
@@ -256,6 +268,8 @@ class XYscan:
                 self.Z_amp = 1.2
             elif self.product == 2:
                 self.Z_amp = 2.5
+            elif self.product == 3:
+                self.Z_amp = 2.5
         # if (-2,criteria], and interp-at-final self.strategy, then final adjust 
         elif loss0 <= self.loss_criteria and self.strategy == 2:
             # print('Change to Final_adjust')
@@ -268,6 +282,8 @@ class XYscan:
             if self.product == 1:
                 self.Z_amp = 1.2
             elif self.product == 2:
+                self.Z_amp = 2.5
+            elif self.product == 3:
                 self.Z_amp = 2.5
         # if > criteria, then exit
         else:
@@ -702,6 +718,8 @@ class XYscan:
         self.pos_ref = self.current_pos[:]    
         # step in counts   
         [step, totalpoints] = self.xyinterp_sample_step(self.loss[-1])
+        if self.product== 3:
+            step = 3 * step
         if totalpoints == 7 and self.x_dir_trend == 1:
             x1 = [x1_o, x1_o-3*step, x1_o+step, x1_o-2*step, x1_o+2*step, x1_o-step, x1_o+3*step]
             x2 = [x2_o, x2_o+3*step, x2_o-step, x2_o+2*step, x2_o-2*step, x2_o+step, x2_o-3*step]
@@ -852,6 +870,8 @@ class XYscan:
         self.pos_ref = self.current_pos[:]    
         # step in counts   
         [step, totalpoints] = self.xyinterp_sample_step(self.loss[-1])
+        if self.product== 3:
+            step = 3 * step
         if totalpoints == 7 and self.y_dir_trend == 1:
             y1 = [y1_o, y1_o-3*step, y1_o+step, y1_o-2*step, y1_o+2*step, y1_o-step, y1_o+3*step]
             y2 = [y2_o, y2_o-3*step, y2_o+step, y2_o-2*step, y2_o+2*step, y2_o-step, y2_o+3*step]
@@ -1177,7 +1197,7 @@ class XYscan:
         step_ref = round(abs(self.loss[-1]), 1) * 0.001
         # give step size an amplifier
         step = step_ref * self.Z_amp
-        if step < 0.0015 and self.product == 1:
+        if step < 0.0015 and (self.product == 1 or self.product == 3):
             step = 0.0015
         elif step < 0.002 and self.product == 2:
             step = 0.0025
@@ -1217,7 +1237,7 @@ class XYscan:
                 return P1
 
 
-            if self.product == 1:
+            if self.product == 1  or self.product == 3:
                 bound = self.loss_bound(loss_o)
             elif self.product == 2:
                 bound = self.loss_bound_large(loss_o)
@@ -1247,11 +1267,13 @@ class XYscan:
                 if self.product == 1 and step < 0.0002:
                     print('Z step is too small')
                     logging.info('Z step is too small')
-                    return False    
+                    # return False   
                 # for 1xN, is step size is smaller than 1 um, exit
                 elif self.product == 2 and step < 0.001:
                     # don't go back, we want at least 1um forwarding
                     P1[2] = P1[2] + step/0.4
+                    break
+                elif self.product == 3 and step < 0.001:
                     break
                                 
                 if success_num:
@@ -1298,6 +1320,9 @@ class XYscan:
                 # # for 1xN, if loss improved a lot, exit directly   
                 # if diff > 0.12 and self.product == 2:
                 #     break
+                # for multimode if loss is the same, exit directly
+                if self.product == 3 and diff > 0:
+                    break
 
         print('Z optim ends at: ')
         P1 = [round(num, 5) for num in P1]
@@ -1313,7 +1338,7 @@ class XYscan:
         return P1
 
     def check_abnormal_loss(self, loss0):
-        if loss0 > self.loss_current_max:
+        if loss0 > self.loss_current_max + 0.005:
             self.loss_current_max = loss0
             self.pos_current_max = self.current_pos[:]
             self.loss_fail_improve = 0

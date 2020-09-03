@@ -112,7 +112,7 @@ class CMDInputThread(QtCore.QThread):
         error_flag = False
         error_log = ''
         target_counts = [0,0,0,0,0,0]
-        target_mm = [0,0,138,0,0,0]
+        target_mm = self.currentPosition[:]
         real_counts = [0,0,0,0,0,0]
 
         if commands == 'calib':
@@ -241,7 +241,9 @@ class CMDInputThread(QtCore.QThread):
             if StaticVar.productType == "VOA":
                 xys.product_select('VOA')
             elif StaticVar.productType == "1xN":
-                xys.product_select('1xN')              
+                xys.product_select('1xN') 
+            elif StaticVar.productType == 'Multimode':
+                xys.product_select('Multimode')             
             
             # xys.second_try = False
             xys.set_loss_criteria(StaticVar.Criteria)
@@ -291,7 +293,7 @@ class CMDInputThread(QtCore.QThread):
             self.sig2.emit(3)
             P0 = self.currentPosition[:]
             # NO back, it will bring gap between lens cap and sleeve
-            # P0[2] = P0[2] - 0.01
+            P0[2] = P0[2] - 0.01
             xys.set_starting_point(P0)
             # Use interp method when loss is larger than -8 to have more accurate xy scan
             xys.scanmode_threshold = -8
@@ -299,6 +301,8 @@ class CMDInputThread(QtCore.QThread):
                 xys.product_select('VOA')
             elif StaticVar.productType == "1xN":
                 xys.product_select('1xN') 
+            elif StaticVar.productType == 'Multimode':
+                xys.product_select('Multimode') 
             xys.set_loss_criteria(self.loss_max-0.02)
             xys.strategy = 2
             P1 = xys.autoRun() 
@@ -318,6 +322,8 @@ class CMDInputThread(QtCore.QThread):
                 cure.product_select('VOA')
             elif StaticVar.productType == "1xN":
                 cure.product_select('1xN')
+            elif StaticVar.productType == 'Multimode':
+                cure.product_select('Multimode') 
             cure.set_loss_criteria(self.loss_max-0.01)
             P1 = cure.curing_run2(self.currentPosition)
             try:

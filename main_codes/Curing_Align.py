@@ -42,9 +42,15 @@ class Curing_Active_Alignment(XYscan.XYscan):
         if _product == 'VOA':
             self.product = 1
             self.step_Z = 0.0005
+            self.stepScanCounts = 4
         elif _product == '1xN':
             self.product = 2
             self.step_Z = 0.001
+            self.stepScanCounts = 4
+        elif _product == 'Multimode':
+            self.product = 3
+            self.step_Z = 0.0005
+            self.stepScanCounts = 8
 
     def pre_curing_run(self, P0):   
         print('Pre-Curing Active Alignment Starts')
@@ -101,7 +107,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.current_pos = P[:]
 
         self.final_adjust = True
-        self.stepScanCounts = 4
+        # self.stepScanCounts = 4
         self.wait_time = 0.2
         start_time = time.time()
         curing_active = True
@@ -242,6 +248,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
             elif curing_active and len(self.loss) == 30:
                 print('Smaller the buffer to 0.01')
                 logging.info('Smaller the buffer to 0.01')
+            if curing_active and not self.epoxy_about_to_solid_flag and len(self.loss) > 80:
+                self.epoxy_about_to_solid_flag = True
+                self.loss_criteria = self.loss_criteria - 0.005
+                print('Lower criteria for 0.005')
+                logging.info('Lower criteria for 0.005')
+
 
             if curing_active and self.loss[-1] < (self.loss_criteria - self.buffer):
                 self.buffer = 0
