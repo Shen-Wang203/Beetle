@@ -32,6 +32,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.mode = 'p'
         self.doublecheck_flag = False
         self.buffer = 0.03
+        self.new_crit_buffer = 0.003
         # arduino temp read serial connection
         # self.Arduino = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
 
@@ -231,32 +232,32 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('XY step always go back is on')
                 print('XY step always go back is on')
                 self.xystep_gobacktolast = True
+                self.new_crit_buffer = 0.002
     
             time.sleep(0.5)
             self.fetch_loss()    
             self.loss_curing_rec.append(self.loss[-1])   
             self.check_abnormal_loss(self.loss[-1]) 
-            # if loss is within the buffer range for 60s, then we assume the epoxy is solid already
-            if self.later_time_flag and len(self.loss) == 120 and curing_active:
+            # if loss is within the buffer range for 80s, then we assume the epoxy is solid already
+            if curing_active and self.later_time_flag and len(self.loss) == 160:
                 print('Loss is stable, pause the program')
                 logging.info('Loss is stable, pause the program')
                 curing_active = False
                 if curing_active_flag:
                     return P
             if curing_active and len(self.loss) > 30:
-                self.buffer = 0.01
+                self.buffer = 0.007
             elif curing_active and len(self.loss) == 30:
-                print('Smaller the buffer to 0.01')
-                logging.info('Smaller the buffer to 0.01')
-            if curing_active and not self.epoxy_about_to_solid_flag and len(self.loss) > 80:
-                self.epoxy_about_to_solid_flag = True
-                self.loss_criteria = self.loss_criteria - 0.005
-                print('Lower criteria for 0.005')
-                logging.info('Lower criteria for 0.005')
-
+                print('Smaller the buffer to 0.007')
+                logging.info('Smaller the buffer to 0.007')
 
             if curing_active and self.loss[-1] < (self.loss_criteria - self.buffer):
                 self.buffer = 0
+                if not self.epoxy_about_to_solid_flag and len(self.loss) > 80:
+                    self.epoxy_about_to_solid_flag = True
+                    self.loss_criteria = self.loss_criteria - 0.005
+                    print('Lower criteria for 0.005')
+                    logging.info('Lower criteria for 0.005')
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
                 # Z back if xy search failed for 2 times
@@ -316,8 +317,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     self.buffer = 0.02
                 else:
                     self.buffer = 0.03
-                if self.loss[-1] > (self.loss_criteria + 0.002):
-                    self.loss_criteria = self.loss[-1] - 0.002
+                if self.loss[-1] > (self.loss_criteria + self.new_crit_buffer):
+                    self.loss_criteria = self.loss[-1] - self.new_crit_buffer
                     print('New Criteria: ', round(self.loss_criteria,4))
                     logging.info('New Criteria ' + str(round(self.loss_criteria,4)))
             # elif (not curing_active) and self.loss[-1] < (self.loss_criteria - 0.5):
@@ -446,7 +447,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         if _loss0 > self.loss_current_max:
             self.loss_current_max = _loss0
             self.pos_current_max = self.current_pos[:]
-            self.loss_criteria = self.loss_current_max - 0.002
+            self.loss_criteria = self.loss_current_max - self.new_crit_buffer
         elif _loss0 < -20:
             print('Unexpected High Loss, End Program')
             logging.info('Unexpected High Loss, End Program')
@@ -639,15 +640,15 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.buffer = 0.02
             else:
                 self.buffer = 0.03
-            if _loss > (self.loss_criteria + 0.002):
-                self.loss_criteria = _loss - 0.002
+            if _loss > (self.loss_criteria + self.new_crit_buffer):
+                self.loss_criteria = _loss - self.new_crit_buffer
                 print('New Criteria: ', round(self.loss_criteria,4))
                 logging.info('New Criteria ' + str(round(self.loss_criteria,4)))
 
             if _loss > self.loss_current_max:
                 self.loss_current_max = _loss
                 self.pos_current_max = self.current_pos[:]
-                self.loss_criteria = self.loss_current_max - 0.002
+                self.loss_criteria = self.loss_current_max - self.new_crit_buffer
             
             return True
     
