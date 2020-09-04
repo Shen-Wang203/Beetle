@@ -2,7 +2,7 @@ Multimode fiber
 Invar jig bot and top, with extended top
 18% preheat off when curing
 190C 1min starting at room temperature
-Gap is big and not even
+Gap is big but even
 no sleeve push down
 back-align has back
 INFO:root:++++++++++++++++++++++++++++++

@@ -19,7 +19,8 @@ Initial position: [0.0, 0.0, 141.0, 0.5, -0.5, 0.0]
 
 Notes:
 1. If x or y interp failed constantly during curing, it means the positioning is not 
-   accurate. Need to adjust the PID parameters or/and add some damp on the motor.
+   accurate. Need to adjust the PID parameters or/and add some damp on the motor. Or because the heating is too fast and loss is changing
+   too fast, xy scan can fail (not best).
 2. Jig needs to be rigid and has small thermal expansion (Stainless Steel), important.
 3. Screws cannot be too tight, use spring loaded clamp for clamping force consistancy. 
 4. Try stopping vibration by some foam
@@ -32,6 +33,10 @@ Notes:
                   rotate the sleeve to even the epoxy, important! Because uneven epoxy in the gap between sleeve and lens cap
                   will shrink unequally which will have loss drift. 
                4. If the gap between sleeve and lens cap is not uniform because of incorrect tilt angles, the epoxy in this gap
-                  will be uneven too, causing loss drift during curing. 
-               5. Don't make the screw too tight. If too tight, during cooling the loss can drift. Important!
-               6. When starting cooling, unscrew the bot first cause bot cooling can be slower and uneven
+                  will be uneven too, causing loss drift during curing.
+               5. Push the sleeve down so that the epoxy in the gap between the lens cap and sleeve is minimum, this is important!! It 
+                  can avoid drifting during cooling. Because epoxy in the gap will shrink and it's very difficult to gurantee very even gap.
+                  Push those epoxy in the gap out is the best way.  
+               For screw jigs
+               6. Don't make the screw too tight. If too tight, during cooling the loss can drift. Important!
+               7. When starting cooling, unscrew the bot first cause bot cooling can be slower and uneven
