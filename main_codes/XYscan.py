@@ -29,7 +29,7 @@ class XYscan:
         self.loss_criteria = -0.4
         self.scanmode = 'c'
         self.zmode = 'normal'
-        # Defaul product is 1xN
+        # Defaul product is 1xN singlemode
         self.product = 2
         self.wait_time = 0.2
         # self.strategy can be:
@@ -56,6 +56,10 @@ class XYscan:
         self.pos_current_max = [0,0,138,0,0,0]
         self.loss_fail_improve = 0
         self.meet_crit = False
+        # this experimental zstep count means how many times we want to
+        # use experimental z stepping. If 0, then means don't use it
+        self.experimental_zstep_count = 2
+        self.experimental_Zstep_flag = False
 
     def set_loss_criteria(self, _loss_criteria):
         self.loss_criteria = _loss_criteria
@@ -206,18 +210,23 @@ class XYscan:
     def mode_select(self, loss0):
         # if <= -12, then continue scan mode, with aggressive zmode
         if loss0 <= self.aggresive_threshold:
-            self.Z_amp = 4
-            self.zmode = 'aggressive'
-            self.scanmode = 'c'
+            if self.experimental_Zstep_flag:
+                self.scanmode = 'i'
+            else:
+                self.Z_amp = 4
+                self.zmode = 'aggressive'
+                self.scanmode = 'c'
             # self.final_adjust = False
             self.tolerance = 5
             self.wait_time = 0.1
         # if (-12,-4], still continue scan mode, with normal zmode
         elif loss0 <= self.scanmode_threshold:
-            # self.zmode = 'normal'
-            self.zmode = 'aggressive'
-            self.scanmode = 'c'
-            self.Z_amp = 3.0
+            if self.experimental_Zstep_flag:
+                self.scanmode = 'i'
+            else:
+                self.zmode = 'aggressive'
+                self.scanmode = 'c'
+                self.Z_amp = 3.0
             self.tolerance = 2
             self.wait_time = 0.1
             # self.final_adjust = False
@@ -1058,7 +1067,7 @@ class XYscan:
         # (-2,-1]: range 40 counts, step is 10, total 5 points
         # (-1,0]: range 24 counts, step is 6, total 5 points
         if loss <= -12:
-            return [16, 5]
+            return [18, 5]
         elif loss <= -3:
             return [15, 5]
         elif loss <= -2:
@@ -1192,15 +1201,22 @@ class XYscan:
         self.save_loss_pos()
         success_num = 0
         loss_o = self.loss[-1]
-        # self.check_abnormal_loss(loss_o)
-        # Step size is related to loss, for example in -15.72 dB, step size is 15.7 um.
-        step_ref = round(abs(self.loss[-1]), 1) * 0.001
-        # give step size an amplifier
-        step = step_ref * self.Z_amp
-        if step < 0.0015 and (self.product == 1 or self.product == 3):
-            step = 0.0015
-        elif step < 0.002 and self.product == 2:
-            step = 0.0025
+        if self.experimental_zstep_count and self.product == 2 and loss_o < -0.5:
+            step = self.experimental_Zstep_SS1xN(loss_o)
+            print('Experimental Z stepping')
+            logging.info('Experimental Z stepping')
+            self.experimental_Zstep_flag = True
+            self.experimental_zstep_count -= 1
+        else:
+            self.experimental_Zstep_flag = False
+            # Step size is related to loss, for example in -15.72 dB, step size is 15.7 um.
+            step_ref = round(abs(self.loss[-1]), 1) * 0.001
+            # give step size an amplifier
+            step = step_ref * self.Z_amp
+            if step < 0.0015 and (self.product == 1 or self.product == 3):
+                step = 0.0015
+            elif step < 0.002 and self.product == 2:
+                step = 0.0025
         _direc0 = 1
         _direc1 = 1
         _z0 = P1[2]
@@ -1235,7 +1251,8 @@ class XYscan:
             self.save_loss_pos()
             if self.loss_target_check(self.loss[-1]):
                 return P1
-
+            if self.experimental_Zstep_flag:
+                break
 
             if self.product == 1  or self.product == 3:
                 bound = self.loss_bound(loss_o)
@@ -1267,6 +1284,8 @@ class XYscan:
                 if self.product == 1 and step < 0.0002:
                     print('Z step is too small')
                     logging.info('Z step is too small')
+                    # make sure it will exit
+                    success_num = 1
                     # return False   
                 # for 1xN, is step size is smaller than 1 um, exit
                 elif self.product == 2 and step < 0.001:
@@ -1274,6 +1293,8 @@ class XYscan:
                     P1[2] = P1[2] + step/0.4
                     break
                 elif self.product == 3 and step < 0.001:
+                    # don't go back, we want at least 1um forwarding
+                    P1[2] = P1[2] + step/0.4
                     break
                                 
                 if success_num:
@@ -1336,6 +1357,15 @@ class XYscan:
         # change current_pos to the correct one
         self.current_pos = P1[:]
         return P1
+
+    # This function determines at each loss, what's the distance to the min loss position in Z
+    # l: is the loss; z is the Z_current - Z_minLoss
+    # the function returns the left Z distance given the current loss based on lots of previous experiments
+    def experimental_Zstep_SS1xN(self, _loss):
+        z = [-0.23415, -0.18153, -0.13763, -0.07945, -0.04979, -0.03615, -0.02067, -0.01697, -0.01033, -0.00424]
+        l = [-12,-10,-8,-5,-3,-2,-1,-0.8,-0.5,-0.3]
+        s = interpolation.linear_interp(l, z, [_loss])
+        return -round(s[0], 3)-0.015
 
     def check_abnormal_loss(self, loss0):
         if loss0 > self.loss_current_max + 0.005:

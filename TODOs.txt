@@ -1,6 +1,7 @@
 TODO Bugs:
 If motor timeout, detect it and restart
 If loss is higher than 8dB, refuse to run back-align 
+Fetch last position and loss criteria, display the criteria
 
 
 Jerry
@@ -22,6 +23,7 @@ Notes:
 3. Screws cannot be too tight, use spring loaded clamp for clamping force consistancy. 
 4. Try stopping vibration by some foam
 5. Heating rod can't heat up too fast. 120C 2min and 190C 4min is fine. If 120-190C is 2min, then it doesn't work.
+6. With extra heating rod for preheating, the top jig should be 60C and bot should 35C. Heating is 190C in 1min.
 5. Loss drift: 1. avoid unequal material expansion from top and bot, meaning top and bot should have
                   about the same length and expand along the same direction.
                2. Jigs should be thermal stable earlier than epoxy solid. Can preheating to make it quicker 
