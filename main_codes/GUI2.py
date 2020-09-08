@@ -378,18 +378,25 @@ class Ui_MainWindow(object):
         self.label_key_press.setObjectName("label_key_press")
 
         self.pushButton_initial_pos = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_initial_pos.setGeometry(QtCore.QRect(1010, 10, 150, 30))
+        self.pushButton_initial_pos.setGeometry(QtCore.QRect(850, 10, 150, 30))
         font = QtGui.QFont()
         font.setPointSize(15)
         self.pushButton_initial_pos.setFont(font)
         self.pushButton_initial_pos.setObjectName("pushButton_initial_pos")
 
         self.pushButton_takeRef = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_takeRef.setGeometry(QtCore.QRect(850, 10, 150, 30))
+        self.pushButton_takeRef.setGeometry(QtCore.QRect(690, 10, 150, 30))
         font = QtGui.QFont()
         font.setPointSize(15)
         self.pushButton_takeRef.setFont(font)
         self.pushButton_takeRef.setObjectName("pushButton_takeRef")
+
+        self.pushButton_gotolast = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_gotolast.setGeometry(QtCore.QRect(1010, 10, 150, 30))
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.pushButton_gotolast.setFont(font)
+        self.pushButton_gotolast.setObjectName("pushButton_gotolast")
 
         self.pushButton_reset = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_reset.setGeometry(QtCore.QRect(850, 60, 300, 60))
@@ -500,6 +507,7 @@ class Ui_MainWindow(object):
         self.pushButton_Rzm.clicked.connect(lambda: self.Rzminus_click(self.step))
         self.pushButton_initial_pos.clicked.connect(self.initial_pos_click)
         self.pushButton_takeRef.clicked.connect(self.takeRef_click)
+        self.pushButton_gotolast.clicked.connect(self.gotolast_click)
         self.pushButton_reset.clicked.connect(self.reset_click)
         self.pushButton_alignment.clicked.connect(self.alignment_click)
         self.pushButton_back_align.clicked.connect(self.back_align_click)
@@ -592,6 +600,7 @@ class Ui_MainWindow(object):
         # self.label_key_press.setText(_translate("MainWindow", ""))
         self.pushButton_initial_pos.setText(_translate("MainWindow", "Initial Position"))
         self.pushButton_takeRef.setText(_translate("MainWindow", "Take Reference"))
+        self.pushButton_gotolast.setText(_translate("MainWindow", "Last Position"))
         self.pushButton_reset.setText(_translate("MainWindow", "Reset"))
         self.pushButton_alignment.setText(_translate("MainWindow", "Alignment"))
         self.pushButton_back_align.setText(_translate("MainWindow", "Back-Align"))
@@ -690,6 +699,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         print('Power Reference Set')
         logging.info('Power Reference Set')
 
+    def gotolast_click(self):
+        f = open("runlog.log","r")
+        fline = f.readlines()
+        for line in reversed(fline):
+            if line[10] == '[':
+                for i in range(0,len(line)):
+                    if line[i] == ']':
+                        break
+                cmdtext = line[11:i]
+                break
+        f.close()
+        cmdtext = 'goto' + cmdtext
+        self.runthread.setcmd(cmdtext)
+        self.runthread.start()
+        self.runthread.sig1.connect(self.refresh)
+        self.runthread.sig2.connect(self.motor_status)
+
     def reset_click(self):
         logging.info(' ')
         logging.info('*************************')
@@ -720,25 +746,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.timer_count = 0
 
     def alignment_click(self):
-        self.runthread.setcmd('align')
-        self.runthread.start()
-        self.runthread.sig1.connect(self.refresh)
-        self.runthread.sig2.connect(self.motor_status)
-        self.pushButton_alignment.setStyleSheet("background-color: yellow")
-        self.pushButton_back_align.setEnabled(True)
-        self.timer_start = True
-        self.timer_count = 0
+        if StaticVar.IL > -25:
+            self.runthread.setcmd('align')
+            self.runthread.start()
+            self.runthread.sig1.connect(self.refresh)
+            self.runthread.sig2.connect(self.motor_status)
+            self.pushButton_alignment.setStyleSheet("background-color: yellow")
+            self.pushButton_back_align.setEnabled(True)
+            self.timer_start = True
+            self.timer_count = 0
 
     def back_align_click(self):
-        self.runthread.setcmd('backalign')
-        self.runthread.start()
-        self.runthread.sig1.connect(self.refresh)
-        self.runthread.sig2.connect(self.motor_status)
-        self.pushButton_alignment.setStyleSheet("background-color: green")        
-        self.pushButton_back_align.setStyleSheet("background-color: yellow")
-        self.pushButton_curing.setEnabled(True)
-        self.timer_start = True
-        self.timer_count = 0 
+        if StaticVar.IL > -8:
+            self.runthread.setcmd('backalign')
+            self.runthread.start()
+            self.runthread.sig1.connect(self.refresh)
+            self.runthread.sig2.connect(self.motor_status)
+            self.pushButton_alignment.setStyleSheet("background-color: green")        
+            self.pushButton_back_align.setStyleSheet("background-color: yellow")
+            self.pushButton_curing.setEnabled(True)
+            self.timer_start = True
+            self.timer_count = 0 
 
     def curing_click(self):
         self.runthread.setcmd('curing')

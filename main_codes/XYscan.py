@@ -1365,7 +1365,7 @@ class XYscan:
         z = [-0.23415, -0.18153, -0.13763, -0.07945, -0.04979, -0.03615, -0.02067, -0.01697, -0.01033, -0.00424]
         l = [-12,-10,-8,-5,-3,-2,-1,-0.8,-0.5,-0.3]
         s = interpolation.linear_interp(l, z, [_loss])
-        return -round(s[0], 3)-0.015
+        return -round(s[0], 3)-0.012
 
     def check_abnormal_loss(self, loss0):
         if loss0 > self.loss_current_max + 0.005:

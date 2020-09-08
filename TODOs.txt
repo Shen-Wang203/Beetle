@@ -1,6 +1,5 @@
 TODO Bugs:
 If motor timeout, detect it and restart
-If loss is higher than 8dB, refuse to run back-align 
 Fetch last position and loss criteria, display the criteria
 
 
