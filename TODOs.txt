@@ -1,7 +1,6 @@
 TODO Bugs:
 If motor timeout, detect it and restart
-Fetch last position and loss criteria, display the criteria
-
+Preheating rod driver
 
 Jerry
 GUI pending:

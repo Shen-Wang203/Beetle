@@ -58,7 +58,7 @@ class XYscan:
         self.meet_crit = False
         # this experimental zstep count means how many times we want to
         # use experimental z stepping. If 0, then means don't use it
-        self.experimental_zstep_count = 2
+        self.experimental_zstep_count = 0
         self.experimental_Zstep_flag = False
 
     def set_loss_criteria(self, _loss_criteria):
@@ -90,14 +90,14 @@ class XYscan:
             logging.info('VOA has been selected')
         elif _product == '1xN':
             self.product = 2
-            print('1xN has been selected')
-            logging.info('1xN has been selected')     
+            print('SS 1xN has been selected')
+            logging.info('SS 1xN has been selected')     
         elif _product == 'Multimode':
             self.product = 3      
             self.scanmode_threshold = -3  
             self.interpmode_threshold = -1.5   
-            print('Multimode has been selected')
-            logging.info('Multimode has been selected')         
+            print('MM 1xN has been selected')
+            logging.info('MM 1xN has been selected')         
 
     def autoRun(self):
         print('A New Alignment Starts')
@@ -105,6 +105,12 @@ class XYscan:
         logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
         logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
         logging.info('A New Alignment Starts, Criteria '+ str(self.loss_criteria)) 
+        if self.product == 1:
+            logging.info('Product: VOA')
+        elif self.product == 2:
+            logging.info('Product: SS 1xN')
+        elif self.product == 3:
+            logging.info('Product: MM 1xN')
         now = datetime.datetime.now()
         logging.info(now.strftime("%Y-%m-%d %H:%M:%S"))
         logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
@@ -129,22 +135,13 @@ class XYscan:
                 break
 
             P1 = self.scanUpdate(P0, self.scanmode)
-            if P1 == False:
-                if max(self.loss) > -10 and self.scanmode == 'c':
-                    self.scanmode = 's'
-                    print('XY continuesly scan failed, change to step scan')
-                    logging.info('XY continuesly scan failed, change to step scan')
-                    self.error_flag = False
-                    continue
-                else:
-                    if self.scanmode == 'c':
-                        print('XY continuesly scan failed')
-                        logging.info('XY continuesly scan failed')
-                    else:
-                        print('XY step scan failed')
-                        logging.info('XY step scan failed')                        
-                    P_final = P0[:]
-                    break 
+            if P1 == False and max(self.loss) > -10 and self.scanmode == 'c':
+                self.scanmode = 's'
+                print('XY continuesly scan failed, change to step scan')
+                logging.info('XY continuesly scan failed, change to step scan')
+                self.error_flag = False
+                continue
+
             # check error_flag, check_abnormal_loss function can erect this flag
             if self.error_flag:
                 P_final = self.pos_current_max[:]
@@ -156,41 +153,6 @@ class XYscan:
                 break
 
             P0 = self.optimZ(P1, doublecheck=False)
-            # Return False Reason 1: Z step is too small
-            # Return False Reason 2: Unexpected high loss
-            if P0 == False:
-                if not self.final_adjust and max(self.loss) > self.scanmode_threshold:
-                    print('Change to Final_adjust(Z optim failed once)')
-                    logging.info('Change to Final_adjust(Z optim failed once)')
-                    self.final_adjust = True          
-                    P0 = P1[:]      
-                else:
-                    # come to here: 
-                    # 1. Z fail and loss < -5, still interp mode
-                    # 2. Z fail and loss between (-5,-2), step mode and final adjust is on
-                    # 3. Z fail and loss smaller than -2, step mode and final adjust is on
-                    if max(self.loss) < self.loss_criteria and self.second_try:
-                        print('Another Try')
-                        logging.info('Another Try')
-                        P0 = P1[:]
-                        step_ref = round(abs(self.loss[-1]), 1) * 0.001
-                        # Z back off
-                        P0[2] = P0[2] - step_ref * 30
-                        self.hppcontrol.engage_motor()
-                        self.send_to_hpp(P0, doublecheck=False)
-                        self.loss_current_max = -40.0
-                        self.second_try = False
-                    else:
-                        if max(self.loss) < self.loss_criteria:
-                            P_final = self.scanUpdate(P1, self.scanmode)
-                            # self.hppcontrol.engage_motor()
-                            self.send_to_hpp(self.pos_current_max, doublecheck=True)
-                            # self.hppcontrol.disengage_motor()        
-                            print('Reach Z Resolution, go back to overall best')
-                            logging.info('Reach Z Resolution, go back to overall best')
-                            break
-                        else:
-                            P0 = P1[:]
                         
             # check error_flag, check_abnormal_loss function can erect this flag
             if self.error_flag:
@@ -210,23 +172,17 @@ class XYscan:
     def mode_select(self, loss0):
         # if <= -12, then continue scan mode, with aggressive zmode
         if loss0 <= self.aggresive_threshold:
-            if self.experimental_Zstep_flag:
-                self.scanmode = 'i'
-            else:
-                self.Z_amp = 4
-                self.zmode = 'aggressive'
-                self.scanmode = 'c'
+            self.scanmode = 'c'
+            self.Z_amp = 4
+            self.zmode = 'aggressive'
             # self.final_adjust = False
             self.tolerance = 5
             self.wait_time = 0.1
         # if (-12,-4], still continue scan mode, with normal zmode
         elif loss0 <= self.scanmode_threshold:
-            if self.experimental_Zstep_flag:
-                self.scanmode = 'i'
-            else:
-                self.zmode = 'aggressive'
-                self.scanmode = 'c'
-                self.Z_amp = 3.0
+            self.zmode = 'aggressive'
+            self.scanmode = 'c'
+            self.Z_amp = 3.0
             self.tolerance = 2
             self.wait_time = 0.1
             # self.final_adjust = False
@@ -1062,14 +1018,14 @@ class XYscan:
     # Based on loss to determine xy interpolation sample step size
     # return step size and total points
     def xyinterp_sample_step(self, loss):
-        # (-4,-3]: range 60 counts, step is 15, total 5 points 
+        # (-12,-3]: range 60 counts, step is 20, total 5 points 
         # (-3,-2]: range 52 counts, step is 13, total 5 points
         # (-2,-1]: range 40 counts, step is 10, total 5 points
         # (-1,0]: range 24 counts, step is 6, total 5 points
         if loss <= -12:
-            return [18, 5]
+            return [25, 5]
         elif loss <= -3:
-            return [15, 5]
+            return [20, 5]
         elif loss <= -2:
             return [13, 5]
         elif loss <= -1:
@@ -1201,7 +1157,7 @@ class XYscan:
         self.save_loss_pos()
         success_num = 0
         loss_o = self.loss[-1]
-        if self.experimental_zstep_count and self.product == 2 and loss_o < -0.5:
+        if self.experimental_zstep_count and self.product == 2 and loss_o < -0.8 and loss_o > -16:
             step = self.experimental_Zstep_SS1xN(loss_o)
             print('Experimental Z stepping')
             logging.info('Experimental Z stepping')
@@ -1362,10 +1318,13 @@ class XYscan:
     # l: is the loss; z is the Z_current - Z_minLoss
     # the function returns the left Z distance given the current loss based on lots of previous experiments
     def experimental_Zstep_SS1xN(self, _loss):
-        z = [-0.23415, -0.18153, -0.13763, -0.07945, -0.04979, -0.03615, -0.02067, -0.01697, -0.01033, -0.00424]
-        l = [-12,-10,-8,-5,-3,-2,-1,-0.8,-0.5,-0.3]
-        s = interpolation.linear_interp(l, z, [_loss])
-        return -round(s[0], 3)-0.012
+        z1 = [-0.36856, -0.23616, -0.18416, -0.13621, -0.08083, -0.05103, -0.03809, -0.02429, -0.02077, -0.01426, -0.00769]
+        l = [-16,-12,-10,-8,-5,-3,-2,-1,-0.8,-0.5,-0.3]
+        s = interpolation.linear_interp(l, z1, [_loss])
+        if _loss < -1:
+            return -round(s[0], 3)-0.025
+        else:
+            return -round(s[0], 3)-0.015
 
     def check_abnormal_loss(self, loss0):
         if loss0 > self.loss_current_max + 0.005:

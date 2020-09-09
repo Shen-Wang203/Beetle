@@ -164,6 +164,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
         logging.info(' ')
         logging.info('++++++++++++++++++++++++++++++')
         logging.info('Curing Active Alignment Starts. Loss Critera ' + str(self.loss_criteria))
+        if self.product == 1:
+            logging.info('Product: VOA')
+        elif self.product == 2:
+            logging.info('Product: SS 1xN')
+        elif self.product == 3:
+            logging.info('Product: MM 1xN')
         now = datetime.datetime.now()
         logging.info(now.strftime("%Y-%m-%d %H:%M:%S")) 
         logging.info('++++++++++++++++++++++++++++++')

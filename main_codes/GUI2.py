@@ -369,6 +369,12 @@ class Ui_MainWindow(object):
         font.setPointSize(20)
         self.label_criteria.setFont(font)
         self.label_criteria.setObjectName("label_criteria")
+        self.label_loss_target = QtWidgets.QLabel(self.centralwidget)
+        self.label_loss_target.setGeometry(QtCore.QRect(590,510,120,31))
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        self.label_loss_target.setFont(font)
+        self.label_loss_target.setObjectName("label_loss_target")
 
         self.label_key_press = QtWidgets.QLabel(self.centralwidget)
         self.label_key_press.setGeometry(QtCore.QRect(50, 540, 500, 30))
@@ -422,7 +428,7 @@ class Ui_MainWindow(object):
         self.pushButton_back_align.setFont(font)
         self.pushButton_back_align.setObjectName("pushButton_back_align")
         self.pushButton_back_align.setStyleSheet("background-color: red")
-        self.pushButton_back_align.setEnabled(False)
+        # self.pushButton_back_align.setEnabled(False)
 
         self.pushButton_curing = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_curing.setGeometry(QtCore.QRect(850, 360, 300, 60))
@@ -431,7 +437,7 @@ class Ui_MainWindow(object):
         self.pushButton_curing.setFont(font)
         self.pushButton_curing.setObjectName("pushButton_curing")
         self.pushButton_curing.setStyleSheet("background-color: red")
-        self.pushButton_curing.setEnabled(False)
+        # self.pushButton_curing.setEnabled(False)
 
         self.comboBox_camera = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox_camera.setGeometry(QtCore.QRect(70, 0, 211, 31))
@@ -524,9 +530,9 @@ class Ui_MainWindow(object):
 
         self.cameraLabel = QLabel(self)
         self.cameraLabel.setGeometry(QtCore.QRect(20,45,640,480))
-        th = Thread(self)
-        th.changePixmap.connect(self.setImage)
-        th.start()
+        self.th = Thread(self)
+        self.th.changePixmap.connect(self.setImage)
+        self.th.start()
         # self.select_camera(0)
         self.comboBox_camera.addItems([c.description() for c in self.available_cameras])
         self.comboBox_camera.currentIndexChanged.connect(self.RefreshCameraThread)
@@ -537,9 +543,9 @@ class Ui_MainWindow(object):
 
     @pyqtSlot()
     def RefreshCameraThread(self, cameraIdx):
-        th = Thread(self)
-        th.changePixmap.connect(self.setImage)
-        th.start()
+        self.th = Thread(self)
+        self.th.changePixmap.connect(self.setImage)
+        self.th.start()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -597,6 +603,7 @@ class Ui_MainWindow(object):
         self.criteriaComboBox.setItemText(7, _translate("MainWindow", "-0.55"))
         self.label_product.setText(_translate("MainWindow", "Product Type:"))
         self.label_criteria.setText(_translate("MainWindow", "Criteria:"))
+        self.label_loss_target.setText(_translate("MainWindow", " "))
         # self.label_key_press.setText(_translate("MainWindow", ""))
         self.pushButton_initial_pos.setText(_translate("MainWindow", "Initial Position"))
         self.pushButton_takeRef.setText(_translate("MainWindow", "Take Reference"))
@@ -702,13 +709,35 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def gotolast_click(self):
         f = open("runlog.log","r")
         fline = f.readlines()
+        flag1 = False
+        flag2 = False
+        cmdtext = ''
         for line in reversed(fline):
-            if line[10] == '[':
+            # find the last position in runlog
+            if line[10] == '[' and not flag1:
                 for i in range(0,len(line)):
                     if line[i] == ']':
                         break
                 cmdtext = line[11:i]
-                break
+                flag1 = True
+                if flag2:
+                    break               
+            # find the last loss criteria in runlog
+            elif line[10:22] == 'New Criteria' and not flag2:
+                self.runthread.loss_max = float(line[23:29])
+                flag2 = True
+                if flag1:
+                    break
+            elif line[10:23] == 'Meet Criteria' and not flag2:
+                self.runthread.loss_max = float(line[25:31])
+                flag2 = True
+                if flag1:
+                    break
+            elif line[35:44] == 'Best Loss' and not flag2:
+                self.runthread.loss_max = float(line[46:52])
+                flag2 = True
+                if flag1:
+                    break
         f.close()
         cmdtext = 'goto' + cmdtext
         self.runthread.setcmd(cmdtext)
@@ -717,6 +746,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.sig2.connect(self.motor_status)
 
     def reset_click(self):
+        self.th.start()
+        self.cameraLabel.setEnabled(True)
+
         logging.info(' ')
         logging.info('*************************')
         logging.info('Reset')
@@ -738,15 +770,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton_alignment.setStyleSheet("background-color: red")
         self.pushButton_alignment.setEnabled(True)
         self.pushButton_back_align.setStyleSheet("background-color: red")
-        self.pushButton_back_align.setEnabled(False)
+        # self.pushButton_back_align.setEnabled(False)
         self.pushButton_curing.setStyleSheet('Background-color: red')
-        self.pushButton_curing.setEnabled(False)
+        # self.pushButton_curing.setEnabled(False)
 
         self.timer_start = False
         self.timer_count = 0
 
     def alignment_click(self):
         if StaticVar.IL > -25:
+            self.th.start()
+            self.cameraLabel.setEnabled(True)
             self.runthread.setcmd('align')
             self.runthread.start()
             self.runthread.sig1.connect(self.refresh)
@@ -758,6 +792,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def back_align_click(self):
         if StaticVar.IL > -8:
+            self.th.start()
+            self.cameraLabel.setEnabled(True)
             self.runthread.setcmd('backalign')
             self.runthread.start()
             self.runthread.sig1.connect(self.refresh)
@@ -769,6 +805,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.timer_count = 0 
 
     def curing_click(self):
+        # Disable camera during curing
+        self.th.stop()
+        self.cameraLabel.setEnabled(False)
         self.runthread.setcmd('curing')
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
@@ -1096,7 +1135,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # update IL
         self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
         self.label_IL.adjustSize()
-
+        # update loss_target (or current criteira)
+        self.label_loss_target.setText('IL Target: ' + str(round(self.runthread.loss_max, 3)))
+        self.label_loss_target.adjustSize()
 
 class Thread(QThread):
     changePixmap = pyqtSignal(QImage)
