@@ -226,10 +226,11 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.later_time_flag = True
                 # self.doublecheck_flag = True
                 self.wait_time = 0.3
-                self.step_Z = 0.0007
-                self.buffer = 0.02
+                self.step_Z = 0.0005
+                self.buffer = 0.015
                 self.xystep_limit = True
                 self.loss = []
+                # self.new_crit_buffer = 0.002
                 # self.mode = 't'               
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
@@ -251,9 +252,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 curing_active = False
                 if curing_active_flag:
                     return P
-            if curing_active and len(self.loss) > 30:
+            if curing_active and len(self.loss) > 24:
                 self.buffer = 0.007
-            elif curing_active and len(self.loss) == 30:
+            elif curing_active and len(self.loss) == 24:
                 print('Smaller the buffer to 0.007')
                 logging.info('Smaller the buffer to 0.007')
 
@@ -320,7 +321,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.zcount = 0
                 self.zcount_loop = 0
                 if self.later_time_flag:
-                    self.buffer = 0.02
+                    self.buffer = 0.015
                 else:
                     self.buffer = 0.03
                 if self.loss[-1] > (self.loss_criteria + self.new_crit_buffer):
@@ -643,7 +644,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.zcount = 0
             self.zcount_loop = 0
             if self.later_time_flag:
-                self.buffer = 0.02
+                self.buffer = 0.015
             else:
                 self.buffer = 0.03
             if _loss > (self.loss_criteria + self.new_crit_buffer):

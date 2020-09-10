@@ -486,17 +486,24 @@ class XYscan:
                     print('Exit without going back')
                     logging.info('Exit without going back')
                     return True
-                # go back to the old point
-                x1 = x1 + self.stepScanCounts * self.x_dir_trend
-                x2 = x2 - self.stepScanCounts * self.x_dir_trend
-                x3 = x3 - self.stepScanCounts * self.x_dir_trend
+                
                 trend -= 1
                 # if trend != 0, then exit
                 if trend:
+                    # go back to the overall best point
+                    grid = [*range(int(min(self.pos)), int(max(self.pos))+1, 1)]  
+                    s = interpolation.barycenteric_interp(self.pos, self.loss, grid)
+                    x1 = grid[s.index(max(s))]
+                    x2 = -x1 + x1_o + x2_o
+                    x3 = -x1 + x1_o + x3_o
                     print('Over')
                     logging.info('Over')
                     totalstep -= 1
                     break
+                # go back to the previous point
+                x1 = x1 + self.stepScanCounts * self.x_dir_trend
+                x2 = x2 - self.stepScanCounts * self.x_dir_trend
+                x3 = x3 - self.stepScanCounts * self.x_dir_trend
                 self.x_dir_trend = -self.x_dir_trend    
                 loss_o = self.loss[-1]    
                 print('Change direction')
@@ -612,17 +619,24 @@ class XYscan:
                     print('Exit without going back')
                     logging.info('Exit without going back')
                     return True              
-                # go back to the old point
-                y1 = y1 + self.stepScanCounts * self.y_dir_trend
-                y2 = y2 + self.stepScanCounts * self.y_dir_trend
-                y3 = y3 + self.stepScanCounts * self.y_dir_trend
+                
                 trend -= 1
                 # if trend != 0, exit
                 if trend:
+                    # go back to the overall best point
+                    grid = [*range(int(min(self.pos)), int(max(self.pos))+1, 1)]  
+                    s = interpolation.barycenteric_interp(self.pos, self.loss, grid)
+                    y1 = grid[s.index(max(s))]
+                    y2 = y1 - y1_o + y2_o
+                    y3 = y1 - y1_o + y3_o
                     print('Over')
                     logging.info('Over')
                     totalstep -= 1
                     break
+                # go back to the previous point
+                y1 = y1 + self.stepScanCounts * self.y_dir_trend
+                y2 = y2 + self.stepScanCounts * self.y_dir_trend
+                y3 = y3 + self.stepScanCounts * self.y_dir_trend
                 self.y_dir_trend = -self.y_dir_trend    
                 loss_o = self.loss[-1]   
                 print('Change direction')
@@ -1157,7 +1171,7 @@ class XYscan:
         self.save_loss_pos()
         success_num = 0
         loss_o = self.loss[-1]
-        if self.experimental_zstep_count and self.product == 2 and loss_o < -0.8 and loss_o > -16:
+        if self.experimental_zstep_count and self.product == 2 and loss_o < -2 and loss_o > -16:
             step = self.experimental_Zstep_SS1xN(loss_o)
             print('Experimental Z stepping')
             logging.info('Experimental Z stepping')
@@ -1322,9 +1336,15 @@ class XYscan:
         l = [-16,-12,-10,-8,-5,-3,-2,-1,-0.8,-0.5,-0.3]
         s = interpolation.linear_interp(l, z1, [_loss])
         if _loss < -1:
-            return -round(s[0], 3)-0.025
+            # SS 1x1
+            # return -round(s[0], 3)-0.025
+            # SS 1xN
+            return -round(s[0], 3)-0.045
         else:
-            return -round(s[0], 3)-0.015
+            # SS 1x1
+            # return -round(s[0], 3)-0.015
+            # SS 1xN
+            return -round(s[0], 3)-0.035
 
     def check_abnormal_loss(self, loss0):
         if loss0 > self.loss_current_max + 0.005:
