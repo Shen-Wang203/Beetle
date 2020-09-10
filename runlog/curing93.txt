@@ -3,7 +3,7 @@ SS jig bot, invar jig top
 190C 1min starting at room temperature
 Double checked the gap before alignment/curing
 Back-align has back
-Gap is very small and slightly uneven
+Gap is not small and slightly uneven
 No Magnet is on the bot
 No Release the bot screw at cooling, screw is loose
 Epoxy is on the top face

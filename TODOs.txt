@@ -1,7 +1,6 @@
 TODO Bugs:
 If motor timeout, detect it and restart
-Fetch last position and loss criteria, display the criteria
-
+Preheating rod driver
 
 Jerry
 GUI pending:
@@ -38,3 +37,8 @@ Notes:
                For screw jigs
                6. Don't make the screw too tight. If too tight, during cooling the loss can drift. Important!
                7. When starting cooling, unscrew the bot first cause bot cooling can be slower and uneven
+
+Curing Notes:
+1. If the epoxy is almost solid, and we move lots of times in xyz direction, then lots of stress will be built and loss will 
+   drift after cooling because of those stress. So avoid too many moves if epoxy is almost solid.
+   

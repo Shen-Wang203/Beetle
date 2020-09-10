@@ -374,6 +374,12 @@ class Ui_MainWindow(object):
         font.setPointSize(20)
         self.label_criteria.setFont(font)
         self.label_criteria.setObjectName("label_criteria")
+        self.label_loss_target = QtWidgets.QLabel(self.centralwidget)
+        self.label_loss_target.setGeometry(QtCore.QRect(590,510,120,31))
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        self.label_loss_target.setFont(font)
+        self.label_loss_target.setObjectName("label_loss_target")
 
         self.label_key_press = QtWidgets.QLabel(self.centralwidget)
         self.label_key_press.setGeometry(QtCore.QRect(50, 540, 500, 30))
@@ -395,6 +401,20 @@ class Ui_MainWindow(object):
         font.setPointSize(15)
         self.pushButton_takeRef.setFont(font)
         self.pushButton_takeRef.setObjectName("pushButton_takeRef")
+
+        self.pushButton_stop_PM = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_stop_PM.setGeometry(QtCore.QRect(690, 50, 150, 30))
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.pushButton_stop_PM.setFont(font)
+        self.pushButton_stop_PM.setObjectName("pushButton_stop_PM")
+
+        self.pushButton_start_PM = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_start_PM.setGeometry(QtCore.QRect(690, 90, 150, 30))
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.pushButton_start_PM.setFont(font)
+        self.pushButton_start_PM.setObjectName("pushButton_start_PM")
 
         self.pushButton_gotolast = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_gotolast.setGeometry(QtCore.QRect(1010, 10, 150, 30))
@@ -427,7 +447,7 @@ class Ui_MainWindow(object):
         self.pushButton_back_align.setFont(font)
         self.pushButton_back_align.setObjectName("pushButton_back_align")
         self.pushButton_back_align.setStyleSheet("background-color: red")
-        self.pushButton_back_align.setEnabled(False)
+        # self.pushButton_back_align.setEnabled(False)
 
         self.pushButton_curing = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_curing.setGeometry(QtCore.QRect(850, 360, 300, 60))
@@ -436,7 +456,7 @@ class Ui_MainWindow(object):
         self.pushButton_curing.setFont(font)
         self.pushButton_curing.setObjectName("pushButton_curing")
         self.pushButton_curing.setStyleSheet("background-color: red")
-        self.pushButton_curing.setEnabled(False)
+        # self.pushButton_curing.setEnabled(False)
 
         self.comboBox_camera = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox_camera.setGeometry(QtCore.QRect(70, 0, 211, 31))
@@ -447,6 +467,14 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.label_camera.setFont(font)
         self.label_camera.setObjectName("label_camera")
+
+        self.pushButton_cam_onoff = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_cam_onoff.setGeometry(QtCore.QRect(320, 0, 120, 21))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton_cam_onoff.setFont(font)
+        self.pushButton_cam_onoff.setObjectName("pushButton_cam_onoff")
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1248, 21))
@@ -512,39 +540,23 @@ class Ui_MainWindow(object):
         self.pushButton_Rzm.clicked.connect(lambda: self.Rzminus_click(self.step))
         self.pushButton_initial_pos.clicked.connect(self.initial_pos_click)
         self.pushButton_takeRef.clicked.connect(self.takeRef_click)
+        self.pushButton_stop_PM.clicked.connect(self.stop_PM)
+        self.pushButton_start_PM.clicked.connect(self.start_PM)
         self.pushButton_gotolast.clicked.connect(self.gotolast_click)
         self.pushButton_reset.clicked.connect(self.reset_click)
         self.pushButton_alignment.clicked.connect(self.alignment_click)
         self.pushButton_back_align.clicked.connect(self.back_align_click)
         self.pushButton_curing.clicked.connect(self.curing_click)
+        self.pushButton_cam_onoff.clicked.connect(self.start_stop_cam)
 
         # # Camera configuration @Jerry
         self.available_cameras = QCameraInfo.availableCameras()
         if not self.available_cameras:
-                pass #quit
-        
-        # self.viewfinder = QCameraViewfinder(self.centralwidget)
-        # self.viewfinder.setGeometry(QtCore.QRect(20,30,600,400))
-        # self.viewfinder.show()
+            pass #quit
 
         self.cameraLabel = QLabel(self)
         self.cameraLabel.setGeometry(QtCore.QRect(20,45,640,480))
-        th = Thread(self)
-        th.changePixmap.connect(self.setImage)
-        th.start()
-        # self.select_camera(0)
         self.comboBox_camera.addItems([c.description() for c in self.available_cameras])
-        self.comboBox_camera.currentIndexChanged.connect(self.RefreshCameraThread)
-
-    @pyqtSlot(QImage)
-    def setImage(self, image):
-        self.cameraLabel.setPixmap(QPixmap.fromImage(image))
-
-    @pyqtSlot()
-    def RefreshCameraThread(self, cameraIdx):
-        th = Thread(self)
-        th.changePixmap.connect(self.setImage)
-        th.start()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -602,14 +614,18 @@ class Ui_MainWindow(object):
         self.criteriaComboBox.setItemText(7, _translate("MainWindow", "-0.55"))
         self.label_product.setText(_translate("MainWindow", "Product Type:"))
         self.label_criteria.setText(_translate("MainWindow", "Criteria:"))
+        self.label_loss_target.setText(_translate("MainWindow", " "))
         # self.label_key_press.setText(_translate("MainWindow", ""))
         self.pushButton_initial_pos.setText(_translate("MainWindow", "Initial Position"))
         self.pushButton_takeRef.setText(_translate("MainWindow", "Take Reference"))
+        self.pushButton_stop_PM.setText(_translate("MainWindow", "Disconnect PM"))
+        self.pushButton_start_PM.setText(_translate("MainWindow", "Connect PM"))
         self.pushButton_gotolast.setText(_translate("MainWindow", "Last Position"))
         self.pushButton_reset.setText(_translate("MainWindow", "Reset"))
         self.pushButton_alignment.setText(_translate("MainWindow", "Alignment"))
         self.pushButton_back_align.setText(_translate("MainWindow", "Back-Align"))
         self.pushButton_curing.setText(_translate("MainWindow", "Curing"))
+        self.pushButton_cam_onoff.setText(_translate("MainWindow", "Camera On/Off"))
         self.label_camera.setText(_translate("MainWindow", "Camera:"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.menuConnection.setTitle(_translate("MainWindow", "Connection"))
@@ -634,7 +650,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.timer.start(500)
         # self.timer.start(1000)
         self.timer_start = False
-        self.timer_count = 0
+        self.time_count = 0
+        self.half_second_count = 0
+
+        self.stop_PM = False
+        self.cam_on = True
+        self.cap = cv2.VideoCapture(0)
 
         self.isControllingX = False
         self.isControllingY = False
@@ -704,16 +725,44 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         print('Power Reference Set')
         logging.info('Power Reference Set')
 
+    def stop_PM(self):
+        self.stop_PM = True
+    
+    def start_PM(self):
+        self.stop_PM = False
+
     def gotolast_click(self):
         f = open("runlog.log","r")
         fline = f.readlines()
+        flag1 = False
+        flag2 = False
+        cmdtext = ''
         for line in reversed(fline):
-            if line[10] == '[':
+            # find the last position in runlog
+            if line[10] == '[' and not flag1:
                 for i in range(0,len(line)):
                     if line[i] == ']':
                         break
                 cmdtext = line[11:i]
-                break
+                flag1 = True
+                if flag2:
+                    break               
+            # find the last loss criteria in runlog
+            elif line[10:22] == 'New Criteria' and not flag2:
+                self.runthread.loss_max = float(line[23:29])
+                flag2 = True
+                if flag1:
+                    break
+            elif line[10:23] == 'Meet Criteria' and not flag2:
+                self.runthread.loss_max = float(line[25:31])
+                flag2 = True
+                if flag1:
+                    break
+            elif line[35:44] == 'Best Loss' and not flag2:
+                self.runthread.loss_max = float(line[46:52])
+                flag2 = True
+                if flag1:
+                    break
         f.close()
         cmdtext = 'goto' + cmdtext
         self.runthread.setcmd(cmdtext)
@@ -722,6 +771,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.sig2.connect(self.motor_status)
 
     def reset_click(self):
+        self.th.start()
+        self.cameraLabel.setEnabled(True)
+
+        self.stop_PM = False
         logging.info(' ')
         logging.info('*************************')
         logging.info('Reset')
@@ -743,15 +796,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton_alignment.setStyleSheet("background-color: red")
         self.pushButton_alignment.setEnabled(True)
         self.pushButton_back_align.setStyleSheet("background-color: red")
-        self.pushButton_back_align.setEnabled(False)
+        # self.pushButton_back_align.setEnabled(False)
         self.pushButton_curing.setStyleSheet('Background-color: red')
-        self.pushButton_curing.setEnabled(False)
+        # self.pushButton_curing.setEnabled(False)
 
         self.timer_start = False
-        self.timer_count = 0
+        self.time_count = 0
 
     def alignment_click(self):
         if StaticVar.IL > -25:
+            self.th.start()
+            self.cameraLabel.setEnabled(True)
+            
+            self.stop_PM = False
             self.runthread.setcmd('align')
             self.runthread.start()
             self.runthread.sig1.connect(self.refresh)
@@ -759,10 +816,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.pushButton_alignment.setStyleSheet("background-color: yellow")
             self.pushButton_back_align.setEnabled(True)
             self.timer_start = True
-            self.timer_count = 0
+            self.time_count = 0
 
     def back_align_click(self):
         if StaticVar.IL > -8:
+            self.th.start()
+            self.cameraLabel.setEnabled(True)
+
+            self.stop_PM = False
             self.runthread.setcmd('backalign')
             self.runthread.start()
             self.runthread.sig1.connect(self.refresh)
@@ -771,9 +832,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.pushButton_back_align.setStyleSheet("background-color: yellow")
             self.pushButton_curing.setEnabled(True)
             self.timer_start = True
-            self.timer_count = 0 
+            self.time_count = 0 
 
     def curing_click(self):
+        # Disable camera during curing
+        self.th.stop()
+        self.cameraLabel.setEnabled(False)
+
+        self.stop_PM = False
         self.runthread.setcmd('curing')
         self.runthread.start()
         self.runthread.sig1.connect(self.refresh)
@@ -781,7 +847,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton_back_align.setStyleSheet("background-color: green")
         self.pushButton_curing.setStyleSheet('Background-color: yellow')
         self.timer_start = True
-        self.timer_count = 0     
+        self.time_count = 0     
 
     def motor_status(self, _status):
         if _status == 1:
@@ -813,7 +879,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             self.label_statusdata.setText('Idle')
             self.label_statusdata.setStyleSheet("color: rgb(0, 255, 0);")
-            self.timer_count = 0
+            self.time_count = 0
             self.timer_start = False
 
     def refresh(self, _error_log, _target_mm, _target_counts, _real_counts, _error_flag):
@@ -1082,25 +1148,70 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             elif e.key() == Qt.Key_Minus:
                 self.zminus_click(self.step)
 
-    def showtime_loss(self):
-        if self.timer_start:
-            self.timer_count += 1
-            # half second on interupt
-            totalseconds = self.timer_count // 2
-            minute = totalseconds // 60
-            second = totalseconds % 60
-            # minute = self.timer_count // 60
-            # second = self.timer_count % 60
-            self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
-            self.label_timer.adjustSize()
-            if second == 0 and self.timer_count % 2 == 0:
-                print('Time: ', minute, 'min')
-                logging.info('Time: ' + str(minute) + 'min')
+    def showtime_loss_cam(self):
+        self.half_second_count += 1
+        if self.half_second_count == 5:
+            self.half_second_count = 0
+            self.time_count += 1
+        # Refresh every half second
+        if self.half_second_count == 0:
+            if self.timer_start:
+                # half second on interupt
+                totalseconds = self.time_count // 2
+                minute = totalseconds // 60
+                second = totalseconds % 60
+                # minute = self.time_count // 60
+                # second = self.time_count % 60
+                self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
+                self.label_timer.adjustSize()
+                if second == 0 and self.time_count % 2 == 0:
+                    print('Time: ', minute, 'min')
+                    logging.info('Time: ' + str(minute) + 'min')
+            elif not self.stop_PM:
+                # During alignment/curing, don't run this PM read because the alignment will update StaticVar.IL, so
+                # there is no need to read again
+                PM.power_read_noprint()
+            # update IL
+            self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
+            self.label_IL.adjustSize()
+            # update loss_target (or current criteira)
+            self.label_loss_target.setText('IL Target: ' + str(round(self.runthread.loss_max, 3)))
+            self.label_loss_target.adjustSize()
+        # Camera view, refresh every 0.1s
+        if self.cam_on:
+            self.viewCam()
+
+    # view camera
+    def viewCam(self):
+        # read image in BGR format
+        ret, image = self.cap.read()
+        # convert image to RGB format
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        # get image infos
+        height, width, channel = image.shape
+        step = channel * width
+        # flip the image
+        image = cv2.flip(image, 0)
+        # create QImage from image
+        qImg = QImage(image.data, width, height, step, QImage.Format_RGB888)
+        # show image in img_label
+        self.cameraLabel.setPixmap(QPixmap.fromImage(qImg))
+    
+    # start/stop timer
+    def start_stop_cam(self):
+        # if cam is stopped
+        if not self.cam_on:
+            # create video capture
+            self.cap = cv2.VideoCapture(0)
+            self.cam_on = True
+        # if cam is started
         else:
-            PM.power_read_noprint()
-        # update IL
-        self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
-        self.label_IL.adjustSize()
+            self.cap.release()
+            self.cam_on = False
+        #     PM.power_read_noprint()
+        # # update IL
+        # self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
+        # self.label_IL.adjustSize()
 
 # Camera
 class Thread(QThread):
@@ -1382,7 +1493,6 @@ class Thread(QThread):
 
     def stop(self):
         self.terminate()
-
 
 if __name__ == "__main__":
     import sys

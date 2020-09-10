@@ -15,7 +15,7 @@ class CMDInputThread(QtCore.QThread):
         QtCore.QThread.__init__(self, parent)
         self.cmd = ''
         self.currentPosition = [0,0,138,0,0,0]
-        self.loss_max = -30
+        self.loss_max = -0.45
         #Create a HPP fixture object
         self.HPP = BM.BackModel()
         # for Table 2

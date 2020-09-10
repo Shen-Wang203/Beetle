@@ -164,6 +164,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
         logging.info(' ')
         logging.info('++++++++++++++++++++++++++++++')
         logging.info('Curing Active Alignment Starts. Loss Critera ' + str(self.loss_criteria))
+        if self.product == 1:
+            logging.info('Product: VOA')
+        elif self.product == 2:
+            logging.info('Product: SS 1xN')
+        elif self.product == 3:
+            logging.info('Product: MM 1xN')
         now = datetime.datetime.now()
         logging.info(now.strftime("%Y-%m-%d %H:%M:%S")) 
         logging.info('++++++++++++++++++++++++++++++')
@@ -220,10 +226,11 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.later_time_flag = True
                 # self.doublecheck_flag = True
                 self.wait_time = 0.3
-                self.step_Z = 0.0007
-                self.buffer = 0.02
+                self.step_Z = 0.0005
+                self.buffer = 0.015
                 self.xystep_limit = True
                 self.loss = []
+                self.new_crit_buffer = 0.002
                 # self.mode = 't'               
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
@@ -232,7 +239,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('XY step always go back is on')
                 print('XY step always go back is on')
                 self.xystep_gobacktolast = True
-                self.new_crit_buffer = 0.002
+                # self.new_crit_buffer = 0.002
     
             time.sleep(0.5)
             self.fetch_loss()    
@@ -245,14 +252,15 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 curing_active = False
                 if curing_active_flag:
                     return P
-            if curing_active and len(self.loss) > 30:
+            if curing_active and len(self.loss) > 24:
                 self.buffer = 0.007
-            elif curing_active and len(self.loss) == 30:
+            elif curing_active and len(self.loss) == 24:
                 print('Smaller the buffer to 0.007')
                 logging.info('Smaller the buffer to 0.007')
 
             if curing_active and self.loss[-1] < (self.loss_criteria - self.buffer):
                 self.buffer = 0
+                # Epoxy is almost solid, we don't want to move a lot so lower the criteria
                 if not self.epoxy_about_to_solid_flag and len(self.loss) > 80:
                     self.epoxy_about_to_solid_flag = True
                     self.loss_criteria = self.loss_criteria - 0.005
@@ -314,7 +322,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.zcount = 0
                 self.zcount_loop = 0
                 if self.later_time_flag:
-                    self.buffer = 0.02
+                    self.buffer = 0.015
                 else:
                     self.buffer = 0.03
                 if self.loss[-1] > (self.loss_criteria + self.new_crit_buffer):
@@ -637,7 +645,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.zcount = 0
             self.zcount_loop = 0
             if self.later_time_flag:
-                self.buffer = 0.02
+                self.buffer = 0.015
             else:
                 self.buffer = 0.03
             if _loss > (self.loss_criteria + self.new_crit_buffer):
