@@ -462,6 +462,14 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.label_camera.setFont(font)
         self.label_camera.setObjectName("label_camera")
+
+        self.pushButton_cam_onoff = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_cam_onoff.setGeometry(QtCore.QRect(320, 0, 120, 21))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton_cam_onoff.setFont(font)
+        self.pushButton_cam_onoff.setObjectName("pushButton_cam_onoff")
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1248, 21))
@@ -534,34 +542,16 @@ class Ui_MainWindow(object):
         self.pushButton_alignment.clicked.connect(self.alignment_click)
         self.pushButton_back_align.clicked.connect(self.back_align_click)
         self.pushButton_curing.clicked.connect(self.curing_click)
+        self.pushButton_cam_onoff.clicked.connect(self.start_stop_cam)
 
         # # Camera configuration @Jerry
         self.available_cameras = QCameraInfo.availableCameras()
         if not self.available_cameras:
-                pass #quit
-        
-        # self.viewfinder = QCameraViewfinder(self.centralwidget)
-        # self.viewfinder.setGeometry(QtCore.QRect(20,30,600,400))
-        # self.viewfinder.show()
+            pass #quit
 
         self.cameraLabel = QLabel(self)
         self.cameraLabel.setGeometry(QtCore.QRect(20,45,640,480))
-        self.th = Thread(self)
-        self.th.changePixmap.connect(self.setImage)
-        self.th.start()
-        # self.select_camera(0)
         self.comboBox_camera.addItems([c.description() for c in self.available_cameras])
-        self.comboBox_camera.currentIndexChanged.connect(self.RefreshCameraThread)
-
-    @pyqtSlot(QImage)
-    def setImage(self, image):
-        self.cameraLabel.setPixmap(QPixmap.fromImage(image))
-
-    @pyqtSlot()
-    def RefreshCameraThread(self, cameraIdx):
-        self.th = Thread(self)
-        self.th.changePixmap.connect(self.setImage)
-        self.th.start()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -630,6 +620,7 @@ class Ui_MainWindow(object):
         self.pushButton_alignment.setText(_translate("MainWindow", "Alignment"))
         self.pushButton_back_align.setText(_translate("MainWindow", "Back-Align"))
         self.pushButton_curing.setText(_translate("MainWindow", "Curing"))
+        self.pushButton_cam_onoff.setText(_translate("MainWindow", "Camera On/Off"))
         self.label_camera.setText(_translate("MainWindow", "Camera:"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.menuConnection.setTitle(_translate("MainWindow", "Connection"))
@@ -649,13 +640,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Set up timer to update IL
         self.timer = QTimer()
         # self.timer.timeout.connect(self.updateIL)
-        self.timer.timeout.connect(self.showtime_loss)
-        # 1s one interupt
-        self.timer.start(500)
-        # self.timer.start(1000)
+        self.timer.timeout.connect(self.showtime_loss_cam)
+        # 0.1s one interupt
+        self.timer.start(100)
         self.timer_start = False
-        self.timer_count = 0
+        self.time_count = 0
+        self.half_second_count = 0
+
         self.stop_PM = False
+        self.cam_on = True
+        self.cap = cv2.VideoCapture(0)
 
         self.isControllingX = False
         self.isControllingY = False
@@ -801,7 +795,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.pushButton_curing.setEnabled(False)
 
         self.timer_start = False
-        self.timer_count = 0
+        self.time_count = 0
 
     def alignment_click(self):
         if StaticVar.IL > -25:
@@ -816,7 +810,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.pushButton_alignment.setStyleSheet("background-color: yellow")
             self.pushButton_back_align.setEnabled(True)
             self.timer_start = True
-            self.timer_count = 0
+            self.time_count = 0
 
     def back_align_click(self):
         if StaticVar.IL > -8:
@@ -832,7 +826,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.pushButton_back_align.setStyleSheet("background-color: yellow")
             self.pushButton_curing.setEnabled(True)
             self.timer_start = True
-            self.timer_count = 0 
+            self.time_count = 0 
 
     def curing_click(self):
         # Disable camera during curing
@@ -847,7 +841,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton_back_align.setStyleSheet("background-color: green")
         self.pushButton_curing.setStyleSheet('Background-color: yellow')
         self.timer_start = True
-        self.timer_count = 0     
+        self.time_count = 0     
 
     def motor_status(self, _status):
         if _status == 1:
@@ -879,7 +873,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             self.label_statusdata.setText('Idle')
             self.label_statusdata.setStyleSheet("color: rgb(0, 255, 0);")
-            self.timer_count = 0
+            self.time_count = 0
             self.timer_start = False
 
     def refresh(self, _error_log, _target_mm, _target_counts, _real_counts, _error_flag):
@@ -1148,51 +1142,67 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             elif e.key() == Qt.Key_Minus:
                 self.zminus_click(self.step)
 
-    def showtime_loss(self):
-        if self.timer_start:
-            self.timer_count += 1
-            # half second on interupt
-            totalseconds = self.timer_count // 2
-            minute = totalseconds // 60
-            second = totalseconds % 60
-            # minute = self.timer_count // 60
-            # second = self.timer_count % 60
-            self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
-            self.label_timer.adjustSize()
-            if second == 0 and self.timer_count % 2 == 0:
-                print('Time: ', minute, 'min')
-                logging.info('Time: ' + str(minute) + 'min')
-        elif not self.stop_PM:
-            PM.power_read_noprint()
-        # update IL
-        self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
-        self.label_IL.adjustSize()
-        # update loss_target (or current criteira)
-        self.label_loss_target.setText('IL Target: ' + str(round(self.runthread.loss_max, 3)))
-        self.label_loss_target.adjustSize()
+    def showtime_loss_cam(self):
+        self.half_second_count += 1
+        if self.half_second_count == 5:
+            self.half_second_count = 0
+            self.time_count += 1
+        # Refresh every half second
+        if self.half_second_count == 0:
+            if self.timer_start:
+                # half second on interupt
+                totalseconds = self.time_count // 2
+                minute = totalseconds // 60
+                second = totalseconds % 60
+                # minute = self.time_count // 60
+                # second = self.time_count % 60
+                self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
+                self.label_timer.adjustSize()
+                if second == 0 and self.time_count % 2 == 0:
+                    print('Time: ', minute, 'min')
+                    logging.info('Time: ' + str(minute) + 'min')
+            elif not self.stop_PM:
+                # During alignment/curing, don't run this PM read because the alignment will update StaticVar.IL, so
+                # there is no need to read again
+                PM.power_read_noprint()
+            # update IL
+            self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
+            self.label_IL.adjustSize()
+            # update loss_target (or current criteira)
+            self.label_loss_target.setText('IL Target: ' + str(round(self.runthread.loss_max, 3)))
+            self.label_loss_target.adjustSize()
+        # Camera view, refresh every 0.1s
+        if self.cam_on:
+            self.viewCam()
 
-class Thread(QThread):
-    changePixmap = pyqtSignal(QImage)
-
-    def run(self):
-        image = cv2.VideoCapture(0)
-        while True:
-            ret, frame = image.read()
-            if ret:
-                rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                h, w, ch = rgbImage.shape
-                center = (w/2, h/2)
-                # M = cv2.getRotationMatrix2D(center, 180, 1)
-                # rotated180 = cv2.warpAffine(rgbImage, M, (w,h))
-
-                bytePerLine = ch * w
-                rotated180 = cv2.flip(rgbImage, 0)
-                convertToQtFormat = QImage(rotated180.data, w, h, bytePerLine, QImage.Format_RGB888)
-                p = convertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
-                self.changePixmap.emit(p)
-
-    def stop(self):
-        self.terminate()
+    # view camera
+    def viewCam(self):
+        # read image in BGR format
+        ret, image = self.cap.read()
+        # convert image to RGB format
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        # get image infos
+        height, width, channel = image.shape
+        step = channel * width
+        # flip the image
+        image = cv2.flip(image, 0)
+        # create QImage from image
+        qImg = QImage(image.data, width, height, step, QImage.Format_RGB888)
+        # show image in img_label
+        self.cameraLabel.setPixmap(QPixmap.fromImage(qImg))
+    
+    # start/stop timer
+    def start_stop_cam(self):
+        # if cam is stopped
+        if not self.cam_on:
+            # create video capture
+            self.cap = cv2.VideoCapture(0)
+            self.cam_on = True
+        # if cam is started
+        else:
+            # release video capture
+            self.cap.release()
+            self.cam_on = False
 
 
 if __name__ == "__main__":

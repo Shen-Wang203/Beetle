@@ -230,7 +230,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.buffer = 0.015
                 self.xystep_limit = True
                 self.loss = []
-                # self.new_crit_buffer = 0.002
+                self.new_crit_buffer = 0.002
                 # self.mode = 't'               
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
@@ -239,7 +239,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('XY step always go back is on')
                 print('XY step always go back is on')
                 self.xystep_gobacktolast = True
-                self.new_crit_buffer = 0.002
+                # self.new_crit_buffer = 0.002
     
             time.sleep(0.5)
             self.fetch_loss()    
@@ -260,6 +260,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
             if curing_active and self.loss[-1] < (self.loss_criteria - self.buffer):
                 self.buffer = 0
+                # Epoxy is almost solid, we don't want to move a lot so lower the criteria
                 if not self.epoxy_about_to_solid_flag and len(self.loss) > 80:
                     self.epoxy_about_to_solid_flag = True
                     self.loss_criteria = self.loss_criteria - 0.005

@@ -623,7 +623,7 @@ class XYscan:
                 trend -= 1
                 # if trend != 0, exit
                 if trend:
-                    # go back to the overall best point
+                    # go back to the overall best point using interp method
                     grid = [*range(int(min(self.pos)), int(max(self.pos))+1, 1)]  
                     s = interpolation.barycenteric_interp(self.pos, self.loss, grid)
                     y1 = grid[s.index(max(s))]
@@ -1258,7 +1258,7 @@ class XYscan:
                     success_num = 1
                     # return False   
                 # for 1xN, is step size is smaller than 1 um, exit
-                elif self.product == 2 and step < 0.001:
+                elif self.product == 2 and step < 0.0015:
                     # don't go back, we want at least 1um forwarding
                     P1[2] = P1[2] + step/0.4
                     break
