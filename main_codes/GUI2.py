@@ -1202,7 +1202,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # if cam is stopped
         if not self.cam_on:
             # create video capture
-            self.cap = cv2.VideoCapture(0)
+            self.cap = cv2.VideoCapture(0+cv2.CAP_DSHOW)
             self.cam_on = True
         # if cam is started
         else:
