@@ -2,7 +2,7 @@ import time
 import logging
 import XYscan
 import datetime
-import serial
+# import serial
 
 class Curing_Active_Alignment(XYscan.XYscan):
     def __init__(self, HPPModel, hppcontrol):
@@ -32,6 +32,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.mode = 'p'
         self.doublecheck_flag = False
         self.buffer = 0.03
+        self.buffer_value_big = 0.03
+        self.buffer_value_small = 0.015
         self.new_crit_buffer = 0.003
         # arduino temp read serial connection
         # self.Arduino = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
@@ -52,6 +54,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.product = 3
             self.step_Z = 0.0005
             self.stepScanCounts = 8
+            self.buffer_value_big = 0.02
+            self.buffer_value_small = 0.01
 
     def pre_curing_run(self, P0):   
         print('Pre-Curing Active Alignment Starts')
@@ -227,7 +231,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 # self.doublecheck_flag = True
                 self.wait_time = 0.3
                 self.step_Z = 0.0005
-                self.buffer = 0.015
+                self.buffer = self.buffer_value_small
                 self.xystep_limit = True
                 self.loss = []
                 self.new_crit_buffer = 0.002
@@ -235,7 +239,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
                 # self.loss_current_max = self.loss_criteria + 0.02
-            elif not self.xystep_gobacktolast and (end_time - start_time) > 90:
+            elif not self.xystep_gobacktolast and (end_time - start_time) > 60:
                 logging.info('XY step always go back is on')
                 print('XY step always go back is on')
                 self.xystep_gobacktolast = True
@@ -322,9 +326,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.zcount = 0
                 self.zcount_loop = 0
                 if self.later_time_flag:
-                    self.buffer = 0.015
+                    self.buffer = self.buffer_value_small
                 else:
-                    self.buffer = 0.03
+                    self.buffer = self.buffer_value_big
                 if self.loss[-1] > (self.loss_criteria + self.new_crit_buffer):
                     self.loss_criteria = self.loss[-1] - self.new_crit_buffer
                     print('New Criteria: ', round(self.loss_criteria,4))
@@ -645,9 +649,9 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.zcount = 0
             self.zcount_loop = 0
             if self.later_time_flag:
-                self.buffer = 0.015
+                self.buffer = self.buffer_value_small
             else:
-                self.buffer = 0.03
+                self.buffer = self.buffer_value_big
             if _loss > (self.loss_criteria + self.new_crit_buffer):
                 self.loss_criteria = _loss - self.new_crit_buffer
                 print('New Criteria: ', round(self.loss_criteria,4))

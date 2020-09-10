@@ -45,6 +45,7 @@ class CMDInputThread(QtCore.QThread):
 
     def stop(self):
         self.terminate()
+        # self.quit()
 
     logfilename = 'runlog.log'
     # Create a new log file each time the program is launched

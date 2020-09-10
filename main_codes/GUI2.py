@@ -765,9 +765,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.sig2.connect(self.motor_status)
 
     def reset_click(self):
-        self.th.start()
-        self.cameraLabel.setEnabled(True)
-
         self.stop_PM = False
         logging.info(' ')
         logging.info('*************************')
@@ -799,9 +796,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def alignment_click(self):
         if StaticVar.IL > -25:
-            self.th.start()
-            self.cameraLabel.setEnabled(True)
-            
             self.stop_PM = False
             self.runthread.setcmd('align')
             self.runthread.start()
@@ -814,9 +808,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def back_align_click(self):
         if StaticVar.IL > -8:
-            self.th.start()
-            self.cameraLabel.setEnabled(True)
-
             self.stop_PM = False
             self.runthread.setcmd('backalign')
             self.runthread.start()
@@ -829,10 +820,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.time_count = 0 
 
     def curing_click(self):
-        # Disable camera during curing
-        self.th.stop()
-        self.cameraLabel.setEnabled(False)
-
         self.stop_PM = False
         self.runthread.setcmd('curing')
         self.runthread.start()
@@ -1152,10 +1139,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if self.timer_start:
                 # half second on interupt
                 totalseconds = self.time_count // 2
-                minute = totalseconds // 60
-                second = totalseconds % 60
-                # minute = self.time_count // 60
-                # second = self.time_count % 60
+                # Because of program time, one minute is 53 totalseconds here. 
+                minute = totalseconds // 53
+                second = totalseconds % 53
                 self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
                 self.label_timer.adjustSize()
                 if second == 0 and self.time_count % 2 == 0:
@@ -1191,7 +1177,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # show image in img_label
         self.cameraLabel.setPixmap(QPixmap.fromImage(qImg))
     
-    # start/stop timer
+    # start/stop camera
     def start_stop_cam(self):
         # if cam is stopped
         if not self.cam_on:
