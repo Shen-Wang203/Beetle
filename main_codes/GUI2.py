@@ -24,6 +24,11 @@ import sys
 import time
 import logging
 import cv2
+import numpy as np
+from _collections import deque
+import math
+from scipy import stats
+import statistics
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -624,7 +629,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Set up timer to update IL
         self.timer = QTimer()
         # self.timer.timeout.connect(self.updateIL)
-        self.timer.timeout.connect(self.showtime_loss)
+        # self.timer.timeout.connect(self.showtime_loss)
         # 1s one interupt
         self.timer.start(500)
         # self.timer.start(1000)
@@ -1097,26 +1102,283 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
         self.label_IL.adjustSize()
 
-
+# Camera
 class Thread(QThread):
     changePixmap = pyqtSignal(QImage)
-
+    
     def run(self):
-        image = cv2.VideoCapture(0)
-        while True:
-            ret, frame = image.read()
-            if ret:
-                rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                h, w, ch = rgbImage.shape
-                center = (w/2, h/2)
-                # M = cv2.getRotationMatrix2D(center, 180, 1)
-                # rotated180 = cv2.warpAffine(rgbImage, M, (w,h))
+        ferrule_angle = 0
+        lens_angle = 0
+        delta_ferrule_angle = 0
+        delta_lens_angle = 0
+        ferrule_line_length = 0
+        lens_line_length = 0
+        ferrule_delta_angle = 0
+        lens_delta_angle = 0
 
+        ferrule_angle_queue = deque([None]*30)
+        lens_angle_queue = deque([None]*30)
+        ferrule_deltaY_queue = deque([None]*30)
+        lens_deltaY_queue = deque([None]*30)
+        ferrule_line_length_queue = deque([None]*15)
+        lens_line_length_queue = deque([None]*15)
+        ferrule_delta_angle_queue = deque([None]*15)
+        lens_delta_angle_queue = deque([None]*15)
+    
+        capture = cv2.VideoCapture(0+cv2.CAP_DSHOW)
+        while True:
+            ret, frame = capture.read()
+            if ret:
+                rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                original_frame = cv2.rotate(rgb_frame, cv2.ROTATE_90_CLOCKWISE)
+                
+                width = original_frame.shape[1]
+                height = original_frame.shape[0]
+                if False:
+                    # centerX = (x1+x2)//2
+                    # centerY = (y1+y2)//2
+                    centerX = width//2
+                    centerY = height//2
+                    x1 = centerX - 250
+                    x2 = centerX + 250
+                    y1 = centerY -150
+                    y2 = centerY + 150
+
+                    original_frame = cv2.cvtColor(original_frame, cv2.COLOR_RGB2GRAY)
+                    # ROI_frame = original_frame[y1:y2, x1:x2]
+                    ROI_frame = original_frame[centerY-150:centerY+150, centerX-250:centerX+250]
+                    original_frame = cv2.cvtColor(original_frame, cv2.COLOR_GRAY2RGB)
+
+                    # temp = cv2.adaptiveThreshold(ROI_frame, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 21, 15)
+                    temp = cv2.medianBlur(ROI_frame, 9)
+                    ret, temp2 = cv2.threshold(temp, 180, 255, cv2.THRESH_BINARY_INV)
+                    # cv2.imshow('Thresh', temp2)
+                    median_val = np.median(temp2)
+                    lower_threshold = int(max(0, 0.7 * median_val))
+                    upper_threshold = int(min(255, 1.3 * median_val))
+                    temp3 = cv2.Canny(temp2, threshold1=lower_threshold, threshold2=upper_threshold)
+                    # cv2.imshow('Canny', temp3)
+                    lines = cv2.HoughLinesP(temp3, rho=1, theta=np.pi/1800, threshold=30, minLineLength=60, maxLineGap=100)
+
+                    ferrule_angle_sample = None
+                    lens_angle_sample = None
+                    ferrule_leftmost_point = [(x2-x1)//2, 0]
+                    ferrule_rightmost_point = [(x2-x1)//2, height]
+                    lens_leftmost_point = [(x2-x1)//2, 0]
+                    lens_rightmost_point = [(x2-x1)//2, height]
+
+                    ferrule_lines_middle_Y = []
+                    lens_lines_middle_Y = []
+
+                    ferrule_lines_angle = []
+                    lens_lines_angle = []
+                    ferrule_lines_count = 0
+                    lens_lines_count = 0
+                    if lines is not None:
+                        for line in lines:
+                            for lx1, ly1, lx2, ly2 in line:
+                                # cv2.line(original_frame, (lx1+x1, ly1+y1), (lx2+x1, ly2+y1), (0, 255, 0), 1)
+                                # print(lx1,ly1, lx2, ly2)
+                                # reverse the Y-axis for the origin locates at top left in CV
+                                angle = np.arctan2(-(ly2-ly1), (lx2-lx1))*180/np.pi
+                                if angle < 10 and angle > -10:
+                                    # top half => ferrule
+                                    # if ly1 < (y2-y1)//2 and ly2 < (y2-y1)//2 and lx1 < (x2-x1)//2 and lx2 > (x2-x1)//2:
+                                    if ly1 < (y2-y1)//2 and ly2 < (y2-y1)//2:
+                                        # print('Ferrule')
+                                        # print(lx1, ly1, lx2, ly2)
+                                        ferrule_lines_count += 1
+                                        ferrule_lines_middle_Y.append(ly1+int((ly2-ly1)*(((x2-x1)//2 - lx1)/(lx2-lx1))))
+                                        ferrule_lines_angle.append(angle)
+
+                                        if lx1 < ferrule_leftmost_point[0]:
+                                            ferrule_leftmost_point[0] = lx1
+                                        if lx2 > ferrule_rightmost_point[0]:
+                                            ferrule_rightmost_point[0] = lx2
+
+                                        # Find most bottom left points
+                                        if ly1 > ferrule_leftmost_point[1]:
+                                            ferrule_leftmost_point[1] = ly1
+                                        # Find most top right points
+                                        if ly2 < ferrule_rightmost_point[1]:
+                                            ferrule_rightmost_point[1] = ly2
+
+                                    # bottom half => lens
+                                    # elif ly1 > (y2-y1)//2 and ly2 > (y2-y1)//2 and lx1 < (x2-x1)//2 and lx2 > (x2-x1)//2:
+                                    elif ly1 > (y2-y1)//2 and ly2 > (y2-y1)//2:
+                                        # print('Lens')
+                                        # print(lx1, ly1, lx2, ly2)
+                                        lens_lines_count += 1
+                                        lens_lines_middle_Y.append(ly1+int((ly2-ly1)*((x2-x1)//2 - lx1)/(lx2-lx1)))
+                                        lens_lines_angle.append(angle)
+
+                                        if lx1 < lens_leftmost_point[0]:
+                                            lens_leftmost_point[0] = lx1
+                                        if lx2 > lens_rightmost_point[0]:
+                                            lens_rightmost_point[0] = lx2
+
+                                        # Find most bottom left points
+                                        if ly1 > lens_leftmost_point[1]:
+                                            lens_leftmost_point[1] = ly1
+                                        # Find most top right points
+                                        if ly2 < lens_rightmost_point[1]:
+                                            lens_rightmost_point[1] = ly2
+
+                    # Calculate ferrule lines delta angle
+                    if ferrule_lines_angle:
+                        ferrule_delta_angle = max(ferrule_lines_angle)-min(ferrule_lines_angle)
+                        ferrule_delta_angle_queue.pop()
+                        ferrule_delta_angle_queue.appendleft(ferrule_delta_angle)
+
+                    # Get the max delta angle value in the past 30 samples
+                    ferrule_delta_angle_list = list(filter(None, ferrule_delta_angle_queue))
+                    if ferrule_delta_angle_list:
+                        ferrule_delta_angle = max(ferrule_delta_angle_list)
+
+                    # Calculate lens lines delta angle
+                    if lens_lines_angle:
+                        lens_delta_angle = max(lens_lines_angle)-min(lens_lines_angle)
+                        lens_delta_angle_queue.pop()
+                        lens_delta_angle_queue.appendleft(lens_delta_angle)
+
+                    # Get the max delta angle value in the past 30 samples
+                    lens_delta_angle_list = list(filter(None, lens_delta_angle_queue))
+                    if lens_delta_angle_list:
+                        lens_delta_angle = max(lens_delta_angle_list)
+
+                    # cv2.line(original_frame, (x1+lx1, y1+ly1), (x1+lx2, y1+ly2), (0, 0, 255), 1)
+
+                    # v_lines = cv2.HoughLinesP(adaptive_thresh, rho=1, theta = np.pi/2, threshold=30, minLineLength=5, maxLineGap=5)
+                    # if v_lines is not None:
+                    #     for line in v_lines:
+                    #         for lx1, ly1, lx2, ly2 in line:
+                    #             if lx1==lx2:
+                    #                 cv2.line(original_frame, (x1 + lx1, y1 + ly1), (x1 + lx2, y1 + ly2), (0, 0, 255), 1)
+
+                    # Get ferrule angle using leftmost point and rightmost point
+                    is_ferrule_detected = False
+                    if ferrule_leftmost_point[0] != (x2-x1)//2 and ferrule_rightmost_point[0] != (x2-x1)//2 and ferrule_leftmost_point[1] != 0 and ferrule_rightmost_point[1] != 0:
+                        is_ferrule_detected = True
+                        lx1, ly1 = ferrule_leftmost_point
+                        lx2, ly2 = ferrule_rightmost_point
+                        cv2.circle(original_frame, (x1+lx1, y1+ly1),2, color=(0, 0, 255), thickness=5)
+                        cv2.circle(original_frame, (x1+lx2, y1+ly2),2, color=(0, 0, 255), thickness=5)
+
+                        ferrule_line_length_sample = math.sqrt((lx2-lx1)**2 + (ly2-ly1)**2)
+                        ferrule_line_length_queue.pop()
+                        ferrule_line_length_queue.appendleft(ferrule_line_length_sample)
+
+                        angle = np.arctan2(-(ly2-ly1), (lx2-lx1))*180/np.pi
+                        ferrule_angle_sample = angle
+                        ferrule_angle_sample = round(np.mean(ferrule_angle_sample), 2)
+                        ferrule_angle_queue.pop()
+                        ferrule_angle_queue.appendleft(ferrule_angle_sample)
+
+                        cv2.line(original_frame, (x1 + lx1, y1 + ly1),(x1 + lx2, y1 + ly2), (255, 255, 0), 2)
+
+                    # Get lens angle using leftmost point and rightmost point
+                    is_lens_detected = False
+                    if lens_leftmost_point[0] != (x2-x1)//2 and lens_rightmost_point[0] != (x2-x1)//2 and lens_leftmost_point[1] != height and lens_rightmost_point[1] != height:
+                        is_lens_detected = True
+                        lx1, ly1 = lens_leftmost_point
+                        lx2, ly2 = lens_rightmost_point
+                        cv2.circle(original_frame, (x1+lx1, y1+ly1), 2, color=(0, 0, 255), thickness=5)
+                        cv2.circle(original_frame, (x1+lx2, y1+ly2), 2, color=(0, 0, 255), thickness=5)
+
+                        lens_line_length_sample = math.sqrt((lx2 - lx1) ** 2 + (ly2 - ly1) ** 2)
+                        lens_line_length_queue.pop()
+                        lens_line_length_queue.appendleft(lens_line_length_sample)
+
+                        angle = np.arctan2(-(ly2-ly1), (lx2-lx1))*180/np.pi
+                        lens_angle_sample = angle
+                        lens_angle_sample = round(np.mean(lens_angle_sample), 2)
+                        lens_angle_queue.pop()
+                        lens_angle_queue.appendleft(lens_angle_sample)
+
+                        cv2.line(original_frame, (x1 + lx1, y1 + ly1),(x1 + lx2, y1 + ly2), (255, 255, 0), 2)
+
+                    ferrule_line_length_list = list(filter(None, ferrule_line_length_queue))
+                    if ferrule_line_length_list:
+                        ferrule_line_length = statistics.mean(ferrule_line_length_list)
+
+                    lens_line_length_list = list(filter(None, lens_line_length_queue))
+                    if lens_line_length_list:
+                        lens_line_length = statistics.mean(lens_line_length_list)
+
+                    ferrule_angle_list = list(filter(None, ferrule_angle_queue))
+                    if ferrule_angle_list:
+                        ferrule_angle = round(stats.mode(ferrule_angle_list)[0][0], 2)
+
+                    lens_angle_list = list(filter(None, lens_angle_queue))
+                    if lens_angle_list:
+                        lens_angle = round(stats.mode(lens_angle_list)[0][0], 2)
+
+                    # Queue to store delta Y value
+                    if ferrule_lines_middle_Y:
+                        ferrule_lines_delta_Y = max(
+                            ferrule_lines_middle_Y) - min(ferrule_lines_middle_Y)
+                        ferrule_deltaY_queue.pop()
+                        ferrule_deltaY_queue.appendleft(ferrule_lines_delta_Y)
+
+                    if lens_lines_middle_Y:
+                        lens_lines_delta_Y = max(
+                            lens_lines_middle_Y) - min(lens_lines_middle_Y)
+                        lens_deltaY_queue.pop()
+                        lens_deltaY_queue.appendleft(lens_lines_delta_Y)
+
+                    ferrule_deltaY = 0
+                    ferrule_deltaY_list = list(filter(None, ferrule_deltaY_queue))
+                    if ferrule_deltaY_list:
+                        ferrule_deltaY = stats.mode(ferrule_deltaY_list)[0][0]
+
+                    lens_deltaY = 0
+                    lens_deltaY_list = list(filter(None, lens_deltaY_queue))
+                    if lens_deltaY_list:
+                        lens_deltaY = stats.mode(lens_deltaY_list)[0][0]
+
+                    # Draw the box of ROI
+                    # cv2.rectangle(original_frame, (x1,y1), (x2,y2), (255,0,0), thickness=1)
+                    # Draw vertical line of the cross hair
+                    cv2.line(original_frame, (centerX, 0), (centerX, height), (0, 255, 0), thickness=1)
+                    # Draw horizontal line of the cross hair
+                    cv2.line(original_frame, (0, centerY), (width, centerY), (0, 255, 0), thickness=1)
+
+                    ferrule_line_length = round(ferrule_line_length)
+                    lens_line_length = round((lens_line_length))
+                    ferrule_delta_angle = round(ferrule_delta_angle, 2)
+                    lens_delta_angle = round(lens_delta_angle, 2)
+                    print(ferrule_angle, lens_angle, ferrule_line_length, lens_line_length, ferrule_lines_count, lens_lines_count, ferrule_delta_angle, lens_delta_angle)
+                    ferrule_angle = round(ferrule_angle*2)/2
+                    lens_angle = round(lens_angle*2)/2
+
+                    if is_ferrule_detected and ferrule_angle >= 7.5 and ferrule_line_length >= 250 and ferrule_delta_angle <= 2 and is_lens_detected and lens_angle >= 7.5 and lens_line_length >= 250 and lens_delta_angle <= 2:
+                        text = 'Ferrule: '+str(ferrule_angle)+' Lens: '+str(lens_angle)
+                        cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0, 255, 0))
+                        cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 255, 0), thickness=2)
+                    elif ((not is_ferrule_detected) or ferrule_angle < 7.5 or ferrule_line_length < 250 or ferrule_delta_angle > 2) and is_lens_detected and lens_angle >= 7.5 and lens_line_length >= 250 and lens_delta_angle <= 2:
+                        text = 'Ferrule: NG' + ' Lens: '+str(lens_angle)
+                        cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0, 0, 255))
+                        cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 0, 255), thickness=2)
+                    elif is_ferrule_detected and ferrule_angle >= 7.5 and ferrule_line_length >= 250 and ferrule_delta_angle <= 2 and ((not is_lens_detected) or lens_angle < 7.5 or lens_line_length < 250 or lens_delta_angle > 2):
+                        text = 'Ferrule: '+str(ferrule_angle)+' Lens: NG'
+                        cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0, 0, 255))
+                        cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 0, 255), thickness=2)
+                    else:
+                        text = 'Ferrule: NG'+' Lens: NG'
+                        cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0, 0, 255))
+                        cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 0, 255), thickness=2)
+
+                # cv2.imshow('Original', original_frame)
+                
+                # QT stuffs
+                h, w, ch = original_frame.shape
+                center = (w/2, h/2)
                 bytePerLine = ch * w
-                rotated180 = cv2.flip(rgbImage, 0)
-                convertToQtFormat = QImage(rotated180.data, w, h, bytePerLine, QImage.Format_RGB888)
+                # original_frame = cv2.cvtColor(original_frame, cv2.COLOR_BGR2RGB)
+                convertToQtFormat = QImage(original_frame.data, w, h, bytePerLine, QImage.Format_RGB888)
                 p = convertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
                 self.changePixmap.emit(p)
+                # time.sleep(1/15)
 
     def stop(self):
         self.terminate()
