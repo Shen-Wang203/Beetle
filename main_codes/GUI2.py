@@ -38,6 +38,7 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet("background-color: rgb(224, 224, 224);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        
         self.lcdX = QtWidgets.QLCDNumber(self.centralwidget)
         self.lcdX.setGeometry(QtCore.QRect(70, 620, 100, 50))
         font = QtGui.QFont()
@@ -52,6 +53,7 @@ class Ui_MainWindow(object):
         self.lcdX.setProperty("value", 0.0)
         self.lcdX.setProperty("intValue", 0)
         self.lcdX.setObjectName("lcdX")
+        
         self.lcdY = QtWidgets.QLCDNumber(self.centralwidget)
         self.lcdY.setGeometry(QtCore.QRect(270, 620, 100, 50))
         self.lcdY.setStyleSheet("background-color: rgb(224, 224, 224);")
@@ -61,6 +63,7 @@ class Ui_MainWindow(object):
         self.lcdY.setProperty("value", 0.0)
         self.lcdY.setProperty("intValue", 0)
         self.lcdY.setObjectName("lcdY")
+        
         self.lcdZ = QtWidgets.QLCDNumber(self.centralwidget)
         self.lcdZ.setGeometry(QtCore.QRect(470, 620, 100, 50))
         self.lcdZ.setStyleSheet("background-color: rgb(224, 224, 224);")
@@ -70,6 +73,7 @@ class Ui_MainWindow(object):
         self.lcdZ.setProperty("value", 138.0)
         self.lcdZ.setProperty("intValue", 138)
         self.lcdZ.setObjectName("lcdZ")
+        
         self.lcdRx = QtWidgets.QLCDNumber(self.centralwidget)
         self.lcdRx.setGeometry(QtCore.QRect(670, 620, 100, 50))
         self.lcdRx.setStyleSheet("background-color: rgb(224, 224, 224);")
@@ -79,6 +83,7 @@ class Ui_MainWindow(object):
         self.lcdRx.setProperty("value", 0.0)
         self.lcdRx.setProperty("intValue", 0)
         self.lcdRx.setObjectName("lcdRx")
+        
         self.lcdRy = QtWidgets.QLCDNumber(self.centralwidget)
         self.lcdRy.setGeometry(QtCore.QRect(870, 620, 100, 50))
         self.lcdRy.setStyleSheet("background-color: rgb(224, 224, 224);")
@@ -88,6 +93,7 @@ class Ui_MainWindow(object):
         self.lcdRy.setProperty("value", 0.0)
         self.lcdRy.setProperty("intValue", 0)
         self.lcdRy.setObjectName("lcdRy")
+        
         self.lcdRz = QtWidgets.QLCDNumber(self.centralwidget)
         self.lcdRz.setGeometry(QtCore.QRect(1070, 620, 100, 50))
         self.lcdRz.setStyleSheet("background-color: rgb(224, 224, 224);")
@@ -96,30 +102,35 @@ class Ui_MainWindow(object):
         self.lcdRz.setSegmentStyle(QtWidgets.QLCDNumber.Filled)
         self.lcdRz.setProperty("value", 0.0)
         self.lcdRz.setObjectName("lcdRz")
+        
         self.pushButton_start = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_start.setGeometry(QtCore.QRect(850, 450, 150, 60))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.pushButton_start.setFont(font)
         self.pushButton_start.setObjectName("pushButton_start")
+        
         self.pushButton_close = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_close.setGeometry(QtCore.QRect(1000, 450, 150, 60))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.pushButton_close.setFont(font)
         self.pushButton_close.setObjectName("pushButton_close")
+        
         self.pushButton_disarm = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_disarm.setGeometry(QtCore.QRect(1000, 520, 150, 60))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.pushButton_disarm.setFont(font)
         self.pushButton_disarm.setObjectName("pushButton_disarm")
+        
         self.pushButton_stop = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_stop.setGeometry(QtCore.QRect(850, 520, 150, 60))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.pushButton_stop.setFont(font)
         self.pushButton_stop.setObjectName("pushButton_stop")        
+        
         self.pushButton_Xp = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Xp.setGeometry(QtCore.QRect(70, 680, 51, 23))
         font = QtGui.QFont()
@@ -127,6 +138,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Xp.setFont(font)
         self.pushButton_Xp.setObjectName("pushButton_Xp")
+        
         self.pushButton_Xm = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Xm.setGeometry(QtCore.QRect(120, 680, 51, 23))
         font = QtGui.QFont()
@@ -134,6 +146,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Xm.setFont(font)
         self.pushButton_Xm.setObjectName("pushButton_Xm")
+        
         self.pushButton_Ym = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Ym.setGeometry(QtCore.QRect(320, 680, 51, 23))
         font = QtGui.QFont()
@@ -141,6 +154,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Ym.setFont(font)
         self.pushButton_Ym.setObjectName("pushButton_Ym")
+        
         self.pushButton_Yp = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Yp.setGeometry(QtCore.QRect(270, 680, 51, 23))
         font = QtGui.QFont()
@@ -148,6 +162,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Yp.setFont(font)
         self.pushButton_Yp.setObjectName("pushButton_Yp")
+        
         self.pushButton_Zm = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Zm.setGeometry(QtCore.QRect(520, 680, 51, 23))
         font = QtGui.QFont()
@@ -155,6 +170,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Zm.setFont(font)
         self.pushButton_Zm.setObjectName("pushButton_Zm")
+        
         self.pushButton_Zp = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Zp.setGeometry(QtCore.QRect(470, 680, 51, 23))
         font = QtGui.QFont()
@@ -162,6 +178,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Zp.setFont(font)
         self.pushButton_Zp.setObjectName("pushButton_Zp")
+        
         self.pushButton_Rxm = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Rxm.setGeometry(QtCore.QRect(720, 680, 51, 23))
         font = QtGui.QFont()
@@ -169,6 +186,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Rxm.setFont(font)
         self.pushButton_Rxm.setObjectName("pushButton_Rxm")
+        
         self.pushButton_Rxp = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Rxp.setGeometry(QtCore.QRect(670, 680, 51, 23))
         font = QtGui.QFont()
@@ -176,6 +194,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Rxp.setFont(font)
         self.pushButton_Rxp.setObjectName("pushButton_Rxp")
+        
         self.pushButton_Ryp = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Ryp.setGeometry(QtCore.QRect(870, 680, 51, 23))
         font = QtGui.QFont()
@@ -183,6 +202,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Ryp.setFont(font)
         self.pushButton_Ryp.setObjectName("pushButton_Ryp")
+        
         self.pushButton_Rym = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Rym.setGeometry(QtCore.QRect(920, 680, 51, 23))
         font = QtGui.QFont()
@@ -190,6 +210,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Rym.setFont(font)
         self.pushButton_Rym.setObjectName("pushButton_Rym")
+        
         self.pushButton_Rzp = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Rzp.setGeometry(QtCore.QRect(1070, 680, 51, 23))
         font = QtGui.QFont()
@@ -197,6 +218,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Rzp.setFont(font)
         self.pushButton_Rzp.setObjectName("pushButton_Rzp")
+        
         self.pushButton_Rzm = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Rzm.setGeometry(QtCore.QRect(1120, 680, 51, 23))
         font = QtGui.QFont()
@@ -204,16 +226,19 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Rzm.setFont(font)
         self.pushButton_Rzm.setObjectName("pushButton_Rzm")
+        
         self.textEdit_gotocommands = QtWidgets.QTextEdit(self.centralwidget)
         self.textEdit_gotocommands.setGeometry(QtCore.QRect(10, 750, 320, 80))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.textEdit_gotocommands.setFont(font)
         self.textEdit_gotocommands.setObjectName("textEdit_gotocommands")
+        
         self.verticalScrollBar_goto = QtWidgets.QScrollBar(self.centralwidget)
         self.verticalScrollBar_goto.setGeometry(QtCore.QRect(330, 750, 20, 81))
         self.verticalScrollBar_goto.setOrientation(QtCore.Qt.Vertical)
         self.verticalScrollBar_goto.setObjectName("verticalScrollBar_goto")
+        
         self.pushButton_gotosend = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_gotosend.setGeometry(QtCore.QRect(360, 750, 111, 81))
         font = QtGui.QFont()
@@ -222,22 +247,26 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_gotosend.setFont(font)
         self.pushButton_gotosend.setObjectName("pushButton_gotosend")
+        
         self.label_errorlog = QtWidgets.QLabel(self.centralwidget)
         self.label_errorlog.setGeometry(QtCore.QRect(500, 710, 81, 40))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_errorlog.setFont(font)
         self.label_errorlog.setObjectName("label_errorlog")
+        
         self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser.setEnabled(True)
         self.textBrowser.setGeometry(QtCore.QRect(500, 750, 320, 80))
         self.textBrowser.setObjectName("textBrowser")
+        
         self.label_status = QtWidgets.QLabel(self.centralwidget)
         self.label_status.setGeometry(QtCore.QRect(340, 580, 121, 40))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_status.setFont(font)
         self.label_status.setObjectName("label_status")
+        
         self.label_statusdata = QtWidgets.QLabel(self.centralwidget)
         self.label_statusdata.setGeometry(QtCore.QRect(450, 580, 161, 40))
 
@@ -270,6 +299,7 @@ class Ui_MainWindow(object):
         self.label_statusdata.setFont(font)
         self.label_statusdata.setStyleSheet("color: rgb(255, 0, 0);")
         self.label_statusdata.setObjectName("label_statusdata")
+      
         self.label_X = QtWidgets.QLabel(self.centralwidget)
         self.label_X.setGeometry(QtCore.QRect(10, 620, 50, 40))
         font = QtGui.QFont()
@@ -277,6 +307,7 @@ class Ui_MainWindow(object):
         self.label_X.setFont(font)
         self.label_X.setAlignment(QtCore.Qt.AlignCenter)
         self.label_X.setObjectName("label_X")
+      
         self.label_Y = QtWidgets.QLabel(self.centralwidget)
         self.label_Y.setGeometry(QtCore.QRect(200, 620, 50, 40))
         font = QtGui.QFont()
@@ -284,6 +315,7 @@ class Ui_MainWindow(object):
         self.label_Y.setFont(font)
         self.label_Y.setAlignment(QtCore.Qt.AlignCenter)
         self.label_Y.setObjectName("label_Y")
+      
         self.label_Z = QtWidgets.QLabel(self.centralwidget)
         self.label_Z.setGeometry(QtCore.QRect(400, 620, 50, 40))
         font = QtGui.QFont()
@@ -291,6 +323,7 @@ class Ui_MainWindow(object):
         self.label_Z.setFont(font)
         self.label_Z.setAlignment(QtCore.Qt.AlignCenter)
         self.label_Z.setObjectName("label_Z")
+      
         self.label_Rx = QtWidgets.QLabel(self.centralwidget)
         self.label_Rx.setGeometry(QtCore.QRect(600, 620, 50, 40))
         font = QtGui.QFont()
@@ -298,6 +331,7 @@ class Ui_MainWindow(object):
         self.label_Rx.setFont(font)
         self.label_Rx.setAlignment(QtCore.Qt.AlignCenter)
         self.label_Rx.setObjectName("label_Rx")
+      
         self.label_Ry = QtWidgets.QLabel(self.centralwidget)
         self.label_Ry.setGeometry(QtCore.QRect(800, 620, 50, 40))
         font = QtGui.QFont()
@@ -305,6 +339,7 @@ class Ui_MainWindow(object):
         self.label_Ry.setFont(font)
         self.label_Ry.setAlignment(QtCore.Qt.AlignCenter)
         self.label_Ry.setObjectName("label_Ry")
+      
         self.label_Rz = QtWidgets.QLabel(self.centralwidget)
         self.label_Rz.setGeometry(QtCore.QRect(1000, 620, 50, 40))
         font = QtGui.QFont()
@@ -312,12 +347,14 @@ class Ui_MainWindow(object):
         self.label_Rz.setFont(font)
         self.label_Rz.setAlignment(QtCore.Qt.AlignCenter)
         self.label_Rz.setObjectName("label_Rz")
+      
         self.label_goto = QtWidgets.QLabel(self.centralwidget)
         self.label_goto.setGeometry(QtCore.QRect(10, 710, 280, 40))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_goto.setFont(font)
         self.label_goto.setObjectName("label_goto")
+      
         self.stepSizeComboBox = QtWidgets.QComboBox(self.centralwidget)
         self.stepSizeComboBox.setGeometry(QtCore.QRect(150, 580, 121, 31))
         font = QtGui.QFont()
@@ -331,6 +368,7 @@ class Ui_MainWindow(object):
         self.stepSizeComboBox.addItem("")
         self.stepSizeComboBox.addItem("")
         self.stepSizeComboBox.addItem("")
+      
         self.label_stepsize = QtWidgets.QLabel(self.centralwidget)
         self.label_stepsize.setGeometry(QtCore.QRect(30, 580, 121, 31))
         font = QtGui.QFont()
@@ -347,6 +385,7 @@ class Ui_MainWindow(object):
         self.productComboBox.addItem("")
         self.productComboBox.addItem("")
         self.productComboBox.addItem("")
+      
         self.label_product = QtWidgets.QLabel(self.centralwidget)
         self.label_product.setGeometry(QtCore.QRect(30, 510, 165, 31))
         font = QtGui.QFont()
@@ -368,12 +407,14 @@ class Ui_MainWindow(object):
         self.criteriaComboBox.addItem("")
         self.criteriaComboBox.addItem("")
         self.criteriaComboBox.addItem("")
+      
         self.label_criteria = QtWidgets.QLabel(self.centralwidget)
         self.label_criteria.setGeometry(QtCore.QRect(350,510,121,31))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_criteria.setFont(font)
         self.label_criteria.setObjectName("label_criteria")
+      
         self.label_loss_target = QtWidgets.QLabel(self.centralwidget)
         self.label_loss_target.setGeometry(QtCore.QRect(590,510,120,31))
         font = QtGui.QFont()
@@ -474,6 +515,13 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.pushButton_cam_onoff.setFont(font)
         self.pushButton_cam_onoff.setObjectName("pushButton_cam_onoff")
+        
+        self.pushButton_ROI_onoff = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_ROI_onoff.setGeometry(QtCore.QRect(450, 0, 160, 21))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton_ROI_onoff.setFont(font)
+        self.pushButton_ROI_onoff.setObjectName("pushButton_ROI_onoff")
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -548,6 +596,7 @@ class Ui_MainWindow(object):
         self.pushButton_back_align.clicked.connect(self.back_align_click)
         self.pushButton_curing.clicked.connect(self.curing_click)
         self.pushButton_cam_onoff.clicked.connect(self.start_stop_cam)
+        self.pushButton_ROI_onoff.clicked.connect(self.setROI)
 
         # # Camera configuration @Jerry
         self.available_cameras = QCameraInfo.availableCameras()
@@ -626,6 +675,7 @@ class Ui_MainWindow(object):
         self.pushButton_back_align.setText(_translate("MainWindow", "Back-Align"))
         self.pushButton_curing.setText(_translate("MainWindow", "Curing"))
         self.pushButton_cam_onoff.setText(_translate("MainWindow", "Camera On/Off"))
+        self.pushButton_ROI_onoff.setText(_translate("MainWindow", "Angle Detection On/Off"))
         self.label_camera.setText(_translate("MainWindow", "Camera:"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.menuConnection.setTitle(_translate("MainWindow", "Connection"))
@@ -655,7 +705,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.stop_PM = False
         self.cam_on = True
-        self.cap = cv2.VideoCapture(0)
+        self.is_ROI_set = False
+        self.cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
         self.isControllingX = False
         self.isControllingY = False
@@ -1208,6 +1259,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         # read image in BGR format
         ret, image = self.cap.read()
+        print(ret)
+        
+        while not ret:
+           time.sleep(0.02)
+           ret, image = self.cap.read()
+           print(ret)
+           
         if ret:
             # convert image to RGB format
             rgb_frame = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
@@ -1219,7 +1277,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             height = original_frame.shape[0]
             
             # set ROI Push button
-            if False: 
+            if self.is_ROI_set: 
                 # centerX = (x1+x2)//2
                 # centerY = (y1+y2)//2
                 centerX = width//2
@@ -1359,7 +1417,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     ferrule_angle_queue.pop()
                     ferrule_angle_queue.appendleft(ferrule_angle_sample)
 
-                    cv2.line(original_frame, (x1 + lx1, y1 + ly1),(x1 + lx2, y1 + ly2), (255, 255, 0), 2)
+                    cv2.line(original_frame, (x1 + lx1, y1 + ly1),(x1 + lx2, y1 + ly2), (255, 255, 0), 5)
 
                 # Get lens angle using leftmost point and rightmost point
                 is_lens_detected = False
@@ -1380,7 +1438,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     lens_angle_queue.pop()
                     lens_angle_queue.appendleft(lens_angle_sample)
 
-                    cv2.line(original_frame, (x1 + lx1, y1 + ly1),(x1 + lx2, y1 + ly2), (255, 255, 0), 2)
+                    cv2.line(original_frame, (x1 + lx1, y1 + ly1),(x1 + lx2, y1 + ly2), (255, 255, 0), 5)
 
                 ferrule_line_length_list = list(filter(None, ferrule_line_length_queue))
                 if ferrule_line_length_list:
@@ -1424,9 +1482,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 # Draw the box of ROI
                 # cv2.rectangle(original_frame, (x1,y1), (x2,y2), (255,0,0), thickness=1)
                 # Draw vertical line of the cross hair
-                cv2.line(original_frame, (centerX, 0), (centerX, height), (0, 255, 0), thickness=1)
+                cv2.line(original_frame, (centerX, 0), (centerX, height), (0, 255, 0), thickness=5)
                 # Draw horizontal line of the cross hair
-                cv2.line(original_frame, (0, centerY), (width, centerY), (0, 255, 0), thickness=1)
+                cv2.line(original_frame, (0, centerY), (width, centerY), (0, 255, 0), thickness=5)
 
                 ferrule_line_length = round(ferrule_line_length)
                 lens_line_length = round((lens_line_length))
@@ -1438,20 +1496,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 if is_ferrule_detected and ferrule_angle >= 7.5 and ferrule_line_length >= 250 and ferrule_delta_angle <= 2 and is_lens_detected and lens_angle >= 7.5 and lens_line_length >= 250 and lens_delta_angle <= 2:
                     text = 'Ferrule: '+str(ferrule_angle)+' Lens: '+str(lens_angle)
-                    cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0, 255, 0))
-                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 255, 0), thickness=2)
+                    cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=5, color=(0, 255, 0))
+                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 255, 0), thickness=5)
                 elif ((not is_ferrule_detected) or ferrule_angle < 7.5 or ferrule_line_length < 250 or ferrule_delta_angle > 2) and is_lens_detected and lens_angle >= 7.5 and lens_line_length >= 250 and lens_delta_angle <= 2:
                     text = 'Ferrule: NG' + ' Lens: '+str(lens_angle)
-                    cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0, 0, 255))
-                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 0, 255), thickness=2)
+                    cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=5, color=(0, 0, 255))
+                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 0, 255), thickness=5)
                 elif is_ferrule_detected and ferrule_angle >= 7.5 and ferrule_line_length >= 250 and ferrule_delta_angle <= 2 and ((not is_lens_detected) or lens_angle < 7.5 or lens_line_length < 250 or lens_delta_angle > 2):
                     text = 'Ferrule: '+str(ferrule_angle)+' Lens: NG'
-                    cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0, 0, 255))
-                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 0, 255), thickness=2)
+                    cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=5, color=(0, 0, 255))
+                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 0, 255), thickness=5)
                 else:
                     text = 'Ferrule: NG'+' Lens: NG'
-                    cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0, 0, 255))
-                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 0, 255), thickness=2)
+                    cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=5, color=(0, 0, 255))
+                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 0, 255), thickness=5)
 
             # get image infos
             height, width, channel = original_frame.shape
@@ -1462,6 +1520,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             scaled_img = qImg.scaled(640, 480, Qt.KeepAspectRatio)
             # show image in img_label
             self.cameraLabel.setPixmap(QPixmap.fromImage(scaled_img))
+            print('Update image')
     
     # start/stop timer
     def start_stop_cam(self):
@@ -1473,11 +1532,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # if cam is started
         else:
             self.cap.release()
+            del(self.cap)
             self.cam_on = False
         #     PM.power_read_noprint()
         # # update IL
         # self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
         # self.label_IL.adjustSize()
+    
+    # set ROI for angle detection    
+    def setROI(self):
+        if not self.is_ROI_set:
+            self.is_ROI_set = True
+        else:
+            self.is_ROI_set = False
 
 if __name__ == "__main__":
     import sys
