@@ -1210,11 +1210,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         ret, image = self.cap.read()
         if ret:
             # convert image to RGB format
-            
-            # rgb_frame = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
-            original_frame = image
-            # cv2.imshow('Original', rgb_frame)
-            # original_frame = cv2.rotate(rgb_frame, cv2.ROTATE_90_CLOCKWISE)
+            rgb_frame = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
+            # original_frame = image
+            original_frame = cv2.rotate(rgb_frame, cv2.ROTATE_90_CLOCKWISE)
+            # cv2.imshow('Original', original_frame)
             
             width = original_frame.shape[1]
             height = original_frame.shape[0]
@@ -1456,9 +1455,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             # get image infos
             height, width, channel = original_frame.shape
+            # channel = 1
             bytePerLine = channel * width
             # create QImage from image
-            qImg = QImage(image.data, width, height, bytePerLine, QImage.Format_RGB888)
+            qImg = QImage(original_frame.data, width, height, bytePerLine, QImage.Format_RGB888)
             scaled_img = qImg.scaled(640, 480, Qt.KeepAspectRatio)
             # show image in img_label
             self.cameraLabel.setPixmap(QPixmap.fromImage(scaled_img))
@@ -1468,15 +1468,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # if cam is stopped
         if not self.cam_on:
             # create video capture
-            if not self.cap:
-                self.cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+            self.cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
             self.cam_on = True
         # if cam is started
         else:
             self.cap.release()
-            if self.cap:
-                self.cap = None
-            # cv2.destroyAllWindows()
             self.cam_on = False
         #     PM.power_read_noprint()
         # # update IL
