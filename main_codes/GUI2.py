@@ -1260,11 +1260,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # read image in BGR format
         ret, image = self.cap.read()
         print(ret)
-        
-        while not ret:
-           time.sleep(0.02)
-           ret, image = self.cap.read()
-           print(ret)
+        # cv2.imshow('Image', image)
+        # while not ret:
+        #    time.sleep(0.02)
+        #    ret, image = self.cap.read()
            
         if ret:
             # convert image to RGB format
@@ -1495,32 +1494,42 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 lens_angle = round(lens_angle*2)/2
 
                 if is_ferrule_detected and ferrule_angle >= 7.5 and ferrule_line_length >= 250 and ferrule_delta_angle <= 2 and is_lens_detected and lens_angle >= 7.5 and lens_line_length >= 250 and lens_delta_angle <= 2:
-                    text = 'Ferrule: '+str(ferrule_angle)+' Lens: '+str(lens_angle)
-                    cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=5, color=(0, 255, 0))
+                    text = 'Ferrule:'+str(ferrule_angle)
+                    cv2.putText(original_frame, text, (50, 150), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=3, thickness=5, color=(0, 255, 0))
+                    text = 'Lens:'+str(lens_angle)
+                    cv2.putText(original_frame, text, (50, 1000), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=3, thickness=5, color=(0, 255, 0))
                     cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 255, 0), thickness=5)
                 elif ((not is_ferrule_detected) or ferrule_angle < 7.5 or ferrule_line_length < 250 or ferrule_delta_angle > 2) and is_lens_detected and lens_angle >= 7.5 and lens_line_length >= 250 and lens_delta_angle <= 2:
-                    text = 'Ferrule: NG' + ' Lens: '+str(lens_angle)
-                    cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=5, color=(0, 0, 255))
-                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 0, 255), thickness=5)
+                    text = 'Ferrule:NG'
+                    cv2.putText(original_frame, text, (50, 150), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=3, thickness=5, color=(255, 0, 0))
+                    text = 'Lens:'+str(lens_angle)
+                    cv2.putText(original_frame, text, (50, 1000), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=3, thickness=5, color=(0, 255, 0))
+                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (255, 0, 0), thickness=5)
                 elif is_ferrule_detected and ferrule_angle >= 7.5 and ferrule_line_length >= 250 and ferrule_delta_angle <= 2 and ((not is_lens_detected) or lens_angle < 7.5 or lens_line_length < 250 or lens_delta_angle > 2):
-                    text = 'Ferrule: '+str(ferrule_angle)+' Lens: NG'
-                    cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=5, color=(0, 0, 255))
-                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 0, 255), thickness=5)
+                    text = 'Ferrule:'+str(ferrule_angle)
+                    cv2.putText(original_frame, text, (50, 150), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=3, thickness=5, color=(0, 255, 0))
+                    text = 'Lens:NG'
+                    cv2.putText(original_frame, text, (50, 1000), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=3, thickness=5, color=(255, 0, 0))
+                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (255, 0, 0), thickness=5)
                 else:
-                    text = 'Ferrule: NG'+' Lens: NG'
-                    cv2.putText(original_frame, text, (240, 960), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=5, color=(0, 0, 255))
-                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (0, 0, 255), thickness=5)
+                    text = 'Ferrule:NG'
+                    cv2.putText(original_frame, text, (50, 150), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=3, thickness=5, color=(255, 0, 0))
+                    text = 'Lens:NG'
+                    cv2.putText(original_frame, text, (50, 1000), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=3, thickness=5, color=(255, 0, 0))
+                    cv2.rectangle(original_frame, (x1, y1), (x2, y2), (255, 0, 0), thickness=5)
 
             # get image infos
             height, width, channel = original_frame.shape
             # channel = 1
             bytePerLine = channel * width
+            
             # create QImage from image
             qImg = QImage(original_frame.data, width, height, bytePerLine, QImage.Format_RGB888)
             scaled_img = qImg.scaled(640, 480, Qt.KeepAspectRatio)
+            
             # show image in img_label
             self.cameraLabel.setPixmap(QPixmap.fromImage(scaled_img))
-            print('Update image')
+            print('update frame')
     
     # start/stop timer
     def start_stop_cam(self):

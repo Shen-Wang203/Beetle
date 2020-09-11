@@ -83,11 +83,16 @@ import logging
 #     # Jerry's laptop####################################################
 #     if stationNum == '1':
 #         # COM15: T3
-Tser3 = serial.Serial('COM3', 115200, timeout=None, stopbits=1)
+# Tser3 = serial.Serial('COM3', 115200, timeout=None, stopbits=1)
 #         # COM17: T1
-Tser1 = serial.Serial('COM4', 115200, timeout=None, stopbits=1)
+# Tser1 = serial.Serial('COM4', 115200, timeout=None, stopbits=1)
 #         # COM20: T2
-Tser2 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
+# Tser2 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
+#
+#      # Jerry's Desktop##################################################
+Tser3 = serial.Serial('COM7', 115200, timeout=None, stopbits=1)
+Tser1 = serial.Serial('COM8', 115200, timeout=None, stopbits=1)
+Tser2 = serial.Serial('COM9', 115200, timeout=None, stopbits=1)
 #     ####################################################################
 
 #     elif stationNum == '2':
