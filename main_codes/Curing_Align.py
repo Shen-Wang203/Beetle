@@ -19,7 +19,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.x_solid = False
         self.y_solid = False
 
-        self.minutes = 23
+        self.minutes = 22
         self.step_Z = 0.001
         self.loss_curing_rec = []
         self.pos_curing_rec = []
@@ -34,6 +34,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.buffer = 0.03
         self.buffer_value_big = 0.03
         self.buffer_value_small = 0.015
+        self.lower_criteria = 0.015
         self.new_crit_buffer = 0.003
         # arduino temp read serial connection
         # self.Arduino = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
@@ -44,53 +45,28 @@ class Curing_Active_Alignment(XYscan.XYscan):
     def product_select(self, _product):
         if _product == 'VOA':
             self.product = 1
-            self.step_Z = 0.0005
-            self.stepScanCounts = 4
         elif _product == '1xN':
             self.product = 2
-            self.step_Z = 0.001
-            self.stepScanCounts = 4
         elif _product == 'Multimode':
             self.product = 3
+        
+    def product_parameters(self):
+        if self.product == 1:
+            logging.info('Product: VOA')
+            self.step_Z = 0.0005
+            self.stepScanCounts = 4
+        elif self.product == 2:
+            logging.info('Product: SS 1xN')
+            self.step_Z = 0.001
+            self.stepScanCounts = 4
+        elif self.product == 3:
+            logging.info('Product: MM 1xN')
             self.step_Z = 0.0005
             self.stepScanCounts = 8
-            self.buffer_value_big = 0.02
-            self.buffer_value_small = 0.01
-
-    def pre_curing_run(self, P0):   
-        print('Pre-Curing Active Alignment Starts')
-        logging.info(' ')
-        logging.info('++++++++++++++++++++++++++++++')
-        logging.info('Pre-Curing Active Alignment Starts')   
-        logging.info('++++++++++++++++++++++++++++++') 
-        P = P0[:]
-        # record append number 0 as an indicate to enter curing
-        self.loss_rec.append(0)
-        self.pos_rec.append(0)
-        self.pos_curing_rec.append(P0)
-        self.current_pos = P[:]
-        self.loss = []
-        self.wait_time = 0.2
-        
-        # Alignment after glue
-        self.fetch_loss()
-        self.loss_current_max = self.loss[-1]
-        # if loss is too low, exit the program
-        if self.loss[-1] < -30:
-            return False
-        if self.loss[-1] <= self.loss_criteria:
-            P = self.scanUpdate(P)
-            self.final_adjust = True
-            self.stepScanCounts = 4         
-            while max(self.loss) < self.loss_criteria and not self.error_flag:
-                P = self.Zstep(P)
-                if self.loss_target_check(self.loss[-1]):
-                    break
-                P = self.scanUpdate(P)
-        
-        print('Pre-Curing done. Loss criteria ', self.loss_criteria)
-        logging.info('Pre-Curing done. Loss criteria ' + str(self.loss_criteria))
-        return P
+            self.buffer_value_big = 0.01
+            self.buffer_value_small = 0.007
+            self.loss_criteria += 0.01
+            self.lower_criteria = 0.015
                    
     # End: time reach or loss doesn't change
     # Loss_criteria at curing should be 0.5 smaller than alignment, while still 0.5 smaller than spec
@@ -167,13 +143,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
         print('Curing Active Alignment Starts')
         logging.info(' ')
         logging.info('++++++++++++++++++++++++++++++')
+        self.product_parameters()
         logging.info('Curing Active Alignment Starts. Loss Critera ' + str(self.loss_criteria))
-        if self.product == 1:
-            logging.info('Product: VOA')
-        elif self.product == 2:
-            logging.info('Product: SS 1xN')
-        elif self.product == 3:
-            logging.info('Product: MM 1xN')
         now = datetime.datetime.now()
         logging.info(now.strftime("%Y-%m-%d %H:%M:%S")) 
         logging.info('++++++++++++++++++++++++++++++')
@@ -265,7 +236,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             if curing_active and self.loss[-1] < (self.loss_criteria - self.buffer):
                 self.buffer = 0
                 # Epoxy is almost solid, we don't want to move a lot so lower the criteria
-                if not self.epoxy_about_to_solid_flag and len(self.loss) > 80:
+                if not self.epoxy_about_to_solid_flag and len(self.loss) > 80 and self.later_time_flag:
                     self.epoxy_about_to_solid_flag = True
                     self.loss_criteria = self.loss_criteria - 0.005
                     print('Lower criteria for 0.005')
@@ -307,18 +278,18 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.loss = []
                 # if fail to meet criteria for 3 rounds, then we loose the criteria
                 if self.zcount == 1 and not self.later_time_flag and self.xycount >= 2:
-                    self.loss_criteria = self.loss_criteria - 0.015
+                    self.loss_criteria = self.loss_criteria - self.lower_criteria
                     # self.loss_current_max = self.loss_criteria + 0.02
-                    print('Lower criteria 0.015dB')
-                    logging.info('Lower criteria 0.015dB')
+                    print('Lower criteria ', self.lower_criteria)
+                    logging.info('Lower criteria ' + str(self.lower_criteria))
                     self.zcount = 0
                     # allow one more xy after lower criteria
                     self.xycount = 1
                 elif self.zcount == 1 and self.later_time_flag and self.xycount >= 1:
-                    self.loss_criteria = self.loss_criteria - 0.015
+                    self.loss_criteria = self.loss_criteria - self.lower_criteria
                     # self.loss_current_max = self.loss_criteria + 0.02
-                    print('Lower criteria 0.015dB')
-                    logging.info('Lower criteria 0.015dB')
+                    print('Lower criteria ', self.lower_criteria)
+                    logging.info('Lower criteria ' + str(self.lower_criteria))
                     self.zcount = 0 
                     self.xycount = 1                   
             elif curing_active and self.loss[-1] >= self.loss_criteria:

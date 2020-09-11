@@ -19,9 +19,9 @@ class CMDInputThread(QtCore.QThread):
         #Create a HPP fixture object
         self.HPP = BM.BackModel()
         # for Table 2
-        # self.HPP.set_Pivot(np.array([[5], [5], [42.7], [0]]))
+        # self.HPP.set_Pivot(np.array([[5], [5], [51.3], [0]]))
         # for Table 1
-        self.HPP.set_Pivot(np.array([[0], [0], [41], [0]]))
+        self.HPP.set_Pivot(np.array([[0], [0], [42], [0]]))
         self.hppcontrol = control.HPP_Control()
 
     #error_log, target_mm, target_counts, real_counts
@@ -238,13 +238,7 @@ class CMDInputThread(QtCore.QThread):
             # P0 = [0,0,140,-0.3,-0.4,0]
             P0 = self.currentPosition[:]
             xys.set_starting_point(P0)
-            
-            if StaticVar.productType == "VOA":
-                xys.product_select('VOA')
-            elif StaticVar.productType == "1xN":
-                xys.product_select('1xN') 
-            elif StaticVar.productType == 'Multimode':
-                xys.product_select('Multimode')             
+            xys.product_select(StaticVar.productType)           
             
             # xys.second_try = False
             xys.set_loss_criteria(StaticVar.Criteria)
@@ -289,6 +283,10 @@ class CMDInputThread(QtCore.QThread):
             # cure.set_loss_criteria(self.loss_max-0.02)
             # P1 = cure.pre_curing_run(self.currentPosition)
 
+            logging.info('')
+            logging.info('')
+            logging.info('')
+            logging.info('Back-Align Starts')
             xys = XYscan(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
             self.sig2.emit(3)
@@ -298,13 +296,15 @@ class CMDInputThread(QtCore.QThread):
             xys.set_starting_point(P0)
             # Use interp method when loss is larger than -8 to have more accurate xy scan
             xys.scanmode_threshold = -8
+            loss_buff = 0.02
             if StaticVar.productType == "VOA":
                 xys.product_select('VOA')
             elif StaticVar.productType == "1xN":
-                xys.product_select('1xN') 
+                xys.product_select('1xN')
             elif StaticVar.productType == 'Multimode':
                 xys.product_select('Multimode') 
-            xys.set_loss_criteria(self.loss_max-0.02)
+                loss_buff = 0.007
+            xys.set_loss_criteria(self.loss_max-loss_buff)
             xys.strategy = 2
             P1 = xys.autoRun() 
             self.currentPosition = P1[:]
@@ -319,12 +319,7 @@ class CMDInputThread(QtCore.QThread):
         elif commands == 'curing':
             cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             self.sig2.emit(4)
-            if StaticVar.productType == "VOA":
-                cure.product_select('VOA')
-            elif StaticVar.productType == "1xN":
-                cure.product_select('1xN')
-            elif StaticVar.productType == 'Multimode':
-                cure.product_select('Multimode') 
+            cure.product_select(StaticVar.productType)
             cure.set_loss_criteria(self.loss_max-0.01)
             P1 = cure.curing_run2(self.currentPosition)
             try:
