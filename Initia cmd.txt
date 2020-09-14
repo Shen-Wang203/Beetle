@@ -82,7 +82,7 @@ vel_gain 0.45/10000
 
 C6+B5:
 T1x
-vel_gain 0.5/10000
+vel_gain 0.4/10000
 T1y
 vel_gain 0.4/10000
 T3y

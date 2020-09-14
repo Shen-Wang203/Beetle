@@ -442,6 +442,11 @@ class XYscan:
         # print('Direction ', self.x_dir_trend)
         # logging.info('Direction ' + str(self.x_dir_trend))
         while True:
+            totalstep += 1
+            if self.xystep_limit and totalstep >= 4:
+                print('Reach step search limit')
+                logging.info('Reach step search limit')
+                return True 
             # x2 and x3 are in opposite direction as x1
             x1 = x1 - self.stepScanCounts * self.x_dir_trend
             x2 = x2 + self.stepScanCounts * self.x_dir_trend
@@ -464,16 +469,8 @@ class XYscan:
             # print(x1)  
             # logging.info(x1)
             self.save_loss_pos()
-            totalstep += 1
             if self.loss_target_check(self.loss[-1]):
                 return True
-            if self.xystep_limit and totalstep >= 4:
-                print('Reach step search limit')
-                logging.info('Reach step search limit')
-                x1 = x1 + self.stepScanCounts * self.x_dir_trend
-                x2 = x2 - self.stepScanCounts * self.x_dir_trend
-                x3 = x3 - self.stepScanCounts * self.x_dir_trend
-                break  
 
             if self.product == 1 or self.product == 2:
                 bound = self.loss_bound(loss_o)
@@ -586,6 +583,11 @@ class XYscan:
         # print('Direction ', self.y_dir_trend)
         # logging.info('Direction ' + str(self.y_dir_trend))
         while True:
+            totalstep += 1
+            if self.xystep_limit and totalstep >= 4:
+                print('Reach step search limit')
+                logging.info('Reach step search limit')
+                return True 
             y1 = y1 - self.stepScanCounts * self.y_dir_trend
             y2 = y2 - self.stepScanCounts * self.y_dir_trend
             y3 = y3 - self.stepScanCounts * self.y_dir_trend
@@ -605,16 +607,8 @@ class XYscan:
             # print(y1)  
             # logging.info(y1)
             self.save_loss_pos()
-            totalstep += 1
             if self.loss_target_check(self.loss[-1]):
                 return True
-            if self.xystep_limit and totalstep >= 4:
-                print('Reach step search limit')
-                logging.info('Reach step search limit')
-                y1 = y1 + self.stepScanCounts * self.y_dir_trend
-                y2 = y2 + self.stepScanCounts * self.y_dir_trend
-                y3 = y3 + self.stepScanCounts * self.y_dir_trend
-                break  
             
             if self.product == 1 or self.product == 2:
                 bound = self.loss_bound(loss_o)
@@ -1397,8 +1391,7 @@ class XYscan:
             # total 3 rounds of xyz search
             # this is to faster the process
             self.loss_fail_improve += 1
-            # update loss_criteria only when in final stages
-            if self.loss_fail_improve == 8 and self.final_adjust:
+            if self.loss_fail_improve == 8:
                 self.loss_fail_improve = 0
                 print('Failed to find better loss after tries, go back to current best')
                 logging.info('Failed to find better loss after tries, go back to current best')
@@ -1459,7 +1452,7 @@ class XYscan:
         self.pos.append(pos0)
         # print(pos0)    
         # logging.info(pos0)
-        while True:
+        while not self.error_flag:
             self.fetch_loss()
 
             if xy == 'x':

@@ -674,6 +674,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         cmdtext = self.textEdit_gotocommands.toPlainText()
         if cmdtext == 'clear' or cmdtext == '':
             cmdtext = 'clear'
+        elif cmdtext == 'debug':
+            cmdtext = 'debug'
         else:
             cmdtext = 'goto' + cmdtext
         self.runthread.setcmd(cmdtext)
@@ -1155,6 +1157,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
             self.label_IL.adjustSize()
             # update loss_target (or current criteira)
+            if StaticVar.IL > self.runthread.loss_max and StaticVar.IL < 0:
+                self.runthread.loss_max = StaticVar.IL
             self.label_loss_target.setText('IL Target: ' + str(round(self.runthread.loss_max, 3)))
             self.label_loss_target.adjustSize()
         # Camera view, refresh every 0.1s

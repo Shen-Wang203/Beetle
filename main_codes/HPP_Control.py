@@ -958,24 +958,25 @@ class HPP_Control:
 
     def debug(self):
         while True:
-            debug = input("Enter your debug commands (starting with Motor #): ")
+            debug = input("Enter your debug commands (starting with driver #): ")
             if debug == 'exit':
+                print('Exit Debug Mode')
                 break
             debug = debug + '\n'
             try:
-                motor_no = int(debug[0])
+                driver_no = int(debug[0])
             except:
-                print('Wrong input, start with motor #') 
+                print('Wrong input, start with driver #') 
                 continue   
             var = str(debug[1:])
-            if motor_no == 1 or motor_no == 2:
+            if driver_no == 1:
                 print(self.T1_send(var))
-            elif motor_no == 3 or motor_no == 4:
+            elif driver_no == 2:
                 print(self.T2_send(var))
-            elif motor_no == 5 or motor_no == 6:
+            elif driver_no == 3:
                 print(self.T3_send(var))
             else:
-                print('Wrong input, cannot identify motor #')
+                print('Wrong input, cannot identify driver #')
         return None
 
     # doublecheck will disengage the motor and do the check again
