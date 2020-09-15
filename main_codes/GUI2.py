@@ -731,6 +731,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         cmdtext = self.textEdit_gotocommands.toPlainText()
         if cmdtext == 'clear' or cmdtext == '':
             cmdtext = 'clear'
+        elif cmdtext == 'debug':
+            cmdtext = 'debug'
         else:
             cmdtext = 'goto' + cmdtext
         self.runthread.setcmd(cmdtext)
@@ -822,9 +824,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.runthread.sig2.connect(self.motor_status)
 
     def reset_click(self):
-        self.th.start()
-        self.cameraLabel.setEnabled(True)
-
         self.stop_PM = False
         logging.info(' ')
         logging.info('*************************')
@@ -856,9 +855,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def alignment_click(self):
         if StaticVar.IL > -25:
-            self.th.start()
-            self.cameraLabel.setEnabled(True)
-            
             self.stop_PM = False
             self.runthread.setcmd('align')
             self.runthread.start()
@@ -871,9 +867,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def back_align_click(self):
         if StaticVar.IL > -8:
-            self.th.start()
-            self.cameraLabel.setEnabled(True)
-
             self.stop_PM = False
             self.runthread.setcmd('backalign')
             self.runthread.start()
@@ -886,10 +879,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.time_count = 0 
 
     def curing_click(self):
-        # Disable camera during curing
-        self.th.stop()
-        self.cameraLabel.setEnabled(False)
-
         self.stop_PM = False
         self.runthread.setcmd('curing')
         self.runthread.start()
@@ -1209,10 +1198,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if self.timer_start:
                 # half second on interupt
                 totalseconds = self.time_count // 2
-                minute = totalseconds // 60
-                second = totalseconds % 60
-                # minute = self.time_count // 60
-                # second = self.time_count % 60
+                # Because of program time, one minute is 53 totalseconds here. 
+                minute = totalseconds // 53
+                second = totalseconds % 53
                 self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
                 self.label_timer.adjustSize()
                 if second == 0 and self.time_count % 2 == 0:
@@ -1231,6 +1219,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
             self.label_IL.adjustSize()
             # update loss_target (or current criteira)
+            if StaticVar.IL > self.runthread.loss_max and StaticVar.IL < 0:
+                self.runthread.loss_max = StaticVar.IL
             self.label_loss_target.setText('IL Target: ' + str(round(self.runthread.loss_max, 3)))
             self.label_loss_target.adjustSize()
         # Camera view, refresh every 0.1s
@@ -1531,7 +1521,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.cameraLabel.setPixmap(QPixmap.fromImage(scaled_img))
             print('update frame')
     
-    # start/stop timer
+    # start/stop camera
     def start_stop_cam(self):
         # if cam is stopped
         if not self.cam_on:

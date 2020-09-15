@@ -5,7 +5,7 @@ import logging
 from StaticVar import StaticVar
 
 
-PM_ADDR = str(12)
+PM_ADDR = '12'
 # POWER = str(0)
 rm = visa.ResourceManager()
 # PM = rm.open_resource('GPIB0::'+PM_ADDR+'::INSTR')

@@ -442,6 +442,11 @@ class XYscan:
         # print('Direction ', self.x_dir_trend)
         # logging.info('Direction ' + str(self.x_dir_trend))
         while True:
+            totalstep += 1
+            if self.xystep_limit and totalstep >= 4:
+                print('Reach step search limit')
+                logging.info('Reach step search limit')
+                return True 
             # x2 and x3 are in opposite direction as x1
             x1 = x1 - self.stepScanCounts * self.x_dir_trend
             x2 = x2 + self.stepScanCounts * self.x_dir_trend
@@ -464,18 +469,13 @@ class XYscan:
             # print(x1)  
             # logging.info(x1)
             self.save_loss_pos()
-            totalstep += 1
             if self.loss_target_check(self.loss[-1]):
                 return True
-            if self.xystep_limit and totalstep >= 4:
-                print('Reach step search limit')
-                logging.info('Reach step search limit')
-                x1 = x1 + self.stepScanCounts * self.x_dir_trend
-                x2 = x2 - self.stepScanCounts * self.x_dir_trend
-                x3 = x3 - self.stepScanCounts * self.x_dir_trend
-                break  
 
-            bound = self.loss_bound(loss_o)
+            if self.product == 1 or self.product == 2:
+                bound = self.loss_bound(loss_o)
+            elif self.product == 3:
+                bound = self.loss_bound_small(loss_o)
             diff = self.loss[-1] - loss_o
             # if descrease, change direction, go back to the old point
             # if increase or the same, continue
@@ -518,9 +518,14 @@ class XYscan:
                 trend = 2
                 same_count += 1
                 if same_count >= 2:
+                    # don't go back at this moment
+                    if not self.xystep_gobacktolast:
+                        logging.info('Same loss exit without going back')
+                        return True
                     x1 = x1 + self.stepScanCounts * self.x_dir_trend * 2
                     x2 = x2 - self.stepScanCounts * self.x_dir_trend * 2
                     x3 = x3 - self.stepScanCounts * self.x_dir_trend * 2
+                    logging.info('Same loss exit') 
                     break
         
         # apply backlash counter
@@ -578,6 +583,11 @@ class XYscan:
         # print('Direction ', self.y_dir_trend)
         # logging.info('Direction ' + str(self.y_dir_trend))
         while True:
+            totalstep += 1
+            if self.xystep_limit and totalstep >= 4:
+                print('Reach step search limit')
+                logging.info('Reach step search limit')
+                return True 
             y1 = y1 - self.stepScanCounts * self.y_dir_trend
             y2 = y2 - self.stepScanCounts * self.y_dir_trend
             y3 = y3 - self.stepScanCounts * self.y_dir_trend
@@ -597,18 +607,13 @@ class XYscan:
             # print(y1)  
             # logging.info(y1)
             self.save_loss_pos()
-            totalstep += 1
             if self.loss_target_check(self.loss[-1]):
                 return True
-            if self.xystep_limit and totalstep >= 4:
-                print('Reach step search limit')
-                logging.info('Reach step search limit')
-                y1 = y1 + self.stepScanCounts * self.y_dir_trend
-                y2 = y2 + self.stepScanCounts * self.y_dir_trend
-                y3 = y3 + self.stepScanCounts * self.y_dir_trend
-                break  
-
-            bound = self.loss_bound(loss_o)
+            
+            if self.product == 1 or self.product == 2:
+                bound = self.loss_bound(loss_o)
+            elif self.product == 3:
+                bound = self.loss_bound_small(loss_o)
             diff = self.loss[-1] - loss_o
             # if descrease, change direction, go back to the old point
             # if increase or the same, continue
@@ -651,9 +656,14 @@ class XYscan:
                 trend = 2
                 same_count += 1
                 if same_count >= 2:
+                    # don't go back at this moment
+                    if not self.xystep_gobacktolast:
+                        logging.info('Same loss exit without going back')
+                        return True
                     y1 = y1 + self.stepScanCounts * self.y_dir_trend * 2
                     y2 = y2 + self.stepScanCounts * self.y_dir_trend * 2
                     y3 = y3 + self.stepScanCounts * self.y_dir_trend * 2
+                    logging.info('Same loss exit') 
                     break              
 
         # apply backlash counter
@@ -1133,6 +1143,20 @@ class XYscan:
             bound = bound * 0.8
         return bound
 
+    def loss_bound_small(self, _loss_ref):
+        x = abs(_loss_ref)
+        if x < 0.7:
+            bound = 0.0007
+        elif x < 1.5:
+            bound = 0.003
+        elif x > 50:
+            bound = 4
+        else:
+            # 50->2.2; 40->1.12; 30->0.54; 20->0.27; 15->0.2; 10->0.15; 8->0.12; 6->0.1; 4->0.064; 3->0.046; 2->0.027; 1-> 0.005
+            bound = 0.00003*x**3 - 0.0011*x**2 + 0.0245*x - 0.018
+            bound = bound * 0.5
+        return bound
+
     def loss_bound_large(self, _loss_ref_z):
         x = abs(_loss_ref_z)
         if x < 0.5:
@@ -1224,10 +1248,12 @@ class XYscan:
             if self.experimental_Zstep_flag:
                 break
 
-            if self.product == 1  or self.product == 3:
+            if self.product == 1:
                 bound = self.loss_bound(loss_o)
             elif self.product == 2:
                 bound = self.loss_bound_large(loss_o)
+            elif self.product == 3:
+                bound = self.loss_bound_small(loss_o)
             diff = self.loss[-1] - loss_o
 
             # aggressive mode: Z goes forward until loss is 1.5 times of the initial value
@@ -1365,8 +1391,7 @@ class XYscan:
             # total 3 rounds of xyz search
             # this is to faster the process
             self.loss_fail_improve += 1
-            # update loss_criteria only when in final stages
-            if self.loss_fail_improve == 8 and self.final_adjust:
+            if self.loss_fail_improve == 8:
                 self.loss_fail_improve = 0
                 print('Failed to find better loss after tries, go back to current best')
                 logging.info('Failed to find better loss after tries, go back to current best')
@@ -1427,7 +1452,7 @@ class XYscan:
         self.pos.append(pos0)
         # print(pos0)    
         # logging.info(pos0)
-        while True:
+        while not self.error_flag:
             self.fetch_loss()
 
             if xy == 'x':

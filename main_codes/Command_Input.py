@@ -19,10 +19,11 @@ class CMDInputThread(QtCore.QThread):
         #Create a HPP fixture object
         self.HPP = BM.BackModel()
         # for Table 2
-        # self.HPP.set_Pivot(np.array([[5], [5], [42.7], [0]]))
+        # self.HPP.set_Pivot(np.array([[5], [5], [51.3], [0]]))
         # for Table 1
-        self.HPP.set_Pivot(np.array([[0], [0], [41], [0]]))
+        self.HPP.set_Pivot(np.array([[0], [0], [42], [0]]))
         self.hppcontrol = control.HPP_Control()
+        self.runobject = ''
 
     #error_log, target_mm, target_counts, real_counts
     sig1 = QtCore.pyqtSignal(str, list, list, list, bool)
@@ -44,6 +45,9 @@ class CMDInputThread(QtCore.QThread):
         self.enter_commands(self.cmd)
 
     def stop(self):
+        # make sure all the loops inside xyscan or curing are closed
+        self.runobject.error_flag = True
+        time.sleep(0.2)
         self.terminate()
 
     logfilename = 'runlog.log'
@@ -231,101 +235,92 @@ class CMDInputThread(QtCore.QThread):
             self.currentPosition = target_mm[:]
 
         elif commands == 'align':
-            xys = XYscan(self.HPP, self.hppcontrol)
+            self.runobject = XYscan(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
             self.sig2.emit(2)
             # P0 = [0,0,140,-0.3,-0.4,0]
             P0 = self.currentPosition[:]
-            xys.set_starting_point(P0)
+            self.runobject.set_starting_point(P0)
+            self.runobject.product_select(StaticVar.productType)           
             
-            if StaticVar.productType == "VOA":
-                xys.product_select('VOA')
-            elif StaticVar.productType == "1xN":
-                xys.product_select('1xN') 
-            elif StaticVar.productType == 'Multimode':
-                xys.product_select('Multimode')             
-            
-            # xys.second_try = False
-            xys.set_loss_criteria(StaticVar.Criteria)
-            # xys.set_loss_criteria(-0.47)
+            # self.runobject.second_try = False
+            self.runobject.set_loss_criteria(StaticVar.Criteria)
             # 1 is step, 2 is interp
-            # xys.strategy = 1
-            xys.strategy = 2
-            P1 = xys.autoRun()           
+            # self.runobject.strategy = 1
+            self.runobject.strategy = 2
+            P1 = self.runobject.autoRun()           
             self.currentPosition = P1[:]
             target_mm = P1[:]
             real_counts = control.Tcounts_real
             # we don't use target_counts in gui now so just set it as a random value
             target_counts = [0,0,0,0,0,0]
-            self.loss_max = xys.loss_current_max
-            if xys.meet_crit:
+            self.loss_max = self.runobject.loss_current_max
+            if self.runobject.meet_crit:
                 self.sig2.emit(6)
                 time.sleep(0.3)
             else:
-                StaticVar.bestloss = xys.loss_current_max
+                StaticVar.bestloss = self.runobject.loss_current_max
                 self.sig2.emit(7)
                 time.sleep(0.3)
 
+            # After alignment, back 10um for back-align
+            self.currentPosition[2] = self.currentPosition[2] - 0.01
+            self.runobject.send_to_hpp(self.currentPosition, doublecheck=True)
+
             # file1 = open("pos.txt","w+")
             # file2 = open("loss.txt","w+")
-            # a = xys.pos_rec[:]
-            # b = xys.loss_rec[:]
+            # a = self.runobject.pos_rec[:]
+            # b = self.runobject.loss_rec[:]
             # for i in range(0,len(a)):
             #     file1.writelines(str(a[i]) + '\n')
             # for i in range(0,len(b)):
             #     file2.writelines(str(b[i]) + '\n')       
 
-            del xys
+            del self.runobject
 
         elif commands == 'backalign':
-            # cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
-            # self.hppcontrol.engage_motor()
-            # self.sig2.emit(3)
-            # if StaticVar.productType == "VOA":
-            #     cure.product_select('VOA')
-            # elif StaticVar.productType == "1xN":
-            #     cure.product_select('1xN')
-            # cure.set_loss_criteria(self.loss_max-0.02)
-            # P1 = cure.pre_curing_run(self.currentPosition)
-
-            xys = XYscan(self.HPP, self.hppcontrol)
+            logging.info('')
+            logging.info('')
+            logging.info('')
+            logging.info('Back-Align Starts')
+            self.runobject = XYscan(self.HPP, self.hppcontrol)
             self.hppcontrol.engage_motor()
             self.sig2.emit(3)
             P0 = self.currentPosition[:]
-            # NO back, it will bring gap between lens cap and sleeve
-            P0[2] = P0[2] - 0.01
-            xys.set_starting_point(P0)
             # Use interp method when loss is larger than -8 to have more accurate xy scan
-            xys.scanmode_threshold = -8
+            self.runobject.scanmode_threshold = -8
+            loss_buff = 0.02
             if StaticVar.productType == "VOA":
-                xys.product_select('VOA')
+                self.runobject.product_select('VOA')
+                # NO back for 1xN, it will bring gap between lens cap and sleeve
+                # P0[2] = P0[2] - 0.01
             elif StaticVar.productType == "1xN":
-                xys.product_select('1xN') 
+                self.runobject.product_select('1xN')
             elif StaticVar.productType == 'Multimode':
-                xys.product_select('Multimode') 
-            xys.set_loss_criteria(self.loss_max-0.02)
-            xys.strategy = 2
-            P1 = xys.autoRun() 
+                self.runobject.product_select('Multimode') 
+                loss_buff = 0.006
+            self.runobject.set_starting_point(P0)
+            self.runobject.set_loss_criteria(self.loss_max-loss_buff)
+            self.runobject.strategy = 2
+            P1 = self.runobject.autoRun() 
             self.currentPosition = P1[:]
             target_mm = P1[:]
             real_counts = control.Tcounts_real
             # we don't use target_counts in gui now so just set it as a random value
             target_counts = [0,0,0,0,0,0]
-            # self.loss_max = xys.loss_current_max
+            # self.loss_max = self.runobject.loss_current_max
 
-            del xys
+            del self.runobject
 
         elif commands == 'curing':
-            cure = Curing_Active_Alignment(self.HPP, self.hppcontrol)
+            self.runobject = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             self.sig2.emit(4)
-            if StaticVar.productType == "VOA":
-                cure.product_select('VOA')
-            elif StaticVar.productType == "1xN":
-                cure.product_select('1xN')
-            elif StaticVar.productType == 'Multimode':
-                cure.product_select('Multimode') 
-            cure.set_loss_criteria(self.loss_max-0.01)
-            P1 = cure.curing_run2(self.currentPosition)
+            self.runobject.product_select(StaticVar.productType)
+            if StaticVar.productType == 'Multimode':
+                self.runobject.set_loss_criteria(self.loss_max-0.005)
+            else:
+                self.runobject.set_loss_criteria(self.loss_max-0.01)
+            P1 = self.runobject.curing_run2(self.currentPosition)
             try:
                 self.currentPosition = P1[:]
                 target_mm = P1[:]
@@ -335,7 +330,7 @@ class CMDInputThread(QtCore.QThread):
             # we don't use target_counts in gui now so just set it as a random value
             target_counts = [0,0,0,0,0,0]
 
-            del cure
+            del self.runobject
 
         elif commands == 'disarm':
             target_mm = self.currentPosition[:]
