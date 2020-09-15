@@ -21,7 +21,9 @@ class CMDInputThread(QtCore.QThread):
         # for Table 2
         # self.HPP.set_Pivot(np.array([[5], [5], [51.3], [0]]))
         # for Table 1
-        self.HPP.set_Pivot(np.array([[0], [0], [42], [0]]))
+        # self.HPP.set_Pivot(np.array([[0], [0], [42], [0]]))
+        # for Table 3
+        self.HPP.set_Pivot(np.array([[0], [0], [52], [0]]))
         self.hppcontrol = control.HPP_Control()
         self.runobject = ''
 
