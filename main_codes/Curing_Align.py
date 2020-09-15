@@ -228,7 +228,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     return P
             if curing_active and len(self.loss) > 24:
                 if self.product == 3:
-                    self.buffer = 0.005
+                    self.buffer = 0.004
                 else:
                     self.buffer = 0.007
             elif curing_active and len(self.loss) == 24:

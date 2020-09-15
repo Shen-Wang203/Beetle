@@ -45,9 +45,12 @@ class CMDInputThread(QtCore.QThread):
         self.enter_commands(self.cmd)
 
     def stop(self):
-        # make sure all the loops inside xyscan or curing are closed
-        self.runobject.error_flag = True
-        time.sleep(0.2)
+        try:
+            # make sure all the loops inside xyscan or curing are closed
+            self.runobject.error_flag = True
+        except:
+            pass
+        # time.sleep(0.2)
         self.terminate()
 
     logfilename = 'runlog.log'

@@ -101,7 +101,6 @@ class XYscan:
 
     def autoRun(self):
         print('A New Alignment Starts')
-        logging.info(' ')
         logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
         logging.info('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
         logging.info('A New Alignment Starts, Criteria '+ str(self.loss_criteria)) 
@@ -486,24 +485,17 @@ class XYscan:
                     print('Exit without going back')
                     logging.info('Exit without going back')
                     return True
-                
+                # go back to the old point
+                x1 = x1 + self.stepScanCounts * self.x_dir_trend
+                x2 = x2 - self.stepScanCounts * self.x_dir_trend
+                x3 = x3 - self.stepScanCounts * self.x_dir_trend
                 trend -= 1
                 # if trend != 0, then exit
                 if trend:
-                    # go back to the overall best point
-                    grid = [*range(int(min(self.pos)), int(max(self.pos))+1, 1)]  
-                    s = interpolation.barycenteric_interp(self.pos, self.loss, grid)
-                    x1 = grid[s.index(max(s))]
-                    x2 = -x1 + x1_o + x2_o
-                    x3 = -x1 + x1_o + x3_o
                     print('Over')
                     logging.info('Over')
                     totalstep -= 1
                     break
-                # go back to the previous point
-                x1 = x1 + self.stepScanCounts * self.x_dir_trend
-                x2 = x2 - self.stepScanCounts * self.x_dir_trend
-                x3 = x3 - self.stepScanCounts * self.x_dir_trend
                 self.x_dir_trend = -self.x_dir_trend    
                 loss_o = self.loss[-1]    
                 print('Change direction')
@@ -624,24 +616,17 @@ class XYscan:
                     print('Exit without going back')
                     logging.info('Exit without going back')
                     return True              
-                
-                trend -= 1
-                # if trend != 0, exit
-                if trend:
-                    # go back to the overall best point using interp method
-                    grid = [*range(int(min(self.pos)), int(max(self.pos))+1, 1)]  
-                    s = interpolation.barycenteric_interp(self.pos, self.loss, grid)
-                    y1 = grid[s.index(max(s))]
-                    y2 = y1 - y1_o + y2_o
-                    y3 = y1 - y1_o + y3_o
-                    print('Over')
-                    logging.info('Over')
-                    totalstep -= 1
-                    break
                 # go back to the previous point
                 y1 = y1 + self.stepScanCounts * self.y_dir_trend
                 y2 = y2 + self.stepScanCounts * self.y_dir_trend
                 y3 = y3 + self.stepScanCounts * self.y_dir_trend
+                trend -= 1
+                # if trend != 0, exit
+                if trend:
+                    print('Over')
+                    logging.info('Over')
+                    totalstep -= 1
+                    break
                 self.y_dir_trend = -self.y_dir_trend    
                 loss_o = self.loss[-1]   
                 print('Change direction')
