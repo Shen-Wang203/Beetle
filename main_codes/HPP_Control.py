@@ -172,8 +172,6 @@ backlash_counter = [0,0,0,0,0,0]
 class HPP_Control:
     def __init__(self):    
         # counter backlash, extra counts
-        # Beetle #0 use 4 backlash
-        # Beetle #2, use 0 backlash
         self.backlash = 0
         self.limit = []
         self.A = self.define_fixture()
@@ -613,7 +611,7 @@ class HPP_Control:
         var1 = 'w axis1.encoder.error 0' + '\n'
         self.T123_send_only(var0, var1)
         print('Errors are cleared')
-        error_log = 'Errors are cleared'
+        # error_log = 'Errors are cleared'
 
     def calibration(self):
         # All send once
@@ -984,8 +982,6 @@ class HPP_Control:
         global error_log
         global Tcounts_real
         _Tcounts = self.translate_to_counts(Tmm) 
-        # print('Commands counts: ', _Tcounts)
-        # 
         for i in range(0,3):
             if doublecheck:
                 self.engage_motor()
@@ -1004,6 +1000,8 @@ class HPP_Control:
                     break
             if timeout >= 49:
                 self.disengage_motor()
+                print('Returned counts ', Tcounts_real)
+                print('Target counts ', _Tcounts)
                 for i in range(0,6):
                     if abs(_Tcounts[i] - Tcounts_real[i]) > tolerance:
                         print('Motor ' + str(i+1) + ' Timeout Error')
