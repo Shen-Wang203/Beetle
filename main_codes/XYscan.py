@@ -1376,7 +1376,7 @@ class XYscan:
             # total 3 rounds of xyz search
             # this is to faster the process
             self.loss_fail_improve += 1
-            if self.loss_fail_improve == 8:
+            if self.loss_fail_improve == 8 or (self.loss_fail_improve >= 5 and self.scanmode == 'c'):
                 self.loss_fail_improve = 0
                 print('Failed to find better loss after tries, go back to current best')
                 logging.info('Failed to find better loss after tries, go back to current best')
