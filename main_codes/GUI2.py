@@ -1209,11 +1209,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             elif not self.stop_PM:
                 # During alignment/curing, don't run this PM read because the alignment will update StaticVar.IL, so
                 # there is no need to read again
-                
-                ##################### JERRY MESSED HERE #########################
-                pass
-                # PM.power_read_noprint()
-                ##################### JERRY MESSED HERE #########################
+                PM.power_read_noprint()
                 
             # update IL
             self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")
@@ -1273,12 +1269,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 centerY = height//2
                 x1 = centerX - 250
                 x2 = centerX + 250
-                y1 = centerY -150
-                y2 = centerY + 150
+                y1 = centerY + 100
+                y2 = centerY + 400
 
                 original_frame = cv2.cvtColor(original_frame, cv2.COLOR_RGB2GRAY)
-                # ROI_frame = original_frame[y1:y2, x1:x2]
-                ROI_frame = original_frame[centerY-150:centerY+150, centerX-250:centerX+250]
+                ROI_frame = original_frame[y1:y2, x1:x2]
+                # ROI_frame = original_frame[centerY-150:centerY+150, centerX-250:centerX+250]
                 original_frame = cv2.cvtColor(original_frame, cv2.COLOR_GRAY2RGB)
 
                 # temp = cv2.adaptiveThreshold(ROI_frame, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 21, 15)
@@ -1473,13 +1469,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 # Draw vertical line of the cross hair
                 cv2.line(original_frame, (centerX, 0), (centerX, height), (0, 255, 0), thickness=5)
                 # Draw horizontal line of the cross hair
-                cv2.line(original_frame, (0, centerY), (width, centerY), (0, 255, 0), thickness=5)
+                cv2.line(original_frame, (0, centerY+250), (width, centerY+250), (0, 255, 0), thickness=5)
 
                 ferrule_line_length = round(ferrule_line_length)
                 lens_line_length = round((lens_line_length))
                 ferrule_delta_angle = round(ferrule_delta_angle, 2)
                 lens_delta_angle = round(lens_delta_angle, 2)
-                print(ferrule_angle, lens_angle, ferrule_line_length, lens_line_length, ferrule_lines_count, lens_lines_count, ferrule_delta_angle, lens_delta_angle)
+                # print(ferrule_angle, lens_angle, ferrule_line_length, lens_line_length, ferrule_lines_count, lens_lines_count, ferrule_delta_angle, lens_delta_angle)
                 ferrule_angle = round(ferrule_angle*2)/2
                 lens_angle = round(lens_angle*2)/2
 

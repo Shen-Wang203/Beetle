@@ -621,7 +621,7 @@ class HPP_Control:
         var1 = 'w axis1.encoder.error 0' + '\n'
         self.T123_send_only(var0, var1)
         print('Errors are cleared')
-        error_log = 'Errors are cleared'
+        error_log = ''
 
     def calibration(self):
         # All send once
@@ -1012,6 +1012,8 @@ class HPP_Control:
                     break
             if timeout >= 49:
                 self.disengage_motor()
+                print('Returned Counts ', Tcounts_real)
+                print('Target Counts ', _Tcounts)
                 for i in range(0,6):
                     if abs(_Tcounts[i] - Tcounts_real[i]) > tolerance:
                         print('Motor ' + str(i+1) + ' Timeout Error')

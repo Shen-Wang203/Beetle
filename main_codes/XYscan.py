@@ -1019,6 +1019,8 @@ class XYscan:
             if timeout >= 49:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
+                print('Returned Counts ', control.Tcounts_real)
+                print('Target Counts ', [a1, a2, a3], ' ', xy)
                 if not self.final_adjust:
                     return False
             if self.final_adjust:

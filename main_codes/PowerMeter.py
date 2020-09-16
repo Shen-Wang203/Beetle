@@ -8,10 +8,8 @@ from StaticVar import StaticVar
 PM_ADDR = '12'
 # POWER = str(0)
 rm = visa.ResourceManager()
-# PM = rm.open_resource('GPIB0::'+PM_ADDR+'::INSTR')
+PM = rm.open_resource('GPIB0::'+PM_ADDR+'::INSTR')
 
-# PW_ref = float(PM.query('sens1:pow:ref? toref'))
-# print(PW_ref)
 file1 = open("refs.txt","r")
 StaticVar.PW_ref = float(file1.read())
 file1.close()
