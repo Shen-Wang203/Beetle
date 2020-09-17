@@ -30,7 +30,7 @@ T2
 odrivetool --serial-number 2061397D4D4D
 T3
 odrivetool --serial-number 207B396A4D4D
-Potential Issues: T2x encoder signal is none; some Z signals doesn't work
+Potential Issues:
 
 Control Box #3:
 T1
@@ -78,11 +78,12 @@ pos_gain 950
 vel_gain 0.4/10000
 T1y
 pos_gain 6000
-vel_gain 0.45/10000
+vel_gain 0.4/10000
 
 C6+B5:
 T1x
 vel_gain 0.4/10000
+vel_limit = 230000
 T1y
 vel_gain 0.4/10000
 T3y
@@ -90,6 +91,10 @@ vel_gain 0.4/10000
 T2x
 vel_gain 0.4/10000
 
+C2+B2:
+For all
+vel_limit = 200000
+vel_gain = 0.6/10000
 
 
 %Find the serial number

@@ -914,11 +914,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def product_choose(self):
         if self.productComboBox.currentIndex() == 0:
-            StaticVar.productType = "1xN"
+            StaticVar.productType = "SM1xN"
         elif self.productComboBox.currentIndex() == 1:
-            StaticVar.productType = "VOA"
+            StaticVar.productType = "SMVOA"
         elif self.productComboBox.currentIndex() == 2:
-            StaticVar.productType = 'Multimode'
+            StaticVar.productType = 'MM1xN'
 
     def criteria_choose(self):
         if self.criteriaComboBox.currentIndex() == 0:

@@ -43,11 +43,11 @@ class Curing_Active_Alignment(XYscan.XYscan):
     # Product 2: 1xN
     # Overwrite function, step_z is determined by products
     def product_select(self, _product):
-        if _product == 'VOA':
+        if _product == 'SMVOA':
             self.product = 1
-        elif _product == '1xN':
+        elif _product == 'SM1xN':
             self.product = 2
-        elif _product == 'Multimode':
+        elif _product == 'MM1xN':
             self.product = 3
         
     def product_parameters(self):
@@ -56,14 +56,14 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.step_Z = 0.0005
             self.stepScanCounts = 4
         elif self.product == 2:
-            logging.info('Product: SS 1xN')
+            logging.info('Product: SM 1xN')
             self.step_Z = 0.001
             self.stepScanCounts = 4
         elif self.product == 3:
             logging.info('Product: MM 1xN')
             self.step_Z = 0.0005
             self.stepScanCounts = 8
-            self.buffer_value_big = 0.01
+            self.buffer_value_big = 0.007
             self.buffer_value_small = 0.007
             self.lower_criteria = 0.012
                    

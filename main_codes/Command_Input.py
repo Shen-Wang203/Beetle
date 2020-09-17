@@ -293,14 +293,14 @@ class CMDInputThread(QtCore.QThread):
             # Use interp method when loss is larger than -8 to have more accurate xy scan
             self.runobject.scanmode_threshold = -8
             loss_buff = 0.02
-            if StaticVar.productType == "VOA":
-                self.runobject.product_select('VOA')
+            if StaticVar.productType == "SMVOA":
+                self.runobject.product_select('SMVOA')
                 # NO back for 1xN, it will bring gap between lens cap and sleeve
                 # P0[2] = P0[2] - 0.01
-            elif StaticVar.productType == "1xN":
-                self.runobject.product_select('1xN')
-            elif StaticVar.productType == 'Multimode':
-                self.runobject.product_select('Multimode') 
+            elif StaticVar.productType == "SM1xN":
+                self.runobject.product_select('SM1xN')
+            elif StaticVar.productType == 'MM1xN':
+                self.runobject.product_select('MM1xN') 
                 loss_buff = 0.006
             self.runobject.set_starting_point(P0)
             self.runobject.set_loss_criteria(self.loss_max-loss_buff)
@@ -319,7 +319,7 @@ class CMDInputThread(QtCore.QThread):
             self.runobject = Curing_Active_Alignment(self.HPP, self.hppcontrol)
             self.sig2.emit(4)
             self.runobject.product_select(StaticVar.productType)
-            if StaticVar.productType == 'Multimode':
+            if StaticVar.productType == 'MM1xN':
                 self.runobject.set_loss_criteria(self.loss_max-0.005)
             else:
                 self.runobject.set_loss_criteria(self.loss_max-0.01)

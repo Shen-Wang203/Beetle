@@ -82,17 +82,17 @@ class XYscan:
     # Product 1: VOA
     # Product 2: 1xN
     def product_select(self, _product):
-        if _product == 'VOA':
+        if _product == 'SMVOA':
             self.product = 1
             self.interpmode_threshold = -2
             self.stepmode_threshold = -2            
             print('VOA has been selected')
             logging.info('VOA has been selected')
-        elif _product == '1xN':
+        elif _product == 'SM1xN':
             self.product = 2
-            print('SS 1xN has been selected')
-            logging.info('SS 1xN has been selected')     
-        elif _product == 'Multimode':
+            print('SM 1xN has been selected')
+            logging.info('SM 1xN has been selected')     
+        elif _product == 'MM1xN':
             self.product = 3      
             self.scanmode_threshold = -3  
             self.interpmode_threshold = -1.5   
@@ -302,16 +302,8 @@ class XYscan:
                 # x1_final = self.pos[index] * 0.75 + self.pos[index + 1] * 0.25
                 x2_final = -x1_final + x1start + x2start
                 x3_final = -x1_final + x1start + x3start
-                self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 'p')
-                # check on target, need to check all of them
-                timeout = 0
-                while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
-                    time.sleep(0.2)
-                    timeout += 1
-                    if timeout > 100:
-                        print('Movement Timeout Error')
-                        logging.info('Movement Timeout Error')
-                        return False
+                if not self.gotoxy(x1_final, x2_final, x3_final, xy='x', doublecheck=False, mode='p'):
+                    return False
                 # if i = 0, x_dir = _dir; if i = 1, x_dir = -_dir
                 self.x_dir_trend = self.x_dir_trend * (-2 * i + 1)
                 self.update_current_pos('x', x1_final, X1_counts)
@@ -369,16 +361,8 @@ class XYscan:
                 # y1_final = self.pos[index] * 0.75 + self.pos[index + 1] * 0.25
                 y2_final = y1_final - y1start + y2start
                 y3_final = y1_final - y1start + y3start
-                self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 'p')
-                # check on target, check all of them
-                timeout = 0
-                while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
-                    time.sleep(0.2)  
-                    timeout += 1
-                    if timeout > 100:
-                        print('Movement Timeout Error')
-                        logging.info('Movement Timeout Error')
-                        return False
+                if not self.gotoxy(y1_final, y2_final, y3_final, xy='y', doublecheck=False, mode='p'):
+                    return False
                 # if i = 0, y_dir = _dir; if i = 1, y_dir = -_dir
                 self.y_dir_trend = self.y_dir_trend * (-2 * i + 1)
                 self.update_current_pos('y', y1_final, Y1_counts)
@@ -994,7 +978,7 @@ class XYscan:
             else:
                 self.hppcontrol.Tx_send_only(a1, a2, a3, mode)
             for timeout in range(0, 50):
-                time.sleep(0.07)
+                time.sleep(0.1)
                 if xy == 'y':
                     if self.hppcontrol.Ty_on_target(a1, a2, a3, self.tolerance):
                         break
@@ -1182,8 +1166,8 @@ class XYscan:
         self.save_loss_pos()
         success_num = 0
         loss_o = self.loss[-1]
-        if self.experimental_zstep_count and self.product == 2 and loss_o < -2 and loss_o > -16:
-            step = self.experimental_Zstep_SS1xN(loss_o)
+        if self.experimental_zstep_count and self.product == 3 and loss_o < -2 and loss_o > -16:
+            step = self.experimental_Zstep(loss_o)
             print('Experimental Z stepping')
             logging.info('Experimental Z stepping')
             self.experimental_Zstep_flag = True
@@ -1194,10 +1178,12 @@ class XYscan:
             step_ref = round(abs(self.loss[-1]), 1) * 0.001
             # give step size an amplifier
             step = step_ref * self.Z_amp
-            if step < 0.0015 and (self.product == 1 or self.product == 3):
+            if step < 0.0015 and self.product == 1:
                 step = 0.0015
-            elif step < 0.002 and self.product == 2:
+            elif step < 0.0025 and self.product == 2:
                 step = 0.0025
+            elif step < 0.002 and self.product == 3:
+                step = 0.002
         _direc0 = 1
         _direc1 = 1
         _z0 = P1[2]
@@ -1344,20 +1330,26 @@ class XYscan:
     # This function determines at each loss, what's the distance to the min loss position in Z
     # l: is the loss; z is the Z_current - Z_minLoss
     # the function returns the left Z distance given the current loss based on lots of previous experiments
-    def experimental_Zstep_SS1xN(self, _loss):
+    def experimental_Zstep(self, _loss):
         z1 = [-0.36856, -0.23616, -0.18416, -0.13621, -0.08083, -0.05103, -0.03809, -0.02429, -0.02077, -0.01426, -0.00769]
         l = [-16,-12,-10,-8,-5,-3,-2,-1,-0.8,-0.5,-0.3]
         s = interpolation.linear_interp(l, z1, [_loss])
         if _loss < -1:
-            # SS 1x1
+            # SM 1x1
             # return -round(s[0], 3)-0.025
-            # SS 1xN
-            return -round(s[0], 3)-0.045
+            if self.product == 2:
+                # SM 1xN
+                return -round(s[0], 3)-0.045
+            elif self.product == 3:
+                return -round(s[0], 3)+0.03
         else:
-            # SS 1x1
+            # SM 1x1
             # return -round(s[0], 3)-0.015
-            # SS 1xN
-            return -round(s[0], 3)-0.035
+            if self.product == 2:
+                # SM 1xN
+                return -round(s[0], 3)-0.035
+            elif self.product == 3:
+                return -round(s[0], 3)
 
     def check_abnormal_loss(self, loss0):
         if loss0 > self.loss_current_max + 0.005:

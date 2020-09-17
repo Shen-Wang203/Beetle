@@ -1,6 +1,8 @@
 TODO Bugs:
 If motor timeout, detect it and restart
-Preheating rod driver
+Preheating rod driver, get a new and cheaper one
+Backalign if failed, display message to try again
+
 
 Jerry
 GUI pending:
