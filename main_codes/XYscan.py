@@ -1357,7 +1357,7 @@ class XYscan:
             self.pos_current_max = self.current_pos[:]
             self.loss_fail_improve = 0
         else:
-            if (loss0 < (4 * self.loss_current_max) and loss0 < -10) or loss0 < -55:
+            if (loss0 < (4 * self.loss_current_max) and loss0 < -10) or loss0 < -45:
                 print('Unexpected High Loss, End Program: ', str(loss0))
                 logging.info('Unexpected High Loss, End Program: ' + str(loss0))
                 self.hppcontrol.engage_motor()

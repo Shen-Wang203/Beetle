@@ -65,7 +65,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.stepScanCounts = 8
             self.buffer_value_big = 0.007
             self.buffer_value_small = 0.007
-            self.lower_criteria = 0.012
+            self.lower_criteria = 0.01
                    
     # End: time reach or loss doesn't change
     # Loss_criteria at curing should be 0.5 smaller than alignment, while still 0.5 smaller than spec
@@ -235,10 +235,15 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 print('Smaller the buffer')
                 logging.info('Smaller the buffer')
 
+            if curing_active and self.later_time_flag and self.loss[-1] < -3:
+                self.xystep_limit = False
+            elif curing_active and self.later_time_flag and self.loss[-1] > (self.loss_criteria+0.1):
+                self.xystep_limit = True
+
             if curing_active and self.loss[-1] < (self.loss_criteria - self.buffer):
                 self.buffer = 0
                 # Epoxy is almost solid, we don't want to move a lot so lower the criteria
-                if not self.epoxy_about_to_solid_flag and len(self.loss) > 80 and self.later_time_flag:
+                if not self.epoxy_about_to_solid_flag and len(self.loss) > 80 and self.later_time_flag and self.product != 3:
                     self.epoxy_about_to_solid_flag = True
                     self.loss_criteria = self.loss_criteria - 0.005
                     print('Lower criteria for 0.005')

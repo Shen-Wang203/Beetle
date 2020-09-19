@@ -1,0 +1,2526 @@
+Invar jig short ones
+120C 2min 190C 2min no preheat
+INFO:root:++++++++++++++++++++++++++++++
+INFO:root:Curing Active Alignment Starts. Loss Critera -0.2642
+INFO:root:2020-08-27 11:15:11
+INFO:root:++++++++++++++++++++++++++++++
+INFO:root:-0.2727
+INFO:root:-0.2791
+INFO:root:-0.2676
+INFO:root:-0.2692
+INFO:root:-0.2677
+INFO:root:-0.2674
+INFO:root:-0.2671
+INFO:root:-0.268
+INFO:root:-0.2678
+INFO:root:-0.2666
+INFO:root:-0.2676
+INFO:root:-0.2675
+INFO:root:-0.268
+INFO:root:-0.2677
+INFO:root:-0.2675
+INFO:root:-0.2685
+INFO:root:-0.2702
+INFO:root:-0.2702
+INFO:root:-0.2717
+INFO:root:-0.2735
+INFO:root:-0.2745
+INFO:root:-0.2756
+INFO:root:-0.2768
+INFO:root:-0.2796
+INFO:root:-0.28
+INFO:root:-0.2817
+INFO:root:-0.2845
+INFO:root:-0.2863
+INFO:root:-0.2874
+INFO:root:-0.291
+INFO:root:-0.296
+INFO:root:Scan update starts at: 
+INFO:root:[0.0208, -0.01125, 140.7979, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2988
+INFO:root:-0.3523
+INFO:root:Change direction
+INFO:root:-0.3403
+INFO:root:-0.4705
+INFO:root:Over
+INFO:root:-0.3287
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3266
+INFO:root:-0.3848
+INFO:root:Change direction
+INFO:root:-0.2924
+INFO:root:-0.2784
+INFO:root:-0.3152
+INFO:root:Over
+INFO:root:-0.278
+INFO:root:Scan update ends at: 
+INFO:root:[0.0209, -0.01095, 140.7979, 1.4, 0.0, 0.0]
+INFO:root:-0.2766
+INFO:root:Scan update starts at: 
+INFO:root:[0.0209, -0.01095, 140.7979, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2767
+INFO:root:-0.2946
+INFO:root:Change direction
+INFO:root:-0.3207
+INFO:root:Over
+INFO:root:-0.2886
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2918
+INFO:root:-0.4468
+INFO:root:Change direction
+INFO:root:-0.2745
+INFO:root:-0.3299
+INFO:root:Over
+INFO:root:-0.3093
+INFO:root:Scan update ends at: 
+INFO:root:[0.0208, -0.01085, 140.7979, 1.4, 0.0, 0.0]
+INFO:root:-0.312
+INFO:root:Z Back 1.0um
+INFO:root:[0.0208, -0.01085, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:-0.3419
+INFO:root:Scan update starts at: 
+INFO:root:[0.0208, -0.01085, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3445
+INFO:root:-0.553
+INFO:root:Change direction
+INFO:root:-0.3253
+INFO:root:-0.3183
+INFO:root:-0.3327
+INFO:root:Over
+INFO:root:-0.3073
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.311
+INFO:root:-0.2706
+INFO:root:-0.2866
+INFO:root:Over
+INFO:root:-0.2714
+INFO:root:Scan update ends at: 
+INFO:root:[0.0206, -0.01055, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:-0.2779
+INFO:root:Scan update starts at: 
+INFO:root:[0.0206, -0.01055, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2773
+INFO:root:-0.2694
+INFO:root:-0.2877
+INFO:root:Over
+INFO:root:-0.2903
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2931
+INFO:root:-0.3655
+INFO:root:Change direction
+INFO:root:-0.4204
+INFO:root:Over
+INFO:root:-0.3766
+INFO:root:X step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0205, -0.01035, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-0.4053
+INFO:root:Scan update starts at: 
+INFO:root:[0.0205, -0.01035, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.4046
+INFO:root:-0.3453
+INFO:root:-0.2751
+INFO:root:Meet Criteria: -0.2792
+INFO:root:Current Position: 
+INFO:root:[0.0205, -0.00985, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:New Criteria -0.2771
+INFO:root:Meet Criteria: -0.2771
+INFO:root:Current Position: 
+INFO:root:[0.0205, -0.00985, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:-0.2792
+INFO:root:-0.2943
+INFO:root:-0.2872
+INFO:root:-0.2966
+INFO:root:-0.292
+INFO:root:Time: 1min
+INFO:root:-0.2992
+INFO:root:-0.3106
+INFO:root:Scan update starts at: 
+INFO:root:[0.0205, -0.00985, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3167
+INFO:root:-0.2689
+INFO:root:Meet Criteria: -0.2771
+INFO:root:Current Position: 
+INFO:root:[0.0205, -0.00955, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:New Criteria -0.2709
+INFO:root:Meet Criteria: -0.2709
+INFO:root:Current Position: 
+INFO:root:[0.0205, -0.00955, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:-0.2679
+INFO:root:New Criteria -0.2699
+INFO:root:-0.2695
+INFO:root:-0.2721
+INFO:root:-0.2852
+INFO:root:-0.2896
+INFO:root:-0.2921
+INFO:root:-0.2975
+INFO:root:-0.2968
+INFO:root:-0.3052
+INFO:root:Scan update starts at: 
+INFO:root:[0.0205, -0.00955, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3037
+INFO:root:-0.3124
+INFO:root:Change direction
+INFO:root:-0.4528
+INFO:root:Over
+INFO:root:-0.3931
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.4048
+INFO:root:-0.6857
+INFO:root:Change direction
+INFO:root:-0.3784
+INFO:root:-0.3766
+INFO:root:-0.4178
+INFO:root:Over
+INFO:root:-0.4735
+INFO:root:X step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0202, -0.00945, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:-0.4999
+INFO:root:Scan update starts at: 
+INFO:root:[0.0202, -0.00945, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.5125
+INFO:root:-0.4888
+INFO:root:-0.5824
+INFO:root:Over
+INFO:root:-0.5576
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.569
+INFO:root:-0.6929
+INFO:root:Change direction
+INFO:root:-0.4222
+INFO:root:-0.3154
+INFO:root:-0.3214
+INFO:root:Over
+INFO:root:-0.5488
+INFO:root:Y step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.02, -0.00915, 140.7969, 1.4, 0.0, 0.0]
+INFO:root:-0.5801
+INFO:root:Z Back 1.0um
+INFO:root:[0.02, -0.00915, 140.7959, 1.4, 0.0, 0.0]
+INFO:root:-0.703
+INFO:root:Scan update starts at: 
+INFO:root:[0.02, -0.00915, 140.7959, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.6968
+INFO:root:-0.6564
+INFO:root:-0.5338
+INFO:root:-0.5653
+INFO:root:Over
+INFO:root:-0.7615
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.7564
+INFO:root:-0.5538
+INFO:root:-0.5639
+INFO:root:Over
+INFO:root:-0.6951
+INFO:root:X step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0198, -0.00875, 140.7959, 1.4, 0.0, 0.0]
+INFO:root:-0.7058
+INFO:root:Scan update starts at: 
+INFO:root:[0.0198, -0.00875, 140.7959, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.6889
+INFO:root:-0.5834
+INFO:root:-0.4898
+INFO:root:-0.5217
+INFO:root:Over
+INFO:root:-0.6013
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.6062
+INFO:root:-0.4128
+INFO:root:-0.3574
+INFO:root:-0.3393
+INFO:root:-0.4503
+INFO:root:Over
+INFO:root:-0.4124
+INFO:root:X step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0192, -0.00835, 140.7959, 1.4, 0.0, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-0.4265
+INFO:root:Scan update starts at: 
+INFO:root:[0.0192, -0.00835, 140.7959, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.4154
+INFO:root:-0.3867
+INFO:root:-0.4454
+INFO:root:Over
+INFO:root:-0.4131
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.4142
+INFO:root:-0.3226
+INFO:root:-0.2886
+INFO:root:-0.3352
+INFO:root:Over
+INFO:root:-0.2975
+INFO:root:Scan update ends at: 
+INFO:root:[0.019, -0.00795, 140.7959, 1.4, 0.0, 0.0]
+INFO:root:-0.3025
+INFO:root:Z Back 1.0um
+INFO:root:[0.019, -0.00795, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:Time: 2min
+INFO:root:-0.3271
+INFO:root:Scan update starts at: 
+INFO:root:[0.019, -0.00795, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3307
+INFO:root:-0.4294
+INFO:root:Change direction
+INFO:root:-0.3637
+INFO:root:-0.3775
+INFO:root:Over
+INFO:root:-0.381
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3884
+INFO:root:-0.2846
+INFO:root:Meet Criteria: -0.2849
+INFO:root:Current Position: 
+INFO:root:[0.0187, -0.00805, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:Meet Criteria: -0.2849
+INFO:root:Current Position: 
+INFO:root:[0.0187, -0.00805, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:-0.2837
+INFO:root:-0.2894
+INFO:root:-0.2895
+INFO:root:-0.2892
+INFO:root:-0.2856
+INFO:root:-0.2994
+INFO:root:-0.327
+INFO:root:Scan update starts at: 
+INFO:root:[0.0187, -0.00805, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3264
+INFO:root:-0.339
+INFO:root:Change direction
+INFO:root:-0.5408
+INFO:root:Over
+INFO:root:-0.3981
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3982
+INFO:root:-0.6291
+INFO:root:Change direction
+INFO:root:-0.363
+INFO:root:-0.36
+INFO:root:-0.4125
+INFO:root:Over
+INFO:root:-0.3945
+INFO:root:Scan update ends at: 
+INFO:root:[0.0186, -0.00775, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:-0.3984
+INFO:root:Scan update starts at: 
+INFO:root:[0.0186, -0.00775, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.4001
+INFO:root:-0.4589
+INFO:root:Change direction
+INFO:root:-0.4326
+INFO:root:-0.6077
+INFO:root:Over
+INFO:root:-0.5447
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.5543
+INFO:root:-0.8186
+INFO:root:Change direction
+INFO:root:-0.3833
+INFO:root:-0.3244
+INFO:root:-0.2876
+INFO:root:-0.2737
+INFO:root:Meet Criteria: -0.2849
+INFO:root:Current Position: 
+INFO:root:[0.0178, -0.00785, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:New Criteria -0.2757
+INFO:root:Meet Criteria: -0.2757
+INFO:root:Current Position: 
+INFO:root:[0.0178, -0.00785, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:-0.275
+INFO:root:-0.2751
+INFO:root:-0.2764
+INFO:root:-0.2815
+INFO:root:-0.2877
+INFO:root:-0.2971
+INFO:root:-0.3183
+INFO:root:Scan update starts at: 
+INFO:root:[0.0178, -0.00785, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3238
+INFO:root:-0.3695
+INFO:root:Change direction
+INFO:root:-0.4577
+INFO:root:Over
+INFO:root:-0.4415
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.4419
+INFO:root:-0.3089
+INFO:root:-0.3074
+INFO:root:-0.2668
+INFO:root:Meet Criteria: -0.2757
+INFO:root:Current Position: 
+INFO:root:[0.0177, -0.00855, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:New Criteria -0.2688
+INFO:root:Meet Criteria: -0.2688
+INFO:root:Current Position: 
+INFO:root:[0.0177, -0.00855, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:-0.2688
+INFO:root:-0.2721
+INFO:root:-0.2708
+INFO:root:-0.2713
+INFO:root:-0.2733
+INFO:root:-0.2767
+INFO:root:-0.2846
+INFO:root:-0.2869
+INFO:root:-0.29
+INFO:root:-0.2936
+INFO:root:-0.2964
+INFO:root:-0.3008
+INFO:root:Scan update starts at: 
+INFO:root:[0.0177, -0.00855, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3047
+INFO:root:-0.3434
+INFO:root:Change direction
+INFO:root:-0.377
+INFO:root:Over
+INFO:root:-0.3391
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3315
+INFO:root:-0.5947
+INFO:root:Change direction
+INFO:root:Time: 3min
+INFO:root:-0.3003
+INFO:root:-0.2926
+INFO:root:-0.3355
+INFO:root:Over
+INFO:root:-0.3601
+INFO:root:X step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0174, -0.00865, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:Late time flag is on
+INFO:root:-0.3564
+INFO:root:Scan update starts at: 
+INFO:root:[0.0174, -0.00865, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3617
+INFO:root:-0.3658
+INFO:root:Change direction
+INFO:root:-0.5563
+INFO:root:Over
+INFO:root:-0.4295
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.4282
+INFO:root:-0.617
+INFO:root:Change direction
+INFO:root:-0.3472
+INFO:root:-0.3115
+INFO:root:-0.311
+INFO:root:-0.3455
+INFO:root:Reach step search limit
+INFO:root:-0.349
+INFO:root:Scan update ends at: 
+INFO:root:[0.0173, -0.00915, 140.7949, 1.4, 0.0, 0.0]
+INFO:root:-0.3668
+INFO:root:Z Back 0.7um
+INFO:root:[0.0173, -0.00915, 140.7942, 1.4, 0.0, 0.0]
+INFO:root:-0.4377
+INFO:root:Scan update starts at: 
+INFO:root:[0.0173, -0.00915, 140.7942, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.4453
+INFO:root:-0.5145
+INFO:root:Change direction
+INFO:root:-0.5569
+INFO:root:Over
+INFO:root:-0.5594
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.5652
+INFO:root:-0.8831
+INFO:root:Change direction
+INFO:root:-0.4804
+INFO:root:-0.4155
+INFO:root:-0.4217
+INFO:root:Over
+INFO:root:-0.5668
+INFO:root:X step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.017, -0.00925, 140.7942, 1.4, 0.0, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-0.6022
+INFO:root:Scan update starts at: 
+INFO:root:[0.017, -0.00925, 140.7942, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.611
+INFO:root:-0.5588
+INFO:root:-0.6083
+INFO:root:Over
+INFO:root:-0.6172
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.6255
+INFO:root:-0.7436
+INFO:root:Change direction
+INFO:root:-0.5161
+INFO:root:-0.5191
+INFO:root:-0.4217
+INFO:root:-0.4199
+INFO:root:Reach step search limit
+INFO:root:-0.5382
+INFO:root:Y step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0168, -0.00975, 140.7942, 1.4, 0.0, 0.0]
+INFO:root:-0.5923
+INFO:root:Z Back 0.7um
+INFO:root:[0.0168, -0.00975, 140.7935, 1.4, 0.0, 0.0]
+INFO:root:-1.0591
+INFO:root:Scan update starts at: 
+INFO:root:[0.0168, -0.00975, 140.7935, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-1.0529
+INFO:root:-1.0058
+INFO:root:-1.0591
+INFO:root:Over
+INFO:root:-1.505
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-1.5003
+INFO:root:-1.3533
+INFO:root:-1.3365
+INFO:root:-1.4705
+INFO:root:Over
+INFO:root:-1.7431
+INFO:root:X step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0164, -0.00995, 140.7935, 1.4, 0.0, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-1.7884
+INFO:root:Scan update starts at: 
+INFO:root:[0.0164, -0.00995, 140.7935, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-1.794
+INFO:root:-1.7862
+INFO:root:-1.4465
+INFO:root:-1.1925
+INFO:root:-1.1734
+INFO:root:Reach step search limit
+INFO:root:Time: 4min
+INFO:root:-1.1835
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-1.2033
+INFO:root:-0.7739
+INFO:root:-0.7302
+INFO:root:-0.7488
+INFO:root:Over
+INFO:root:-0.8811
+INFO:root:Y step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0158, -0.01035, 140.7935, 1.4, 0.0, 0.0]
+INFO:root:-0.9274
+INFO:root:Start Zstep (pos then loss)
+INFO:root:[0.0158, -0.01035, 140.7935, 1.4, 0.0, 0.0]
+INFO:root:-0.9324
+INFO:root:[0.0158, -0.01035, 140.7928, 1.4, 0.0, 0.0]
+INFO:root:-1.4098
+INFO:root:Change direction
+INFO:root:[0.0158, -0.01035, 140.7944, 1.4, 0.0, 0.0]
+INFO:root:-1.6942
+INFO:root:Over
+INFO:root:[0.0158, -0.01035, 140.7935, 1.4, 0.0, 0.0]
+INFO:root:-1.9854
+INFO:root:Scan update starts at: 
+INFO:root:[0.0158, -0.01035, 140.7935, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-2.0404
+INFO:root:-1.9461
+INFO:root:-2.0001
+INFO:root:Over
+INFO:root:-2.5245
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-2.5736
+INFO:root:-2.0605
+INFO:root:-2.0385
+INFO:root:-1.7242
+INFO:root:-1.8275
+INFO:root:Reach step search limit
+INFO:root:-2.7174
+INFO:root:Y step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0156, -0.01095, 140.7935, 1.4, 0.0, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-2.8176
+INFO:root:Scan update starts at: 
+INFO:root:[0.0156, -0.01095, 140.7935, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-2.8183
+INFO:root:-2.2124
+INFO:root:-2.0925
+INFO:root:-2.0197
+INFO:root:-1.6967
+INFO:root:Reach step search limit
+INFO:root:-2.3761
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-2.4213
+INFO:root:-2.3146
+INFO:root:-2.1848
+INFO:root:-2.2104
+INFO:root:Over
+INFO:root:-2.3647
+INFO:root:X step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0152, -0.01155, 140.7935, 1.4, 0.0, 0.0]
+INFO:root:-2.4611
+INFO:root:Z Back 0.7um
+INFO:root:[0.0152, -0.01155, 140.7928, 1.4, 0.0, 0.0]
+INFO:root:-2.6838
+INFO:root:Scan update starts at: 
+INFO:root:[0.0152, -0.01155, 140.7928, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-2.6894
+INFO:root:-2.1765
+INFO:root:-2.2231
+INFO:root:Over
+INFO:root:-2.6315
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-2.6306
+INFO:root:-2.4804
+INFO:root:-2.4315
+INFO:root:-2.7241
+INFO:root:Over
+INFO:root:-2.8975
+INFO:root:X step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0148, -0.01175, 140.7928, 1.4, 0.0, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-2.9055
+INFO:root:Scan update starts at: 
+INFO:root:[0.0148, -0.01175, 140.7928, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-2.9149
+INFO:root:-3.0475
+INFO:root:Change direction
+INFO:root:-3.5808
+INFO:root:Over
+INFO:root:-3.4769
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-3.5544
+INFO:root:-3.3242
+INFO:root:-2.8181
+INFO:root:-2.5228
+INFO:root:-2.2531
+INFO:root:Reach step search limit
+INFO:root:Time: 5min
+INFO:root:-3.1953
+INFO:root:Y step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0147, -0.01235, 140.7928, 1.4, 0.0, 0.0]
+INFO:root:-3.3411
+INFO:root:Z Back 0.7um
+INFO:root:[0.0147, -0.01235, 140.7921, 1.4, 0.0, 0.0]
+INFO:root:-3.2986
+INFO:root:Scan update starts at: 
+INFO:root:[0.0147, -0.01235, 140.7921, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-3.31
+INFO:root:-2.638
+INFO:root:-2.684
+INFO:root:Over
+INFO:root:-3.4252
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-3.3862
+INFO:root:-3.8393
+INFO:root:Change direction
+INFO:root:-3.215
+INFO:root:-3.0065
+INFO:root:-2.8207
+INFO:root:-2.8091
+INFO:root:Reach step search limit
+INFO:root:-2.9563
+INFO:root:X step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0142, -0.01255, 140.7921, 1.4, 0.0, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-2.8529
+INFO:root:Scan update starts at: 
+INFO:root:[0.0142, -0.01255, 140.7921, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-2.8688
+INFO:root:-2.8389
+INFO:root:-2.7868
+INFO:root:-2.6429
+INFO:root:-2.5335
+INFO:root:Reach step search limit
+INFO:root:-2.416
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-2.4198
+INFO:root:-1.7194
+INFO:root:-1.7759
+INFO:root:Over
+INFO:root:-2.1492
+INFO:root:Y step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0136, -0.01275, 140.7921, 1.4, 0.0, 0.0]
+INFO:root:-2.1804
+INFO:root:Start Zstep (pos then loss)
+INFO:root:[0.0136, -0.01275, 140.7921, 1.4, 0.0, 0.0]
+INFO:root:-2.1616
+INFO:root:[0.0136, -0.01275, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:-2.372
+INFO:root:Change direction
+INFO:root:[0.0136, -0.01275, 140.793, 1.4, 0.0, 0.0]
+INFO:root:-2.4392
+INFO:root:Over
+INFO:root:[0.0136, -0.01275, 140.7921, 1.4, 0.0, 0.0]
+INFO:root:-2.2827
+INFO:root:Scan update starts at: 
+INFO:root:[0.0136, -0.01275, 140.7921, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-2.2749
+INFO:root:-2.4728
+INFO:root:Change direction
+INFO:root:-2.3913
+INFO:root:-2.3523
+INFO:root:-2.744
+INFO:root:Over
+INFO:root:-2.7846
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-2.8046
+INFO:root:-2.2061
+INFO:root:-2.1178
+INFO:root:-1.8444
+INFO:root:-1.8218
+INFO:root:Reach step search limit
+INFO:root:-2.281
+INFO:root:Y step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0139, -0.01335, 140.7921, 1.4, 0.0, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-2.3243
+INFO:root:Scan update starts at: 
+INFO:root:[0.0139, -0.01335, 140.7921, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-2.3315
+INFO:root:-1.4579
+INFO:root:-1.4363
+INFO:root:-1.1993
+INFO:root:-1.2154
+INFO:root:Reach step search limit
+INFO:root:-1.4085
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-1.3863
+INFO:root:-1.9032
+INFO:root:Change direction
+INFO:root:-1.115
+INFO:root:-0.9137
+INFO:root:-0.7234
+INFO:root:-0.7222
+INFO:root:Reach step search limit
+INFO:root:-0.9629
+INFO:root:X step not best
+INFO:root:Scan update ends at: 
+INFO:root:[0.0134, -0.01395, 140.7921, 1.4, 0.0, 0.0]
+INFO:root:-0.9638
+INFO:root:Z Back 0.7um
+INFO:root:[0.0134, -0.01395, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:-1.0104
+INFO:root:Scan update starts at: 
+INFO:root:[0.0134, -0.01395, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-1.023
+INFO:root:-0.7855
+INFO:root:-0.7911
+INFO:root:Over
+INFO:root:-0.8746
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.8654
+INFO:root:Time: 6min
+INFO:root:-0.4981
+INFO:root:-0.3826
+INFO:root:-0.3344
+INFO:root:Meet Criteria: -0.3588
+INFO:root:Current Position: 
+INFO:root:[0.0127, -0.01415, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:New Criteria -0.3364
+INFO:root:Meet Criteria: -0.3364
+INFO:root:Current Position: 
+INFO:root:[0.0127, -0.01415, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:-0.3542
+INFO:root:-0.3829
+INFO:root:Scan update starts at: 
+INFO:root:[0.0127, -0.01415, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3743
+INFO:root:-0.3576
+INFO:root:-0.4114
+INFO:root:Over
+INFO:root:-0.3338
+INFO:root:Meet Criteria: -0.3364
+INFO:root:Current Position: 
+INFO:root:[0.0125, -0.01415, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:New Criteria -0.3358
+INFO:root:-0.3262
+INFO:root:New Criteria -0.3282
+INFO:root:-0.3247
+INFO:root:New Criteria -0.3267
+INFO:root:-0.2952
+INFO:root:New Criteria -0.2972
+INFO:root:-0.2887
+INFO:root:New Criteria -0.2907
+INFO:root:-0.2841
+INFO:root:New Criteria -0.2861
+INFO:root:-0.2907
+INFO:root:-0.31
+INFO:root:Scan update starts at: 
+INFO:root:[0.0125, -0.01415, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3105
+INFO:root:-0.3278
+INFO:root:Change direction
+INFO:root:-0.3789
+INFO:root:Over
+INFO:root:-0.3129
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3085
+INFO:root:-0.2874
+INFO:root:-0.2927
+INFO:root:Over
+INFO:root:-0.2913
+INFO:root:Scan update ends at: 
+INFO:root:[0.0124, -0.01435, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:-0.3005
+INFO:root:Scan update starts at: 
+INFO:root:[0.0124, -0.01435, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3026
+INFO:root:-0.3139
+INFO:root:Change direction
+INFO:root:-0.2731
+INFO:root:Meet Criteria: -0.2861
+INFO:root:Current Position: 
+INFO:root:[0.0124, -0.01415, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:New Criteria -0.2751
+INFO:root:Meet Criteria: -0.2751
+INFO:root:Current Position: 
+INFO:root:[0.0124, -0.01415, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:-0.2725
+INFO:root:New Criteria -0.2745
+INFO:root:-0.2726
+INFO:root:-0.2728
+INFO:root:-0.2721
+INFO:root:New Criteria -0.2741
+INFO:root:-0.2714
+INFO:root:New Criteria -0.2734
+INFO:root:-0.2741
+INFO:root:-0.2724
+INFO:root:-0.277
+INFO:root:-0.2728
+INFO:root:-0.2752
+INFO:root:-0.2768
+INFO:root:-0.2772
+INFO:root:-0.277
+INFO:root:-0.2794
+INFO:root:-0.282
+INFO:root:-0.285
+INFO:root:-0.2894
+INFO:root:-0.2921
+INFO:root:-0.2978
+INFO:root:Scan update starts at: 
+INFO:root:[0.0124, -0.01415, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2964
+INFO:root:-0.32
+INFO:root:Change direction
+INFO:root:-0.3658
+INFO:root:Over
+INFO:root:-0.3361
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3373
+INFO:root:-0.6148
+INFO:root:Change direction
+INFO:root:-0.2798
+INFO:root:-0.2838
+INFO:root:Over
+INFO:root:-0.3164
+INFO:root:Scan update ends at: 
+INFO:root:[0.0123, -0.01405, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:-0.314
+INFO:root:Scan update starts at: 
+INFO:root:[0.0123, -0.01405, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3167
+INFO:root:-0.3425
+INFO:root:Change direction
+INFO:root:-0.3417
+INFO:root:-0.4432
+INFO:root:Over
+INFO:root:-0.3893
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3912
+INFO:root:-0.2962
+INFO:root:-0.3119
+INFO:root:Over
+INFO:root:-0.2939
+INFO:root:Scan update ends at: 
+INFO:root:[0.0121, -0.01395, 140.7914, 1.4, 0.0, 0.0]
+INFO:root:-0.2934
+INFO:root:Z Back 0.7um
+INFO:root:[0.0121, -0.01395, 140.7907, 1.4, 0.0, 0.0]
+INFO:root:-0.2679
+INFO:root:Meet Criteria: -0.2734
+INFO:root:Current Position: 
+INFO:root:[0.0121, -0.01395, 140.7907, 1.4, 0.0, 0.0]
+INFO:root:New Criteria -0.2699
+INFO:root:-0.2687
+INFO:root:-0.2701
+INFO:root:-0.2723
+INFO:root:-0.2757
+INFO:root:-0.2766
+INFO:root:-0.2792
+INFO:root:-0.282
+INFO:root:-0.2852
+INFO:root:-0.2889
+INFO:root:-0.2937
+INFO:root:Scan update starts at: 
+INFO:root:[0.0121, -0.01395, 140.7907, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2937
+INFO:root:-0.2875
+INFO:root:-0.3112
+INFO:root:Over
+INFO:root:-0.2675
+INFO:root:Meet Criteria: -0.2699
+INFO:root:Current Position: 
+INFO:root:[0.0119, -0.01395, 140.7907, 1.4, 0.0, 0.0]
+INFO:root:New Criteria -0.2695
+INFO:root:-0.2674
+INFO:root:New Criteria -0.2694
+INFO:root:-0.2674
+INFO:root:-0.2674
+INFO:root:Time: 7min
+INFO:root:-0.2677
+INFO:root:-0.2676
+INFO:root:-0.2678
+INFO:root:-0.2686
+INFO:root:-0.2691
+INFO:root:-0.2688
+INFO:root:-0.2694
+INFO:root:-0.2706
+INFO:root:-0.2715
+INFO:root:-0.2742
+INFO:root:-0.2749
+INFO:root:-0.2758
+INFO:root:-0.2765
+INFO:root:-0.2785
+INFO:root:-0.2782
+INFO:root:-0.2758
+INFO:root:-0.2754
+INFO:root:-0.2768
+INFO:root:-0.2778
+INFO:root:-0.2799
+INFO:root:-0.2828
+INFO:root:-0.2843
+INFO:root:-0.2865
+INFO:root:-0.2893
+INFO:root:-0.2927
+INFO:root:Scan update starts at: 
+INFO:root:[0.0119, -0.01395, 140.7907, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2925
+INFO:root:-0.2721
+INFO:root:-0.2873
+INFO:root:Over
+INFO:root:-0.2747
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2747
+INFO:root:-0.28
+INFO:root:Change direction
+INFO:root:-0.2876
+INFO:root:Over
+INFO:root:-0.2767
+INFO:root:Scan update ends at: 
+INFO:root:[0.0117, -0.01385, 140.7907, 1.4, 0.0, 0.0]
+INFO:root:-0.2765
+INFO:root:Scan update starts at: 
+INFO:root:[0.0117, -0.01385, 140.7907, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2761
+INFO:root:-0.2733
+INFO:root:-0.3007
+INFO:root:Over
+INFO:root:-0.2698
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2699
+INFO:root:-0.274
+INFO:root:Change direction
+INFO:root:-0.274
+INFO:root:-0.2867
+INFO:root:Over
+INFO:root:-0.2768
+INFO:root:Scan update ends at: 
+INFO:root:[0.0115, -0.01375, 140.7907, 1.4, 0.0, 0.0]
+INFO:root:-0.2778
+INFO:root:Z Back 0.7um
+INFO:root:[0.0115, -0.01375, 140.79, 1.4, 0.0, 0.0]
+INFO:root:-0.27
+INFO:root:Scan update starts at: 
+INFO:root:[0.0115, -0.01375, 140.79, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2698
+INFO:root:-0.2899
+INFO:root:Change direction
+INFO:root:-0.2754
+INFO:root:-0.3108
+INFO:root:Over
+INFO:root:-0.2765
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2765
+INFO:root:-0.2905
+INFO:root:Change direction
+INFO:root:-0.2757
+INFO:root:-0.2755
+INFO:root:-0.2759
+INFO:root:-0.2796
+INFO:root:Scan update ends at: 
+INFO:root:[0.0116, -0.01385, 140.79, 1.4, 0.0, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-0.2805
+INFO:root:New Criteria -0.2825
+INFO:root:-0.2813
+INFO:root:-0.2822
+INFO:root:-0.2834
+INFO:root:-0.2829
+INFO:root:-0.284
+INFO:root:-0.2847
+INFO:root:-0.2852
+INFO:root:-0.2858
+INFO:root:-0.2863
+INFO:root:-0.2867
+INFO:root:-0.2868
+INFO:root:-0.2874
+INFO:root:-0.2882
+INFO:root:-0.2892
+INFO:root:-0.2894
+INFO:root:-0.2897
+INFO:root:-0.29
+INFO:root:-0.29
+INFO:root:-0.2901
+INFO:root:-0.2901
+INFO:root:-0.2896
+INFO:root:-0.2896
+INFO:root:-0.2903
+INFO:root:-0.2909
+INFO:root:-0.2911
+INFO:root:Time: 8min
+INFO:root:-0.291
+INFO:root:-0.2908
+INFO:root:-0.2907
+INFO:root:-0.2903
+INFO:root:-0.2902
+INFO:root:-0.2905
+INFO:root:-0.2907
+INFO:root:-0.2914
+INFO:root:-0.2915
+INFO:root:-0.2913
+INFO:root:-0.2922
+INFO:root:-0.2926
+INFO:root:-0.2932
+INFO:root:-0.2935
+INFO:root:-0.293
+INFO:root:-0.2923
+INFO:root:-0.2918
+INFO:root:-0.2924
+INFO:root:-0.2938
+INFO:root:-0.2954
+INFO:root:-0.2967
+INFO:root:-0.2966
+INFO:root:-0.2968
+INFO:root:-0.297
+INFO:root:Smaller the buffer to 0.01
+INFO:root:Scan update starts at: 
+INFO:root:[0.0116, -0.01385, 140.79, 1.4, 0.0, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2965
+INFO:root:-0.3081
+INFO:root:Change direction
+INFO:root:-0.2932
+INFO:root:-0.285
+INFO:root:-0.2814
+INFO:root:Meet Criteria: -0.2825
+INFO:root:Current Position: 
+INFO:root:[0.011, -0.01385, 140.79, 1.4, 0.0, 0.0]
+INFO:root:Meet Criteria: -0.2825
+INFO:root:Current Position: 
+INFO:root:[0.011, -0.01385, 140.79, 1.4, 0.0, 0.0]
+INFO:root:-0.2809
+INFO:root:-0.2804
+INFO:root:New Criteria -0.2824
+INFO:root:-0.2802
+INFO:root:New Criteria -0.2822
+INFO:root:-0.2798
+INFO:root:New Criteria -0.2818
+INFO:root:-0.2796
+INFO:root:New Criteria -0.2816
+INFO:root:-0.2793
+INFO:root:New Criteria -0.2813
+INFO:root:-0.2792
+INFO:root:New Criteria -0.2812
+INFO:root:-0.2789
+INFO:root:New Criteria -0.2809
+INFO:root:-0.2787
+INFO:root:New Criteria -0.2807
+INFO:root:-0.2788
+INFO:root:-0.2786
+INFO:root:New Criteria -0.2806
+INFO:root:-0.2787
+INFO:root:-0.2788
+INFO:root:-0.2787
+INFO:root:-0.2786
+INFO:root:-0.2787
+INFO:root:-0.2785
+INFO:root:New Criteria -0.2805
+INFO:root:-0.2782
+INFO:root:New Criteria -0.2802
+INFO:root:-0.2779
+INFO:root:New Criteria -0.2799
+INFO:root:-0.2775
+INFO:root:New Criteria -0.2795
+INFO:root:-0.2772
+INFO:root:New Criteria -0.2792
+INFO:root:-0.2767
+INFO:root:New Criteria -0.2787
+INFO:root:-0.2767
+INFO:root:-0.2765
+INFO:root:New Criteria -0.2785
+INFO:root:-0.2768
+INFO:root:-0.2774
+INFO:root:-0.2777
+INFO:root:-0.2773
+INFO:root:-0.277
+INFO:root:-0.2769
+INFO:root:-0.2769
+INFO:root:-0.277
+INFO:root:-0.2771
+INFO:root:-0.2774
+INFO:root:-0.2777
+INFO:root:-0.2775
+INFO:root:-0.2774
+INFO:root:-0.2773
+INFO:root:-0.2774
+INFO:root:-0.2774
+INFO:root:-0.2773
+INFO:root:-0.2773
+INFO:root:-0.2772
+INFO:root:-0.2769
+INFO:root:-0.2768
+INFO:root:-0.277
+INFO:root:-0.2771
+INFO:root:-0.277
+INFO:root:-0.2772
+INFO:root:-0.2771
+INFO:root:Smaller the buffer to 0.01
+INFO:root:-0.2771
+INFO:root:-0.2771
+INFO:root:-0.277
+INFO:root:-0.2772
+INFO:root:-0.2771
+INFO:root:-0.2771
+INFO:root:-0.2772
+INFO:root:-0.2772
+INFO:root:-0.2773
+INFO:root:-0.2774
+INFO:root:-0.2773
+INFO:root:-0.2773
+INFO:root:-0.2777
+INFO:root:-0.2778
+INFO:root:-0.2782
+INFO:root:-0.2785
+INFO:root:-0.2785
+INFO:root:-0.2786
+INFO:root:-0.2789
+INFO:root:-0.2797
+INFO:root:Time: 9min
+INFO:root:-0.2802
+INFO:root:-0.2808
+INFO:root:-0.2811
+INFO:root:-0.2812
+INFO:root:-0.2813
+INFO:root:-0.2813
+INFO:root:-0.2814
+INFO:root:-0.2814
+INFO:root:-0.2815
+INFO:root:-0.2815
+INFO:root:-0.2812
+INFO:root:-0.281
+INFO:root:-0.281
+INFO:root:-0.2809
+INFO:root:-0.2806
+INFO:root:-0.2806
+INFO:root:-0.2809
+INFO:root:-0.2812
+INFO:root:-0.2814
+INFO:root:-0.2819
+INFO:root:-0.2823
+INFO:root:-0.2826
+INFO:root:-0.2828
+INFO:root:-0.283
+INFO:root:-0.2835
+INFO:root:-0.2836
+INFO:root:-0.284
+INFO:root:-0.2843
+INFO:root:-0.2845
+INFO:root:-0.2846
+INFO:root:-0.2847
+INFO:root:-0.2848
+INFO:root:-0.285
+INFO:root:-0.2849
+INFO:root:-0.285
+INFO:root:-0.2849
+INFO:root:-0.2849
+INFO:root:-0.2849
+INFO:root:-0.285
+INFO:root:-0.2849
+INFO:root:-0.2851
+INFO:root:-0.285
+INFO:root:-0.2851
+INFO:root:-0.285
+INFO:root:-0.2849
+INFO:root:-0.2849
+INFO:root:-0.2853
+INFO:root:-0.2851
+INFO:root:-0.2849
+INFO:root:-0.285
+INFO:root:Loss is stable, pause the program
+INFO:root:-0.2849
+INFO:root:-0.2851
+INFO:root:-0.285
+INFO:root:-0.285
+INFO:root:-0.2849
+INFO:root:-0.2848
+INFO:root:-0.2849
+INFO:root:-0.2849
+INFO:root:-0.2849
+INFO:root:-0.2849
+INFO:root:-0.2849
+INFO:root:-0.2849
+INFO:root:-0.2847
+INFO:root:-0.2848
+INFO:root:-0.2848
+INFO:root:-0.2849
+INFO:root:-0.2849
+INFO:root:-0.285
+INFO:root:-0.285
+INFO:root:-0.285
+INFO:root:-0.2851
+INFO:root:-0.2851
+INFO:root:-0.2851
+INFO:root:-0.2851
+INFO:root:-0.2851
+INFO:root:-0.2853
+INFO:root:-0.2855
+INFO:root:-0.2855
+INFO:root:-0.2859
+INFO:root:-0.2861
+INFO:root:-0.2865
+INFO:root:-0.2867
+INFO:root:-0.2865
+INFO:root:-0.2868
+INFO:root:-0.2869
+INFO:root:-0.2871
+INFO:root:-0.2871
+INFO:root:-0.2872
+INFO:root:-0.2868
+INFO:root:-0.2863
+INFO:root:-0.2862
+INFO:root:-0.2862
+INFO:root:-0.2863
+INFO:root:-0.2865
+INFO:root:-0.2867
+INFO:root:-0.2868
+INFO:root:-0.2868
+INFO:root:-0.287
+INFO:root:-0.2869
+INFO:root:-0.2869
+INFO:root:-0.287
+INFO:root:Time: 10min
+INFO:root:-0.2874
+INFO:root:-0.2873
+INFO:root:-0.2872
+INFO:root:-0.2871
+INFO:root:-0.2871
+INFO:root:-0.2874
+INFO:root:-0.2871
+INFO:root:-0.2872
+INFO:root:-0.2872
+INFO:root:-0.2871
+INFO:root:-0.2872
+INFO:root:-0.2873
+INFO:root:-0.2872
+INFO:root:-0.2872
+INFO:root:-0.2873
+INFO:root:-0.2873
+INFO:root:-0.2873
+INFO:root:-0.2873
+INFO:root:-0.2875
+INFO:root:-0.2875
+INFO:root:-0.2874
+INFO:root:-0.2874
+INFO:root:-0.2876
+INFO:root:-0.2874
+INFO:root:-0.2875
+INFO:root:-0.2877
+INFO:root:-0.2876
+INFO:root:-0.2876
+INFO:root:-0.2877
+INFO:root:-0.2878
+INFO:root:-0.2879
+INFO:root:-0.288
+INFO:root:-0.288
+INFO:root:-0.2887
+INFO:root:-0.2893
+INFO:root:-0.2892
+INFO:root:-0.2892
+INFO:root:-0.2892
+INFO:root:-0.2887
+INFO:root:-0.2882
+INFO:root:-0.288
+INFO:root:-0.2883
+INFO:root:-0.2883
+INFO:root:-0.2883
+INFO:root:-0.2884
+INFO:root:-0.2886
+INFO:root:-0.2885
+INFO:root:-0.2885
+INFO:root:-0.2884
+INFO:root:-0.2884
+INFO:root:-0.2887
+INFO:root:-0.2885
+INFO:root:-0.2886
+INFO:root:-0.2886
+INFO:root:-0.2886
+INFO:root:-0.2885
+INFO:root:-0.2885
+INFO:root:-0.2885
+INFO:root:-0.2883
+INFO:root:-0.2883
+INFO:root:-0.2882
+INFO:root:-0.2882
+INFO:root:-0.2881
+INFO:root:-0.2881
+INFO:root:-0.2881
+INFO:root:-0.2883
+INFO:root:-0.2882
+INFO:root:-0.2887
+INFO:root:-0.2886
+INFO:root:-0.2887
+INFO:root:-0.2887
+INFO:root:-0.2888
+INFO:root:-0.2888
+INFO:root:-0.2887
+INFO:root:-0.2888
+INFO:root:-0.2889
+INFO:root:-0.2887
+INFO:root:-0.2886
+INFO:root:-0.2884
+INFO:root:-0.2884
+INFO:root:-0.2884
+INFO:root:-0.2884
+INFO:root:-0.2885
+INFO:root:-0.2885
+INFO:root:-0.2886
+INFO:root:-0.2885
+INFO:root:-0.2886
+INFO:root:-0.2887
+INFO:root:-0.2888
+INFO:root:-0.2888
+INFO:root:-0.2891
+INFO:root:-0.2894
+INFO:root:-0.2896
+INFO:root:-0.2901
+INFO:root:-0.2904
+INFO:root:-0.2903
+INFO:root:-0.2902
+INFO:root:-0.29
+INFO:root:-0.2899
+INFO:root:-0.2897
+INFO:root:-0.2894
+INFO:root:Time: 11min
+INFO:root:-0.2893
+INFO:root:-0.2893
+INFO:root:-0.2893
+INFO:root:-0.2896
+INFO:root:-0.2899
+INFO:root:-0.2899
+INFO:root:-0.2897
+INFO:root:-0.2895
+INFO:root:-0.2894
+INFO:root:-0.2894
+INFO:root:-0.2896
+INFO:root:-0.2898
+INFO:root:-0.2898
+INFO:root:-0.29
+INFO:root:-0.2897
+INFO:root:-0.2895
+INFO:root:-0.2896
+INFO:root:-0.2898
+INFO:root:-0.2898
+INFO:root:-0.2897
+INFO:root:-0.2898
+INFO:root:-0.2897
+INFO:root:-0.2889
+INFO:root:-0.2888
+INFO:root:-0.2887
+INFO:root:-0.2888
+INFO:root:-0.2887
+INFO:root:-0.2888
+INFO:root:-0.2888
+INFO:root:-0.289
+INFO:root:-0.2894
+INFO:root:-0.29
+INFO:root:-0.2902
+INFO:root:-0.2903
+INFO:root:-0.2902
+INFO:root:-0.2901
+INFO:root:-0.2896
+INFO:root:-0.2896
+INFO:root:-0.29
+INFO:root:-0.2898
+INFO:root:-0.2899
+INFO:root:-0.2901
+INFO:root:-0.2903
+INFO:root:-0.2904
+INFO:root:-0.2906
+INFO:root:-0.29
+INFO:root:-0.2898
+INFO:root:-0.29
+INFO:root:-0.2899
+INFO:root:-0.2899
+INFO:root:-0.29
+INFO:root:-0.29
+INFO:root:-0.2899
+INFO:root:-0.29
+INFO:root:-0.2896
+INFO:root:-0.2897
+INFO:root:-0.2896
+INFO:root:-0.2895
+INFO:root:-0.2895
+INFO:root:-0.2894
+INFO:root:-0.2897
+INFO:root:-0.2894
+INFO:root:-0.2893
+INFO:root:-0.2896
+INFO:root:-0.2896
+INFO:root:-0.29
+INFO:root:-0.2898
+INFO:root:-0.29
+INFO:root:-0.2898
+INFO:root:-0.2896
+INFO:root:-0.2895
+INFO:root:-0.2897
+INFO:root:-0.2899
+INFO:root:-0.2899
+INFO:root:-0.2896
+INFO:root:-0.2894
+INFO:root:-0.2894
+INFO:root:-0.2892
+INFO:root:-0.2892
+INFO:root:-0.2894
+INFO:root:-0.2898
+INFO:root:-0.2897
+INFO:root:-0.2901
+INFO:root:-0.29
+INFO:root:-0.2902
+INFO:root:-0.2903
+INFO:root:-0.2903
+INFO:root:-0.2905
+INFO:root:-0.2907
+INFO:root:-0.2907
+INFO:root:-0.2906
+INFO:root:-0.2901
+INFO:root:-0.2898
+INFO:root:-0.2897
+INFO:root:-0.2893
+INFO:root:-0.2892
+INFO:root:-0.2898
+INFO:root:-0.2898
+INFO:root:-0.2903
+INFO:root:-0.2901
+INFO:root:-0.2903
+INFO:root:Time: 12min
+INFO:root:-0.2908
+INFO:root:-0.2909
+INFO:root:-0.2909
+INFO:root:-0.2912
+INFO:root:-0.2918
+INFO:root:-0.2912
+INFO:root:-0.2906
+INFO:root:-0.2906
+INFO:root:-0.2906
+INFO:root:-0.2908
+INFO:root:-0.2907
+INFO:root:-0.291
+INFO:root:-0.2905
+INFO:root:-0.2904
+INFO:root:-0.2901
+INFO:root:-0.2901
+INFO:root:-0.2904
+INFO:root:-0.2906
+INFO:root:-0.2906
+INFO:root:-0.2906
+INFO:root:-0.2904
+INFO:root:-0.2904
+INFO:root:-0.2905
+INFO:root:-0.2907
+INFO:root:-0.2909
+INFO:root:-0.2909
+INFO:root:-0.291
+INFO:root:-0.291
+INFO:root:-0.291
+INFO:root:-0.2908
+INFO:root:-0.2907
+INFO:root:-0.2907
+INFO:root:-0.2906
+INFO:root:-0.2906
+INFO:root:-0.2906
+INFO:root:-0.2905
+INFO:root:-0.2904
+INFO:root:-0.2903
+INFO:root:-0.2904
+INFO:root:-0.2902
+INFO:root:-0.2902
+INFO:root:-0.2906
+INFO:root:-0.291
+INFO:root:-0.2906
+INFO:root:-0.2905
+INFO:root:-0.2905
+INFO:root:-0.2903
+INFO:root:-0.2903
+INFO:root:-0.2905
+INFO:root:-0.2906
+INFO:root:-0.2908
+INFO:root:-0.2906
+INFO:root:-0.2906
+INFO:root:-0.2905
+INFO:root:-0.2907
+INFO:root:-0.2907
+INFO:root:-0.2909
+INFO:root:-0.2909
+INFO:root:-0.2908
+INFO:root:-0.291
+INFO:root:-0.2909
+INFO:root:-0.2909
+INFO:root:-0.2911
+INFO:root:-0.2912
+INFO:root:-0.2912
+INFO:root:-0.2911
+INFO:root:-0.2911
+INFO:root:-0.2908
+INFO:root:-0.2909
+INFO:root:-0.2908
+INFO:root:-0.2908
+INFO:root:-0.2908
+INFO:root:-0.2909
+INFO:root:-0.2907
+INFO:root:-0.2907
+INFO:root:-0.2907
+INFO:root:-0.2906
+INFO:root:-0.2907
+INFO:root:-0.2906
+INFO:root:-0.2906
+INFO:root:-0.2907
+INFO:root:-0.2907
+INFO:root:-0.2907
+INFO:root:-0.2907
+INFO:root:-0.2908
+INFO:root:-0.2908
+INFO:root:-0.2904
+INFO:root:-0.2905
+INFO:root:-0.2906
+INFO:root:-0.2906
+INFO:root:-0.2907
+INFO:root:-0.2906
+INFO:root:-0.2908
+INFO:root:-0.291
+INFO:root:-0.2907
+INFO:root:-0.2908
+INFO:root:-0.2906
+INFO:root:-0.2907
+INFO:root:-0.2907
+INFO:root:-0.2907
+INFO:root:-0.2907
+INFO:root:Time: 13min
+INFO:root:-0.2911
+INFO:root:-0.2908
+INFO:root:-0.2907
+INFO:root:-0.2906
+INFO:root:-0.2912
+INFO:root:-0.2914
+INFO:root:-0.2915
+INFO:root:-0.2914
+INFO:root:-0.2915
+INFO:root:-0.2912
+INFO:root:-0.291
+INFO:root:-0.2912
+INFO:root:-0.2909
+INFO:root:-0.291
+INFO:root:-0.2911
+INFO:root:-0.2909
+INFO:root:-0.291
+INFO:root:-0.2909
+INFO:root:-0.2905
+INFO:root:-0.2904
+INFO:root:-0.2905
+INFO:root:-0.2904
+INFO:root:-0.2906
+INFO:root:-0.2906
+INFO:root:-0.2908
+INFO:root:-0.2907
+INFO:root:-0.2909
+INFO:root:-0.2908
+INFO:root:-0.2908
+INFO:root:-0.2909
+INFO:root:-0.291
+INFO:root:-0.2911
+INFO:root:-0.2911
+INFO:root:-0.291
+INFO:root:-0.2908
+INFO:root:-0.2909
+INFO:root:-0.291
+INFO:root:-0.2909
+INFO:root:-0.291
+INFO:root:-0.291
+INFO:root:-0.291
+INFO:root:-0.2911
+INFO:root:-0.2911
+INFO:root:-0.2911
+INFO:root:-0.2911
+INFO:root:-0.2912
+INFO:root:-0.2912
+INFO:root:-0.2912
+INFO:root:-0.291
+INFO:root:-0.2913
+INFO:root:-0.2913
+INFO:root:-0.2915
+INFO:root:-0.2914
+INFO:root:-0.291
+INFO:root:-0.2912
+INFO:root:-0.2912
+INFO:root:-0.2912
+INFO:root:-0.2913
+INFO:root:-0.2913
+INFO:root:-0.2913
+INFO:root:-0.2915
+INFO:root:-0.2915
+INFO:root:-0.2915
+INFO:root:-0.2916
+INFO:root:-0.2916
+INFO:root:-0.2915
+INFO:root:-0.2916
+INFO:root:-0.2915
+INFO:root:-0.2913
+INFO:root:-0.2911
+INFO:root:-0.291
+INFO:root:-0.291
+INFO:root:-0.2909
+INFO:root:-0.2906
+INFO:root:-0.2908
+INFO:root:-0.2906
+INFO:root:-0.2909
+INFO:root:-0.291
+INFO:root:-0.2908
+INFO:root:-0.2911
+INFO:root:-0.2912
+INFO:root:-0.2912
+INFO:root:-0.2913
+INFO:root:-0.2914
+INFO:root:-0.2913
+INFO:root:-0.2915
+INFO:root:-0.2914
+INFO:root:-0.2914
+INFO:root:-0.2915
+INFO:root:-0.2915
+INFO:root:-0.2913
+INFO:root:-0.2916
+INFO:root:-0.2914
+INFO:root:-0.2915
+INFO:root:-0.2914
+INFO:root:-0.2915
+INFO:root:-0.2916
+INFO:root:-0.2916
+INFO:root:-0.2919
+INFO:root:-0.2919
+INFO:root:-0.2918
+INFO:root:Time: 14min
+INFO:root:-0.2915
+INFO:root:-0.2914
+INFO:root:-0.2916
+INFO:root:-0.2916
+INFO:root:-0.2917
+INFO:root:-0.2917
+INFO:root:-0.2916
+INFO:root:-0.2915
+INFO:root:-0.2922
+INFO:root:-0.2924
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2917
+INFO:root:-0.2915
+INFO:root:-0.2911
+INFO:root:-0.2912
+INFO:root:-0.2912
+INFO:root:-0.2914
+INFO:root:-0.2916
+INFO:root:-0.2919
+INFO:root:-0.2917
+INFO:root:-0.2918
+INFO:root:-0.2917
+INFO:root:-0.2916
+INFO:root:-0.2917
+INFO:root:-0.2916
+INFO:root:-0.2918
+INFO:root:-0.2916
+INFO:root:-0.2917
+INFO:root:-0.292
+INFO:root:-0.2921
+INFO:root:-0.2918
+INFO:root:-0.2917
+INFO:root:-0.2916
+INFO:root:-0.292
+INFO:root:-0.292
+INFO:root:-0.292
+INFO:root:-0.2918
+INFO:root:-0.2919
+INFO:root:-0.2918
+INFO:root:-0.2918
+INFO:root:-0.2916
+INFO:root:-0.2916
+INFO:root:-0.2918
+INFO:root:-0.2917
+INFO:root:-0.2918
+INFO:root:-0.2919
+INFO:root:-0.2916
+INFO:root:-0.2914
+INFO:root:-0.2916
+INFO:root:-0.2917
+INFO:root:-0.2918
+INFO:root:-0.2919
+INFO:root:-0.2918
+INFO:root:-0.2916
+INFO:root:-0.2916
+INFO:root:-0.2918
+INFO:root:-0.2918
+INFO:root:-0.2918
+INFO:root:-0.2918
+INFO:root:-0.2918
+INFO:root:-0.292
+INFO:root:-0.2922
+INFO:root:-0.2921
+INFO:root:-0.2926
+INFO:root:-0.2929
+INFO:root:-0.2924
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2923
+INFO:root:-0.2927
+INFO:root:-0.2931
+INFO:root:-0.2927
+INFO:root:-0.2925
+INFO:root:-0.2924
+INFO:root:-0.2926
+INFO:root:-0.2924
+INFO:root:-0.2928
+INFO:root:-0.2926
+INFO:root:-0.2929
+INFO:root:-0.2928
+INFO:root:-0.293
+INFO:root:-0.2931
+INFO:root:-0.2935
+INFO:root:-0.293
+INFO:root:-0.2925
+INFO:root:-0.2923
+INFO:root:-0.2926
+INFO:root:-0.2923
+INFO:root:-0.2923
+INFO:root:-0.2924
+INFO:root:-0.2922
+INFO:root:-0.2921
+INFO:root:-0.2919
+INFO:root:-0.2917
+INFO:root:-0.292
+INFO:root:-0.2923
+INFO:root:-0.2926
+INFO:root:-0.2923
+INFO:root:Time: 15min
+INFO:root:-0.2921
+INFO:root:-0.292
+INFO:root:-0.2919
+INFO:root:-0.292
+INFO:root:-0.2922
+INFO:root:-0.2926
+INFO:root:-0.2927
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2929
+INFO:root:-0.2929
+INFO:root:-0.2927
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2925
+INFO:root:-0.2925
+INFO:root:-0.2923
+INFO:root:-0.2924
+INFO:root:-0.2923
+INFO:root:-0.2922
+INFO:root:-0.2922
+INFO:root:-0.2924
+INFO:root:-0.2923
+INFO:root:-0.2922
+INFO:root:-0.292
+INFO:root:-0.292
+INFO:root:-0.2918
+INFO:root:-0.2917
+INFO:root:-0.2917
+INFO:root:-0.2917
+INFO:root:-0.2917
+INFO:root:-0.2919
+INFO:root:-0.2917
+INFO:root:-0.2918
+INFO:root:-0.2922
+INFO:root:-0.2925
+INFO:root:-0.2927
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2924
+INFO:root:-0.2925
+INFO:root:-0.2924
+INFO:root:-0.2924
+INFO:root:-0.2925
+INFO:root:-0.2924
+INFO:root:-0.2923
+INFO:root:-0.2922
+INFO:root:-0.2922
+INFO:root:-0.2922
+INFO:root:-0.2922
+INFO:root:-0.2921
+INFO:root:-0.2922
+INFO:root:-0.2922
+INFO:root:-0.292
+INFO:root:-0.2922
+INFO:root:-0.2921
+INFO:root:-0.2924
+INFO:root:-0.2921
+INFO:root:-0.2919
+INFO:root:-0.292
+INFO:root:-0.2921
+INFO:root:-0.292
+INFO:root:-0.2923
+INFO:root:-0.2924
+INFO:root:-0.2924
+INFO:root:-0.2926
+INFO:root:-0.292
+INFO:root:-0.292
+INFO:root:-0.2921
+INFO:root:-0.2922
+INFO:root:-0.2925
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2927
+INFO:root:-0.2927
+INFO:root:-0.2927
+INFO:root:-0.2928
+INFO:root:-0.2928
+INFO:root:-0.2929
+INFO:root:-0.293
+INFO:root:-0.2931
+INFO:root:-0.293
+INFO:root:-0.293
+INFO:root:-0.2927
+INFO:root:-0.2927
+INFO:root:-0.2928
+INFO:root:-0.2927
+INFO:root:-0.2927
+INFO:root:-0.2926
+INFO:root:-0.2927
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2926
+INFO:root:-0.2924
+INFO:root:-0.2926
+INFO:root:Time: 16min
+INFO:root:-0.2925
+INFO:root:-0.2924
+INFO:root:-0.2924
+INFO:root:-0.2922
+INFO:root:-0.2923
+INFO:root:-0.2925
+INFO:root:-0.2925
+INFO:root:-0.2925
+INFO:root:-0.2927
+INFO:root:-0.2927
+INFO:root:-0.2928
+INFO:root:-0.2929
+INFO:root:-0.2929
+INFO:root:-0.2932
+INFO:root:-0.2932
+INFO:root:-0.2931
+INFO:root:-0.2932
+INFO:root:-0.2931
+INFO:root:-0.2931
+INFO:root:-0.2929
+INFO:root:-0.293
+INFO:root:-0.293
+INFO:root:-0.2929
+INFO:root:-0.2929
+INFO:root:-0.2929
+INFO:root:-0.2929
+INFO:root:-0.2929
+INFO:root:-0.2932
+INFO:root:-0.2929
+INFO:root:-0.2931
+INFO:root:-0.2932
+INFO:root:-0.2932
+INFO:root:-0.2933
+INFO:root:-0.2932
+INFO:root:-0.2942
+INFO:root:-0.2942
+INFO:root:-0.294
+INFO:root:-0.2936
+INFO:root:-0.2933
+INFO:root:-0.2932
+INFO:root:-0.2933
+INFO:root:-0.2937
+INFO:root:-0.2936
+INFO:root:-0.2939
+INFO:root:-0.2939
+INFO:root:-0.2939
+INFO:root:-0.2935
+INFO:root:-0.2934
+INFO:root:-0.2935
+INFO:root:-0.2933
+INFO:root:-0.2933
+INFO:root:-0.2932
+INFO:root:-0.2935
+INFO:root:-0.2935
+INFO:root:-0.2936
+INFO:root:-0.2935
+INFO:root:-0.2935
+INFO:root:-0.2935
+INFO:root:-0.2938
+INFO:root:-0.2938
+INFO:root:-0.2939
+INFO:root:-0.2942
+INFO:root:-0.2936
+INFO:root:-0.2936
+INFO:root:-0.2935
+INFO:root:-0.2935
+INFO:root:-0.2935
+INFO:root:-0.2932
+INFO:root:-0.2931
+INFO:root:-0.2927
+INFO:root:-0.2927
+INFO:root:-0.2927
+INFO:root:-0.2931
+INFO:root:-0.2927
+INFO:root:-0.293
+INFO:root:-0.2931
+INFO:root:-0.2931
+INFO:root:-0.293
+INFO:root:-0.2931
+INFO:root:-0.2931
+INFO:root:-0.293
+INFO:root:-0.293
+INFO:root:-0.2932
+INFO:root:-0.2933
+INFO:root:-0.2933
+INFO:root:-0.2932
+INFO:root:-0.2934
+INFO:root:-0.2933
+INFO:root:-0.2932
+INFO:root:-0.2932
+INFO:root:-0.2931
+INFO:root:-0.2929
+INFO:root:-0.2927
+INFO:root:-0.2927
+INFO:root:-0.2929
+INFO:root:-0.2928
+INFO:root:-0.2931
+INFO:root:-0.2933
+INFO:root:-0.2935
+INFO:root:-0.2935
+INFO:root:-0.2935
+INFO:root:-0.2934
+INFO:root:Time: 17min
+INFO:root:-0.2935
+INFO:root:-0.2934
+INFO:root:-0.2933
+INFO:root:-0.2933
+INFO:root:-0.2932
+INFO:root:-0.2932
+INFO:root:-0.2932
+INFO:root:-0.2931
+INFO:root:-0.2932
+INFO:root:-0.293
+INFO:root:-0.293
+INFO:root:-0.2927
+INFO:root:-0.2929
+INFO:root:-0.2927
+INFO:root:-0.293
+INFO:root:-0.2927
+INFO:root:-0.2928
+INFO:root:-0.2929
+INFO:root:-0.2929
+INFO:root:-0.2928
+INFO:root:-0.293
+INFO:root:-0.2929
+INFO:root:-0.2928
+INFO:root:-0.2929
+INFO:root:-0.293
+INFO:root:-0.2935
+INFO:root:-0.2936
+INFO:root:-0.2938
+INFO:root:-0.2938
+INFO:root:-0.2938
+INFO:root:-0.2939
+INFO:root:-0.2938
+INFO:root:-0.2939
+INFO:root:-0.294
+INFO:root:-0.2937
+INFO:root:-0.2939
+INFO:root:-0.2938
+INFO:root:-0.2941
+INFO:root:-0.2938
+INFO:root:-0.2936
+INFO:root:-0.2933
+INFO:root:-0.2933
+INFO:root:-0.2933
+INFO:root:-0.2931
+INFO:root:-0.2931
+INFO:root:-0.2928
+INFO:root:-0.2931
+INFO:root:-0.2931
+INFO:root:-0.2934
+INFO:root:-0.2933
+INFO:root:-0.2935
+INFO:root:-0.2934
+INFO:root:-0.2936
+INFO:root:-0.2936
+INFO:root:-0.2938
+INFO:root:-0.2936
+INFO:root:-0.2938
+INFO:root:-0.2937
+INFO:root:-0.2935
+INFO:root:-0.2937
+INFO:root:-0.2935
+INFO:root:-0.2935
+INFO:root:-0.2933
+INFO:root:-0.2933
+INFO:root:-0.2938
+INFO:root:-0.2939
+INFO:root:-0.294
+INFO:root:-0.294
+INFO:root:-0.2939
+INFO:root:-0.2939
+INFO:root:-0.294
+INFO:root:-0.2938
+INFO:root:-0.2941
+INFO:root:-0.294
+INFO:root:-0.2939
+INFO:root:-0.2939
+INFO:root:-0.2939
+INFO:root:-0.2938
+INFO:root:-0.2936
+INFO:root:-0.2937
+INFO:root:-0.2935
+INFO:root:-0.2935
+INFO:root:-0.2935
+INFO:root:-0.2935
+INFO:root:-0.2935
+INFO:root:-0.2934
+INFO:root:-0.2933
+INFO:root:-0.2936
+INFO:root:-0.2938
+INFO:root:-0.2941
+INFO:root:-0.2937
+INFO:root:-0.2937
+INFO:root:-0.294
+INFO:root:-0.2939
+INFO:root:-0.2939
+INFO:root:-0.2939
+INFO:root:-0.2939
+INFO:root:-0.2939
+INFO:root:-0.2941
+INFO:root:-0.2941
+INFO:root:-0.2941
+INFO:root:Time: 18min
+INFO:root:-0.294
+INFO:root:-0.2939
+INFO:root:-0.2937
+INFO:root:-0.2939
+INFO:root:-0.2939
+INFO:root:-0.2938
+INFO:root:-0.2938
+INFO:root:-0.2939
+INFO:root:-0.2938
+INFO:root:-0.2939
+INFO:root:-0.2938
+INFO:root:-0.2936
+INFO:root:-0.2939
+INFO:root:-0.2939
+INFO:root:-0.2944
+INFO:root:-0.2946
+INFO:root:-0.2949
+INFO:root:-0.2942
+INFO:root:-0.2942
+INFO:root:-0.2939
+INFO:root:-0.2941
+INFO:root:-0.2942
+INFO:root:-0.2948
+INFO:root:-0.2949
+INFO:root:-0.295
+INFO:root:-0.2951
+INFO:root:-0.2951
+INFO:root:-0.2949
+INFO:root:-0.2947
+INFO:root:-0.2952
+INFO:root:-0.2949
+INFO:root:-0.2948
+INFO:root:-0.2943
+INFO:root:-0.2946
+INFO:root:-0.2947
+INFO:root:-0.2948
+INFO:root:-0.2947
+INFO:root:-0.295
+INFO:root:-0.2949
+INFO:root:-0.2949
+INFO:root:-0.2948
+INFO:root:-0.2949
+INFO:root:-0.2948
+INFO:root:-0.295
+INFO:root:-0.295
+INFO:root:-0.2952
+INFO:root:-0.295
+INFO:root:-0.2947
+INFO:root:-0.2945
+INFO:root:-0.2944
+INFO:root:-0.2941
+INFO:root:-0.2941
+INFO:root:-0.2941
+INFO:root:-0.2942
+INFO:root:-0.2943
+INFO:root:-0.2944
+INFO:root:-0.2943
+INFO:root:-0.2944
+INFO:root:-0.2946
+INFO:root:-0.2946
+INFO:root:-0.2947
+INFO:root:-0.2945
+INFO:root:-0.2947
+INFO:root:-0.2948
+INFO:root:-0.295
+INFO:root:-0.2946
+INFO:root:-0.2949
+INFO:root:-0.2946
+INFO:root:-0.2946
+INFO:root:-0.2947
+INFO:root:-0.2946
+INFO:root:-0.2948
+INFO:root:-0.2946
+INFO:root:-0.2945
+INFO:root:-0.2946
+INFO:root:-0.2949
+INFO:root:-0.2952
+INFO:root:-0.2954
+INFO:root:-0.2951
+INFO:root:-0.2952
+INFO:root:-0.2951
+INFO:root:-0.2955
+INFO:root:-0.2953
+INFO:root:-0.2954
+INFO:root:-0.2949
+INFO:root:-0.2947
+INFO:root:-0.2949
+INFO:root:-0.2949
+INFO:root:-0.2964
+INFO:root:-0.2963
+INFO:root:-0.2963
+INFO:root:-0.2964
+INFO:root:-0.2963
+INFO:root:-0.2961
+INFO:root:-0.2959
+INFO:root:-0.2959
+INFO:root:-0.2958
+INFO:root:-0.2959
+INFO:root:-0.2958
+INFO:root:-0.2957
+INFO:root:-0.2955
+INFO:root:Time: 19min
+INFO:root:-0.2957
+INFO:root:-0.2958
+INFO:root:-0.2955
+INFO:root:-0.2955
+INFO:root:-0.2955
+INFO:root:-0.2959
+INFO:root:-0.2959
+INFO:root:-0.2959
+INFO:root:-0.2959
+INFO:root:-0.2959
+INFO:root:-0.2959
+INFO:root:-0.2957
+INFO:root:-0.2955
+INFO:root:-0.2954
+INFO:root:-0.2954
+INFO:root:-0.2955
+INFO:root:-0.2955
+INFO:root:-0.2954
+INFO:root:-0.2954
+INFO:root:-0.2952
+INFO:root:-0.2952
+INFO:root:-0.2954
+INFO:root:-0.2955
+INFO:root:-0.2953
+INFO:root:-0.2954
+INFO:root:-0.2953
+INFO:root:-0.2953
+INFO:root:-0.2954
+INFO:root:-0.2955
+INFO:root:-0.2955
+INFO:root:-0.2954
+INFO:root:-0.2954
+INFO:root:-0.2954
+INFO:root:-0.2956
+INFO:root:-0.2953
+INFO:root:-0.2956
+INFO:root:-0.2957
+INFO:root:-0.2954
+INFO:root:-0.2957
+INFO:root:-0.2959
+INFO:root:-0.2958
+INFO:root:-0.2956
+INFO:root:-0.2956
+INFO:root:-0.2958
+INFO:root:-0.2957
+INFO:root:-0.2959
+INFO:root:-0.2956
+INFO:root:-0.2959
+INFO:root:-0.2961
+INFO:root:-0.2959
+INFO:root:-0.2961
+INFO:root:-0.2963
+INFO:root:-0.296
+INFO:root:-0.2961
+INFO:root:-0.2961
+INFO:root:-0.2965
+INFO:root:-0.2966
+INFO:root:-0.2965
+INFO:root:-0.2966
+INFO:root:-0.2967
+INFO:root:-0.2967
+INFO:root:-0.2968
+INFO:root:-0.297
+INFO:root:-0.2971
+INFO:root:-0.2973
+INFO:root:-0.2974
+INFO:root:-0.2973
+INFO:root:-0.2973
+INFO:root:-0.2974
+INFO:root:-0.2974
+INFO:root:-0.2974
+INFO:root:-0.2976
+INFO:root:-0.2975
+INFO:root:-0.2978
+INFO:root:-0.2981
+INFO:root:-0.2979
+INFO:root:-0.2979
+INFO:root:-0.298
+INFO:root:-0.2978
+INFO:root:-0.2981
+INFO:root:-0.2982
+INFO:root:-0.2983
+INFO:root:-0.2982
+INFO:root:-0.2985
+INFO:root:-0.2985
+INFO:root:-0.2987
+INFO:root:-0.2987
+INFO:root:-0.2989
+INFO:root:-0.2991
+INFO:root:-0.2993
+INFO:root:-0.2994
+INFO:root:-0.2995
+INFO:root:-0.2998
+INFO:root:-0.3
+INFO:root:-0.2998
+INFO:root:-0.3
+INFO:root:-0.3001
+INFO:root:-0.3002
+INFO:root:-0.3002
+INFO:root:-0.3004
+INFO:root:-0.3004
+INFO:root:Time: 20min
+INFO:root:-0.3007
+INFO:root:-0.3006
+INFO:root:-0.3007
+INFO:root:-0.3008
+INFO:root:-0.3011
+INFO:root:-0.301
+INFO:root:-0.3012
+INFO:root:-0.3014
+INFO:root:-0.3013
+INFO:root:-0.3015
+INFO:root:-0.3014
+INFO:root:-0.3016
+INFO:root:-0.3016
+INFO:root:-0.3016
+INFO:root:-0.3017
+INFO:root:-0.3018
+INFO:root:-0.3017
+INFO:root:-0.3019
+INFO:root:-0.302
+INFO:root:-0.3021
+INFO:root:-0.3023
+INFO:root:-0.3024
+INFO:root:-0.3024
+INFO:root:-0.3024
+INFO:root:-0.3027
+INFO:root:-0.3028
+INFO:root:-0.3029
+INFO:root:-0.303
+INFO:root:-0.303
+INFO:root:-0.3029
+INFO:root:-0.3028
+INFO:root:-0.3028
+INFO:root:-0.303
+INFO:root:-0.3031
+INFO:root:-0.3032
+INFO:root:-0.3033
+INFO:root:-0.3032
+INFO:root:-0.3033
+INFO:root:-0.3035
+INFO:root:-0.3036
+INFO:root:-0.3037
+INFO:root:-0.3036
+INFO:root:-0.3038
+INFO:root:-0.304
+INFO:root:-0.3039
+INFO:root:-0.3039
+INFO:root:-0.3042
+INFO:root:-0.3041
+INFO:root:-0.3043
+INFO:root:-0.3044
+INFO:root:-0.3044
+INFO:root:-0.3043
+INFO:root:-0.3044
+INFO:root:-0.3045
+INFO:root:-0.3045
+INFO:root:-0.3046
+INFO:root:-0.3048
+INFO:root:-0.3048
+INFO:root:-0.3049
+INFO:root:-0.305
+INFO:root:-0.3053
+INFO:root:-0.3053
+INFO:root:-0.3055
+INFO:root:-0.3057
+INFO:root:-0.3057
+INFO:root:-0.3057
+INFO:root:-0.3058
+INFO:root:-0.3059
+INFO:root:-0.3061
+INFO:root:-0.3061
+INFO:root:-0.3062
+INFO:root:-0.3062
+INFO:root:-0.3062
+INFO:root:-0.3061
+INFO:root:-0.3062
+INFO:root:-0.3065
+INFO:root:-0.3064
+INFO:root:-0.3067
+INFO:root:-0.3066
+INFO:root:-0.3067
+INFO:root:-0.3069
+INFO:root:-0.307
+INFO:root:-0.3072
+INFO:root:-0.307
+INFO:root:-0.307
+INFO:root:-0.3071
+INFO:root:-0.307
+INFO:root:-0.3073
+INFO:root:-0.3073
+INFO:root:-0.3072
+INFO:root:-0.3073
+INFO:root:-0.3075
+INFO:root:-0.3076
+INFO:root:-0.3075
+INFO:root:-0.3078
+INFO:root:-0.3078
+INFO:root:-0.3079
+INFO:root:-0.3078
+INFO:root:-0.3081
+INFO:root:-0.3082
+INFO:root:-0.3079
+INFO:root:Time: 21min
+INFO:root:-0.3081
+INFO:root:-0.308
+INFO:root:-0.3081
+INFO:root:-0.3084
+INFO:root:-0.3085
+INFO:root:-0.3086
+INFO:root:-0.3087
+INFO:root:-0.3086
+INFO:root:-0.3087
+INFO:root:-0.3089
+INFO:root:-0.3089
+INFO:root:-0.3091
+INFO:root:-0.3089
+INFO:root:-0.3091
+INFO:root:-0.3092
+INFO:root:-0.3092
+INFO:root:-0.3094
+INFO:root:-0.3096
+INFO:root:-0.3095
+INFO:root:-0.3095
+INFO:root:-0.3096
+INFO:root:-0.3097
+INFO:root:-0.3097
+INFO:root:-0.3097
+INFO:root:-0.3098
+INFO:root:-0.3098
+INFO:root:-0.3098
+INFO:root:-0.3099
+INFO:root:-0.3098
+INFO:root:-0.3099
+INFO:root:-0.3099
+INFO:root:-0.31
+INFO:root:-0.31
+INFO:root:-0.31
+INFO:root:-0.3103
+INFO:root:-0.3103
+INFO:root:-0.3104
+INFO:root:-0.3106
+INFO:root:-0.3107
+INFO:root:-0.3108
+INFO:root:-0.311
+INFO:root:-0.3112
+INFO:root:-0.3118
+INFO:root:-0.3109
+INFO:root:-0.3116
+INFO:root:-0.3141
+INFO:root:-0.3127
+INFO:root:-0.3099
+INFO:root:-0.3103
+INFO:root:-0.3102
+INFO:root:-0.3108
+INFO:root:-0.3108
+INFO:root:-0.3112
+INFO:root:-0.3114
+INFO:root:-0.3117
+INFO:root:-0.3117
+INFO:root:-0.3117
+INFO:root:-0.3118
+INFO:root:-0.3119
+INFO:root:-0.3121
+INFO:root:-0.3126
+INFO:root:-0.3123
+INFO:root:-0.3125
+INFO:root:-0.3127
+INFO:root:-0.3132
+INFO:root:-0.3132
+INFO:root:-0.313
+INFO:root:-0.3133
+INFO:root:-0.3134
+INFO:root:-0.3135
+INFO:root:-0.3135
+INFO:root:-0.3134
+INFO:root:-0.3137
+INFO:root:-0.3137
+INFO:root:-0.3138
+INFO:root:-0.3139
+INFO:root:-0.314
+INFO:root:-0.3141
+INFO:root:-0.3139
+INFO:root:-0.314
+INFO:root:-0.3141
+INFO:root:-0.3141
+INFO:root:-0.3143
+INFO:root:-0.3136
+INFO:root:-0.3136
+INFO:root:-0.3137
+INFO:root:-0.3145
+INFO:root:-0.3145
+INFO:root:-0.3157
+INFO:root:-0.3153
+INFO:root:-0.3145
+INFO:root:-0.3159
+INFO:root:-0.3159
+INFO:root:-0.3159
+INFO:root:-0.3143
+INFO:root:-0.3169
+INFO:root:-0.3174
+INFO:root:-0.3171
+INFO:root:-0.3171
+INFO:root:-0.3171
+INFO:root:-0.3172
+INFO:root:Time: 22min
+INFO:root:-0.3172
+INFO:root:-0.3174
+INFO:root:-0.3175
+INFO:root:-0.3177
+INFO:root:-0.3184
+INFO:root:-0.3187
+INFO:root:-0.315
+INFO:root:-0.3111
+INFO:root:-0.3112
+INFO:root:-0.3115
+INFO:root:-0.3086
+INFO:root:-0.303
+INFO:root:-0.2964
+INFO:root:-0.2909
+INFO:root:-0.304
+INFO:root:-0.3022
+INFO:root:-0.3068
+INFO:root:-0.3044
+INFO:root:-0.3107
+INFO:root:-0.3147
+INFO:root:-0.3147
+INFO:root:-0.3146
+INFO:root:-0.3144
+INFO:root:-0.3146
+INFO:root:-0.3142
+INFO:root:-0.3136
+INFO:root:-0.3136
+INFO:root:-0.3178
+INFO:root:-0.3184
+INFO:root:-0.319

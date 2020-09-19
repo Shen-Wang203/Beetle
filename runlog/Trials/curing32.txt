@@ -1,0 +1,3129 @@
+20min start cooling, and release bot screw
+big bot clamp and base
+no magnet on the bot
+heater is 190C, preheating on the side
+INFO:root:++++++++++++++++++++++++++++++
+INFO:root:Curing Active Alignment Starts. Loss Critera -0.26648065
+INFO:root:++++++++++++++++++++++++++++++
+INFO:root:-0.34912544999999995
+INFO:root:-0.37048335
+INFO:root:Scan update starts at: 
+INFO:root:[-0.0131, -0.0018500000000000005, 140.94135000000009, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.38255114999999995
+INFO:root:Direction 1
+INFO:root:-0.33042530000000003
+INFO:root:-0.3034213
+INFO:root:-0.4204971
+INFO:root:Over
+INFO:root:-0.33741505
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3474859
+INFO:root:Direction 1
+INFO:root:-0.26203200000000004
+INFO:root:Meet Criteria: -0.2665
+INFO:root:New Criteria -0.264
+INFO:root:Meet Criteria: -0.264
+INFO:root:-0.26982649999999997
+INFO:root:-0.2735927
+INFO:root:-0.27623555
+INFO:root:-0.29800835000000003
+INFO:root:Scan update starts at: 
+INFO:root:[-0.0135, -0.0021500000000000004, 140.94135000000009, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.29886755
+INFO:root:Direction 1
+INFO:root:-0.2490247
+INFO:root:Meet Criteria: -0.264
+INFO:root:New Criteria -0.251
+INFO:root:Meet Criteria: -0.259
+INFO:root:New Criteria -0.251
+INFO:root:-0.24852905
+INFO:root:New Criteria -0.2505
+INFO:root:-0.2501452
+INFO:root:-0.25556239999999997
+INFO:root:-0.25804885
+INFO:root:-0.2586919
+INFO:root:-0.25727915
+INFO:root:-0.25291705
+INFO:root:-0.25541804999999995
+INFO:root:-0.252213
+INFO:root:-0.25617225
+INFO:root:-0.2689092
+INFO:root:-0.27143595
+INFO:root:-0.2910024
+INFO:root:Scan update starts at: 
+INFO:root:[-0.0135, -0.0024500000000000004, 140.94135000000009, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.28554095
+INFO:root:Direction 1
+INFO:root:-0.3840543
+INFO:root:Change direction
+INFO:root:-0.34098005
+INFO:root:-0.49399815
+INFO:root:Over
+INFO:root:-0.3310385
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.33579404999999996
+INFO:root:Direction 1
+INFO:root:-0.3020918
+INFO:root:-0.30186455
+INFO:root:-0.4186318
+INFO:root:Over
+INFO:root:-0.3395515
+INFO:root:Scan update ends at: 
+INFO:root:[-0.0139, -0.0023500000000000005, 140.94135000000009, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.31286155
+INFO:root:Scan update starts at: 
+INFO:root:[-0.0139, -0.0023500000000000005, 140.94135000000009, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.30932764999999995
+INFO:root:Direction 1
+INFO:root:-0.39846395
+INFO:root:Change direction
+INFO:root:-0.34778975
+INFO:root:-0.4764138
+INFO:root:Over
+INFO:root:-0.37054394999999996
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3761911
+INFO:root:Direction -1
+INFO:root:-0.65958305
+INFO:root:Change direction
+INFO:root:-0.28974279999999997
+INFO:root:-0.258546
+INFO:root:-0.29865765
+INFO:root:Over
+INFO:root:-0.2812639
+INFO:root:Scan update ends at: 
+INFO:root:[-0.0138, -0.0026500000000000004, 140.94135000000009, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2903129
+INFO:root:Z Back 1.0um
+INFO:root:[-0.0138, -0.0026500000000000004, 140.94035000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.26522875
+INFO:root:Scan update starts at: 
+INFO:root:[-0.0138, -0.0026500000000000004, 140.94035000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2630097
+INFO:root:Direction 1
+INFO:root:-0.28245909999999996
+INFO:root:Change direction
+INFO:root:-0.30603440000000004
+INFO:root:Over
+INFO:root:-0.2563976
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.25744005000000003
+INFO:root:Direction -1
+INFO:root:-0.38396585
+INFO:root:Change direction
+INFO:root:-0.28477955
+INFO:root:-0.3217438
+INFO:root:Over
+INFO:root:-0.28127254999999995
+INFO:root:Scan update ends at: 
+INFO:root:[-0.0139, -0.0027500000000000003, 140.94035000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.30321045
+INFO:root:Scan update starts at: 
+INFO:root:[-0.0139, -0.0027500000000000003, 140.94035000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3083397
+INFO:root:Direction -1
+INFO:root:-0.4471447
+INFO:root:Change direction
+INFO:root:-0.2543769
+INFO:root:-0.27485135
+INFO:root:Over
+INFO:root:-0.29051945
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.29844804999999996
+INFO:root:Direction 1
+INFO:root:-0.3138493
+INFO:root:Change direction
+INFO:root:-0.4337216
+INFO:root:Over
+INFO:root:-0.3603692
+INFO:root:X step not best
+INFO:root:Scan update ends at: 
+INFO:root:[-0.013999999999999999, -0.00285, 140.94035000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-0.39854924999999997
+INFO:root:Scan update starts at: 
+INFO:root:[-0.013999999999999999, -0.00285, 140.94035000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.38847750000000003
+INFO:root:Direction 1
+INFO:root:-0.2762367
+INFO:root:-0.2694085
+INFO:root:-0.33804675
+INFO:root:Over
+INFO:root:-0.27288389999999996
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.27512285000000003
+INFO:root:Direction -1
+INFO:root:-0.3676929
+INFO:root:Change direction
+INFO:root:-0.26905385000000004
+INFO:root:-0.28357180000000004
+INFO:root:Over
+INFO:root:-0.2521485
+INFO:root:Meet Criteria: -0.2655
+INFO:root:New Criteria -0.2541
+INFO:root:-0.25346314999999997
+INFO:root:-0.26412185
+INFO:root:-0.26251435
+INFO:root:-0.30553765
+INFO:root:Scan update starts at: 
+INFO:root:[-0.014099999999999998, -0.0032500000000000003, 140.94035000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.28988935
+INFO:root:Direction 1
+INFO:root:-0.36572245000000003
+INFO:root:Change direction
+INFO:root:-0.3731368
+INFO:root:Over
+INFO:root:-0.33020950000000004
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.3283693
+INFO:root:Direction 1
+INFO:root:-0.24243304999999998
+INFO:root:Meet Criteria: -0.2541
+INFO:root:New Criteria -0.2444
+INFO:root:Meet Criteria: -0.2524
+INFO:root:New Criteria -0.2444
+INFO:root:-0.24993690000000002
+INFO:root:-0.2500016
+INFO:root:-0.2484798
+INFO:root:-0.2459035
+INFO:root:-0.24375960000000002
+INFO:root:-0.2439032
+INFO:root:-0.242448
+INFO:root:-0.2406421
+INFO:root:New Criteria -0.2426
+INFO:root:-0.2470894
+INFO:root:-0.2516029
+INFO:root:-0.25861055
+INFO:root:-0.2486099
+INFO:root:Time: 1min
+INFO:root:-0.25800100000000004
+INFO:root:-0.2611145
+INFO:root:-0.2620172
+INFO:root:-0.25277425
+INFO:root:-0.2501308
+INFO:root:-0.24625525
+INFO:root:-0.24411159999999998
+INFO:root:-0.25980215
+INFO:root:-0.2641831
+INFO:root:-0.2680092
+INFO:root:-0.28008675
+INFO:root:Scan update starts at: 
+INFO:root:[-0.014199999999999997, -0.00355, 140.94035000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2875762
+INFO:root:Direction 1
+INFO:root:-0.4057067
+INFO:root:Change direction
+INFO:root:-0.2418891
+INFO:root:Meet Criteria: -0.2426
+INFO:root:Meet Criteria: -0.2426
+INFO:root:-0.24611155
+INFO:root:-0.25200490000000003
+INFO:root:-0.25520955
+INFO:root:-0.26008665
+INFO:root:-0.2587586
+INFO:root:-0.2463997
+INFO:root:-0.24416195000000002
+INFO:root:-0.25673355
+INFO:root:-0.27874855
+INFO:root:Scan update starts at: 
+INFO:root:[-0.014199999999999997, -0.00335, 140.94035000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2820549
+INFO:root:Direction -1
+INFO:root:-0.39975445
+INFO:root:Change direction
+INFO:root:-0.27241705
+INFO:root:-0.31467120000000004
+INFO:root:Over
+INFO:root:-0.3573644
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.36426825
+INFO:root:Direction -1
+INFO:root:-0.60532085
+INFO:root:Change direction
+INFO:root:-0.2914228
+INFO:root:-0.2512363
+INFO:root:-0.2603443
+INFO:root:Over
+INFO:root:-0.25701725
+INFO:root:Scan update ends at: 
+INFO:root:[-0.014499999999999997, -0.00345, 140.94035000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2687119
+INFO:root:Scan update starts at: 
+INFO:root:[-0.014499999999999997, -0.00345, 140.94035000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.28226175
+INFO:root:Direction 1
+INFO:root:-0.28756044999999997
+INFO:root:Change direction
+INFO:root:-0.39294575
+INFO:root:Over
+INFO:root:-0.32936275000000004
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.336729
+INFO:root:Direction 1
+INFO:root:-0.24486354999999999
+INFO:root:-0.2860898
+INFO:root:Over
+INFO:root:-0.28155490000000005
+INFO:root:Scan update ends at: 
+INFO:root:[-0.014599999999999997, -0.00365, 140.94035000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2752673
+INFO:root:Z Back 1.0um
+INFO:root:[-0.014599999999999997, -0.00365, 140.93935000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.26251325000000003
+INFO:root:Scan update starts at: 
+INFO:root:[-0.014599999999999997, -0.00365, 140.93935000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2590291
+INFO:root:Direction 1
+INFO:root:-0.25325425
+INFO:root:-0.34776385
+INFO:root:Over
+INFO:root:-0.2410578
+INFO:root:Meet Criteria: -0.2426
+INFO:root:-0.25139505
+INFO:root:-0.250691
+INFO:root:-0.2482719
+INFO:root:-0.2740112
+INFO:root:Scan update starts at: 
+INFO:root:[-0.014599999999999997, -0.00385, 140.93935000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.27106515
+INFO:root:Direction 1
+INFO:root:-0.38263610000000003
+INFO:root:Change direction
+INFO:root:-0.24182445
+INFO:root:Meet Criteria: -0.2426
+INFO:root:Meet Criteria: -0.2426
+INFO:root:-0.24160205
+INFO:root:-0.24846715000000003
+INFO:root:-0.2472976
+INFO:root:-0.2469442
+INFO:root:-0.24777595
+INFO:root:-0.24001955000000003
+INFO:root:New Criteria -0.242
+INFO:root:-0.2429288
+INFO:root:-0.24652775
+INFO:root:-0.24155359999999998
+INFO:root:-0.23898035
+INFO:root:New Criteria -0.241
+INFO:root:-0.238852
+INFO:root:New Criteria -0.2409
+INFO:root:-0.2378135
+INFO:root:New Criteria -0.2398
+INFO:root:-0.2365679
+INFO:root:New Criteria -0.2386
+INFO:root:-0.23765570000000003
+INFO:root:-0.2454896
+INFO:root:-0.25339825
+INFO:root:-0.26521445
+INFO:root:-0.2571664
+INFO:root:-0.24105775
+INFO:root:-0.24153775
+INFO:root:-0.24436845000000001
+INFO:root:-0.245568
+INFO:root:-0.24520029999999998
+INFO:root:-0.25097955
+INFO:root:-0.25325565
+INFO:root:-0.24583915
+INFO:root:-0.24097849999999998
+INFO:root:-0.24430755
+INFO:root:-0.24201785
+INFO:root:-0.24923364999999997
+INFO:root:-0.2530611
+INFO:root:-0.24715310000000001
+INFO:root:-0.24619175
+INFO:root:-0.24931455
+INFO:root:-0.26208435
+INFO:root:-0.2712112
+INFO:root:Scan update starts at: 
+INFO:root:[-0.014599999999999997, -0.00365, 140.93935000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2700357
+INFO:root:Direction -1
+INFO:root:-0.43236275
+INFO:root:Change direction
+INFO:root:-0.2481279
+INFO:root:-0.30095755
+INFO:root:Over
+INFO:root:-0.27987715
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2784118
+INFO:root:Direction -1
+INFO:root:Time: 2min
+INFO:root:-0.41668465
+INFO:root:Change direction
+INFO:root:-0.2405632
+INFO:root:-0.24633444999999998
+INFO:root:Over
+INFO:root:-0.2447202
+INFO:root:Scan update ends at: 
+INFO:root:[-0.014699999999999996, -0.00375, 140.93935000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2420176
+INFO:root:Scan update starts at: 
+INFO:root:[-0.014699999999999996, -0.00375, 140.93935000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2435516
+INFO:root:Direction 1
+INFO:root:-0.2938035
+INFO:root:Change direction
+INFO:root:-0.2726271
+INFO:root:-0.352386
+INFO:root:Over
+INFO:root:-0.24952125
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.25548329999999997
+INFO:root:Direction 1
+INFO:root:-0.2939466
+INFO:root:Change direction
+INFO:root:-0.26863555
+INFO:root:-0.35780765000000003
+INFO:root:Over
+INFO:root:-0.257151
+INFO:root:Scan update ends at: 
+INFO:root:[-0.014599999999999997, -0.00365, 140.93935000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.25827315
+INFO:root:Z Back 1.0um
+INFO:root:[-0.014599999999999997, -0.00365, 140.93835000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.25291765
+INFO:root:Scan update starts at: 
+INFO:root:[-0.014599999999999997, -0.00365, 140.93835000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.25158785
+INFO:root:Direction -1
+INFO:root:-0.330909
+INFO:root:Change direction
+INFO:root:-0.27826475
+INFO:root:-0.32313349999999996
+INFO:root:Over
+INFO:root:-0.26042410000000005
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2580004
+INFO:root:Direction -1
+INFO:root:-0.35302575
+INFO:root:Change direction
+INFO:root:-0.2389169
+INFO:root:-0.25283829999999996
+INFO:root:Over
+INFO:root:-0.2773639
+INFO:root:Scan update ends at: 
+INFO:root:[-0.014699999999999996, -0.00375, 140.93835000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.28806165
+INFO:root:Scan update starts at: 
+INFO:root:[-0.014699999999999996, -0.00375, 140.93835000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.29310594999999995
+INFO:root:Direction 1
+INFO:root:-0.35650915
+INFO:root:Change direction
+INFO:root:-0.36676235
+INFO:root:Over
+INFO:root:-0.3230711
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.32548025
+INFO:root:Direction 1
+INFO:root:-0.2619505
+INFO:root:-0.2965526
+INFO:root:Over
+INFO:root:-0.3004063
+INFO:root:Scan update ends at: 
+INFO:root:[-0.014899999999999997, -0.0038499999999999997, 140.93835000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-0.30447625
+INFO:root:Scan update starts at: 
+INFO:root:[-0.014899999999999997, -0.0038499999999999997, 140.93835000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.3024495
+INFO:root:Direction 1
+INFO:root:-0.2932336
+INFO:root:-0.35031955000000004
+INFO:root:Over
+INFO:root:-0.26501905
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.26383095
+INFO:root:Direction -1
+INFO:root:-0.3246342
+INFO:root:Change direction
+INFO:root:-0.3001188
+INFO:root:-0.35268435
+INFO:root:Over
+INFO:root:-0.2556911
+INFO:root:Scan update ends at: 
+INFO:root:[-0.015099999999999997, -0.0039499999999999995, 140.93835000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.25923645
+INFO:root:Z Back 1.0um
+INFO:root:[-0.015099999999999997, -0.0039499999999999995, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.28057845000000003
+INFO:root:Scan update starts at: 
+INFO:root:[-0.015099999999999997, -0.0039499999999999995, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2739467
+INFO:root:Direction 1
+INFO:root:-0.27141994999999997
+INFO:root:-0.28063530000000003
+INFO:root:Over
+INFO:root:-0.2817479
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.28274105000000005
+INFO:root:Direction 1
+INFO:root:-0.2720627
+INFO:root:-0.28912435000000003
+INFO:root:Over
+INFO:root:-0.2564021
+INFO:root:Scan update ends at: 
+INFO:root:[-0.015299999999999998, -0.004149999999999999, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.24785555
+INFO:root:New Criteria -0.2499
+INFO:root:-0.2468793
+INFO:root:New Criteria -0.2489
+INFO:root:-0.2449281
+INFO:root:New Criteria -0.2469
+INFO:root:-0.2430568
+INFO:root:New Criteria -0.2451
+INFO:root:-0.24286400000000002
+INFO:root:New Criteria -0.2449
+INFO:root:-0.2404346
+INFO:root:New Criteria -0.2424
+INFO:root:-0.24361605
+INFO:root:-0.2459829
+INFO:root:-0.25527394999999997
+INFO:root:-0.2541032
+INFO:root:-0.25604355
+INFO:root:-0.26015115
+INFO:root:-0.26077725
+INFO:root:-0.2606328
+INFO:root:-0.26759204999999997
+INFO:root:-0.28892894999999996
+INFO:root:Scan update starts at: 
+INFO:root:[-0.015299999999999998, -0.004149999999999999, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2752715
+INFO:root:Direction 1
+INFO:root:-0.25841065
+INFO:root:-0.25708759999999997
+INFO:root:-0.3015931
+INFO:root:Over
+INFO:root:-0.25090429999999997
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.26092835000000003
+INFO:root:Direction 1
+INFO:root:-0.25387985
+INFO:root:-0.35872735
+INFO:root:Over
+INFO:root:-0.23808554999999998
+INFO:root:Meet Criteria: -0.2424
+INFO:root:New Criteria -0.2401
+INFO:root:-0.24702305000000002
+INFO:root:-0.2479201
+INFO:root:-0.25416744999999996
+INFO:root:-0.24702345
+INFO:root:-0.2427202
+INFO:root:-0.25146199999999996
+INFO:root:-0.24923875
+INFO:root:-0.2398127
+INFO:root:-0.24016245
+INFO:root:-0.25063605
+INFO:root:-0.24056509999999998
+INFO:root:-0.2367611
+INFO:root:New Criteria -0.2388
+INFO:root:-0.2402921
+INFO:root:-0.2369042
+INFO:root:-0.2358663
+INFO:root:New Criteria -0.2379
+INFO:root:Time: 3min
+INFO:root:-0.2382786
+INFO:root:Reach 3 min
+INFO:root:-0.23787785
+INFO:root:-0.23752685
+INFO:root:-0.24056329999999998
+INFO:root:-0.261264
+INFO:root:Scan update starts at: 
+INFO:root:[-0.0157, -0.004349999999999999, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.25861225
+INFO:root:Direction 1
+INFO:root:-0.3024365
+INFO:root:Change direction
+INFO:root:-0.34749555
+INFO:root:Over
+INFO:root:-0.24570225
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.24155474999999998
+INFO:root:Direction 1
+INFO:root:-0.2584838
+INFO:root:Change direction
+INFO:root:-0.28728685
+INFO:root:Over
+INFO:root:-0.24556765
+INFO:root:Scan update ends at: 
+INFO:root:[-0.015799999999999998, -0.004449999999999999, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2571527
+INFO:root:Scan update starts at: 
+INFO:root:[-0.015799999999999998, -0.004449999999999999, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.25583625
+INFO:root:Direction -1
+INFO:root:-0.35226375
+INFO:root:Change direction
+INFO:root:-0.32539830000000003
+INFO:root:-0.33977145
+INFO:root:Over
+INFO:root:-0.25925505000000004
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.25297305000000003
+INFO:root:Direction -1
+INFO:root:-0.35566299999999995
+INFO:root:Change direction
+INFO:root:-0.23738375
+INFO:root:Meet Criteria: -0.2379
+INFO:root:Meet Criteria: -0.2379
+INFO:root:-0.23663225
+INFO:root:-0.23821415
+INFO:root:-0.2389806
+INFO:root:-0.23738385
+INFO:root:-0.24139434999999998
+INFO:root:-0.24715185
+INFO:root:-0.2490248
+INFO:root:-0.24667255
+INFO:root:-0.24340845
+INFO:root:-0.245696
+INFO:root:-0.2468011
+INFO:root:-0.24035535
+INFO:root:-0.2397965
+INFO:root:-0.23891615
+INFO:root:-0.23870845
+INFO:root:-0.2414733
+INFO:root:-0.25415315000000005
+INFO:root:-0.25277335
+INFO:root:-0.25562660000000004
+INFO:root:-0.261613
+INFO:root:Scan update starts at: 
+INFO:root:[-0.015999999999999997, -0.004549999999999999, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2593172
+INFO:root:Direction 1
+INFO:root:-0.25354699999999997
+INFO:root:-0.3169965
+INFO:root:Over
+INFO:root:-0.25277435
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.25500285
+INFO:root:Direction 1
+INFO:root:-0.4464029
+INFO:root:Change direction
+INFO:root:-0.2397324
+INFO:root:-0.3072196
+INFO:root:Over
+INFO:root:-0.2381498
+INFO:root:Scan update ends at: 
+INFO:root:[-0.016199999999999996, -0.004449999999999999, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2393315
+INFO:root:Scan update starts at: 
+INFO:root:[-0.016199999999999996, -0.004449999999999999, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2393811
+INFO:root:Direction 1
+INFO:root:-0.2817008
+INFO:root:Change direction
+INFO:root:-0.3077028
+INFO:root:Over
+INFO:root:-0.2531255
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.25798975
+INFO:root:Direction -1
+INFO:root:-0.27715500000000004
+INFO:root:Change direction
+INFO:root:-0.2670454
+INFO:root:-0.29765795
+INFO:root:Over
+INFO:root:-0.23655335
+INFO:root:Meet Criteria: -0.2379
+INFO:root:-0.23933169999999998
+INFO:root:-0.23891620000000002
+INFO:root:-0.24097895
+INFO:root:-0.24840025
+INFO:root:-0.26842935
+INFO:root:Scan update starts at: 
+INFO:root:[-0.016299999999999995, -0.004549999999999999, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.26453605
+INFO:root:Direction 1
+INFO:root:-0.33707995
+INFO:root:Change direction
+INFO:root:-0.27973285000000003
+INFO:root:-0.354157
+INFO:root:Over
+INFO:root:-0.24022670000000002
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2407708
+INFO:root:Direction -1
+INFO:root:-0.33014445
+INFO:root:Change direction
+INFO:root:-0.24230475
+INFO:root:-0.28605044999999996
+INFO:root:Over
+INFO:root:-0.26823335000000004
+INFO:root:Scan update ends at: 
+INFO:root:[-0.016399999999999994, -0.004449999999999999, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.26919974999999996
+INFO:root:Scan update starts at: 
+INFO:root:[-0.016399999999999994, -0.004449999999999999, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.25777925
+INFO:root:Direction -1
+INFO:root:-0.29394715000000005
+INFO:root:Change direction
+INFO:root:-0.25631954999999995
+INFO:root:-0.2802323
+INFO:root:Over
+INFO:root:-0.2595093
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2664165
+INFO:root:Direction 1
+INFO:root:-0.2602797
+INFO:root:-0.28407215
+INFO:root:Over
+INFO:root:-0.2487532
+INFO:root:Scan update ends at: 
+INFO:root:[-0.016599999999999993, -0.004549999999999999, 140.93735000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2503392
+INFO:root:Z Back 0.7um
+INFO:root:[-0.016599999999999993, -0.004549999999999999, 140.93665000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2936069
+INFO:root:Scan update starts at: 
+INFO:root:[-0.016599999999999993, -0.004549999999999999, 140.93665000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2914085
+INFO:root:Direction 1
+INFO:root:-0.3061629
+INFO:root:Change direction
+INFO:root:-0.36549385
+INFO:root:Over
+INFO:root:-0.2450871
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2447354
+INFO:root:Direction 1
+INFO:root:-0.2625763
+INFO:root:Change direction
+INFO:root:-0.2893217
+INFO:root:Over
+INFO:root:-0.24113679999999998
+INFO:root:Scan update ends at: 
+INFO:root:[-0.016699999999999993, -0.00465, 140.93665000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-0.24459285
+INFO:root:New Criteria -0.2466
+INFO:root:-0.25014745
+INFO:root:-0.2457751
+INFO:root:-0.25429635
+INFO:root:-0.27463935
+INFO:root:Scan update starts at: 
+INFO:root:[-0.016699999999999993, -0.00465, 140.93665000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.27562180000000003
+INFO:root:Direction -1
+INFO:root:-0.5443479499999999
+INFO:root:Change direction
+INFO:root:Time: 4min
+INFO:root:-0.2652119
+INFO:root:-0.287512
+INFO:root:Over
+INFO:root:-0.28281485
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.27645985
+INFO:root:Direction -1
+INFO:root:-0.38448024999999997
+INFO:root:Change direction
+INFO:root:-0.23898065000000002
+INFO:root:Meet Criteria: -0.2466
+INFO:root:New Criteria -0.241
+INFO:root:Meet Criteria: -0.241
+INFO:root:-0.2403556
+INFO:root:-0.243839
+INFO:root:-0.24569565
+INFO:root:-0.24848030000000002
+INFO:root:-0.25166715
+INFO:root:-0.2587392
+INFO:root:-0.26627245
+INFO:root:Scan update starts at: 
+INFO:root:[-0.01689999999999999, -0.00475, 140.93665000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.26675845
+INFO:root:Direction 1
+INFO:root:-0.32468275
+INFO:root:Change direction
+INFO:root:-0.23600955
+INFO:root:Meet Criteria: -0.241
+INFO:root:New Criteria -0.238
+INFO:root:Meet Criteria: -0.238
+INFO:root:-0.24176330000000001
+INFO:root:-0.2477122
+INFO:root:-0.25542075
+INFO:root:-0.25444025
+INFO:root:-0.26314570000000004
+INFO:root:Scan update starts at: 
+INFO:root:[-0.016699999999999993, -0.00475, 140.93665000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2602055
+INFO:root:Direction -1
+INFO:root:-0.2842667
+INFO:root:Change direction
+INFO:root:-0.28554179999999996
+INFO:root:-0.3494028
+INFO:root:Over
+INFO:root:-0.26962109999999995
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2724816
+INFO:root:Direction 1
+INFO:root:-0.42058765
+INFO:root:Change direction
+INFO:root:-0.23910895
+INFO:root:-0.27994205
+INFO:root:Over
+INFO:root:-0.2534653
+INFO:root:Scan update ends at: 
+INFO:root:[-0.016799999999999992, -0.00465, 140.93665000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2501452
+INFO:root:Scan update starts at: 
+INFO:root:[-0.016799999999999992, -0.00465, 140.93665000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2492329
+INFO:root:Direction 1
+INFO:root:-0.287011
+INFO:root:Change direction
+INFO:root:-0.25202460000000004
+INFO:root:-0.31046465
+INFO:root:Over
+INFO:root:-0.27177359999999995
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.28015239999999997
+INFO:root:Direction -1
+INFO:root:-0.28008774999999997
+INFO:root:-0.37573009999999996
+INFO:root:Over
+INFO:root:-0.2390447
+INFO:root:Scan update ends at: 
+INFO:root:[-0.016699999999999993, -0.00445, 140.93665000000007, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.24758245
+INFO:root:Z Back 0.7um
+INFO:root:[-0.016699999999999993, -0.00445, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.23952469999999998
+INFO:root:Scan update starts at: 
+INFO:root:[-0.016699999999999993, -0.00445, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.24085014999999999
+INFO:root:Direction -1
+INFO:root:-0.3051981
+INFO:root:Change direction
+INFO:root:-0.25944524999999996
+INFO:root:-0.36177585
+INFO:root:Over
+INFO:root:-0.28875660000000003
+INFO:root:Y step not best
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.27973275
+INFO:root:Direction -1
+INFO:root:-0.41719680000000003
+INFO:root:Change direction
+INFO:root:-0.2496644
+INFO:root:-0.2436161
+INFO:root:-0.25694174999999997
+INFO:root:Over
+INFO:root:-0.24750355000000002
+INFO:root:Scan update ends at: 
+INFO:root:[-0.016999999999999994, -0.00455, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-0.24715225000000002
+INFO:root:New Criteria -0.2492
+INFO:root:-0.25160289999999996
+INFO:root:-0.2593011
+INFO:root:-0.27665315
+INFO:root:Scan update starts at: 
+INFO:root:[-0.016999999999999994, -0.00455, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2710819
+INFO:root:Direction 1
+INFO:root:-0.27967624999999996
+INFO:root:Change direction
+INFO:root:-0.45303145
+INFO:root:Over
+INFO:root:-0.31524085
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.30812505
+INFO:root:Direction 1
+INFO:root:-0.2569433
+INFO:root:-0.42409545
+INFO:root:Over
+INFO:root:-0.25623875
+INFO:root:Scan update ends at: 
+INFO:root:[-0.017099999999999994, -0.00475, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.25737565
+INFO:root:Scan update starts at: 
+INFO:root:[-0.017099999999999994, -0.00475, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2554988
+INFO:root:Direction 1
+INFO:root:-0.44126814999999997
+INFO:root:Change direction
+INFO:root:-0.24833695
+INFO:root:Meet Criteria: -0.2492
+INFO:root:Meet Criteria: -0.2492
+INFO:root:-0.2503535
+INFO:root:-0.25681495
+INFO:root:-0.25570634999999997
+INFO:root:-0.2532543
+INFO:root:-0.2414733
+INFO:root:New Criteria -0.2435
+INFO:root:-0.24521515
+INFO:root:-0.25854639999999995
+INFO:root:-0.2649405
+INFO:root:Scan update starts at: 
+INFO:root:[-0.017099999999999994, -0.00455, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2655813
+INFO:root:Direction -1
+INFO:root:-0.4062207
+INFO:root:Change direction
+INFO:root:-0.25506565000000003
+INFO:root:-0.36239825000000003
+INFO:root:Over
+INFO:root:-0.29008065
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.29451295
+INFO:root:Direction -1
+INFO:root:-0.43299215
+INFO:root:Change direction
+INFO:root:-0.24875215
+INFO:root:-0.2362815
+INFO:root:Meet Criteria: -0.2435
+INFO:root:New Criteria -0.2383
+INFO:root:Meet Criteria: -0.2383
+INFO:root:-0.24126579999999997
+INFO:root:-0.2425124
+INFO:root:-0.2461908
+INFO:root:-0.24230485000000002
+INFO:root:-0.25841755
+INFO:root:Scan update starts at: 
+INFO:root:[-0.017499999999999995, -0.0046500000000000005, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.25806445
+INFO:root:Direction 1
+INFO:root:-0.30552935000000003
+INFO:root:Change direction
+INFO:root:-0.26934335
+INFO:root:-0.3966737
+INFO:root:Over
+INFO:root:-0.3132122
+INFO:root:X step not best
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.310318
+INFO:root:Direction 1
+INFO:root:-0.2679446
+INFO:root:Time: 5min
+INFO:root:-0.33571365
+INFO:root:Over
+INFO:root:-0.2787486
+INFO:root:Scan update ends at: 
+INFO:root:[-0.017399999999999995, -0.00485, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.27895815
+INFO:root:Scan update starts at: 
+INFO:root:[-0.017399999999999995, -0.00485, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2830873
+INFO:root:Direction 1
+INFO:root:-0.32166845
+INFO:root:Change direction
+INFO:root:-0.31693595
+INFO:root:-0.40911770000000003
+INFO:root:Over
+INFO:root:-0.26307385
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.26558024999999996
+INFO:root:Direction -1
+INFO:root:-0.35125585000000004
+INFO:root:Change direction
+INFO:root:-0.2389161
+INFO:root:-0.2772186
+INFO:root:Over
+INFO:root:-0.23752685
+INFO:root:Meet Criteria: -0.2383
+INFO:root:-0.237255
+INFO:root:-0.237527
+INFO:root:-0.23752685
+INFO:root:-0.2401475
+INFO:root:-0.2435516
+INFO:root:-0.25556195
+INFO:root:-0.2593809
+INFO:root:Scan update starts at: 
+INFO:root:[-0.017499999999999995, -0.00475, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.26021530000000004
+INFO:root:Direction 1
+INFO:root:-0.24791970000000002
+INFO:root:-0.299272
+INFO:root:Over
+INFO:root:-0.2491047
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2473749
+INFO:root:Direction -1
+INFO:root:-0.28806115
+INFO:root:Change direction
+INFO:root:-0.26111445
+INFO:root:-0.2758313
+INFO:root:Over
+INFO:root:-0.25166725
+INFO:root:Scan update ends at: 
+INFO:root:[-0.017699999999999994, -0.00485, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2534135
+INFO:root:Scan update starts at: 
+INFO:root:[-0.017699999999999994, -0.00485, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2525005
+INFO:root:Direction 1
+INFO:root:-0.24286365
+INFO:root:-0.2834428
+INFO:root:Over
+INFO:root:-0.23933145
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2393167
+INFO:root:Direction 1
+INFO:root:-0.25250045
+INFO:root:Change direction
+INFO:root:-0.2637676
+INFO:root:Over
+INFO:root:-0.2408499
+INFO:root:Scan update ends at: 
+INFO:root:[-0.017899999999999992, -0.00495, 140.93595000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.24521635
+INFO:root:Z Back 0.7um
+INFO:root:[-0.017899999999999992, -0.00495, 140.93525000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.25695765000000004
+INFO:root:Scan update starts at: 
+INFO:root:[-0.017899999999999992, -0.00495, 140.93525000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2573592
+INFO:root:Direction 1
+INFO:root:-0.33226605
+INFO:root:Change direction
+INFO:root:-0.236568
+INFO:root:Meet Criteria: -0.2383
+INFO:root:Meet Criteria: -0.2383
+INFO:root:-0.2360739
+INFO:root:New Criteria -0.2381
+INFO:root:-0.23842185
+INFO:root:-0.24195335
+INFO:root:-0.2456311
+INFO:root:-0.25089875
+INFO:root:-0.26050415
+INFO:root:Scan update starts at: 
+INFO:root:[-0.017699999999999994, -0.00495, 140.93525000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2602953
+INFO:root:Direction -1
+INFO:root:-0.39157515
+INFO:root:Change direction
+INFO:root:-0.27457475
+INFO:root:-0.26447135
+INFO:root:-0.3021564
+INFO:root:Over
+INFO:root:-0.2634757
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.26453595
+INFO:root:Direction -1
+INFO:root:-0.32165045000000003
+INFO:root:Change direction
+INFO:root:-0.24542324999999998
+INFO:root:-0.2396827
+INFO:root:-0.26042405
+INFO:root:Over
+INFO:root:-0.24029115
+INFO:root:Scan update ends at: 
+INFO:root:[-0.017999999999999995, -0.00525, 140.93525000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2405637
+INFO:root:Scan update starts at: 
+INFO:root:[-0.017999999999999995, -0.00525, 140.93525000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2453439
+INFO:root:Direction 1
+INFO:root:-0.25513030000000003
+INFO:root:Change direction
+INFO:root:-0.28323485
+INFO:root:Over
+INFO:root:-0.25229235000000005
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2519405
+INFO:root:Direction 1
+INFO:root:-0.311731
+INFO:root:Change direction
+INFO:root:-0.24840035
+INFO:root:-0.24340845
+INFO:root:-0.2624316
+INFO:root:Over
+INFO:root:-0.24284915
+INFO:root:Scan update ends at: 
+INFO:root:[-0.018099999999999995, -0.00495, 140.93525000000008, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2422403
+INFO:root:Z Back 0.7um
+INFO:root:[-0.018099999999999995, -0.00495, 140.9345500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2548723
+INFO:root:Scan update starts at: 
+INFO:root:[-0.018099999999999995, -0.00495, 140.9345500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.25598045
+INFO:root:Direction -1
+INFO:root:-0.26000650000000003
+INFO:root:Change direction
+INFO:root:-0.2661272
+INFO:root:Over
+INFO:root:-0.2533982
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2563982
+INFO:root:Direction -1
+INFO:root:-0.24049864999999998
+INFO:root:-0.26015145
+INFO:root:Over
+INFO:root:-0.23960345
+INFO:root:Scan update ends at: 
+INFO:root:[-0.017899999999999996, -0.00485, 140.9345500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-0.23910895
+INFO:root:New Criteria -0.2411
+INFO:root:-0.23966785000000002
+INFO:root:-0.23931675000000002
+INFO:root:-0.23850064999999998
+INFO:root:New Criteria -0.2405
+INFO:root:-0.23669655
+INFO:root:New Criteria -0.2387
+INFO:root:-0.2374479
+INFO:root:-0.23821415
+INFO:root:-0.2373192
+INFO:root:-0.2406422
+INFO:root:-0.24085025
+INFO:root:-0.24411115
+INFO:root:-0.24353685
+INFO:root:-0.24756804999999998
+INFO:root:Time: 6min
+INFO:root:-0.24411115
+INFO:root:-0.2470234
+INFO:root:-0.24625514999999998
+INFO:root:-0.2475679
+INFO:root:-0.248896
+INFO:root:-0.2468
+INFO:root:-0.2444479
+INFO:root:-0.24686435
+INFO:root:-0.24916865
+INFO:root:-0.25777605000000003
+INFO:root:-0.26882865
+INFO:root:Scan update starts at: 
+INFO:root:[-0.017899999999999996, -0.00485, 140.9345500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.269472
+INFO:root:Direction 1
+INFO:root:-0.26159635000000003
+INFO:root:-0.26543585000000003
+INFO:root:-0.2707271
+INFO:root:Over
+INFO:root:-0.2722077
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.27191790000000005
+INFO:root:Direction -1
+INFO:root:-0.31036425
+INFO:root:Change direction
+INFO:root:-0.25117125
+INFO:root:-0.24438339999999997
+INFO:root:-0.2506902
+INFO:root:Over
+INFO:root:-0.24403185
+INFO:root:Scan update ends at: 
+INFO:root:[-0.018199999999999997, -0.00525, 140.9345500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.24569554999999998
+INFO:root:Scan update starts at: 
+INFO:root:[-0.018199999999999997, -0.00525, 140.9345500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.24486375
+INFO:root:Direction 1
+INFO:root:-0.25472825
+INFO:root:Change direction
+INFO:root:-0.2412656
+INFO:root:-0.24000435
+INFO:root:-0.24030585
+INFO:root:-0.2454875
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2464633
+INFO:root:Direction 1
+INFO:root:-0.2463989
+INFO:root:-0.2537506
+INFO:root:Over
+INFO:root:-0.24852905
+INFO:root:Scan update ends at: 
+INFO:root:[-0.018399999999999996, -0.00515, 140.9345500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.24888090000000002
+INFO:root:Z Back 0.7um
+INFO:root:[-0.018399999999999996, -0.00515, 140.9338500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.25528914999999996
+INFO:root:Scan update starts at: 
+INFO:root:[-0.018399999999999996, -0.00515, 140.9338500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2550655
+INFO:root:Direction -1
+INFO:root:-0.24473495
+INFO:root:-0.2390593
+INFO:root:-0.23669655
+INFO:root:Meet Criteria: -0.2387
+INFO:root:Meet Criteria: -0.2387
+INFO:root:-0.23628149999999998
+INFO:root:New Criteria -0.2383
+INFO:root:-0.23620259999999998
+INFO:root:New Criteria -0.2382
+INFO:root:-0.23642475000000002
+INFO:root:-0.23703275000000001
+INFO:root:-0.2371761
+INFO:root:-0.2379422
+INFO:root:-0.23891595
+INFO:root:-0.2405629
+INFO:root:-0.2412654
+INFO:root:-0.24382399999999999
+INFO:root:-0.2451508
+INFO:root:-0.2461908
+INFO:root:-0.24742415
+INFO:root:-0.24798409999999999
+INFO:root:-0.24694365000000001
+INFO:root:-0.2463838
+INFO:root:-0.24611155
+INFO:root:-0.24535885000000002
+INFO:root:-0.24492805
+INFO:root:-0.2456954
+INFO:root:-0.24702295000000002
+INFO:root:-0.24735975
+INFO:root:-0.24675065000000002
+INFO:root:-0.24681495
+INFO:root:-0.24665625
+INFO:root:-0.2470873
+INFO:root:-0.247216
+INFO:root:-0.2470873
+INFO:root:-0.2463989
+INFO:root:-0.24521515
+INFO:root:-0.24702295000000002
+INFO:root:-0.24937675
+INFO:root:-0.25158775
+INFO:root:-0.25498560000000003
+INFO:root:-0.25514525
+INFO:root:-0.2559636
+INFO:root:-0.2563317
+INFO:root:-0.257856
+INFO:root:-0.25848165
+INFO:root:Scan update starts at: 
+INFO:root:[-0.018399999999999996, -0.00445, 140.9338500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.25881905
+INFO:root:Direction -1
+INFO:root:-0.26305785
+INFO:root:Change direction
+INFO:root:-0.25861035
+INFO:root:-0.26119455
+INFO:root:-0.2605039
+INFO:root:-0.26453575
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.26439125
+INFO:root:Direction 1
+INFO:root:-0.25201945000000003
+INFO:root:-0.2461908
+INFO:root:-0.24120114999999998
+INFO:root:-0.2404987
+INFO:root:Reach step search limit
+INFO:root:-0.2407213
+INFO:root:Scan update ends at: 
+INFO:root:[-0.018999999999999996, -0.00455, 140.9338500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.241122
+INFO:root:Scan update starts at: 
+INFO:root:[-0.018999999999999996, -0.00455, 140.9338500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.24099335
+INFO:root:Direction 1
+INFO:root:-0.24168099999999998
+INFO:root:-0.2440468
+INFO:root:-0.2420968
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2421758
+INFO:root:Direction 1
+INFO:root:-0.2443834
+INFO:root:Time: 7min
+INFO:root:-0.24604705
+INFO:root:-0.24153755
+INFO:root:Scan update ends at: 
+INFO:root:[-0.018999999999999996, -0.00455, 140.9338500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.2412654
+INFO:root:Z Back 0.7um
+INFO:root:[-0.018999999999999996, -0.00455, 140.9331500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:-0.24057784999999998
+INFO:root:Scan update starts at: 
+INFO:root:[-0.018999999999999996, -0.00455, 140.9331500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Start Xstep (loss then pos)
+INFO:root:-0.2407213
+INFO:root:Direction 1
+INFO:root:-0.2427202
+INFO:root:-0.2458393
+INFO:root:Over
+INFO:root:-0.2416812
+INFO:root:Start Ystep (loss then pos)
+INFO:root:-0.2413943
+INFO:root:Direction 1
+INFO:root:-0.242641
+INFO:root:-0.24479925
+INFO:root:-0.2414733
+INFO:root:Scan update ends at: 
+INFO:root:[-0.019199999999999995, -0.00455, 140.9331500000001, 0.5000000000000009, -0.8, 0.0]
+INFO:root:Lower criteria 0.015dB
+INFO:root:-0.2419382
+INFO:root:New Criteria -0.2439
+INFO:root:-0.24216105
+INFO:root:-0.2420174
+INFO:root:-0.2416812
+INFO:root:New Criteria -0.2437
+INFO:root:-0.24168099999999998
+INFO:root:New Criteria -0.2437
+INFO:root:-0.24278444999999998
+INFO:root:-0.2425124
+INFO:root:-0.24312109999999998
+INFO:root:-0.2429924
+INFO:root:-0.2430568
+INFO:root:-0.2421758
+INFO:root:-0.2407213
+INFO:root:New Criteria -0.2427
+INFO:root:-0.23995460000000002
+INFO:root:New Criteria -0.242
+INFO:root:-0.2406421
+INFO:root:-0.24049864999999998
+INFO:root:-0.24001905
+INFO:root:-0.2400188
+INFO:root:-0.23918810000000001
+INFO:root:New Criteria -0.2412
+INFO:root:-0.2389014
+INFO:root:New Criteria -0.2409
+INFO:root:-0.23856515
+INFO:root:New Criteria -0.2406
+INFO:root:-0.23870835
+INFO:root:-0.23829309999999998
+INFO:root:New Criteria -0.2403
+INFO:root:-0.2384862
+INFO:root:-0.23821415
+INFO:root:New Criteria -0.2402
+INFO:root:-0.2382287
+INFO:root:-0.23821415
+INFO:root:-0.23925249999999998
+INFO:root:-0.23993989999999998
+INFO:root:-0.23966785000000002
+INFO:root:-0.24140885
+INFO:root:-0.2414733
+INFO:root:-0.24125069999999998
+INFO:root:-0.24049864999999998
+INFO:root:-0.2404344
+INFO:root:-0.2400041
+INFO:root:-0.2393169
+INFO:root:-0.23883700000000002
+INFO:root:-0.2384861
+INFO:root:-0.23891595
+INFO:root:-0.2390447
+INFO:root:-0.2386441
+INFO:root:-0.23829309999999998
+INFO:root:-0.2380854
+INFO:root:New Criteria -0.2401
+INFO:root:-0.2379421
+INFO:root:New Criteria -0.2399
+INFO:root:-0.2376556
+INFO:root:New Criteria -0.2397
+INFO:root:-0.23717605
+INFO:root:New Criteria -0.2392
+INFO:root:-0.23779875
+INFO:root:-0.237527
+INFO:root:-0.23752685
+INFO:root:-0.23787785
+INFO:root:-0.23779875
+INFO:root:-0.2379422
+INFO:root:-0.2376554
+INFO:root:-0.2381498
+INFO:root:-0.2380854
+INFO:root:-0.23814975
+INFO:root:-0.23800644999999998
+INFO:root:-0.2384364
+INFO:root:-0.23842170000000001
+INFO:root:-0.2386294
+INFO:root:-0.23814975
+INFO:root:-0.23773450000000002
+INFO:root:-0.2372404
+INFO:root:-0.23738355
+INFO:root:-0.23746265
+INFO:root:-0.2373983
+INFO:root:-0.237527
+INFO:root:-0.2374481
+INFO:root:-0.23779875
+INFO:root:-0.2375912
+INFO:root:-0.23752685
+INFO:root:-0.23731934999999998
+INFO:root:-0.2375914
+INFO:root:-0.23746265
+INFO:root:-0.2379422
+INFO:root:-0.23787785
+INFO:root:-0.2378631
+INFO:root:-0.2381352
+INFO:root:-0.23807085
+INFO:root:-0.23759125
+INFO:root:-0.23779875
+INFO:root:-0.23738369999999998
+INFO:root:-0.2379421
+INFO:root:-0.23800644999999998
+INFO:root:-0.2380708
+INFO:root:-0.2379422
+INFO:root:Time: 8min
+INFO:root:-0.23773450000000002
+INFO:root:-0.2375912
+INFO:root:-0.2379421
+INFO:root:-0.2372404
+INFO:root:-0.2376554
+INFO:root:-0.2375912
+INFO:root:-0.23731934999999998
+INFO:root:-0.2378631
+INFO:root:-0.2376554
+INFO:root:-0.2379421
+INFO:root:-0.2379421
+INFO:root:-0.23842185
+INFO:root:-0.23800644999999998
+INFO:root:-0.23814975
+INFO:root:Loss is stable, pause the program
+INFO:root:-0.23787785
+INFO:root:-0.2377989
+INFO:root:-0.2381498
+INFO:root:-0.23779875
+INFO:root:-0.23786315
+INFO:root:-0.2377989
+INFO:root:-0.23800644999999998
+INFO:root:-0.2380066
+INFO:root:-0.23746265
+INFO:root:-0.23779875
+INFO:root:-0.2376702
+INFO:root:-0.2379421
+INFO:root:-0.23752685
+INFO:root:-0.23779875
+INFO:root:-0.23773450000000002
+INFO:root:-0.2380708
+INFO:root:-0.23802115000000001
+INFO:root:-0.23835745
+INFO:root:-0.2382287
+INFO:root:-0.23842185
+INFO:root:-0.23773450000000002
+INFO:root:-0.2379421
+INFO:root:-0.23829309999999998
+INFO:root:-0.23807085
+INFO:root:-0.2380708
+INFO:root:-0.2381352
+INFO:root:-0.23829309999999998
+INFO:root:-0.2382785
+INFO:root:-0.23829309999999998
+INFO:root:-0.23842185
+INFO:root:-0.23814975
+INFO:root:-0.23891595
+INFO:root:-0.23842185
+INFO:root:-0.2392523
+INFO:root:-0.2389014
+INFO:root:-0.23898035
+INFO:root:-0.2390447
+INFO:root:-0.23898035
+INFO:root:-0.2388371
+INFO:root:-0.23898035
+INFO:root:-0.23918810000000001
+INFO:root:-0.23904475
+INFO:root:-0.2392523
+INFO:root:-0.23898035
+INFO:root:-0.23870835
+INFO:root:-0.2386294
+INFO:root:-0.23926704999999998
+INFO:root:-0.2391881
+INFO:root:-0.23877275
+INFO:root:-0.2386441
+INFO:root:-0.23918810000000001
+INFO:root:-0.2390593
+INFO:root:-0.23926704999999998
+INFO:root:-0.2389014
+INFO:root:-0.2390447
+INFO:root:-0.23904475
+INFO:root:-0.2397321
+INFO:root:-0.239747
+INFO:root:-0.2396826
+INFO:root:-0.23981125
+INFO:root:-0.23966785000000002
+INFO:root:-0.23946024999999999
+INFO:root:-0.23973224999999998
+INFO:root:-0.23966785000000002
+INFO:root:-0.2394748
+INFO:root:-0.23925249999999998
+INFO:root:-0.23904475
+INFO:root:-0.23898035
+INFO:root:-0.2390447
+INFO:root:-0.23925249999999998
+INFO:root:-0.23877275
+INFO:root:-0.2387726
+INFO:root:-0.23939585
+INFO:root:-0.2391091
+INFO:root:-0.23987545
+INFO:root:-0.23981125
+INFO:root:-0.23987565
+INFO:root:-0.24001905
+INFO:root:-0.2398904
+INFO:root:-0.23939585
+INFO:root:-0.23981125
+INFO:root:-0.23987565
+INFO:root:-0.2397321
+INFO:root:-0.23939585
+INFO:root:-0.23981125
+INFO:root:-0.2397321
+INFO:root:-0.23966785000000002
+INFO:root:Time: 9min
+INFO:root:-0.2397321
+INFO:root:-0.2391237
+INFO:root:-0.23946004999999998
+INFO:root:-0.23898035
+INFO:root:-0.2390593
+INFO:root:-0.2395245
+INFO:root:-0.23933145
+INFO:root:-0.2401622
+INFO:root:-0.2396036
+INFO:root:-0.23952445
+INFO:root:-0.23966785000000002
+INFO:root:-0.2393169
+INFO:root:-0.2398904
+INFO:root:-0.23995460000000002
+INFO:root:-0.23966785000000002
+INFO:root:-0.24001905
+INFO:root:-0.23939585
+INFO:root:-0.23987565
+INFO:root:-0.24022664999999999
+INFO:root:-0.24021189999999998
+INFO:root:-0.23995460000000002
+INFO:root:-0.239747
+INFO:root:-0.2396036
+INFO:root:-0.23960345
+INFO:root:-0.2395392
+INFO:root:-0.2395392
+INFO:root:-0.2395245
+INFO:root:-0.2395392
+INFO:root:-0.2395392
+INFO:root:-0.23925249999999998
+INFO:root:-0.2395392
+INFO:root:-0.23966785000000002
+INFO:root:-0.2398904
+INFO:root:-0.23987565
+INFO:root:-0.2401622
+INFO:root:-0.240098
+INFO:root:-0.24037
+INFO:root:-0.24022664999999999
+INFO:root:-0.24022664999999999
+INFO:root:-0.2406918
+INFO:root:-0.2404344
+INFO:root:-0.24051345000000002
+INFO:root:-0.2404344
+INFO:root:-0.2404344
+INFO:root:-0.2409142
+INFO:root:-0.24008325
+INFO:root:-0.2401622
+INFO:root:-0.23993985
+INFO:root:-0.23987545
+INFO:root:-0.24022664999999999
+INFO:root:-0.2405629
+INFO:root:-0.2408498
+INFO:root:-0.24049864999999998
+INFO:root:-0.2408498
+INFO:root:-0.2405631
+INFO:root:-0.24099335
+INFO:root:-0.2407708
+INFO:root:-0.2409142
+INFO:root:-0.24105775
+INFO:root:-0.2412656
+INFO:root:-0.2415523
+INFO:root:-0.2411369
+INFO:root:-0.2411369
+INFO:root:-0.2409142
+INFO:root:-0.24057784999999998
+INFO:root:-0.2408498
+INFO:root:-0.2409786
+INFO:root:-0.2409786
+INFO:root:-0.24120114999999998
+INFO:root:-0.24097845
+INFO:root:-0.24105775
+INFO:root:-0.2412654
+INFO:root:-0.24099335
+INFO:root:-0.2409786
+INFO:root:-0.24132985
+INFO:root:-0.241122
+INFO:root:-0.24145855
+INFO:root:-0.2412656
+INFO:root:-0.2413943
+INFO:root:-0.2414733
+INFO:root:-0.24182465
+INFO:root:-0.24160199999999998
+INFO:root:-0.2414733
+INFO:root:-0.2414733
+INFO:root:-0.2418889
+INFO:root:-0.2412656
+INFO:root:-0.2414733
+INFO:root:-0.2413943
+INFO:root:-0.2413943
+INFO:root:-0.241602
+INFO:root:-0.24153775
+INFO:root:-0.24132985
+INFO:root:-0.24216105
+INFO:root:-0.24216105
+INFO:root:-0.24251245
+INFO:root:-0.24286365
+INFO:root:-0.24236875000000002
+INFO:root:-0.24244795
+INFO:root:-0.24257669999999998
+INFO:root:-0.24230449999999998
+INFO:root:Time: 10min
+INFO:root:-0.24251224999999998
+INFO:root:-0.24236895
+INFO:root:-0.24216105
+INFO:root:-0.2423045
+INFO:root:-0.2420968
+INFO:root:-0.2423045
+INFO:root:-0.24203235
+INFO:root:-0.24203235
+INFO:root:-0.24257669999999998
+INFO:root:-0.24286365
+INFO:root:-0.24244795
+INFO:root:-0.2427202
+INFO:root:-0.2430568
+INFO:root:-0.24291335
+INFO:root:-0.24327949999999998
+INFO:root:-0.24369525
+INFO:root:-0.2433438
+INFO:root:-0.24369525
+INFO:root:-0.24382385
+INFO:root:-0.24353685
+INFO:root:-0.2432152
+INFO:root:-0.24355175
+INFO:root:-0.2430568
+INFO:root:-0.24286365
+INFO:root:-0.2424975
+INFO:root:-0.24244795
+INFO:root:-0.24203235
+INFO:root:-0.2421758
+INFO:root:-0.24203235
+INFO:root:-0.2423045
+INFO:root:-0.24257669999999998
+INFO:root:-0.2423045
+INFO:root:-0.24251224999999998
+INFO:root:-0.24286365
+INFO:root:-0.2425767
+INFO:root:-0.24320029999999998
+INFO:root:-0.24347255
+INFO:root:-0.24361605
+INFO:root:-0.2441111
+INFO:root:-0.24383880000000002
+INFO:root:-0.24390325000000002
+INFO:root:-0.2438883
+INFO:root:-0.24353685
+INFO:root:-0.24320029999999998
+INFO:root:-0.2433438
+INFO:root:-0.24332890000000001
+INFO:root:-0.2434724
+INFO:root:-0.24320029999999998
+INFO:root:-0.2430568
+INFO:root:-0.24327949999999998
+INFO:root:-0.2427202
+INFO:root:-0.24286365
+INFO:root:-0.24292809999999998
+INFO:root:-0.24327949999999998
+INFO:root:-0.2436308
+INFO:root:-0.2437597
+INFO:root:-0.24396755
+INFO:root:-0.2442397
+INFO:root:-0.2437597
+INFO:root:-0.24369525
+INFO:root:-0.2441111
+INFO:root:-0.24369525
+INFO:root:-0.24409615
+INFO:root:-0.24382405000000001
+INFO:root:-0.24340810000000002
+INFO:root:-0.24382399999999999
+INFO:root:-0.24375960000000002
+INFO:root:-0.24307155
+INFO:root:-0.24320015
+INFO:root:-0.2432152
+INFO:root:-0.24368035
+INFO:root:-0.2441111
+INFO:root:-0.24369525
+INFO:root:-0.24403185
+INFO:root:-0.2441754
+INFO:root:-0.2444628
+INFO:root:-0.2445271
+INFO:root:-0.2445914
+INFO:root:-0.2444477
+INFO:root:-0.2454875
+INFO:root:-0.24535885000000002
+INFO:root:-0.2451361
+INFO:root:-0.24459140000000001
+INFO:root:-0.24500729999999998
+INFO:root:-0.2445914
+INFO:root:-0.24472
+INFO:root:-0.2450071
+INFO:root:-0.24479925
+INFO:root:-0.24457645
+INFO:root:-0.2441111
+INFO:root:-0.244304
+INFO:root:-0.2441754
+INFO:root:-0.24465569999999998
+INFO:root:-0.2444628
+INFO:root:-0.2443834
+INFO:root:-0.24479925
+INFO:root:-0.24486354999999999
+INFO:root:-0.2452945
+INFO:root:-0.24500729999999998
+INFO:root:-0.24465569999999998
+INFO:root:-0.24535885000000002
+INFO:root:Time: 11min
+INFO:root:-0.2450716
+INFO:root:-0.24494280000000002
+INFO:root:-0.24527965000000002
+INFO:root:-0.2450071
+INFO:root:-0.24486354999999999
+INFO:root:-0.2444477
+INFO:root:-0.2444477
+INFO:root:-0.2442397
+INFO:root:-0.244512
+INFO:root:-0.24375955
+INFO:root:-0.24430415
+INFO:root:-0.2445914
+INFO:root:-0.2445914
+INFO:root:-0.2445271
+INFO:root:-0.2445271
+INFO:root:-0.2445271
+INFO:root:-0.24459140000000001
+INFO:root:-0.2444329
+INFO:root:-0.2448785
+INFO:root:-0.24494280000000002
+INFO:root:-0.2454232
+INFO:root:-0.2452945
+INFO:root:-0.24563105
+INFO:root:-0.24556675
+INFO:root:-0.24569554999999998
+INFO:root:-0.24508649999999998
+INFO:root:-0.2450716
+INFO:root:-0.24508649999999998
+INFO:root:-0.2451508
+INFO:root:-0.2447843
+INFO:root:-0.2445914
+INFO:root:-0.2444628
+INFO:root:-0.24465569999999998
+INFO:root:-0.2452153
+INFO:root:-0.2452153
+INFO:root:-0.2450071
+INFO:root:-0.24494280000000002
+INFO:root:-0.2450716
+INFO:root:-0.24527965000000002
+INFO:root:-0.24535885000000002
+INFO:root:-0.2451361
+INFO:root:-0.24563105
+INFO:root:-0.24527965000000002
+INFO:root:-0.2459829
+INFO:root:-0.2454232
+INFO:root:-0.24569554999999998
+INFO:root:-0.245968
+INFO:root:-0.2456954
+INFO:root:-0.24563105
+INFO:root:-0.2450716
+INFO:root:-0.24486354999999999
+INFO:root:-0.2445271
+INFO:root:-0.2445914
+INFO:root:-0.24534394999999998
+INFO:root:-0.24494280000000002
+INFO:root:-0.2450716
+INFO:root:-0.2450716
+INFO:root:-0.24527965000000002
+INFO:root:-0.2450071
+INFO:root:-0.2452796
+INFO:root:-0.24520039999999999
+INFO:root:-0.2452153
+INFO:root:-0.2452153
+INFO:root:-0.2457103
+INFO:root:-0.2457103
+INFO:root:-0.24577480000000002
+INFO:root:-0.24542314999999998
+INFO:root:-0.24569554999999998
+INFO:root:-0.24535885000000002
+INFO:root:-0.24542314999999998
+INFO:root:-0.24473495
+INFO:root:-0.24479925
+INFO:root:-0.24473495
+INFO:root:-0.24396755
+INFO:root:-0.2441754
+INFO:root:-0.24390325000000002
+INFO:root:-0.24436845000000001
+INFO:root:-0.24403185
+INFO:root:-0.2442397
+INFO:root:-0.2442397
+INFO:root:-0.2451361
+INFO:root:-0.2450716
+INFO:root:-0.24556675
+INFO:root:-0.24534394999999998
+INFO:root:-0.2454875
+INFO:root:-0.24590365
+INFO:root:-0.24535885000000002
+INFO:root:-0.24577480000000002
+INFO:root:-0.24556675
+INFO:root:-0.24577480000000002
+INFO:root:-0.24563105
+INFO:root:-0.245968
+INFO:root:-0.245968
+INFO:root:-0.24583915
+INFO:root:-0.24540825
+INFO:root:-0.24535885000000002
+INFO:root:-0.2448785
+INFO:root:-0.24527965000000002
+INFO:root:-0.2454232
+INFO:root:-0.24561614999999998
+INFO:root:Time: 12min
+INFO:root:-0.24521515
+INFO:root:-0.2451361
+INFO:root:-0.24527945
+INFO:root:-0.24520039999999999
+INFO:root:-0.24534394999999998
+INFO:root:-0.24590365
+INFO:root:-0.24535885000000002
+INFO:root:-0.2455518
+INFO:root:-0.24563105
+INFO:root:-0.2457599
+INFO:root:-0.2458393
+INFO:root:-0.24611155
+INFO:root:-0.245968
+INFO:root:-0.24577480000000002
+INFO:root:-0.2459827
+INFO:root:-0.24590365
+INFO:root:-0.24577480000000002
+INFO:root:-0.24556675
+INFO:root:-0.24494280000000002
+INFO:root:-0.2448785
+INFO:root:-0.24459140000000001
+INFO:root:-0.24472
+INFO:root:-0.2448785
+INFO:root:-0.24451214999999998
+INFO:root:-0.24457645
+INFO:root:-0.2445271
+INFO:root:-0.24479925
+INFO:root:-0.24494280000000002
+INFO:root:-0.24500729999999998
+INFO:root:-0.24467065
+INFO:root:-0.2448785
+INFO:root:-0.2454875
+INFO:root:-0.24513590000000002
+INFO:root:-0.24590365
+INFO:root:-0.2458393
+INFO:root:-0.2458393
+INFO:root:-0.2458393
+INFO:root:-0.24604725
+INFO:root:-0.2454875
+INFO:root:-0.24590365
+INFO:root:-0.2451361
+INFO:root:-0.24508649999999998
+INFO:root:-0.24542314999999998
+INFO:root:-0.24555185000000002
+INFO:root:-0.2455024
+INFO:root:-0.2455024
+INFO:root:-0.2451361
+INFO:root:-0.2452945
+INFO:root:-0.245968
+INFO:root:-0.2452153
+INFO:root:-0.24520039999999999
+INFO:root:-0.24590365
+INFO:root:-0.2457103
+INFO:root:-0.24577480000000002
+INFO:root:-0.24542314999999998
+INFO:root:-0.24590365
+INFO:root:-0.2461908
+INFO:root:-0.24611155
+INFO:root:-0.2457103
+INFO:root:-0.24556675
+INFO:root:-0.24542314999999998
+INFO:root:-0.2451361
+INFO:root:-0.2450716
+INFO:root:-0.24540825
+INFO:root:-0.24465569999999998
+INFO:root:-0.2450716
+INFO:root:-0.24500729999999998
+INFO:root:-0.2451361
+INFO:root:-0.2452945
+INFO:root:-0.24542314999999998
+INFO:root:-0.2452153
+INFO:root:-0.2455518
+INFO:root:-0.245968
+INFO:root:-0.245968
+INFO:root:-0.24625514999999998
+INFO:root:-0.24569554999999998
+INFO:root:-0.24569554999999998
+INFO:root:-0.2461908
+INFO:root:-0.24590365
+INFO:root:-0.24575989999999998
+INFO:root:-0.24535885000000002
+INFO:root:-0.2454875
+INFO:root:-0.24535885000000002
+INFO:root:-0.24473495
+INFO:root:-0.24459140000000001
+INFO:root:-0.24444785000000002
+INFO:root:-0.2443834
+INFO:root:-0.2445914
+INFO:root:-0.24494280000000002
+INFO:root:-0.2445914
+INFO:root:-0.2448486
+INFO:root:-0.2445271
+INFO:root:-0.2457103
+INFO:root:-0.2456805
+INFO:root:-0.2451361
+INFO:root:-0.2455518
+INFO:root:-0.24604725
+INFO:root:-0.2461265
+INFO:root:-0.24583915
+INFO:root:-0.24631945
+INFO:root:-0.24604725
+INFO:root:Time: 13min
+INFO:root:-0.2454875
+INFO:root:-0.24577480000000002
+INFO:root:-0.2452153
+INFO:root:-0.24535885000000002
+INFO:root:-0.24479925
+INFO:root:-0.24499235
+INFO:root:-0.24500729999999998
+INFO:root:-0.2451508
+INFO:root:-0.24535885000000002
+INFO:root:-0.24494280000000002
+INFO:root:-0.24542314999999998
+INFO:root:-0.24542314999999998
+INFO:root:-0.2452945
+INFO:root:-0.2454232
+INFO:root:-0.24575989999999998
+INFO:root:-0.24577480000000002
+INFO:root:-0.2456954
+INFO:root:-0.246384
+INFO:root:-0.2463838
+INFO:root:-0.2461265
+INFO:root:-0.24631945
+INFO:root:-0.24583915
+INFO:root:-0.24590365
+INFO:root:-0.24575989999999998
+INFO:root:-0.2457103
+INFO:root:-0.24542314999999998
+INFO:root:-0.2454875
+INFO:root:-0.2452945
+INFO:root:-0.24569560000000001
+INFO:root:-0.24556675
+INFO:root:-0.24542314999999998
+INFO:root:-0.2451508
+INFO:root:-0.2458393
+INFO:root:-0.24520039999999999
+INFO:root:-0.2452945
+INFO:root:-0.24569554999999998
+INFO:root:-0.2457599
+INFO:root:-0.24583915
+INFO:root:-0.24577480000000002
+INFO:root:-0.24631945
+INFO:root:-0.24590365
+INFO:root:-0.2462551
+INFO:root:-0.24631945
+INFO:root:-0.24611155
+INFO:root:-0.24569554999999998
+INFO:root:-0.24527965000000002
+INFO:root:-0.24527965000000002
+INFO:root:-0.24535885000000002
+INFO:root:-0.2454875
+INFO:root:-0.24479925
+INFO:root:-0.24479925
+INFO:root:-0.24499235
+INFO:root:-0.24494280000000002
+INFO:root:-0.24563105
+INFO:root:-0.2452153
+INFO:root:-0.2452153
+INFO:root:-0.2450071
+INFO:root:-0.24563105
+INFO:root:-0.2457103
+INFO:root:-0.24577480000000002
+INFO:root:-0.2461265
+INFO:root:-0.24590365
+INFO:root:-0.2461908
+INFO:root:-0.245968
+INFO:root:-0.24604725
+INFO:root:-0.24563105
+INFO:root:-0.2458393
+INFO:root:-0.24590365
+INFO:root:-0.24556675
+INFO:root:-0.2454232
+INFO:root:-0.24561614999999998
+INFO:root:-0.24556675
+INFO:root:-0.2451508
+INFO:root:-0.24561614999999998
+INFO:root:-0.24556675
+INFO:root:-0.2452945
+INFO:root:-0.24590345
+INFO:root:-0.24563105
+INFO:root:-0.24535885000000002
+INFO:root:-0.2454875
+INFO:root:-0.24575989999999998
+INFO:root:-0.2461265
+INFO:root:-0.24577480000000002
+INFO:root:-0.24577480000000002
+INFO:root:-0.2457599
+INFO:root:-0.2461908
+INFO:root:-0.24611155
+INFO:root:-0.24596795
+INFO:root:-0.2461908
+INFO:root:-0.24646325
+INFO:root:-0.2460966
+INFO:root:-0.24611155
+INFO:root:-0.24577480000000002
+INFO:root:-0.24563105
+INFO:root:-0.2455518
+INFO:root:-0.2451361
+INFO:root:-0.2450716
+INFO:root:-0.2451361
+INFO:root:-0.2447843
+INFO:root:-0.24479925
+INFO:root:Time: 14min
+INFO:root:-0.24494280000000002
+INFO:root:-0.2450716
+INFO:root:-0.2455024
+INFO:root:-0.2454232
+INFO:root:-0.24535885000000002
+INFO:root:-0.24577480000000002
+INFO:root:-0.24591839999999998
+INFO:root:-0.24604725
+INFO:root:-0.24660700000000002
+INFO:root:-0.2465427
+INFO:root:-0.2461908
+INFO:root:-0.24604725
+INFO:root:-0.24591839999999998
+INFO:root:-0.24625514999999998
+INFO:root:-0.24611155
+INFO:root:-0.24583915
+INFO:root:-0.24583915
+INFO:root:-0.2452153
+INFO:root:-0.2454232
+INFO:root:-0.2450071
+INFO:root:-0.2451508
+INFO:root:-0.2454875
+INFO:root:-0.24542314999999998
+INFO:root:-0.24583915
+INFO:root:-0.24555185000000002
+INFO:root:-0.2456954
+INFO:root:-0.245968
+INFO:root:-0.24561614999999998
+INFO:root:-0.2455024
+INFO:root:-0.24563105
+INFO:root:-0.2462402
+INFO:root:-0.2461908
+INFO:root:-0.24673565
+INFO:root:-0.2463989
+INFO:root:-0.2468
+INFO:root:-0.2463989
+INFO:root:-0.2457103
+INFO:root:-0.24604720000000002
+INFO:root:-0.24556675
+INFO:root:-0.24556675
+INFO:root:-0.2461908
+INFO:root:-0.2459829
+INFO:root:-0.2457103
+INFO:root:-0.2459829
+INFO:root:-0.2465427
+INFO:root:-0.2463838
+INFO:root:-0.2465427
+INFO:root:-0.24680000000000002
+INFO:root:-0.24604725
+INFO:root:-0.24667135
+INFO:root:-0.24604720000000002
+INFO:root:-0.24660700000000002
+INFO:root:-0.2461265
+INFO:root:-0.24591839999999998
+INFO:root:-0.24569554999999998
+INFO:root:-0.2454232
+INFO:root:-0.24563105
+INFO:root:-0.24563105
+INFO:root:-0.2455518
+INFO:root:-0.2451361
+INFO:root:-0.2454875
+INFO:root:-0.24540825
+INFO:root:-0.24535885000000002
+INFO:root:-0.2456954
+INFO:root:-0.24561614999999998
+INFO:root:-0.2459829
+INFO:root:-0.2458393
+INFO:root:-0.24644814999999998
+INFO:root:-0.2462551
+INFO:root:-0.24673565
+INFO:root:-0.2468793
+INFO:root:-0.24686435
+INFO:root:-0.2461908
+INFO:root:-0.2462551
+INFO:root:-0.24646325
+INFO:root:-0.24596795
+INFO:root:-0.24631945
+INFO:root:-0.24604725
+INFO:root:-0.24555185000000002
+INFO:root:-0.24542314999999998
+INFO:root:-0.24561614999999998
+INFO:root:-0.2457103
+INFO:root:-0.24542314999999998
+INFO:root:-0.24556675
+INFO:root:-0.24556675
+INFO:root:-0.24577480000000002
+INFO:root:-0.24577480000000002
+INFO:root:-0.2457103
+INFO:root:-0.2458393
+INFO:root:-0.24583915
+INFO:root:-0.2454875
+INFO:root:-0.24590365
+INFO:root:-0.2462551
+INFO:root:-0.2461908
+INFO:root:-0.24659189999999998
+INFO:root:-0.2463195
+INFO:root:-0.24603229999999998
+INFO:root:-0.24625514999999998
+INFO:root:-0.24596795
+INFO:root:-0.2454875
+INFO:root:-0.24535885000000002
+INFO:root:Time: 15min
+INFO:root:-0.24534394999999998
+INFO:root:-0.24535885000000002
+INFO:root:-0.24535885000000002
+INFO:root:-0.24577485
+INFO:root:-0.24590365
+INFO:root:-0.24604720000000002
+INFO:root:-0.24604725
+INFO:root:-0.24604720000000002
+INFO:root:-0.24646325
+INFO:root:-0.2468793
+INFO:root:-0.2472954
+INFO:root:-0.2470873
+INFO:root:-0.2469586
+INFO:root:-0.24673565
+INFO:root:-0.2468
+INFO:root:-0.24646325
+INFO:root:-0.24680000000000002
+INFO:root:-0.2465427
+INFO:root:-0.24611155
+INFO:root:-0.24577480000000002
+INFO:root:-0.2457599
+INFO:root:-0.2454875
+INFO:root:-0.24590365
+INFO:root:-0.2457103
+INFO:root:-0.24590345
+INFO:root:-0.24563105
+INFO:root:-0.2459829
+INFO:root:-0.24604725
+INFO:root:-0.2463838
+INFO:root:-0.2461908
+INFO:root:-0.245968
+INFO:root:-0.2462551
+INFO:root:-0.2463838
+INFO:root:-0.24644814999999998
+INFO:root:-0.24687935
+INFO:root:-0.24694365000000001
+INFO:root:-0.24667135
+INFO:root:-0.2463838
+INFO:root:-0.2465427
+INFO:root:-0.24652754999999998
+INFO:root:-0.24646325
+INFO:root:-0.24631945
+INFO:root:-0.24611155
+INFO:root:-0.24590365
+INFO:root:-0.24596795
+INFO:root:-0.2461265
+INFO:root:-0.2455518
+INFO:root:-0.2458393
+INFO:root:-0.24563105
+INFO:root:-0.2458393
+INFO:root:-0.24591839999999998
+INFO:root:-0.24604725
+INFO:root:-0.2468
+INFO:root:-0.24631945
+INFO:root:-0.2468793
+INFO:root:-0.2466713
+INFO:root:-0.24707235
+INFO:root:-0.24702295000000002
+INFO:root:-0.24673565
+INFO:root:-0.2470873
+INFO:root:-0.24673565
+INFO:root:-0.24625514999999998
+INFO:root:-0.2461908
+INFO:root:-0.24631945
+INFO:root:-0.246191
+INFO:root:-0.24590365
+INFO:root:-0.24569554999999998
+INFO:root:-0.24611155
+INFO:root:-0.2454875
+INFO:root:-0.24556675
+INFO:root:-0.2456954
+INFO:root:-0.24604725
+INFO:root:-0.2461908
+INFO:root:-0.24604725
+INFO:root:-0.24611155
+INFO:root:-0.24659189999999998
+INFO:root:-0.2464632
+INFO:root:-0.2465276
+INFO:root:-0.24681495
+INFO:root:-0.24667135
+INFO:root:-0.24687930000000002
+INFO:root:-0.2468793
+INFO:root:-0.2463838
+INFO:root:-0.2468
+INFO:root:-0.24631945
+INFO:root:-0.24611155
+INFO:root:-0.24630455
+INFO:root:-0.245968
+INFO:root:-0.2458393
+INFO:root:-0.24590365
+INFO:root:-0.24590365
+INFO:root:-0.2459829
+INFO:root:-0.24625514999999998
+INFO:root:-0.24591839999999998
+INFO:root:-0.245968
+INFO:root:-0.24644814999999998
+INFO:root:-0.2464632
+INFO:root:-0.24646325
+INFO:root:-0.24673565
+INFO:root:-0.2468793
+INFO:root:Time: 16min
+INFO:root:-0.24715165
+INFO:root:-0.24694365000000001
+INFO:root:-0.2466713
+INFO:root:-0.2463989
+INFO:root:-0.2463838
+INFO:root:-0.24646325
+INFO:root:-0.24631945
+INFO:root:-0.2458393
+INFO:root:-0.245968
+INFO:root:-0.24591839999999998
+INFO:root:-0.24563105
+INFO:root:-0.24556675
+INFO:root:-0.24577480000000002
+INFO:root:-0.2461265
+INFO:root:-0.2459829
+INFO:root:-0.2458393
+INFO:root:-0.2455669
+INFO:root:-0.2455669
+INFO:root:-0.24625514999999998
+INFO:root:-0.24631945
+INFO:root:-0.24625514999999998
+INFO:root:-0.24694365000000001
+INFO:root:-0.2472954
+INFO:root:-0.24659189999999998
+INFO:root:-0.2463838
+INFO:root:-0.24673565
+INFO:root:-0.24633460000000001
+INFO:root:-0.2459829
+INFO:root:-0.24583915
+INFO:root:-0.24590365
+INFO:root:-0.24604725
+INFO:root:-0.2456954
+INFO:root:-0.24604725
+INFO:root:-0.2463838
+INFO:root:-0.2461908
+INFO:root:-0.24577480000000002
+INFO:root:-0.24604725
+INFO:root:-0.24631945
+INFO:root:-0.2465427
+INFO:root:-0.2463838
+INFO:root:-0.2464632
+INFO:root:-0.2468
+INFO:root:-0.24652754999999998
+INFO:root:-0.24680000000000002
+INFO:root:-0.2465276
+INFO:root:-0.24667135
+INFO:root:-0.2469586
+INFO:root:-0.2462551
+INFO:root:-0.24631945
+INFO:root:-0.2461908
+INFO:root:-0.2457599
+INFO:root:-0.24563105
+INFO:root:-0.2454875
+INFO:root:-0.24556675
+INFO:root:-0.24604725
+INFO:root:-0.2461908
+INFO:root:-0.24590365
+INFO:root:-0.24611155
+INFO:root:-0.2461759
+INFO:root:-0.24625514999999998
+INFO:root:-0.24604725
+INFO:root:-0.24611155
+INFO:root:-0.24702295000000002
+INFO:root:-0.2464632
+INFO:root:-0.24646325
+INFO:root:-0.2468
+INFO:root:-0.24652754999999998
+INFO:root:-0.24625514999999998
+INFO:root:-0.24583915
+INFO:root:-0.24590365
+INFO:root:-0.24617585
+INFO:root:-0.24604725
+INFO:root:-0.24590345
+INFO:root:-0.245968
+INFO:root:-0.24646325
+INFO:root:-0.24611155
+INFO:root:-0.24646325
+INFO:root:-0.2461908
+INFO:root:-0.2463989
+INFO:root:-0.24673565
+INFO:root:-0.2466713
+INFO:root:-0.2466713
+INFO:root:-0.24673565
+INFO:root:-0.2465427
+INFO:root:-0.24660700000000002
+INFO:root:-0.24652754999999998
+INFO:root:-0.24667135
+INFO:root:-0.24611155
+INFO:root:-0.24611155
+INFO:root:-0.24596795
+INFO:root:-0.2461759
+INFO:root:-0.2454875
+INFO:root:-0.245968
+INFO:root:-0.2461265
+INFO:root:-0.24644814999999998
+INFO:root:-0.2463195
+INFO:root:-0.2464632
+INFO:root:-0.24660700000000002
+INFO:root:-0.24644814999999998
+INFO:root:-0.24660700000000002
+INFO:root:-0.24702295000000002
+INFO:root:Time: 17min
+INFO:root:-0.24667135
+INFO:root:-0.2469586
+INFO:root:-0.2466713
+INFO:root:-0.24675065000000002
+INFO:root:-0.24675065000000002
+INFO:root:-0.2463989
+INFO:root:-0.2465125
+INFO:root:-0.24652754999999998
+INFO:root:-0.24625514999999998
+INFO:root:-0.24577480000000002
+INFO:root:-0.24631945
+INFO:root:-0.24646325
+INFO:root:-0.24604725
+INFO:root:-0.2461908
+INFO:root:-0.24631945
+INFO:root:-0.24631945
+INFO:root:-0.2462551
+INFO:root:-0.2464632
+INFO:root:-0.24604725
+INFO:root:-0.245968
+INFO:root:-0.2465427
+INFO:root:-0.24660700000000002
+INFO:root:-0.24660700000000002
+INFO:root:-0.2472954
+INFO:root:-0.2470873
+INFO:root:-0.24673565
+INFO:root:-0.247008
+INFO:root:-0.2469287
+INFO:root:-0.24631945
+INFO:root:-0.24611155
+INFO:root:-0.24569554999999998
+INFO:root:-0.24591839999999998
+INFO:root:-0.2461265
+INFO:root:-0.24569560000000001
+INFO:root:-0.24604720000000002
+INFO:root:-0.24590365
+INFO:root:-0.2461265
+INFO:root:-0.24625514999999998
+INFO:root:-0.2463838
+INFO:root:-0.24694365000000001
+INFO:root:-0.2469586
+INFO:root:-0.24673565
+INFO:root:-0.2470873
+INFO:root:-0.24743915
+INFO:root:-0.24716670000000002
+INFO:root:-0.24659189999999998
+INFO:root:-0.2468
+INFO:root:-0.24660700000000002
+INFO:root:-0.245968
+INFO:root:-0.2462551
+INFO:root:-0.24603229999999998
+INFO:root:-0.245968
+INFO:root:-0.2461265
+INFO:root:-0.24631945
+INFO:root:-0.24673565
+INFO:root:-0.24667135
+INFO:root:-0.24660700000000002
+INFO:root:-0.24675065000000002
+INFO:root:-0.24667135
+INFO:root:-0.2470873
+INFO:root:-0.2468
+INFO:root:-0.24723105
+INFO:root:-0.2472954
+INFO:root:-0.24694365000000001
+INFO:root:-0.24702295000000002
+INFO:root:-0.24680000000000002
+INFO:root:-0.2470873
+INFO:root:-0.24652754999999998
+INFO:root:-0.24681495
+INFO:root:-0.2464632
+INFO:root:-0.2463989
+INFO:root:-0.2466713
+INFO:root:-0.2465276
+INFO:root:-0.24702295000000002
+INFO:root:-0.24735975
+INFO:root:-0.24702295000000002
+INFO:root:-0.24735980000000002
+INFO:root:-0.2470873
+INFO:root:-0.24707235
+INFO:root:-0.2473748
+INFO:root:-0.24715165
+INFO:root:-0.2468793
+INFO:root:-0.24723105
+INFO:root:-0.24660700000000002
+INFO:root:-0.24624025
+INFO:root:-0.245968
+INFO:root:-0.24596795
+INFO:root:-0.2456954
+INFO:root:-0.24625514999999998
+INFO:root:-0.24625514999999998
+INFO:root:-0.24631945
+INFO:root:-0.24646325
+INFO:root:-0.24631945
+INFO:root:-0.2465427
+INFO:root:-0.24652754999999998
+INFO:root:-0.2461908
+INFO:root:-0.2465276
+INFO:root:-0.24646325
+INFO:root:-0.2469586
+INFO:root:-0.24735975
+INFO:root:Time: 18min
+INFO:root:-0.2469586
+INFO:root:-0.24681495
+INFO:root:-0.24681495
+INFO:root:-0.24667135
+INFO:root:-0.2465276
+INFO:root:-0.2463838
+INFO:root:-0.2463838
+INFO:root:-0.2465427
+INFO:root:-0.245968
+INFO:root:-0.24644814999999998
+INFO:root:-0.24646325
+INFO:root:-0.2462551
+INFO:root:-0.24617585
+INFO:root:-0.2463989
+INFO:root:-0.24673565
+INFO:root:-0.24660700000000002
+INFO:root:-0.2469586
+INFO:root:-0.2468
+INFO:root:-0.2470873
+INFO:root:-0.24694365000000001
+INFO:root:-0.24723105
+INFO:root:-0.2466713
+INFO:root:-0.2465427
+INFO:root:-0.2461908
+INFO:root:-0.24577480000000002
+INFO:root:-0.2458393
+INFO:root:-0.24556675
+INFO:root:-0.24604725
+INFO:root:-0.24590345
+INFO:root:-0.2456954
+INFO:root:-0.24611155
+INFO:root:-0.24631945
+INFO:root:-0.24603229999999998
+INFO:root:-0.24577480000000002
+INFO:root:-0.24660700000000002
+INFO:root:-0.2469586
+INFO:root:-0.24652754999999998
+INFO:root:-0.2463989
+INFO:root:-0.24646325
+INFO:root:-0.24660700000000002
+INFO:root:-0.24681495
+INFO:root:-0.24702295000000002
+INFO:root:-0.2468793
+INFO:root:-0.24694365000000001
+INFO:root:-0.24675065000000002
+INFO:root:-0.24646325
+INFO:root:-0.24659189999999998
+INFO:root:-0.2463989
+INFO:root:-0.24542314999999998
+INFO:root:-0.24583915
+INFO:root:-0.24563105
+INFO:root:-0.24577480000000002
+INFO:root:-0.24520039999999999
+INFO:root:-0.24583915
+INFO:root:-0.24577480000000002
+INFO:root:-0.24590365
+INFO:root:-0.24646325
+INFO:root:-0.2458393
+INFO:root:-0.24631945
+INFO:root:-0.24652754999999998
+INFO:root:-0.24673565
+INFO:root:-0.24702295000000002
+INFO:root:-0.24673565
+INFO:root:-0.2470873
+INFO:root:-0.24723105
+INFO:root:-0.2472954
+INFO:root:-0.24702295000000002
+INFO:root:-0.2463838
+INFO:root:-0.24673565
+INFO:root:-0.2459829
+INFO:root:-0.245968
+INFO:root:-0.2459829
+INFO:root:-0.24555185000000002
+INFO:root:-0.2455518
+INFO:root:-0.24527965000000002
+INFO:root:-0.2455024
+INFO:root:-0.24563125000000002
+INFO:root:-0.24555185000000002
+INFO:root:-0.24535885000000002
+INFO:root:-0.2455024
+INFO:root:-0.24590365
+INFO:root:-0.2461908
+INFO:root:-0.24583915
+INFO:root:-0.2462551
+INFO:root:-0.24611155
+INFO:root:-0.2461908
+INFO:root:-0.24625514999999998
+INFO:root:-0.2465919
+INFO:root:-0.24667135
+INFO:root:-0.24660700000000002
+INFO:root:-0.2468
+INFO:root:-0.2461908
+INFO:root:-0.2456954
+INFO:root:-0.24569554999999998
+INFO:root:-0.24631945
+INFO:root:-0.24563105
+INFO:root:-0.24577480000000002
+INFO:root:-0.2457103
+INFO:root:-0.2457103
+INFO:root:-0.2462551
+INFO:root:-0.245968
+INFO:root:Time: 19min
+INFO:root:-0.245968
+INFO:root:-0.2461908
+INFO:root:-0.2463838
+INFO:root:-0.24673565
+INFO:root:-0.24675065000000002
+INFO:root:-0.24646325
+INFO:root:-0.24673565
+INFO:root:-0.24702295000000002
+INFO:root:-0.24715165
+INFO:root:-0.2470873
+INFO:root:-0.24673565
+INFO:root:-0.24702295000000002
+INFO:root:-0.24673565
+INFO:root:-0.24633460000000001
+INFO:root:-0.24646325
+INFO:root:-0.24625514999999998
+INFO:root:-0.2463989
+INFO:root:-0.2463195
+INFO:root:-0.24660700000000002
+INFO:root:-0.24631945
+INFO:root:-0.2470873
+INFO:root:-0.24702295000000002
+INFO:root:-0.24750355000000002
+INFO:root:-0.247216
+INFO:root:-0.247216
+INFO:root:-0.24652754999999998
+INFO:root:-0.24604720000000002
+INFO:root:-0.24604725
+INFO:root:-0.24590365
+INFO:root:-0.24591839999999998
+INFO:root:-0.24604725
+INFO:root:-0.24555185000000002
+INFO:root:-0.2462551
+INFO:root:-0.2461265
+INFO:root:-0.24577480000000002
+INFO:root:-0.24611155
+INFO:root:-0.2463989
+INFO:root:-0.24652754999999998
+INFO:root:-0.24660700000000002
+INFO:root:-0.2465427
+INFO:root:-0.246815
+INFO:root:-0.24673565
+INFO:root:-0.24681495
+INFO:root:-0.24673565
+INFO:root:-0.24631945
+INFO:root:-0.246815
+INFO:root:-0.24673565
+INFO:root:-0.24652754999999998
+INFO:root:-0.24569554999999998
+INFO:root:-0.2458393
+INFO:root:-0.24569554999999998
+INFO:root:-0.24590365
+INFO:root:-0.24590365
+INFO:root:-0.2459829
+INFO:root:-0.2455518
+INFO:root:-0.24590365
+INFO:root:-0.245968
+INFO:root:-0.24604725
+INFO:root:-0.24604725
+INFO:root:-0.2459829
+INFO:root:-0.2464632
+INFO:root:-0.24604720000000002
+INFO:root:-0.2463838
+INFO:root:-0.24660700000000002
+INFO:root:-0.2468793
+INFO:root:-0.2461908
+INFO:root:-0.24604725
+INFO:root:-0.24646325
+INFO:root:-0.24561614999999998
+INFO:root:-0.24611155
+INFO:root:-0.24575989999999998
+INFO:root:-0.24577480000000002
+INFO:root:-0.24611155
+INFO:root:-0.2456954
+INFO:root:-0.24555185000000002
+INFO:root:-0.2457599
+INFO:root:-0.24563105
+INFO:root:-0.24590365
+INFO:root:-0.24583915
+INFO:root:-0.24604725
+INFO:root:-0.2459829
+INFO:root:-0.2461265
+INFO:root:-0.2465276
+INFO:root:-0.2468793
+INFO:root:-0.24681495
+INFO:root:-0.247008
+INFO:root:-0.24667135
+INFO:root:-0.24625514999999998
+INFO:root:-0.2465427
+INFO:root:-0.2462551
+INFO:root:-0.2459829
+INFO:root:-0.2459829
+INFO:root:-0.24563105
+INFO:root:-0.2454875
+INFO:root:-0.24527965000000002
+INFO:root:-0.24563105
+INFO:root:-0.24583915
+INFO:root:-0.24604725
+INFO:root:-0.2457599
+INFO:root:-0.2457103
+INFO:root:Time: 20min
+INFO:root:-0.2461265
+INFO:root:-0.2458393
+INFO:root:-0.2452796
+INFO:root:-0.2452945
+INFO:root:-0.2458242
+INFO:root:-0.2463838
+INFO:root:-0.24667135
+INFO:root:-0.24715165
+INFO:root:-0.2468793
+INFO:root:-0.24750355000000002
+INFO:root:-0.2475679
+INFO:root:-0.2472954
+INFO:root:-0.2472954
+INFO:root:-0.24660700000000002
+INFO:root:-0.24715165
+INFO:root:-0.24673565
+INFO:root:-0.24673565
+INFO:root:-0.24707235
+INFO:root:-0.2465427
+INFO:root:-0.245968
+INFO:root:-0.24569554999999998
+INFO:root:-0.2445271
+INFO:root:-0.24486354999999999
+INFO:root:-0.2450071
+INFO:root:-0.2450716
+INFO:root:-0.2450716
+INFO:root:-0.24499235
+INFO:root:-0.24472
+INFO:root:-0.24527965000000002
+INFO:root:-0.2445271
+INFO:root:-0.24459140000000001
+INFO:root:-0.2448785
+INFO:root:-0.24515085
+INFO:root:-0.2454875
+INFO:root:-0.24479925
+INFO:root:-0.2445271
+INFO:root:-0.2444628
+INFO:root:-0.24396755
+INFO:root:-0.24348730000000002
+INFO:root:-0.2432152
+INFO:root:-0.24355175
+INFO:root:-0.24305664999999999
+INFO:root:-0.24369525
+INFO:root:-0.2498574
+INFO:root:-0.25456875
+INFO:root:-0.25825750000000003
+INFO:root:-0.26069705
+INFO:root:-0.26194965000000003
+INFO:root:-0.2629292
+INFO:root:-0.2636357
+INFO:root:-0.26439125
+INFO:root:-0.26487344999999995
+INFO:root:-0.2654357
+INFO:root:-0.2660469
+INFO:root:-0.26606275
+INFO:root:-0.26640055
+INFO:root:-0.2668184
+INFO:root:-0.26731669999999996
+INFO:root:-0.2676546
+INFO:root:-0.26828185
+INFO:root:-0.26857115
+INFO:root:-0.26857115
+INFO:root:-0.26850684999999996
+INFO:root:-0.2689735
+INFO:root:-0.2686355
+INFO:root:-0.26898935
+INFO:root:-0.269134
+INFO:root:-0.269134
+INFO:root:-0.2693272
+INFO:root:-0.26892485
+INFO:root:-0.26926285
+INFO:root:-0.26926285
+INFO:root:-0.26926285
+INFO:root:-0.26955225
+INFO:root:-0.2693432
+INFO:root:-0.26939155000000004
+INFO:root:-0.2700351
+INFO:root:-0.27030865000000004
+INFO:root:-0.27024415
+INFO:root:-0.27017979999999997
+INFO:root:-0.27024415
+INFO:root:-0.27030865000000004
+INFO:root:-0.27009945
+INFO:root:-0.26982595
+INFO:root:-0.2702443
+INFO:root:-0.27017979999999997
+INFO:root:-0.26982595
+INFO:root:-0.2700351
+INFO:root:-0.2705179
+INFO:root:-0.270743
+INFO:root:-0.270373
+INFO:root:-0.2708718
+INFO:root:-0.27087174999999997
+INFO:root:-0.270743
+INFO:root:-0.27100064999999995
+INFO:root:-0.27114545
+INFO:root:-0.2713547
+INFO:root:-0.2712903
+INFO:root:-0.2712098
+INFO:root:-0.2712903
+INFO:root:-0.2716442
+INFO:root:Time: 21min
+INFO:root:-0.2719823
+INFO:root:-0.27233640000000003
+INFO:root:-0.2721916
+INFO:root:-0.27212725
+INFO:root:-0.2721916
+INFO:root:-0.27261015
+INFO:root:-0.27233640000000003
+INFO:root:-0.27294830000000003
+INFO:root:-0.2732543
+INFO:root:-0.2733831
+INFO:root:-0.27344749999999995
+INFO:root:-0.2732381
+INFO:root:-0.2728356
+INFO:root:-0.2735119
+INFO:root:-0.27346355
+INFO:root:-0.27365675
+INFO:root:-0.2733187
+INFO:root:-0.27352794999999996
+INFO:root:-0.2732381
+INFO:root:-0.2732543
+INFO:root:-0.27388219999999996
+INFO:root:-0.27365675
+INFO:root:-0.2733187
+INFO:root:-0.2733831
+INFO:root:-0.27344755
+INFO:root:-0.27372114999999997
+INFO:root:-0.2739304
+INFO:root:-0.2737856
+INFO:root:-0.27436545
+INFO:root:-0.27413985
+INFO:root:-0.27512235
+INFO:root:-0.27484845
+INFO:root:-0.2749773
+INFO:root:-0.27541245000000003
+INFO:root:-0.2756861
+INFO:root:-0.27637905
+INFO:root:-0.27547675
+INFO:root:-0.27547675
+INFO:root:-0.2758956
+INFO:root:-0.27568625
+INFO:root:-0.2754769
+INFO:root:-0.27554120000000004
+INFO:root:-0.275348
+INFO:root:-0.27547675
+INFO:root:-0.27583115
+INFO:root:-0.2761858
+INFO:root:-0.2761858
+INFO:root:-0.27610515
+INFO:root:-0.27610515
+INFO:root:-0.2766691
+INFO:root:-0.2766691
+INFO:root:-0.27694295
+INFO:root:-0.2770236
+INFO:root:-0.27715255
+INFO:root:-0.27721705
+INFO:root:-0.27750725
+INFO:root:-0.27778115000000003
+INFO:root:-0.2776524
+INFO:root:-0.27790994999999996
+INFO:root:-0.27818390000000004
+INFO:root:-0.27792629999999996
+INFO:root:-0.2779908
+INFO:root:-0.27820025
+INFO:root:-0.27826455
+INFO:root:-0.27832905
+INFO:root:-0.27849055
+INFO:root:-0.2784742
+INFO:root:-0.27868384999999996
+INFO:root:-0.2791192
+INFO:root:-0.2788288
+INFO:root:-0.27945790000000004
+INFO:root:-0.2790223
+INFO:root:-0.2795386
+INFO:root:-0.2795386
+INFO:root:-0.2798126
+INFO:root:-0.27945770000000003
+INFO:root:-0.2793934
+INFO:root:-0.2800223
+INFO:root:-0.2795224
+INFO:root:-0.2798771
+INFO:root:-0.2798771
+INFO:root:-0.2803609
+INFO:root:-0.28078020000000004
+INFO:root:-0.28086095
+INFO:root:-0.28044159999999996
+INFO:root:-0.28042525
+INFO:root:-0.2806348
+INFO:root:-0.2810707
+INFO:root:-0.28092545
+INFO:root:-0.2806993
+INFO:root:-0.2810707
+INFO:root:-0.2809089
+INFO:root:-0.2810543
+INFO:root:-0.28098979999999996
+INFO:root:-0.2807157
+INFO:root:-0.28111865
+INFO:root:-0.28111865
+INFO:root:-0.28119955
+INFO:root:-0.2809253
+INFO:root:-0.2812161
+INFO:root:Time: 22min
+INFO:root:-0.2813448
+INFO:root:-0.28195749999999997
+INFO:root:-0.2816353
+INFO:root:-0.2817644
+INFO:root:-0.28190965
+INFO:root:-0.2820549
+INFO:root:-0.28216715000000003
+INFO:root:-0.28239355
+INFO:root:-0.2821837
+INFO:root:-0.28218365
+INFO:root:-0.28245790000000004
+INFO:root:-0.282329
+INFO:root:-0.28224805
+INFO:root:-0.28237695
+INFO:root:-0.28266775
+INFO:root:-0.28281305
+INFO:root:-0.28337809999999997
+INFO:root:-0.28302289999999997
+INFO:root:-0.28316825
+INFO:root:-0.282894
+INFO:root:-0.28281305
+INFO:root:-0.28336135
+INFO:root:-0.28336150000000004
+INFO:root:-0.28329715
+INFO:root:-0.2835712
+INFO:root:-0.28344245
+INFO:root:-0.2837331
+INFO:root:-0.28357125
+INFO:root:-0.28365215
+INFO:root:-0.28323275000000003
+INFO:root:-0.28379750000000004
+INFO:root:-0.2835878
+INFO:root:-0.283991
+INFO:root:-0.28386205
+INFO:root:-0.28420075
+INFO:root:-0.2842173
+INFO:root:-0.28428169999999997
+INFO:root:-0.28442725
+INFO:root:-0.28434610000000005
+INFO:root:-0.2842173
+INFO:root:-0.2842173
+INFO:root:-0.28428169999999997
+INFO:root:-0.28449165
+INFO:root:-0.2847016
+INFO:root:-0.2847014
+INFO:root:-0.28428169999999997
+INFO:root:-0.28449165
+INFO:root:-0.2844105
+INFO:root:-0.28449165
+INFO:root:-0.2848948
+INFO:root:-0.2844105
+INFO:root:-0.2849923
+INFO:root:-0.2854123
+INFO:root:-0.2854767
+INFO:root:-0.28505674999999997
+INFO:root:-0.2847016
+INFO:root:-0.2856865
+INFO:root:-0.28560555
+INFO:root:-0.28554115
+INFO:root:-0.2854767
+INFO:root:-0.2855411
+INFO:root:-0.2856221
+INFO:root:-0.28575095
+INFO:root:-0.2856865
+INFO:root:-0.2857344
+INFO:root:-0.2858154
+INFO:root:-0.28575095
+INFO:root:-0.2860896
+INFO:root:-0.28560555
+INFO:root:-0.28617075000000003
+INFO:root:-0.2860252
+INFO:root:-0.28623535
+INFO:root:-0.28665525000000003
+INFO:root:-0.2862352
+INFO:root:-0.28701075
+INFO:root:-0.28701075
+INFO:root:-0.28673645000000003
+INFO:root:-0.28701075
+INFO:root:-0.2860896
+INFO:root:-0.28659084999999995
+INFO:root:-0.2865264
+INFO:root:-0.286672
+INFO:root:-0.28692975
+INFO:root:-0.286672
+INFO:root:-0.28701075
+INFO:root:-0.28701075
+INFO:root:-0.2867197
+INFO:root:-0.2871396
+INFO:root:-0.28680085
+INFO:root:-0.2869297
+INFO:root:-0.28707515
+INFO:root:-0.2874307
+INFO:root:-0.28699415
+INFO:root:-0.2873495
+INFO:root:-0.28730184999999997
+INFO:root:-0.28764080000000003
+INFO:root:-0.28728505
+INFO:root:-0.28734950000000004
+INFO:root:-0.28728505
+INFO:root:-0.28749515
+INFO:root:-0.28799635
+INFO:root:Time: 23min
+INFO:root:-0.2879152
+INFO:root:-0.2879321
+INFO:root:-0.28772200000000003
+INFO:root:-0.28770525
+INFO:root:-0.28825405
+INFO:root:-0.28833525
+INFO:root:-0.2881251
+INFO:root:-0.2881251
+INFO:root:-0.28791515
+INFO:root:-0.28869100000000003
+INFO:root:-0.28799635
+INFO:root:-0.2880606
+INFO:root:-0.28869100000000003
+INFO:root:-0.2883352
+INFO:root:-0.2882708
+INFO:root:-0.28825405
+INFO:root:-0.28862655
+INFO:root:-0.28869105
+INFO:root:-0.28848090000000004
+INFO:root:-0.28911115
+INFO:root:-0.28917539999999997
+INFO:root:-0.2884809
+INFO:root:-0.2884809
+INFO:root:-0.2890297
+INFO:root:-0.28854535000000003
+INFO:root:-0.2889012
+INFO:root:-0.2886266
+INFO:root:-0.28896545
+INFO:root:-0.28896545
+INFO:root:-0.28917545
+INFO:root:-0.2892399
+INFO:root:-0.2894668
+INFO:root:-0.2895313
+INFO:root:-0.2891922
+INFO:root:-0.28974144999999996
+INFO:root:-0.28966024999999995
+INFO:root:-0.2897415
+INFO:root:-0.2898872
+INFO:root:-0.2900329
+INFO:root:-0.29016169999999997
+INFO:root:-0.28995165
+INFO:root:-0.28980595
+INFO:root:-0.2900803
+INFO:root:-0.29001595
+INFO:root:-0.2898227
+INFO:root:-0.29077529999999996
+INFO:root:-0.28967699999999996
+INFO:root:-0.290226
+INFO:root:-0.2902262
+INFO:root:-0.2901615
+INFO:root:-0.29016169999999997
+INFO:root:-0.29058195
+INFO:root:-0.29085675
+INFO:root:-0.290582
+INFO:root:-0.2907922
+INFO:root:-0.2906632
+INFO:root:-0.29093795
+INFO:root:-0.290582
+INFO:root:-0.29064650000000003
+INFO:root:-0.29127685
+INFO:root:-0.29093795
+INFO:root:-0.29100225
+INFO:root:-0.291277
+INFO:root:-0.2912125
+INFO:root:-0.29134135
+INFO:root:-0.29106679999999996
+INFO:root:-0.2915517
+INFO:root:-0.2912125
+INFO:root:-0.2917787
+INFO:root:-0.29106679999999996
+INFO:root:-0.2912939
+INFO:root:-0.2912939
+INFO:root:-0.29114819999999997
+INFO:root:-0.2915517
+INFO:root:-0.29197205000000004
+INFO:root:-0.29169725
+INFO:root:-0.2917142
+INFO:root:-0.29190755
+INFO:root:-0.2919719
+INFO:root:-0.2919719
+INFO:root:-0.29226365
+INFO:root:-0.29190755
+INFO:root:-0.29184305
+INFO:root:-0.29190755
+INFO:root:-0.2921348
+INFO:root:-0.29169745
+INFO:root:-0.292555
+INFO:root:-0.29190755
+INFO:root:-0.292555
+INFO:root:-0.29247375
+INFO:root:-0.29261955
+INFO:root:-0.29205335
+INFO:root:-0.29245685
+INFO:root:-0.2921991
+INFO:root:-0.29240920000000004
+INFO:root:-0.29295879999999996
+INFO:root:-0.29232795
+INFO:root:-0.2926839
+INFO:root:-0.29253830000000003
+INFO:root:-0.2929418
+INFO:root:Time: 24min
+INFO:root:-0.29253830000000003
+INFO:root:-0.292555
+INFO:root:-0.2928299
+INFO:root:-0.2928299
+INFO:root:-0.29240920000000004
+INFO:root:-0.29232795
+INFO:root:-0.2926841
+INFO:root:-0.29304025
+INFO:root:-0.2929418
+INFO:root:-0.29232795
+INFO:root:-0.29253830000000003
+INFO:root:-0.29261955
+INFO:root:-0.2928128
+INFO:root:-0.29316915
+INFO:root:-0.29274845
+INFO:root:-0.29274845
+INFO:root:-0.29281294999999996
+INFO:root:-0.2931046
+INFO:root:-0.29331494999999996
+INFO:root:-0.2926839
+INFO:root:-0.2928773
+INFO:root:-0.292555
+INFO:root:-0.2927484
+INFO:root:-0.2929757
+INFO:root:-0.29302315
+INFO:root:-0.29308765
+INFO:root:-0.293315
+INFO:root:-0.2932335
+INFO:root:-0.2934439
+INFO:root:-0.2933795
+INFO:root:-0.2930233
+INFO:root:-0.29346079999999997
+INFO:root:-0.29331494999999996
+INFO:root:-0.29331494999999996
+INFO:root:-0.29352515
+INFO:root:-0.2932337
+INFO:root:-0.2937355
+INFO:root:-0.2940103
+INFO:root:-0.29415615
+INFO:root:-0.2938644
+INFO:root:-0.29388135
+INFO:root:-0.29388135
+INFO:root:-0.2939459
+INFO:root:-0.2936542
+INFO:root:-0.29358969999999995
+INFO:root:-0.2938168
+INFO:root:-0.2942376
+INFO:root:-0.2940272
+INFO:root:-0.29358969999999995
+INFO:root:-0.29358969999999995
+INFO:root:-0.29358969999999995
+INFO:root:-0.29394575
+INFO:root:-0.29380005
+INFO:root:-0.2937355
+INFO:root:-0.29371855
+INFO:root:-0.2940747
+INFO:root:-0.29380005
+INFO:root:-0.29388135
+INFO:root:-0.2942376
+INFO:root:-0.2942376
+INFO:root:-0.2940103
+INFO:root:-0.2944955
+INFO:root:-0.2942376
+INFO:root:-0.2948516
+INFO:root:-0.2948516
+INFO:root:-0.29436655
+INFO:root:-0.29477010000000003
+INFO:root:-0.2947872
+INFO:root:-0.29493294999999997
+INFO:root:-0.2948516
+INFO:root:-0.29478705
+INFO:root:-0.29470575
+INFO:root:-0.29478705
+INFO:root:-0.2948516
+INFO:root:-0.29541839999999997
+INFO:root:-0.2956116
+INFO:root:-0.29527235
+INFO:root:-0.2950619
+INFO:root:-0.29535385000000003
+INFO:root:-0.29520795
+INFO:root:-0.2955472
+INFO:root:-0.2952078
+INFO:root:-0.2953369
+INFO:root:-0.2954999
+INFO:root:-0.2952078
+INFO:root:-0.29528944999999995
+INFO:root:-0.2954013
+INFO:root:-0.2954999
+INFO:root:-0.29520795
+INFO:root:-0.29541825
+INFO:root:-0.2953369
+INFO:root:-0.2959205
+INFO:root:-0.29535385000000003
+INFO:root:-0.2954999
+INFO:root:-0.29535385000000003
+INFO:root:-0.29562869999999997
+INFO:root:-0.29512645000000004
+INFO:root:-0.29590355
+INFO:root:-0.2954999
+INFO:root:-0.2956287
+INFO:root:-0.2957575
+INFO:root:Time: 25min
+INFO:root:-0.29582205
+INFO:root:-0.29575765
+INFO:root:-0.2957746
+INFO:root:-0.29541825
+INFO:root:-0.29569310000000004
+INFO:root: 
+INFO:root:*************************
+INFO:root:Reset
+INFO:root:*************************
