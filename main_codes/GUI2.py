@@ -1209,7 +1209,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             elif not self.stop_PM:
                 # During alignment/curing, don't run this PM read because the alignment will update StaticVar.IL, so
                 # there is no need to read again
-                PM.power_read_noprint()
+                #PM.power_read_noprint()
+                pass
                 
             # update IL
             self.label_IL.setText("IL: " + str(StaticVar.IL)+" dB")

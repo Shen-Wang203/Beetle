@@ -7,12 +7,12 @@ from StaticVar import StaticVar
 
 PM_ADDR = '12'
 # POWER = str(0)
-rm = visa.ResourceManager()
-PM = rm.open_resource('GPIB0::'+PM_ADDR+'::INSTR')
+#rm = visa.ResourceManager()
+# PM = rm.open_resource('GPIB0::'+PM_ADDR+'::INSTR')
 
-file1 = open("refs.txt","r")
-StaticVar.PW_ref = float(file1.read())
-file1.close()
+#file1 = open("refs.txt","r")
+#StaticVar.PW_ref = float(file1.read())
+#file1.close()
 
 def power_read():
     # Read unit is in dBm

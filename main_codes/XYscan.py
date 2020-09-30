@@ -303,16 +303,8 @@ class XYscan:
                 # x1_final = self.pos[index] * 0.75 + self.pos[index + 1] * 0.25
                 x2_final = -x1_final + x1start + x2start
                 x3_final = -x1_final + x1start + x3start
-                self.hppcontrol.Tx_send_only(x1_final, x2_final, x3_final, 'p')
-                # check on target, need to check all of them
-                timeout = 0
-                while not self.hppcontrol.Tx_on_target(x1_final, x2_final, x3_final, self.tolerance):
-                    time.sleep(0.2)
-                    timeout += 1
-                    if timeout > 100:
-                        print('Movement Timeout Error')
-                        logging.info('Movement Timeout Error')
-                        return False
+                if not self.gotoxy(x1_final, x2_final, x3_final, xy='x', doublecheck=False, mode='p'):
+                    return False
                 # if i = 0, x_dir = _dir; if i = 1, x_dir = -_dir
                 self.x_dir_trend = self.x_dir_trend * (-2 * i + 1)
                 self.update_current_pos('x', x1_final, X1_counts)
@@ -370,16 +362,8 @@ class XYscan:
                 # y1_final = self.pos[index] * 0.75 + self.pos[index + 1] * 0.25
                 y2_final = y1_final - y1start + y2start
                 y3_final = y1_final - y1start + y3start
-                self.hppcontrol.Ty_send_only(y1_final, y2_final, y3_final, 'p')
-                # check on target, check all of them
-                timeout = 0
-                while not self.hppcontrol.Ty_on_target(y1_final, y2_final, y3_final, self.tolerance):
-                    time.sleep(0.2)  
-                    timeout += 1
-                    if timeout > 100:
-                        print('Movement Timeout Error')
-                        logging.info('Movement Timeout Error')
-                        return False
+                if not self.gotoxy(y1_final, y2_final, y3_final, xy='y', doublecheck=False, mode='p'):
+                    return False
                 # if i = 0, y_dir = _dir; if i = 1, y_dir = -_dir
                 self.y_dir_trend = self.y_dir_trend * (-2 * i + 1)
                 self.update_current_pos('y', y1_final, Y1_counts)
@@ -1009,7 +993,7 @@ class XYscan:
             else:
                 self.hppcontrol.Tx_send_only(a1, a2, a3, mode)
             for timeout in range(0, 50):
-                time.sleep(0.07)
+                time.sleep(0.1)
                 if xy == 'y':
                     if self.hppcontrol.Ty_on_target(a1, a2, a3, self.tolerance):
                         break

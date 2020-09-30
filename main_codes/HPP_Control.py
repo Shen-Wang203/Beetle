@@ -90,9 +90,9 @@ import logging
 # Tser2 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
 #
 #      # Jerry's Desktop##################################################
-Tser3 = serial.Serial('COM12', 115200, timeout=None, stopbits=1)
-Tser1 = serial.Serial('COM11', 115200, timeout=None, stopbits=1)
-Tser2 = serial.Serial('COM10', 115200, timeout=None, stopbits=1)
+Tser3 = serial.Serial('COM14', 115200, timeout=None, stopbits=1)
+Tser1 = serial.Serial('COM15', 115200, timeout=None, stopbits=1)
+Tser2 = serial.Serial('COM13', 115200, timeout=None, stopbits=1)
 #     ####################################################################
 
 #     elif stationNum == '2':

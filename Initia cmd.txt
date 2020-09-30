@@ -90,7 +90,8 @@ T2x
 vel_gain 0.4/10000
 
 C2+B2
-T2Y
+for all
+vel_limit 200000
 vel_gain 0.6/10000
 
 

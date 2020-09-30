@@ -267,7 +267,7 @@ class CMDInputThread(QtCore.QThread):
 
             # After alignment, back 10um for back-align
             self.currentPosition[2] = self.currentPosition[2] - 0.01
-            self.runobject.send_to_hpp(self.currentPosition, doublecheck=True)
+            self.runobject.send_to_hpp(self.currentPosition, doublecheck=False)
 
             # file1 = open("pos.txt","w+")
             # file2 = open("loss.txt","w+")
