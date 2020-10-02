@@ -163,11 +163,11 @@ Tser2 = serial.Serial('COM13', 115200, timeout=None, stopbits=1)
 
 # Control box #6
 # COM4: T3
-# Tser3 = serial.Serial('COM4', 115200, timeout=0.1, stopbits=1)
+#Tser3 = serial.Serial('COM4', 115200, timeout=0.1, stopbits=1)
 # COM6: T1
-# Tser1 = serial.Serial('COM6', 115200, timeout=0.1, stopbits=1)
+#Tser1 = serial.Serial('COM6', 115200, timeout=0.1, stopbits=1)
 # COM5: T2
-# Tser2 = serial.Serial('COM5', 115200, timeout=0.1, stopbits=1)
+#Tser2 = serial.Serial('COM5', 115200, timeout=0.1, stopbits=1)
 
 
 error_log = ''
