@@ -797,7 +797,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.time_count = 0
 
     def alignment_click(self):
-        if StaticVar.IL > -25:
+        if StaticVar.IL > -40:
             self.stop_PM = False
             self.runthread.setcmd('align')
             self.runthread.start()

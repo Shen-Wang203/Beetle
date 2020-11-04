@@ -155,18 +155,18 @@ import logging
 # Tser2 = serial.Serial('COM12', 115200, timeout=0.1, stopbits=1)
 # Control box #6
 # COM4: T3
-Tser3 = serial.Serial('COM4', 115200, timeout=None, stopbits=1)
+# Tser3 = serial.Serial('COM4', 115200, timeout=None, stopbits=1)
 # COM6: T1
-Tser1 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
+# Tser1 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
 # COM5: T2
-Tser2 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
+# Tser2 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
 # Control box #2
 # COM15: T3
-#Tser3 = serial.Serial('COM15', 115200, timeout=0.1, stopbits=1)
+Tser3 = serial.Serial('COM15', 115200, timeout=1, stopbits=1)
 # COM10: T1
-#Tser1 = serial.Serial('COM10', 115200, timeout=0.1, stopbits=1)
+Tser1 = serial.Serial('COM10', 115200, timeout=1, stopbits=1)
 # COM9: T2
-#Tser2 = serial.Serial('COM9', 115200, timeout=0.1, stopbits=1)
+Tser2 = serial.Serial('COM9', 115200, timeout=1, stopbits=1)
 
 
 error_log = ''
@@ -926,12 +926,12 @@ class HPP_Control:
 
     def slow_traj_speed(self):
         # 43 byte, time 43 * 10 / 115200 = 4ms
-        var0 = 'w axis0.trap_traj.config.accel_limit 300' + '\n'
-        var00 = 'w axis0.trap_traj.config.decel_limit 300' + '\n'
-        var000 = 'w axis0.trap_traj.config.vel_limit 300' + '\n'
-        var1 = 'w axis1.trap_traj.config.accel_limit 300' + '\n'
-        var11 = 'w axis1.trap_traj.config.decel_limit 300' + '\n'
-        var111 = 'w axis1.trap_traj.config.vel_limit 300' + '\n'
+        var0 = 'w axis0.trap_traj.config.accel_limit 1200' + '\n'
+        var00 = 'w axis0.trap_traj.config.decel_limit 1200' + '\n'
+        var000 = 'w axis0.trap_traj.config.vel_limit 1200' + '\n'
+        var1 = 'w axis1.trap_traj.config.accel_limit 1200' + '\n'
+        var11 = 'w axis1.trap_traj.config.decel_limit 1200' + '\n'
+        var111 = 'w axis1.trap_traj.config.vel_limit 1200' + '\n'
         self.T123_send_only(var0, var1)
         self.T123_send_only(var00, var11)    
         self.T123_send_only(var000, var111)

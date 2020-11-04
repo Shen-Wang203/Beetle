@@ -181,8 +181,7 @@ class XYscan:
         elif loss0 <= self.scanmode_threshold:
             self.zmode = 'aggressive'
             self.scanmode = 'c'
-            #self.Z_amp = 3.0
-            self.Z_amp = 1.5  #Wesley edited
+            self.Z_amp = 3.0
             self.tolerance = 2
             self.wait_time = 0.1
             # self.final_adjust = False
@@ -234,8 +233,7 @@ class XYscan:
             elif self.product == 2:
                 self.Z_amp = 2.5
             elif self.product == 3:
-                #self.Z_amp = 2.5
-                self.Z_amp = 1.2 #Wesley edited
+                self.Z_amp = 2.5
         # if (-2,criteria], and interp-at-final self.strategy, then final adjust 
         elif loss0 <= self.loss_criteria and self.strategy == 2:
             # print('Change to Final_adjust')
@@ -1185,8 +1183,7 @@ class XYscan:
             elif step < 0.0025 and self.product == 2:
                 step = 0.0025
             elif step < 0.0015 and self.product == 3:
-                #step = 0.002 
-                step = 0.0015 #Wesley edited
+                step = 0.002 
         _direc0 = 1
         _direc1 = 1
         _z0 = P1[2]
@@ -1373,7 +1370,7 @@ class XYscan:
             # total 3 rounds of xyz search
             # this is to faster the process
             self.loss_fail_improve += 1
-            if self.loss_fail_improve == 8 or (self.loss_fail_improve >= 5 and self.scanmode == 'c'):
+            if self.loss_fail_improve == 6 or (self.loss_fail_improve >= 5 and self.scanmode == 'c'):
                 self.loss_fail_improve = 0
                 print('Failed to find better loss after tries, go back to current best')
                 logging.info('Failed to find better loss after tries, go back to current best')
