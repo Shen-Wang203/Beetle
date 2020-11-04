@@ -21,7 +21,7 @@ odrivetool --serial-number 20813882304E
 T2
 odrivetool --serial-number 2060388E304E
 T1
-
+odrivetool --serial-number 207339A04D4D
 
 Control Box #2:
 T1
