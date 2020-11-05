@@ -1189,7 +1189,11 @@ class XYscan:
         _z0 = P1[2]
         while True:
             P1[2] = P1[2] + step
-            
+            if P1[2] > self.limit_Z:
+                P1[2] -= step
+                self.error_flag = True
+                break
+
             # current direction
             if P1[2] > _z0:
                 _direc1 = 1
