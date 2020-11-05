@@ -127,7 +127,7 @@ class CMDInputThread(QtCore.QThread):
             self.hppcontrol.calibration()
             self.sig2.emit(5)
             # print('Calibrating...')
-            time.sleep(18)
+            time.sleep(12)
             error_flag = False
             if self.hppcontrol.check_errors():
                 error_flag = True
@@ -242,9 +242,6 @@ class CMDInputThread(QtCore.QThread):
             self.hppcontrol.engage_motor()
             self.sig2.emit(2)
             # P0 = [0,0,140,-0.3,-0.4,0]
-            self.runobject.limit_Z = self.currentPosition[2]
-            self.currentPosition[2] = self.currentPosition[2] - 0.16
-            self.runobject.send_to_hpp(self.currentPosition, doublecheck=False)
             P0 = self.currentPosition[:]
             self.runobject.set_starting_point(P0)
             self.runobject.product_select(StaticVar.productType)           
