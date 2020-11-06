@@ -127,14 +127,7 @@ class XYscan:
         self.loss_current_max = self.loss[-1]
         self.meet_crit = False
         self.error_flag = False
-        
-        self.limit_Z = P0[2]
-        P0[2] -= 0.14
-        self.send_to_hpp(P0, doublecheck=False)
-        # P0 = self.scanUpdate(P0, self.scanmode)
-        # if max(self.loss) < -10:
-        #     P0[2] -= 0.1
-        #     self.send_to_hpp(P0, doublecheck=False)
+
         while not self.error_flag:
             # Select mode and parameters as loss
             if self.mode_select(max(self.loss)):

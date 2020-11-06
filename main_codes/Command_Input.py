@@ -243,6 +243,10 @@ class CMDInputThread(QtCore.QThread):
             self.sig2.emit(2)
             # P0 = [0,0,140,-0.3,-0.4,0]
             P0 = self.currentPosition[:]
+            self.runobject.limit_Z = P0[2]
+            P0[2] -= 0.14
+            self.runobject.send_to_hpp(P0, doublecheck=False)
+
             self.runobject.set_starting_point(P0)
             self.runobject.product_select(StaticVar.productType)           
             
