@@ -1107,8 +1107,8 @@ class XYscan:
             bound = 0.002
         elif x < 1.5:
             bound = 0.005
-        elif x > 50:
-            bound = 4
+        elif x > 40:
+            bound = 1.5
         else:
             # 50->2.2; 40->1.12; 30->0.54; 20->0.27; 15->0.2; 10->0.15; 8->0.12; 6->0.1; 4->0.064; 3->0.046; 2->0.027; 1-> 0.005
             bound = 0.00003*x**3 - 0.0011*x**2 + 0.0245*x - 0.018
@@ -1361,7 +1361,7 @@ class XYscan:
                 return -round(s[0], 3)
 
     def check_abnormal_loss(self, loss0):
-        if loss0 > self.loss_current_max + 0.005:
+        if loss0 > self.loss_current_max + 0.01:
             self.loss_current_max = loss0
             self.pos_current_max = self.current_pos[:]
             self.loss_fail_improve = 0
@@ -1375,7 +1375,7 @@ class XYscan:
                 self.hppcontrol.disengage_motor()
                 self.error_flag = True
 
-            # x,y and z fail to improve 8 times continuesly, then reset the loss_criteria as current max
+            # x,y and z fail to improve 6 times continuesly, then reset the loss_criteria as current max
             # total 3 rounds of xyz search
             # this is to faster the process
             self.loss_fail_improve += 1

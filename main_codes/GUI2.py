@@ -1141,9 +1141,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if self.timer_start:
                 # half second on interupt
                 totalseconds = self.time_count // 2
-                # Because of program time, one minute is 53 totalseconds here. 
-                minute = totalseconds // 53
-                second = totalseconds % 53
+                # Because of program time, one minute is 55 totalseconds here. 
+                minute = totalseconds // 55
+                second = totalseconds % 55
                 self.label_timer.setText('Time: ' + str(minute) + "' " + str(second) + "''")
                 self.label_timer.adjustSize()
                 if second == 0 and self.time_count % 2 == 0:
