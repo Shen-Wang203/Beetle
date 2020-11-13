@@ -192,7 +192,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             # elif (end_time - start_time) > 1800 and (end_time - start_time) < 1802:
             #     print('Reach 30 min')
             #     logging.info('Reach 30 min')
-            elif not self.later_time_flag and (end_time - start_time) > 180:
+            elif not self.later_time_flag and (end_time - start_time) > 150:
                 # logging.info('Reach 3 min')
                 # print('Reach 3 min')
                 logging.info('Late time flag is on')
@@ -284,7 +284,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.pos_curing_rec.append(P)    
                 self.loss = []
                 # if fail to meet criteria for 3 rounds, then we loose the criteria
-                if self.zcount == 1 and not self.later_time_flag and self.xycount >= 2:
+                if self.zcount >= 1 and not self.later_time_flag and self.xycount >= 2 and (end_time - start_time) > 50:
                     self.loss_criteria = self.loss_criteria - self.lower_criteria
                     # self.loss_current_max = self.loss_criteria + 0.02
                     print('Lower criteria ', self.lower_criteria)
@@ -292,7 +292,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     self.zcount = 0
                     # allow one more xy after lower criteria
                     self.xycount = 1
-                elif self.zcount == 1 and self.later_time_flag and self.xycount >= 1:
+                elif self.zcount >= 1 and self.later_time_flag and self.xycount >= 1:
                     self.loss_criteria = self.loss_criteria - self.lower_criteria
                     # self.loss_current_max = self.loss_criteria + 0.02
                     print('Lower criteria ', self.lower_criteria)

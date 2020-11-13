@@ -325,13 +325,10 @@ class XYscan:
                     self.update_current_pos('x', X1_counts, X1_counts)
                     return False
                 loss0 = self.loss[-1]
-                pos0 = self.pos[-2]
-                x1mid = pos0
-                x2mid = -pos0 + X1_counts + X2_counts
-                x3mid = -pos0 + X1_counts + X3_counts
-                self.hppcontrol.Tx_send_only(x1mid, x2mid, x3mid, 'p')
+                pos0 = X1_counts
+                self.hppcontrol.Tx_send_only(X1_counts, X2_counts, X3_counts, 'p')
                 time.sleep(0.2)    
-                self.update_current_pos('x', x1mid, X1_counts)        
+                self.update_current_pos('x', X1_counts, X1_counts)        
                 self.hppcontrol.Tx_send_only(x1end, x2end, x3end, 't')          
 
     # when success return true, position is updated in self.current_pos
@@ -384,13 +381,10 @@ class XYscan:
                     self.update_current_pos('y', Y1_counts, Y1_counts)
                     return False
                 loss0 = self.loss[-1]
-                pos0 = self.pos[-2]
-                y1mid = pos0
-                y2mid = pos0 - Y1_counts + Y2_counts
-                y3mid = pos0 - Y1_counts + Y3_counts
-                self.hppcontrol.Ty_send_only(y1mid, y2mid, y3mid, 'p')
+                pos0 = Y1_counts
+                self.hppcontrol.Ty_send_only(Y1_counts, Y2_counts, Y3_counts, 'p')
                 time.sleep(0.2)
-                self.update_current_pos('y', y1mid, Y1_counts)
+                self.update_current_pos('y', Y1_counts, Y1_counts)
                 self.hppcontrol.Ty_send_only(y1end, y2end, y3end, 't')               
 
     # x1_o is counts
@@ -1450,9 +1444,13 @@ class XYscan:
             # print(self.pos[-1])  
             # logging.info(self.pos[-1])   
             self.update_current_pos(xy, self.pos[-1], pos0)
-
             self.save_loss_pos()
-            
+            if abs((self.pos[-1] - pos0)) > self.scan_radius:
+                flag = False
+                print('Reach Radius')
+                logging.info('Reach Radius')
+                break 
+
             loss_diff = self.loss[-1] - loss_o
             bound = self.loss_bound(loss_o)
             if loss_diff <= -bound:
@@ -1475,7 +1473,7 @@ class XYscan:
                 logging.info(str(xy) + ' scan done: has max')
                 flag = True
                 break   
-            if unchange > 300:
+            if unchange > 50:
                 flag = False
                 print('Loss unchanged')
                 logging.info('Loss unchanged')
