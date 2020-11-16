@@ -580,20 +580,3 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.loss_criteria = self.loss_current_max - self.new_crit_buffer
             
             return True
-    
-    def fetch_temperature(self):
-        # var = 'b' + '\n'
-        # var = var.encode('Utf-8')
-        # self.Arduino.write(var)
-        # # time.sleep(0.1)
-        # T = self.Arduino.readline().decode('utf-8')
-        # print('B'+T[0:-1])
-        # logging.info('B'+T[0:-1])
-
-        var = 't' + '\n'
-        var = var.encode('Utf-8')
-        self.Arduino.write(var)
-        # time.sleep(0.1)
-        T = self.Arduino.readline().decode('utf-8')
-        print('T'+T[0:-1])
-        logging.info('T'+T[0:-1])

@@ -279,12 +279,12 @@ class XYscan:
         # _dir can only be +1 or -1. When -1 means scan from adding counts
         # Purpose of _dir is to follow last correct direction, instead of substract then add counts every time
         # T1x direction is opposite compare to T2x and T3x
-        x1start = X1_counts - self.scan_radius * self.x_dir_trend
-        x1end = X1_counts + self.scan_radius * self.x_dir_trend
-        x2start = X2_counts + self.scan_radius * self.x_dir_trend
-        x2end = X2_counts - self.scan_radius * self.x_dir_trend
-        x3start = X3_counts + self.scan_radius * self.x_dir_trend
-        x3end = X3_counts - self.scan_radius * self.x_dir_trend
+        x1start = X1_counts + self.scan_radius * self.x_dir_trend
+        x1end = X1_counts - self.scan_radius * self.x_dir_trend
+        x2start = X2_counts - self.scan_radius * self.x_dir_trend
+        x2end = X2_counts + self.scan_radius * self.x_dir_trend
+        x3start = X3_counts - self.scan_radius * self.x_dir_trend
+        x3end = X3_counts + self.scan_radius * self.x_dir_trend
 
         self.loss = []
         self.fetch_loss()
@@ -335,12 +335,12 @@ class XYscan:
     def Yscan(self, Y1_counts, Y2_counts, Y3_counts):
         # _dir can only be +1 or -1. When -1 means scan from adding counts
         # Purpose of _dir is to follow last correct direction, instead of substracting then adding counts every time
-        y1start = Y1_counts - self.scan_radius * self.y_dir_trend
-        y1end = Y1_counts + self.scan_radius * self.y_dir_trend
-        y2start = Y2_counts - self.scan_radius * self.y_dir_trend
-        y2end = Y2_counts + self.scan_radius * self.y_dir_trend
-        y3start = Y3_counts - self.scan_radius * self.y_dir_trend
-        y3end = Y3_counts + self.scan_radius * self.y_dir_trend
+        y1start = Y1_counts + self.scan_radius * self.y_dir_trend
+        y1end = Y1_counts - self.scan_radius * self.y_dir_trend
+        y2start = Y2_counts + self.scan_radius * self.y_dir_trend
+        y2end = Y2_counts - self.scan_radius * self.y_dir_trend
+        y3start = Y3_counts + self.scan_radius * self.y_dir_trend
+        y3end = Y3_counts - self.scan_radius * self.y_dir_trend
 
         self.loss = []
         self.fetch_loss()
@@ -426,9 +426,9 @@ class XYscan:
                 logging.info('Reach step search limit')
                 return True 
             # x2 and x3 are in opposite direction as x1
-            x1 = x1 - self.stepScanCounts * self.x_dir_trend
-            x2 = x2 + self.stepScanCounts * self.x_dir_trend
-            x3 = x3 + self.stepScanCounts * self.x_dir_trend
+            x1 = x1 + self.stepScanCounts * self.x_dir_trend
+            x2 = x2 - self.stepScanCounts * self.x_dir_trend
+            x3 = x3 - self.stepScanCounts * self.x_dir_trend
             # apply backlash counter
             counter = self.apply_xy_backlash_counter(x10, x1, 'x')
             x1 = x1 + counter
@@ -465,9 +465,9 @@ class XYscan:
                     logging.info('Exit without going back')
                     return True
                 # go back to the old point
-                x1 = x1 + self.stepScanCounts * self.x_dir_trend
-                x2 = x2 - self.stepScanCounts * self.x_dir_trend
-                x3 = x3 - self.stepScanCounts * self.x_dir_trend
+                x1 = x1 - self.stepScanCounts * self.x_dir_trend
+                x2 = x2 + self.stepScanCounts * self.x_dir_trend
+                x3 = x3 + self.stepScanCounts * self.x_dir_trend
                 trend -= 1
                 # if trend != 0, then exit
                 if trend:
@@ -493,9 +493,9 @@ class XYscan:
                     if not self.xystep_gobacktolast:
                         logging.info('Same loss exit without going back')
                         return True
-                    x1 = x1 + self.stepScanCounts * self.x_dir_trend * 2
-                    x2 = x2 - self.stepScanCounts * self.x_dir_trend * 2
-                    x3 = x3 - self.stepScanCounts * self.x_dir_trend * 2
+                    x1 = x1 - self.stepScanCounts * self.x_dir_trend * 2
+                    x2 = x2 + self.stepScanCounts * self.x_dir_trend * 2
+                    x3 = x3 + self.stepScanCounts * self.x_dir_trend * 2
                     logging.info('Same loss exit') 
                     break
         
@@ -559,9 +559,9 @@ class XYscan:
                 print('Reach step search limit')
                 logging.info('Reach step search limit')
                 return True 
-            y1 = y1 - self.stepScanCounts * self.y_dir_trend
-            y2 = y2 - self.stepScanCounts * self.y_dir_trend
-            y3 = y3 - self.stepScanCounts * self.y_dir_trend
+            y1 = y1 + self.stepScanCounts * self.y_dir_trend
+            y2 = y2 + self.stepScanCounts * self.y_dir_trend
+            y3 = y3 + self.stepScanCounts * self.y_dir_trend
             # apply backlash counter
             counter = self.apply_xy_backlash_counter(y10, y1, 'y')
             y1 = y1 + counter
@@ -596,9 +596,9 @@ class XYscan:
                     logging.info('Exit without going back')
                     return True              
                 # go back to the previous point
-                y1 = y1 + self.stepScanCounts * self.y_dir_trend
-                y2 = y2 + self.stepScanCounts * self.y_dir_trend
-                y3 = y3 + self.stepScanCounts * self.y_dir_trend
+                y1 = y1 - self.stepScanCounts * self.y_dir_trend
+                y2 = y2 - self.stepScanCounts * self.y_dir_trend
+                y3 = y3 - self.stepScanCounts * self.y_dir_trend
                 trend -= 1
                 # if trend != 0, exit
                 if trend:
@@ -624,9 +624,9 @@ class XYscan:
                     if not self.xystep_gobacktolast:
                         logging.info('Same loss exit without going back')
                         return True
-                    y1 = y1 + self.stepScanCounts * self.y_dir_trend * 2
-                    y2 = y2 + self.stepScanCounts * self.y_dir_trend * 2
-                    y3 = y3 + self.stepScanCounts * self.y_dir_trend * 2
+                    y1 = y1 - self.stepScanCounts * self.y_dir_trend * 2
+                    y2 = y2 - self.stepScanCounts * self.y_dir_trend * 2
+                    y3 = y3 - self.stepScanCounts * self.y_dir_trend * 2
                     logging.info('Same loss exit') 
                     break              
 
@@ -673,27 +673,27 @@ class XYscan:
         [step, totalpoints] = self.xyinterp_sample_step(self.loss[-1])
         if self.product== 3:
             step = 3 * step
-        if totalpoints == 7 and self.x_dir_trend == 1:
+        if totalpoints == 7 and self.x_dir_trend == -1:
             x1 = [x1_o, x1_o-3*step, x1_o+step, x1_o-2*step, x1_o+2*step, x1_o-step, x1_o+3*step]
             x2 = [x2_o, x2_o+3*step, x2_o-step, x2_o+2*step, x2_o-2*step, x2_o+step, x2_o-3*step]
             x3 = [x3_o, x3_o+3*step, x3_o-step, x3_o+2*step, x3_o-2*step, x3_o+step, x3_o-3*step]
-        elif totalpoints == 7 and self.x_dir_trend == -1:
+        elif totalpoints == 7 and self.x_dir_trend == 1:
             x1 = [x1_o, x1_o+3*step, x1_o-step, x1_o+2*step, x1_o-2*step, x1_o+step, x1_o-3*step]
             x2 = [x2_o, x2_o-3*step, x2_o+step, x2_o-2*step, x2_o+2*step, x2_o-step, x2_o+3*step]
             x3 = [x3_o, x3_o-3*step, x3_o+step, x3_o-2*step, x3_o+2*step, x3_o-step, x3_o+3*step]
-        elif totalpoints == 5 and self.x_dir_trend == 1:
+        elif totalpoints == 5 and self.x_dir_trend == -1:
             x1 = [x1_o, x1_o-2*step, x1_o+step, x1_o-step, x1_o+2*step]
             x2 = [x2_o, x2_o+2*step, x2_o-step, x2_o+step, x2_o-2*step]
             x3 = [x3_o, x3_o+2*step, x3_o-step, x3_o+step, x3_o-2*step]  
-        elif totalpoints == 5 and self.x_dir_trend == -1:
+        elif totalpoints == 5 and self.x_dir_trend == 1:
             x1 = [x1_o, x1_o+2*step, x1_o-step, x1_o+step, x1_o-2*step]
             x2 = [x2_o, x2_o-2*step, x2_o+step, x2_o-step, x2_o+2*step]
             x3 = [x3_o, x3_o-2*step, x3_o+step, x3_o-step, x3_o+2*step] 
-        elif totalpoints == 3 and self.x_dir_trend == 1:
+        elif totalpoints == 3 and self.x_dir_trend == -1:
             x1 = [x1_o, x1_o-step, x1_o+step]
             x2 = [x2_o, x2_o+step, x2_o-step]
             x3 = [x3_o, x3_o+step, x3_o-step]  
-        elif totalpoints == 3 and self.x_dir_trend == -1:
+        elif totalpoints == 3 and self.x_dir_trend == 1:
             x1 = [x1_o, x1_o+step, x1_o-step]
             x2 = [x2_o, x2_o-step, x2_o+step]
             x3 = [x3_o, x3_o-step, x3_o+step]                      
@@ -721,11 +721,11 @@ class XYscan:
             # logging.info(x1[i])
             self.save_loss_pos()
             if self.loss_target_check(self.loss[-1]):
-                # larger than start position, then plus steps first, dir_trend is -1
+                # larger than start position, then plus steps first, dir_trend is 1
                 if x1[i] > x1[0]:
-                    self.x_dir_trend = -1
-                elif x1[i] < x1[0]:
                     self.x_dir_trend = 1
+                elif x1[i] < x1[0]:
+                    self.x_dir_trend = -1
                 return True
             # if current loss is larger than start loss, meaning the direction is right, we dont'
             # need to go to the opposite direction, which is the next iteration
@@ -738,15 +738,15 @@ class XYscan:
             if i == totalpoints or i == (totalpoints + 1):
                 # max loss is at left edge, need to extend on the left for more steps
                 if max(self.loss) == self.loss[1] and x_ref[-1] == x1[totalpoints-2]:
-                    x1.append(x1[1] - 1 * step * self.x_dir_trend)
-                    x2.append(x2[1] + 1 * step * self.x_dir_trend)
-                    x3.append(x3[1] + 1 * step * self.x_dir_trend)
-                # max loss is at right edge, need to extend on the right for 2 more steps
+                    x1.append(x1[1] + 1 * step * self.x_dir_trend)
+                    x2.append(x2[1] - 1 * step * self.x_dir_trend)
+                    x3.append(x3[1] - 1 * step * self.x_dir_trend)
+                # max loss is at right edge, need to extend on the right for more steps
                 # make sure the loss and position are matched
                 elif max(self.loss) == self.loss[-1] and x_ref[-1] == x1[totalpoints-1]:
-                    x1.append(x1[-1] + 1 * step * self.x_dir_trend)
-                    x2.append(x2[-1] - 1 * step * self.x_dir_trend)
-                    x3.append(x3[-1] - 1 * step * self.x_dir_trend)                    
+                    x1.append(x1[-1] - 1 * step * self.x_dir_trend)
+                    x2.append(x2[-1] + 1 * step * self.x_dir_trend)
+                    x3.append(x3[-1] + 1 * step * self.x_dir_trend)                    
                 else:
                     break
                 i = totalpoints
@@ -791,11 +791,11 @@ class XYscan:
             self.pos.append(x1_final)
         print('XInterp final: ',x1_final)
         logging.info('XInterp final: ' + str(x1_final))
-        # larger than start position, then plus steps first, dir_trend is -1
+        # larger than start position, then plus steps first, dir_trend is 1
         if x1_final > x1_o:
-            self.x_dir_trend = -1
-        elif x1_final < x1_o:
             self.x_dir_trend = 1
+        elif x1_final < x1_o:
+            self.x_dir_trend = -1
         self.check_abnormal_loss(max(self.loss))
         # Final loss is not the max
         if self.loss[-1] < max(self.loss) - 0.04:
@@ -825,27 +825,27 @@ class XYscan:
         [step, totalpoints] = self.xyinterp_sample_step(self.loss[-1])
         if self.product== 3:
             step = 3 * step
-        if totalpoints == 7 and self.y_dir_trend == 1:
+        if totalpoints == 7 and self.y_dir_trend == -1:
             y1 = [y1_o, y1_o-3*step, y1_o+step, y1_o-2*step, y1_o+2*step, y1_o-step, y1_o+3*step]
             y2 = [y2_o, y2_o-3*step, y2_o+step, y2_o-2*step, y2_o+2*step, y2_o-step, y2_o+3*step]
             y3 = [y3_o, y3_o-3*step, y3_o+step, y3_o-2*step, y3_o+2*step, y3_o-step, y3_o+3*step]
-        elif totalpoints == 7 and self.y_dir_trend == -1:
+        elif totalpoints == 7 and self.y_dir_trend == 1:
             y1 = [y1_o, y1_o+3*step, y1_o-step, y1_o+2*step, y1_o-2*step, y1_o+step, y1_o-3*step]
             y2 = [y2_o, y2_o+3*step, y2_o-step, y2_o+2*step, y2_o-2*step, y2_o+step, y2_o-3*step]
             y3 = [y3_o, y3_o+3*step, y3_o-step, y3_o+2*step, y3_o-2*step, y3_o+step, y3_o-3*step]
-        elif totalpoints == 5 and self.y_dir_trend == 1:
+        elif totalpoints == 5 and self.y_dir_trend == -1:
             y1 = [y1_o, y1_o-2*step, y1_o+step, y1_o-step, y1_o+2*step]
             y2 = [y2_o, y2_o-2*step, y2_o+step, y2_o-step, y2_o+2*step]
             y3 = [y3_o, y3_o-2*step, y3_o+step, y3_o-step, y3_o+2*step]
-        elif totalpoints == 5 and self.y_dir_trend == -1:
+        elif totalpoints == 5 and self.y_dir_trend == 1:
             y1 = [y1_o, y1_o+2*step, y1_o-step, y1_o+step, y1_o-2*step]
             y2 = [y2_o, y2_o+2*step, y2_o-step, y2_o+step, y2_o-2*step]
             y3 = [y3_o, y3_o+2*step, y3_o-step, y3_o+step, y3_o-2*step]
-        elif totalpoints == 3 and self.y_dir_trend == 1:
+        elif totalpoints == 3 and self.y_dir_trend == -1:
             y1 = [y1_o, y1_o-step, y1_o+step]
             y2 = [y2_o, y2_o-step, y2_o+step]
             y3 = [y3_o, y3_o-step, y3_o+step]  
-        elif totalpoints == 3 and self.y_dir_trend == -1:
+        elif totalpoints == 3 and self.y_dir_trend == 1:
             y1 = [y1_o, y1_o+step, y1_o-step]
             y2 = [y2_o, y2_o+step, y2_o-step]
             y3 = [y3_o, y3_o+step, y3_o-step]         
@@ -875,11 +875,11 @@ class XYscan:
             # logging.info(y1[i])
             self.save_loss_pos()
             if self.loss_target_check(self.loss[-1]):
-                # larger than start position, then plus steps first, dir_trend is -1
+                # larger than start position, then plus steps first, dir_trend is 1
                 if y1[i] > y1[0]:
-                    self.y_dir_trend = -1
+                    self.y_dir_trend = 1
                 elif y1[i] < y1[0]:
-                    self.y_dir_trend = 1                
+                    self.y_dir_trend = -1                
                 return True
             # if current loss is larger than start loss, meaning the direction is right, we dont'
             # need to go to the opposite direction, which is the next iteration
@@ -892,15 +892,15 @@ class XYscan:
             if i == totalpoints or i == (totalpoints + 1):
                 # max loss is at left edge, need to extend on the left for more steps
                 if max(self.loss) == self.loss[1] and y_ref[-1] == y1[totalpoints-2]:
-                    y1.append(y1[1] - 1 * step * self.y_dir_trend)
-                    y2.append(y2[1] - 1 * step * self.y_dir_trend)
-                    y3.append(y3[1] - 1 * step * self.y_dir_trend)
+                    y1.append(y1[1] + 1 * step * self.y_dir_trend)
+                    y2.append(y2[1] + 1 * step * self.y_dir_trend)
+                    y3.append(y3[1] + 1 * step * self.y_dir_trend)
                 # max loss is at right edge, need to extend on the right for 2 more steps
                 # make sure the loss and position are matched
                 elif max(self.loss) == self.loss[-1] and y_ref[-1] == y1[totalpoints-1]:
-                    y1.append(y1[-1] + 1 * step * self.y_dir_trend)
-                    y2.append(y2[-1] + 1 * step * self.y_dir_trend)
-                    y3.append(y3[-1] + 1 * step * self.y_dir_trend)      
+                    y1.append(y1[-1] - 1 * step * self.y_dir_trend)
+                    y2.append(y2[-1] - 1 * step * self.y_dir_trend)
+                    y3.append(y3[-1] - 1 * step * self.y_dir_trend)      
                 else:
                     break    
                 i = totalpoints 
@@ -945,11 +945,11 @@ class XYscan:
             self.pos.append(y1_final)
         print('YInterp final: ',y1_final)
         logging.info('YInterp final: ' + str(y1_final))
-        # larger than start position, then plus steps first, dir_trend is -1
+        # larger than start position, then plus steps first, dir_trend is 1
         if y1_final > y1_o:
-            self.y_dir_trend = -1
-        elif y1_final < y1_o:
             self.y_dir_trend = 1
+        elif y1_final < y1_o:
+            self.y_dir_trend = -1
         self.check_abnormal_loss(max(self.loss)) 
         # Final loss is not the max
         if self.loss[-1] < max(self.loss) - 0.04:
@@ -1057,8 +1057,8 @@ class XYscan:
             if not self.Xscan(Tcounts[0], Tcounts[2], Tcounts[4]):
                 print('X scan failed')
                 logging.info('X scan failed')
-                self.error_flag = True
-                return False                                     
+                # self.error_flag = True
+                # return False                                     
         P1 = self.current_pos[:]
         # x search can errect the flag
         if self.error_flag or self.loss_target_check(max(self.loss)):

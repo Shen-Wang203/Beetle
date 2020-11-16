@@ -865,7 +865,7 @@ class HPP_Control:
         # print('Real counts: ', _Tcounts)
         # print('Backlash', backlash_counter)
 
-        change_num = 20000
+        change_num = 10000
         # change_num = 4000
         # Send T1x
         if abs(_Tcounts[0] - Tcounts_old[0]) < change_num:
