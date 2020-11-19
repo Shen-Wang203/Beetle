@@ -84,8 +84,6 @@ class XYscan:
     def product_select(self, _product):
         if _product == 'SMVOA':
             self.product = 1
-            self.interpmode_threshold = -2
-            self.stepmode_threshold = -2            
             print('VOA has been selected')
             logging.info('VOA has been selected')
         elif _product == 'SM1xN':
@@ -1026,7 +1024,6 @@ class XYscan:
     # Return P1 after XY scan starting from P0, fixture is at P1, the loss is not updated
     # mode can be 's' (step) or 'c' (continusly) or 'i' (interpolation)
     # Need fixture to be at P0 location in the begining, fixture will be at P1 in the end.
-    # interpolation mode won't return false
     # return false when 1. scan mode, decrease in both direction;
     #                   2. step mode, loss doesn't change for several steps
     #                   3. interp mode, loss deosn't change for all the sampling points

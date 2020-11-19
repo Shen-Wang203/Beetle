@@ -171,7 +171,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         # wait time only works during interp, if doublecheck is on, no need to wait or wait for a short time for powermeter to response
         self.wait_time = 0.2
         start_time = time.time()
-        temp_time = start_time
+        # temp_time = start_time
         curing_active = True
         curing_active_flag = False
         while not self.error_flag:         
@@ -237,7 +237,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
             if curing_active and self.later_time_flag and self.loss[-1] < -3:
                 self.xystep_limit = False
-            elif curing_active and self.later_time_flag and self.loss[-1] > (self.loss_criteria+0.1):
+            elif curing_active and self.later_time_flag and self.loss[-1] > (self.loss_criteria-0.1):
                 self.xystep_limit = True
 
             if curing_active and self.loss[-1] < (self.loss_criteria - self.buffer):
