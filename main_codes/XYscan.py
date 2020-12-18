@@ -123,6 +123,7 @@ class XYscan:
         self.scanmode = 'c'
         self.fetch_loss()
         self.loss_current_max = self.loss[-1]
+        self.pos_current_max = P0[:]
         self.meet_crit = False
         self.error_flag = False
 
@@ -1184,9 +1185,13 @@ class XYscan:
             if P1[2] > self.limit_Z:
                 if self.second_try:
                     self.error_flag = True
+                    print('Second Try Failed')
+                    logging.info('Second Try Failed')
                 self.second_try = True
                 self.loss_fail_improve = 0    
                 P1[2] -= (step + 0.07)
+                if self.final_adjust:
+                    self.hppcontrol.engage_motor()
                 self.send_to_hpp(P1, doublecheck=False)
                 break
 

@@ -62,7 +62,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
         elif self.product == 3:
             logging.info('Product: MM 1xN')
             self.step_Z = 0.0005
-            self.stepScanCounts = 8
+            # self.stepScanCounts = 8
+            self.stepScanCounts = 14
             self.buffer_value_big = 0.007
             self.buffer_value_small = 0.007
             self.lower_criteria = 0.01
@@ -209,7 +210,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
                 # self.loss_current_max = self.loss_criteria + 0.02
-            elif not self.xystep_gobacktolast and (end_time - start_time) > 60:
+            elif not self.xystep_gobacktolast and (end_time - start_time) > 120:
                 logging.info('XY step always go back is on')
                 print('XY step always go back is on')
                 self.xystep_gobacktolast = True
@@ -251,7 +252,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
                 # Z back if xy search failed for 2 times
-                if self.xycount == 2:
+                if self.xycount == 3:
                     # if self.zcount_loop >= 2 and not self.later_time_flag:
                     if self.zcount_loop >= 2: 
                         P = self.Zstep(P)
@@ -284,7 +285,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.pos_curing_rec.append(P)    
                 self.loss = []
                 # if fail to meet criteria for 3 rounds, then we loose the criteria
-                if self.zcount >= 1 and not self.later_time_flag and self.xycount >= 2 and (end_time - start_time) > 50:
+                if self.zcount >= 1 and not self.later_time_flag and self.xycount >= 2 and (end_time - start_time) > 60:
                     self.loss_criteria = self.loss_criteria - self.lower_criteria
                     # self.loss_current_max = self.loss_criteria + 0.02
                     print('Lower criteria ', self.lower_criteria)

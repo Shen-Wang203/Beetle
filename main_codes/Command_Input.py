@@ -243,14 +243,15 @@ class CMDInputThread(QtCore.QThread):
             self.sig2.emit(2)
             # P0 = [0,0,140,-0.3,-0.4,0]
             P0 = self.currentPosition[:]
-            self.runobject.limit_Z = P0[2]
+            
             if StaticVar.productType == "SM1xN":
                 P0[2] -= 0.22
             elif StaticVar.productType == "SMVOA":
                 P0[2] -= 0.1
             elif StaticVar.productType == "MM1xN":
+                self.runobject.limit_Z = P0[2] + 0.04
                 P0[2] -= 0.14
-            self.runobject.send_to_hpp(P0, doublecheck=False)
+                # self.runobject.send_to_hpp(P0, doublecheck=False)
 
             self.runobject.set_starting_point(P0)
             self.runobject.product_select(StaticVar.productType)           
