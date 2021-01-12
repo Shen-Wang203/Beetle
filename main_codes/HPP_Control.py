@@ -912,11 +912,23 @@ class HPP_Control:
         Tcounts_old = Tcounts[:]
 
 
-    def engage_motor(self):
-        # Send T1x close-loop
-        var0 = 'w axis0.requested_state 8' + '\n'
-        var1 = 'w axis1.requested_state 8' + '\n'
-        self.T123_send_only(var0, var1)
+    def engage_motor(self, xy='xy'):
+        if xy == 'x':
+            var = 'w axis0.requested_state 8' + '\n'
+            var = var.encode('Utf-8')  
+            Tser1.write(var)
+            Tser2.write(var)
+            Tser3.write(var) 
+        elif xy == 'y':
+            var = 'w axis1.requested_state 8' + '\n'
+            var = var.encode('Utf-8')  
+            Tser1.write(var)
+            Tser2.write(var)
+            Tser3.write(var)
+        else:
+            var0 = 'w axis0.requested_state 8' + '\n'
+            var1 = 'w axis1.requested_state 8' + '\n'
+            self.T123_send_only(var0, var1)
 
     def disengage_motor(self):
         # Send T1x Idle

@@ -210,7 +210,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
                 # self.loss_current_max = self.loss_criteria + 0.02
-            elif not self.xystep_gobacktolast and (end_time - start_time) > 120:
+            elif not self.xystep_gobacktolast and (end_time - start_time) > 100:
                 logging.info('XY step always go back is on')
                 print('XY step always go back is on')
                 self.xystep_gobacktolast = True
@@ -231,7 +231,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 if self.product == 3:
                     self.buffer = 0.003
                 else:
-                    self.buffer = 0.007
+                    self.buffer = 0.01
             elif curing_active and len(self.loss) == 24:
                 print('Smaller the buffer')
                 logging.info('Smaller the buffer')
@@ -251,8 +251,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     logging.info('Lower criteria for 0.005')
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
-                # Z back if xy search failed for 2 times
-                if self.xycount == 3:
+                # Z back if xy search failed for 2 times, if after 5min, no z anymore
+                if self.xycount == 3 and (end_time - start_time) < 300:
                     # if self.zcount_loop >= 2 and not self.later_time_flag:
                     if self.zcount_loop >= 2: 
                         P = self.Zstep(P)
@@ -287,7 +287,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 # if fail to meet criteria for 3 rounds, then we loose the criteria
                 if self.zcount >= 1 and not self.later_time_flag and self.xycount >= 2 and (end_time - start_time) > 60:
                     self.loss_criteria = self.loss_criteria - self.lower_criteria
-                    # self.loss_current_max = self.loss_criteria + 0.02
                     print('Lower criteria ', self.lower_criteria)
                     logging.info('Lower criteria ' + str(self.lower_criteria))
                     self.zcount = 0
@@ -295,11 +294,16 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     self.xycount = 1
                 elif self.zcount >= 1 and self.later_time_flag and self.xycount >= 1:
                     self.loss_criteria = self.loss_criteria - self.lower_criteria
-                    # self.loss_current_max = self.loss_criteria + 0.02
                     print('Lower criteria ', self.lower_criteria)
                     logging.info('Lower criteria ' + str(self.lower_criteria))
                     self.zcount = 0 
-                    self.xycount = 1                   
+                    self.xycount = 1  
+                elif (end_time - start_time) > 300 and self.xycount >= 3:
+                    self.loss_criteria = self.loss_criteria - self.lower_criteria
+                    print('Lower criteria ', self.lower_criteria)
+                    logging.info('Lower criteria ' + str(self.lower_criteria))
+                    self.zcount = 0 
+                    self.xycount = 1                  
             elif curing_active and self.loss[-1] >= self.loss_criteria:
                 self.xycount = 0
                 self.zcount = 0

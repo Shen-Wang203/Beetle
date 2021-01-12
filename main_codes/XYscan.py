@@ -292,7 +292,7 @@ class XYscan:
         self.pos_ref = self.current_pos[:]
         pos0 = X1_counts
         if self.final_adjust:
-            self.hppcontrol.engage_motor()
+            self.hppcontrol.engage_motor(xy='x')
         # Use T1's position as reference
         self.hppcontrol.Tx_send_only(x1start, x2start, x3start, 't')
         for i in range(0,2):
@@ -348,7 +348,7 @@ class XYscan:
         self.pos_ref = self.current_pos[:]
         pos0 = Y1_counts
         if self.final_adjust:
-            self.hppcontrol.engage_motor()
+            self.hppcontrol.engage_motor(xy='y')
         # use T1's position as position reference
         self.hppcontrol.Ty_send_only(y1start, y2start, y3start,'t')       
         for i in range(0,2):
@@ -964,7 +964,7 @@ class XYscan:
     def gotoxy(self, a1, a2, a3, xy, doublecheck, mode):
         for i in range(0,3):
             if self.final_adjust:
-                self.hppcontrol.engage_motor()       
+                self.hppcontrol.engage_motor(xy=xy)       
             if xy == 'y': 
                 # print('sending y', a1)
                 # logging.info('sending y ' + str(a1))
@@ -1380,8 +1380,8 @@ class XYscan:
                 print('Failed to find better loss after tries, go back to current best')
                 logging.info('Failed to find better loss after tries, go back to current best')
                 self.error_flag = True
-                # self.hppcontrol.engage_motor()
-                self.send_to_hpp(self.pos_current_max, doublecheck=True)
+                self.hppcontrol.engage_motor()
+                self.send_to_hpp(self.pos_current_max, doublecheck=False)
                 # self.hppcontrol.disengage_motor()
 
 
