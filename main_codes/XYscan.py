@@ -151,8 +151,8 @@ class XYscan:
                 P_final = P1[:]
                 break
 
-            P0 = self.optimZ(P1, doublecheck=False)
-                        
+            P0 = self.optimZ(P1, doublecheck=True)
+            
             # check error_flag, check_abnormal_loss function can erect this flag
             if self.error_flag:
                 P_final = self.pos_current_max[:]
@@ -962,23 +962,37 @@ class XYscan:
     # return false when movement error (final_adjust is false)
     # mode is either 't' or 'p' for traj or step positioning mode, default is 'p'
     def gotoxy(self, a1, a2, a3, xy, doublecheck, mode):
+        trl = self.tolerance
         for i in range(0,3):
-            if self.final_adjust:
-                self.hppcontrol.engage_motor(xy=xy)       
+            # if self.final_adjust:
+            #     self.hppcontrol.engage_motor(xy=xy)    
+            count = control.Tcounts_real[:]   
             if xy == 'y': 
                 # print('sending y', a1)
                 # logging.info('sending y ' + str(a1))
-                self.hppcontrol.Ty_send_only(a1, a2, a3, mode)
+                control.onTargetFlag = [1,0,1,0,1,0]
+                count[1] = a1
+                count[3] = a2
+                count[5] = a3
+                self.hppcontrol.send_counts(count)
+                # self.hppcontrol.Ty_send_only(a1, a2, a3, mode)
             else:
-                self.hppcontrol.Tx_send_only(a1, a2, a3, mode)
+                control.onTargetFlag = [0,1,0,1,0,1]
+                count[0] = a1
+                count[2] = a2
+                count[4] = a3
+                self.hppcontrol.send_counts(count)
+                # self.hppcontrol.Tx_send_only(a1, a2, a3, mode)
             for timeout in range(0, 50):
                 time.sleep(0.1)
-                if xy == 'y':
-                    if self.hppcontrol.Ty_on_target(a1, a2, a3, self.tolerance):
-                        break
-                else:
-                    if self.hppcontrol.Tx_on_target(a1, a2, a3, self.tolerance):
-                        break
+                if self.hppcontrol.on_target(count, trl):
+                    break
+                # if xy == 'y':
+                #     if self.hppcontrol.Ty_on_target(a1, a2, a3, self.tolerance):
+                #         break
+                # else:
+                #     if self.hppcontrol.Tx_on_target(a1, a2, a3, self.tolerance):
+                #         break
             if timeout >= 49:
                 print('Movement Timeout Error')
                 logging.info('Movement Timeout Error')
@@ -987,18 +1001,21 @@ class XYscan:
                 if not self.final_adjust:
                     return False
             if self.final_adjust:
-                self.hppcontrol.disengage_motor()
                 if doublecheck and xy == 'y':
                     time.sleep(0.1)
-                    if self.hppcontrol.Ty_on_target(a1, a2, a3, self.tolerance):
+                    control.onTargetFlag = [1,0,1,0,1,0]
+                    if self.hppcontrol.on_target(count, self.tolerance):
                         return True
                     else:
+                        tlr = self.tolerance + 2
                         continue
                 elif doublecheck and xy == 'x':
                     time.sleep(0.1)
-                    if self.hppcontrol.Tx_on_target(a1, a2, a3, self.tolerance):
+                    control.onTargetFlag = [0,1,0,1,0,1]
+                    if self.hppcontrol.on_target(count, self.tolerance):
                         return True
                     else:
+                        trl = self.tolerance + 2
                         continue
             return True
         return True
@@ -1046,7 +1063,7 @@ class XYscan:
                 self.error_flag = True
                 return False
         elif _mode == 'i':
-            if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=False):
+            if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=True):
                 print('X interp failed')
                 logging.info('X interp failed')
                 self.error_flag = True
@@ -1069,7 +1086,7 @@ class XYscan:
                 self.error_flag = True
                 return False
         elif _mode == 'i':
-            if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=False):
+            if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=True):
                 print('Y interp failed')
                 logging.info('Y interp failed')
                 self.error_flag = True
@@ -1190,8 +1207,8 @@ class XYscan:
                 self.second_try = True
                 self.loss_fail_improve = 0    
                 P1[2] -= (step + 0.07)
-                if self.final_adjust:
-                    self.hppcontrol.engage_motor()
+                # if self.final_adjust:
+                #     self.hppcontrol.engage_motor()
                 self.send_to_hpp(P1, doublecheck=False)
                 break
 
@@ -1207,15 +1224,15 @@ class XYscan:
             _z0 = P1[2]
             _direc0 = _direc1            
             # goto the position
-            if self.final_adjust and not doublecheck:
-                self.hppcontrol.engage_motor()
+            # if self.final_adjust and not doublecheck:
+            #     self.hppcontrol.engage_motor()
             if not self.send_to_hpp(P1, doublecheck=doublecheck):
                 print('Movement Error')
                 logging.info('Movement Error')
                 if not self.final_adjust:
                     self.error_flag = True
-            if self.final_adjust and not doublecheck:
-                self.hppcontrol.disengage_motor()
+            # if self.final_adjust and not doublecheck:
+            #     self.hppcontrol.disengage_motor()
             time.sleep(self.wait_time)
             self.fetch_loss()
             self.current_pos = P1[:]
@@ -1287,15 +1304,15 @@ class XYscan:
                     _z0 = P1[2]
                     _direc0 = _direc1                    
                     # goto the position
-                    if self.final_adjust and not doublecheck:
-                        self.hppcontrol.engage_motor()
+                    # if self.final_adjust and not doublecheck:
+                    #     self.hppcontrol.engage_motor()
                     if not self.send_to_hpp(P1, doublecheck=doublecheck):
                         print('Movement Error')
                         logging.info('Movement Error')
                         if not self.final_adjust:
                             self.error_flag = True
-                    if self.final_adjust and not doublecheck:
-                        self.hppcontrol.disengage_motor()
+                    # if self.final_adjust and not doublecheck:
+                    #     self.hppcontrol.disengage_motor()
                     time.sleep(self.wait_time)
                     self.current_pos = P1[:]
                     self.fetch_loss()
@@ -1365,10 +1382,10 @@ class XYscan:
             if (loss0 < (4 * self.loss_current_max) and loss0 < -10) or loss0 < -45:
                 print('Unexpected High Loss, End Program: ', str(loss0))
                 logging.info('Unexpected High Loss, End Program: ' + str(loss0))
-                self.hppcontrol.engage_motor()
+                # self.hppcontrol.engage_motor()
                 self.hppcontrol.normal_traj_speed()
                 self.send_to_hpp(self.starting_point, doublecheck=False)
-                self.hppcontrol.disengage_motor()
+                # self.hppcontrol.disengage_motor()
                 self.error_flag = True
 
             # x,y and z fail to improve 6 times continuesly, then reset the loss_criteria as current max
@@ -1380,7 +1397,7 @@ class XYscan:
                 print('Failed to find better loss after tries, go back to current best')
                 logging.info('Failed to find better loss after tries, go back to current best')
                 self.error_flag = True
-                self.hppcontrol.engage_motor()
+                # self.hppcontrol.engage_motor()
                 self.send_to_hpp(self.pos_current_max, doublecheck=False)
                 # self.hppcontrol.disengage_motor()
 
@@ -1493,6 +1510,7 @@ class XYscan:
         # Read real time counts        
         Tmm = self.HPP.findAxialPosition(R[0], R[1], R[2], R[3], R[4], R[5])
         # target_counts = self.hppcontrol.run_to_Tmm(Tmm, self.tolerance)
+        control.onTargetFlag = [0,0,0,0,0,0]
         self.hppcontrol.run_to_Tmm(Tmm, self.tolerance, doublecheck)
         # print(target_counts)
         # real_counts = control.Tcounts_real

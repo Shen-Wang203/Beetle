@@ -168,7 +168,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
         self.final_adjust = True
         self.stepScanCounts = 4
-        self.doublecheck_flag = False
+        self.doublecheck_flag = True
         # wait time only works during interp, if doublecheck is on, no need to wait or wait for a short time for powermeter to response
         self.wait_time = 0.2
         start_time = time.time()

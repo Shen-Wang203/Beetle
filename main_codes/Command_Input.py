@@ -150,7 +150,7 @@ class CMDInputThread(QtCore.QThread):
                 P = self.P3
                 self.HPP.set_Pivot(np.array([[0], [0], [75], [0]]))
             # Engage motors, do close-loop controls
-            self.hppcontrol.engage_motor()
+            # self.hppcontrol.engage_motor()
             self.sig2.emit(1)
             # Read real time counts
             # Tcounts_old = self.hppcontrol.real_time_counts(0)
@@ -165,6 +165,7 @@ class CMDInputThread(QtCore.QThread):
                 # A function that can translate position value in mm to encoder counts
                 Tcounts = self.hppcontrol.translate_to_counts(Tmm)
                 target_counts = Tcounts[:]
+                control.onTargetFlag = [0,0,0,0,0,0]
                 # Do safety check, make sure the commands are within the travel range
                 if self.hppcontrol.safecheck(Tcounts):
                     # Send commands to controllers via UART
@@ -192,12 +193,12 @@ class CMDInputThread(QtCore.QThread):
 
         elif commands == 'close':
             error_log = ''
-            self.hppcontrol.engage_motor()
+            # self.hppcontrol.engage_motor()
             self.sig2.emit(1)
             #go to a reset position so that index can be found on next startup.
             T_reset = [-2000, -2000, -2000, -2000, -2000, -2000]
             target_counts = T_reset[:]
-            # Tcounts_old = self.hppcontrol.real_time_counts(0)
+            control.onTargetFlag = [0,0,0,0,0,0]
             self.hppcontrol.send_counts(T_reset)
             while not self.hppcontrol.on_target(T_reset, 2):
                 #if errors exist, exit the loop, disengage motors
@@ -233,13 +234,14 @@ class CMDInputThread(QtCore.QThread):
             
             # self.hppcontrol.engage_motor()
             self.sig2.emit(1)
+            control.onTargetFlag = [0,0,0,0,0,0]
             target_counts = self.hppcontrol.run_to_Tmm(Tmm, tolerance=2, doublecheck=True)
             real_counts = control.Tcounts_real
             self.currentPosition = target_mm[:]
 
         elif commands == 'align':
             self.runobject = XYscan(self.HPP, self.hppcontrol)
-            self.hppcontrol.engage_motor()
+            # self.hppcontrol.engage_motor()
             self.sig2.emit(2)
             # P0 = [0,0,140,-0.3,-0.4,0]
             P0 = self.currentPosition[:]
@@ -297,7 +299,7 @@ class CMDInputThread(QtCore.QThread):
             logging.info('')
             logging.info('Back-Align Starts')
             self.runobject = XYscan(self.HPP, self.hppcontrol)
-            self.hppcontrol.engage_motor()
+            # self.hppcontrol.engage_motor()
             self.sig2.emit(3)
             P0 = self.currentPosition[:]
             # Use interp method when loss is larger than -8 to have more accurate xy scan

@@ -175,6 +175,8 @@ Tcounts_old = [0,0,0,0,0,0]
 # 1 means positive direction, -1 means negative direction
 direction = [1,1,1,1,1,1]
 backlash_counter = [0,0,0,0,0,0]
+onTargetFlag = [0,0,0,0,0,0]
+motorStatusFlag = [0,0,0,0,0,0] #engage is 1, disengaged is 0
 
 class HPP_Control:
     def __init__(self):    
@@ -817,9 +819,24 @@ class HPP_Control:
     # consider backlash
     def on_target(self, Tcounts, tolerance):
         global backlash_counter
-
+        global Tcounts_real
+        global motorStatusFlag
         #find real time counts for all axis
-        T_current = self.real_time_counts(0)
+        # T_current = self.real_time_counts(0)
+        T_current = Tcounts_real[:]
+        if onTargetFlag[0] == 0:
+            T_current[0] = self.real_time_counts(1)
+        if onTargetFlag[1] == 0:
+            T_current[1] = self.real_time_counts(2)
+        if onTargetFlag[2] == 0:
+            T_current[2] = self.real_time_counts(3)
+        if onTargetFlag[3] == 0:
+            T_current[3] = self.real_time_counts(4)
+        if onTargetFlag[4] == 0:
+            T_current[4] = self.real_time_counts(5)
+        if onTargetFlag[5] == 0:
+            T_current[5] = self.real_time_counts(6)
+
         # print('Encoder counts before: ', T_current)
         # Consider backlash
         for i in range(0,6):
@@ -827,27 +844,42 @@ class HPP_Control:
         # print('Encoder counts after: ', T_current)
 
         # Check if within target
-        if T_current[0] < (Tcounts[0] - tolerance) or T_current[0] > (Tcounts[0] + tolerance):
-            return False
-        elif T_current[1] < (Tcounts[1] - tolerance) or T_current[1] > (Tcounts[1] + tolerance):
-            return False
-        elif T_current[2] < (Tcounts[2] - tolerance) or T_current[2] > (Tcounts[2] + tolerance):
-            return False
-        elif T_current[3] < (Tcounts[3] - tolerance) or T_current[3] > (Tcounts[3] + tolerance):
-            return False
-        elif T_current[4] < (Tcounts[4] - tolerance) or T_current[4] > (Tcounts[4] + tolerance):
-            return False
-        elif T_current[5] < (Tcounts[5] - tolerance) or T_current[5] > (Tcounts[5] + tolerance):
-            return False
-        else:
-            # print('Axial Real Position')
-            # print(T_current)
-            return True
+        if onTargetFlag[0] == 0 and (T_current[0] >= (Tcounts[0] - tolerance) and T_current[0] <= (Tcounts[0] + tolerance)):
+            onTargetFlag[0] = 1
+            if motorStatusFlag[0]:
+                self.disengage_motor(axial='1')
+        if onTargetFlag[1] == 0 and (T_current[1] >= (Tcounts[1] - tolerance) and T_current[1] <= (Tcounts[1] + tolerance)):
+            onTargetFlag[1] = 1
+            if motorStatusFlag[1]:
+                self.disengage_motor(axial='2')
+        if onTargetFlag[2] == 0 and (T_current[2] >= (Tcounts[2] - tolerance) and T_current[2] <= (Tcounts[2] + tolerance)):
+            onTargetFlag[2] = 1
+            if motorStatusFlag[2]:
+                self.disengage_motor(axial='3')
+        if onTargetFlag[3] == 0 and (T_current[3] >= (Tcounts[3] - tolerance) and T_current[3] <= (Tcounts[3] + tolerance)):
+            onTargetFlag[3] = 1
+            if motorStatusFlag[3]:
+                self.disengage_motor(axial='4')
+        if onTargetFlag[4] == 0 and (T_current[4] >= (Tcounts[4] - tolerance) and T_current[4] <= (Tcounts[4] + tolerance)):
+            onTargetFlag[4] = 1
+            if motorStatusFlag[4]:
+                self.disengage_motor(axial='5')
+        if onTargetFlag[5] == 0 and (T_current[5] >= (Tcounts[5] - tolerance) and T_current[5] <= (Tcounts[5] + tolerance)):
+            onTargetFlag[5] = 1
+            if motorStatusFlag[5]:
+                self.disengage_motor(axial='6')       
 
+        if sum(onTargetFlag) < 6:
+            return False
+        
+        return True
+
+    # which axial to sent count is selectable through onTargetFlag
     def send_counts(self, Tcounts):
         global direction
         global backlash_counter
         global Tcounts_old
+        global onTargetFlag
         _direc = direction[:]
         _Tcounts = Tcounts[:]
         # print('Old counts: ', Tcounts_old)
@@ -867,74 +899,147 @@ class HPP_Control:
 
         change_num = 10000
         # change_num = 4000
-        # Send T1x
-        if abs(_Tcounts[0] - Tcounts_old[0]) < change_num:
-            var = 'p 0 ' + str(_Tcounts[0]) + ' 0 0' + '\n'
-        else:
-            var = 't 0 ' + str(_Tcounts[0]) + '\n'
-        self.T1_send_only(var)
+        if onTargetFlag[0] == 0:
+            # Send T1x
+            self.engage_motor(axial='1')
+            if abs(_Tcounts[0] - Tcounts_old[0]) < change_num:
+                var = 'p 0 ' + str(_Tcounts[0]) + ' 0 0' + '\n'
+            else:
+                var = 't 0 ' + str(_Tcounts[0]) + '\n'
+            self.T1_send_only(var)
 
-        # Send T1y
-        if abs(_Tcounts[1] - Tcounts_old[1]) < change_num:
-            var = 'p 1 ' + str(_Tcounts[1]) + ' 0 0' + '\n'
-        else:
-            var = 't 1 ' + str(_Tcounts[1]) + '\n'
-        self.T1_send_only(var)
+        if onTargetFlag[1] == 0:
+            # Send T1y
+            self.engage_motor(axial='2')
+            if abs(_Tcounts[1] - Tcounts_old[1]) < change_num:
+                var = 'p 1 ' + str(_Tcounts[1]) + ' 0 0' + '\n'
+            else:
+                var = 't 1 ' + str(_Tcounts[1]) + '\n'
+            self.T1_send_only(var)
 
-        # Send T2x
-        if abs(_Tcounts[2] - Tcounts_old[2]) < change_num:
-            var = 'p 0 ' + str(_Tcounts[2]) + ' 0 0' + '\n'
-        else:
-            var = 't 0 ' + str(_Tcounts[2]) + '\n'
-        self.T2_send_only(var)
+        if onTargetFlag[2] == 0:
+            # Send T2x
+            self.engage_motor(axial='3')
+            if abs(_Tcounts[2] - Tcounts_old[2]) < change_num:
+                var = 'p 0 ' + str(_Tcounts[2]) + ' 0 0' + '\n'
+            else:
+                var = 't 0 ' + str(_Tcounts[2]) + '\n'
+            self.T2_send_only(var)
 
-        # Send T2y
-        if abs(_Tcounts[3] - Tcounts_old[3]) < change_num:
-            var = 'p 1 ' + str(_Tcounts[3]) + ' 0 0' + '\n'
-        else:
-            var = 't 1 ' + str(_Tcounts[3]) + '\n'
-        self.T2_send_only(var)
+        if onTargetFlag[3] == 0:
+            # Send T2y
+            self.engage_motor(axial='4')
+            if abs(_Tcounts[3] - Tcounts_old[3]) < change_num:
+                var = 'p 1 ' + str(_Tcounts[3]) + ' 0 0' + '\n'
+            else:
+                var = 't 1 ' + str(_Tcounts[3]) + '\n'
+            self.T2_send_only(var)
 
-        # Send T3x
-        if abs(_Tcounts[4] - Tcounts_old[4]) < change_num:
-            var = 'p 0 ' + str(_Tcounts[4]) + ' 0 0' + '\n'
-        else:
-            var = 't 0 ' + str(_Tcounts[4]) + '\n'
-        self.T3_send_only(var)
+        if onTargetFlag[4] == 0:
+            # Send T3x
+            self.engage_motor(axial='5')
+            if abs(_Tcounts[4] - Tcounts_old[4]) < change_num:
+                var = 'p 0 ' + str(_Tcounts[4]) + ' 0 0' + '\n'
+            else:
+                var = 't 0 ' + str(_Tcounts[4]) + '\n'
+            self.T3_send_only(var)
 
-        # Send T3y
-        if abs(_Tcounts[5] - Tcounts_old[5]) < change_num:
-            var = 'p 1 ' + str(_Tcounts[5]) + ' 0 0' + '\n'
-        else:
-            var = 't 1 ' + str(_Tcounts[5]) + '\n'
-        self.T3_send_only(var)
+        if onTargetFlag[5] == 0:
+            # Send T3y
+            self.engage_motor(axial='6')
+            if abs(_Tcounts[5] - Tcounts_old[5]) < change_num:
+                var = 'p 1 ' + str(_Tcounts[5]) + ' 0 0' + '\n'
+            else:
+                var = 't 1 ' + str(_Tcounts[5]) + '\n'
+            self.T3_send_only(var)
 
         Tcounts_old = Tcounts[:]
 
-
-    def engage_motor(self, xy='xy'):
-        if xy == 'x':
-            var = 'w axis0.requested_state 8' + '\n'
-            var = var.encode('Utf-8')  
-            Tser1.write(var)
-            Tser2.write(var)
-            Tser3.write(var) 
-        elif xy == 'y':
-            var = 'w axis1.requested_state 8' + '\n'
-            var = var.encode('Utf-8')  
-            Tser1.write(var)
-            Tser2.write(var)
-            Tser3.write(var)
+    def engage_motor(self, axial='0'):
+        global motorStatusFlag
+        var0 = 'w axis0.requested_state 8' + '\n'
+        var1 = 'w axis1.requested_state 8' + '\n'
+        if axial == 'x': 
+            if motorStatusFlag[0] == 0:
+                self.T1_send_only(var0)
+                motorStatusFlag[0] = 1
+            if motorStatusFlag[2] == 0:
+                self.T2_send_only(var0)
+                motorStatusFlag[2] = 1
+            if motorStatusFlag[4] == 0:
+                self.T3_send_only(var0)
+                motorStatusFlag[4] = 1
+        elif axial == 'y':
+            if motorStatusFlag[1] == 0:
+                self.T1_send_only(var1)
+                motorStatusFlag[1] = 1
+            if motorStatusFlag[3] == 0:
+                self.T2_send_only(var1)
+                motorStatusFlag[3] = 1
+            if motorStatusFlag[5] == 0:
+                self.T3_send_only(var1)
+                motorStatusFlag[5] = 1
+        elif axial == '1' and motorStatusFlag[0] == 0:
+            self.T1_send_only(var0)
+            motorStatusFlag[0] = 1
+        elif axial == '2' and motorStatusFlag[1] == 0:
+            self.T1_send_only(var1)
+            motorStatusFlag[1] = 1
+        elif axial == '3' and motorStatusFlag[2] == 0:
+            self.T2_send_only(var0)
+            motorStatusFlag[2] = 1
+        elif axial == '4' and motorStatusFlag[3] == 0:
+            self.T2_send_only(var1)
+            motorStatusFlag[3] = 1
+        elif axial == '5' and motorStatusFlag[4] == 0:
+            self.T3_send_only(var0)
+            motorStatusFlag[4] = 1
+        elif axial == '6' and motorStatusFlag[5] == 0:
+            self.T3_send_only(var1)
+            motorStatusFlag[5] = 1
         else:
-            var0 = 'w axis0.requested_state 8' + '\n'
-            var1 = 'w axis1.requested_state 8' + '\n'
             self.T123_send_only(var0, var1)
+            motorStatusFlag = [1,1,1,1,1,1]
 
-    def disengage_motor(self):
-        # Send T1x Idle
+    def disengage_motor(self, axial='0'):
+        global motorStatusFlag
         var0 = 'w axis0.requested_state 1' + '\n'
         var1 = 'w axis1.requested_state 1' + '\n'
-        self.T123_send_only(var0, var1) 
+        if axial == 'x': 
+            self.T1_send_only(var0)
+            self.T2_send_only(var0)
+            self.T3_send_only(var0)
+            motorStatusFlag[0] = 0
+            motorStatusFlag[2] = 0
+            motorStatusFlag[4] = 0
+        elif axial == 'y':
+            self.T1_send_only(var1)
+            self.T2_send_only(var1)
+            self.T3_send_only(var1)
+            motorStatusFlag[1] = 0
+            motorStatusFlag[3] = 0
+            motorStatusFlag[5] = 0
+        elif axial == '1':
+            self.T1_send_only(var0)
+            motorStatusFlag[0] = 0
+        elif axial == '2':
+            self.T1_send_only(var1)
+            motorStatusFlag[1] = 0
+        elif axial == '3':
+            self.T2_send_only(var0)
+            motorStatusFlag[2] = 0
+        elif axial == '4':
+            self.T2_send_only(var1)
+            motorStatusFlag[3] = 0
+        elif axial == '5':
+            self.T3_send_only(var0)
+            motorStatusFlag[4] = 0
+        elif axial == '6':
+            self.T3_send_only(var1)
+            motorStatusFlag[5] = 0
+        else:
+            self.T123_send_only(var0, var1) 
+            motorStatusFlag = [0,0,0,0,0,0]
 
     def slow_traj_speed(self):
         # 43 byte, time 43 * 10 / 115200 = 4ms
@@ -997,13 +1102,15 @@ class HPP_Control:
         return None
 
     # doublecheck will disengage the motor and do the check again
+    # need to specify onTargetFlag before this function
     def run_to_Tmm(self, Tmm, tolerance, doublecheck):
         global error_log
         global Tcounts_real
+        global onTargetFlag
+        # onTargetFlag = [0,0,0,0,0,0]
         _Tcounts = self.translate_to_counts(Tmm) 
+        tlr = tolerance
         for i in range(0,3):
-            if doublecheck:
-                self.engage_motor()
             # Do safety check, make sure the commands are within the travel range
             if self.safecheck(_Tcounts):
                 # Send commands to controllers via UART
@@ -1015,7 +1122,7 @@ class HPP_Control:
             for timeout in range(0,50):
                 # if errors exist, disengage motors, exit the loop
                 time.sleep(0.1)
-                if self.on_target(_Tcounts, tolerance):
+                if self.on_target(_Tcounts, tlr):
                     break
             if timeout >= 49:
                 self.disengage_motor()
@@ -1027,11 +1134,15 @@ class HPP_Control:
                         error_log = error_log + 'Motor ' + str(i+1) + ' Timeout Error' + '\n'
                 return _Tcounts
             if doublecheck:
-                self.disengage_motor()
                 time.sleep(0.1)
+                onTargetFlag = [0,0,0,0,0,0]
                 if self.on_target(_Tcounts, tolerance):
                     return _Tcounts
                 else:
+                    # This tlr is because when disengaged the actual counts will pass the 
+                    # target count due to possible inertia, so let's loss the tolerance to
+                    # hope that it will disengaged a little early
+                    tlr = tolerance + 2
                     continue
 
             return _Tcounts
