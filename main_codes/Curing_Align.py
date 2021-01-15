@@ -36,6 +36,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.buffer_value_small = 0.015
         self.lower_criteria = 0.015
         self.new_crit_buffer = 0.003
+        self.stepAmp = 1
         # arduino temp read serial connection
         # self.Arduino = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
 
@@ -55,10 +56,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
             logging.info('Product: VOA')
             self.step_Z = 0.0005
             self.stepScanCounts = 4
+            self.stepAmp = 1.5
         elif self.product == 2:
             logging.info('Product: SM 1xN')
             self.step_Z = 0.001
             self.stepScanCounts = 4
+            self.stepAmp = 1.5
         elif self.product == 3:
             logging.info('Product: MM 1xN')
             self.step_Z = 0.0005
@@ -67,6 +70,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             self.buffer_value_big = 0.007
             self.buffer_value_small = 0.007
             self.lower_criteria = 0.01
+            self.stepAmp = 1
 
     # End: time reach or loss doesn't change
     # Loss_criteria at curing should be 0.5 smaller than alignment, while still 0.5 smaller than spec
@@ -101,6 +105,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.final_adjust = True
         self.stepScanCounts = 4
         self.doublecheck_flag = True
+        self.stepScanCounts = self.stepAmp * self.stepScanCounts
         # wait time only works during interp, if doublecheck is on, no need to wait or wait for a short time for powermeter to response
         self.wait_time = 0.2
         start_time = time.time()
@@ -138,6 +143,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.xystep_limit = True
                 self.loss = []
                 self.new_crit_buffer = 0.002
+                self.stepScanCounts = self.stepScanCounts / self.stepAmp
+
                 # self.mode = 't'               
                 # for late time, loose the loss criteria to reduce movement times
                 # self.loss_criteria = self.loss_criteria - 0.01
@@ -183,7 +190,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     logging.info('Lower criteria for 0.005')
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
-                # Z back if xy search failed for 2 times, if after 5min, no z anymore
+                # Z back if xy search failed for 3 times, if after 5min, no z anymore
                 if self.xycount == 3 and (end_time - start_time) < 300:
                     # if self.zcount_loop >= 2 and not self.later_time_flag:
                     if self.zcount_loop >= 2: 

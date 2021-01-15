@@ -151,7 +151,7 @@ class XYscan:
                 P_final = P1[:]
                 break
 
-            P0 = self.optimZ(P1, doublecheck=True)
+            P0 = self.optimZ(P1, doublecheck=self.final_adjust)
             
             # check error_flag, check_abnormal_loss function can erect this flag
             if self.error_flag:
@@ -291,8 +291,6 @@ class XYscan:
         self.save_loss_pos()
         self.pos_ref = self.current_pos[:]
         pos0 = X1_counts
-        if self.final_adjust:
-            self.hppcontrol.engage_motor(xy='x')
         # Use T1's position as reference
         self.hppcontrol.Tx_send_only(x1start, x2start, x3start, 't')
         for i in range(0,2):
@@ -312,20 +310,14 @@ class XYscan:
             else:
                 if i:
                     # if fail, the fixture needs to go back to the original position
-                    self.hppcontrol.Tx_send_only(X1_counts, X2_counts, X3_counts, 'p')
-                    timeout = 0
-                    while not self.hppcontrol.Tx_on_target(X1_counts, X2_counts, X3_counts, self.tolerance):
-                        time.sleep(0.2)
-                        timeout += 1
-                        if timeout > 100:
-                            print('Movement Timeout Error')
-                            logging.info('Movement Timeout Error')
-                            return False
+                    # self.hppcontrol.Tx_send_only(X1_counts, X2_counts, X3_counts, 'p')
+                    self.gotoxy(X1_counts, X2_counts, X3_counts, xy='x', doublecheck=False, mode='p')
                     self.update_current_pos('x', X1_counts, X1_counts)
                     return False
                 loss0 = self.loss[-1]
                 pos0 = X1_counts
-                self.hppcontrol.Tx_send_only(X1_counts, X2_counts, X3_counts, 'p')
+                # self.hppcontrol.Tx_send_only(X1_counts, X2_counts, X3_counts, 'p')
+                self.gotoxy(X1_counts, X2_counts, X3_counts, xy='x', doublecheck=False, mode='p')
                 time.sleep(0.2)    
                 self.update_current_pos('x', X1_counts, X1_counts)        
                 self.hppcontrol.Tx_send_only(x1end, x2end, x3end, 't')          
@@ -347,8 +339,6 @@ class XYscan:
         self.save_loss_pos()
         self.pos_ref = self.current_pos[:]
         pos0 = Y1_counts
-        if self.final_adjust:
-            self.hppcontrol.engage_motor(xy='y')
         # use T1's position as position reference
         self.hppcontrol.Ty_send_only(y1start, y2start, y3start,'t')       
         for i in range(0,2):
@@ -368,20 +358,14 @@ class XYscan:
             else:
                 if i:
                     # if fail, go back to original position
-                    self.hppcontrol.Ty_send_only(Y1_counts, Y2_counts, Y3_counts, 'p')
-                    timeout = 0
-                    while not self.hppcontrol.Ty_on_target(Y1_counts, Y2_counts, Y3_counts, self.tolerance):
-                        time.sleep(0.2)     
-                        timeout += 1
-                        if timeout > 100:
-                            print('Movement Timeout Error')
-                            logging.info('Movement Timeout Error')
-                            return False              
+                    # self.hppcontrol.Ty_send_only(Y1_counts, Y2_counts, Y3_counts, 'p')
+                    self.gotoxy(Y1_counts, Y2_counts, Y3_counts, xy='y', doublecheck=False, mode='p')            
                     self.update_current_pos('y', Y1_counts, Y1_counts)
                     return False
                 loss0 = self.loss[-1]
                 pos0 = Y1_counts
-                self.hppcontrol.Ty_send_only(Y1_counts, Y2_counts, Y3_counts, 'p')
+                # self.hppcontrol.Ty_send_only(Y1_counts, Y2_counts, Y3_counts, 'p')
+                self.gotoxy(Y1_counts, Y2_counts, Y3_counts, xy='y', doublecheck=False, mode='p')
                 time.sleep(0.2)
                 self.update_current_pos('y', Y1_counts, Y1_counts)
                 self.hppcontrol.Ty_send_only(y1end, y2end, y3end, 't')               
@@ -1063,7 +1047,7 @@ class XYscan:
                 self.error_flag = True
                 return False
         elif _mode == 'i':
-            if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=True):
+            if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.final_adjust):
                 print('X interp failed')
                 logging.info('X interp failed')
                 self.error_flag = True
@@ -1086,7 +1070,7 @@ class XYscan:
                 self.error_flag = True
                 return False
         elif _mode == 'i':
-            if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=True):
+            if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.final_adjust):
                 print('Y interp failed')
                 logging.info('Y interp failed')
                 self.error_flag = True

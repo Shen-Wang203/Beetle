@@ -382,7 +382,8 @@ class HPP_Control:
             count_temp[i] = count_temp[i] + backlash_counter[i]
         direction = _direc[:]
         # print('Backlash: ', backlash_counter)
-
+        
+        self.engage_motor(axial='x')
         if mode == 't':
             var1 = 't 0 ' + str(count_temp[0]) + '\n'
             var2 = 't 0 ' + str(count_temp[2]) + '\n'
@@ -422,6 +423,7 @@ class HPP_Control:
         direction = _direc[:]
         # print('Backlash: ', backlash_counter)
 
+        self.engage_motor(axial='y')
         if mode == 't':
             var1 = 't 1 ' + str(count_temp[1]) + '\n'
             var2 = 't 1 ' + str(count_temp[3]) + '\n'
@@ -1141,12 +1143,16 @@ class HPP_Control:
                 if self.on_target(_Tcounts, tolerance):
                     return _Tcounts
                 else:
+                    if sum(onTargetFlag) >= 6-i:
+                        return _Tcounts
                     # This tlr is because when disengaged the actual counts will pass the 
                     # target count due to possible inertia, so let's loss the tolerance to
                     # hope that it will disengaged a little early
-                    tlr = tolerance + 2
+                    tlr = tolerance + 2 + i
                     continue
 
             return _Tcounts
 
+        if sum(onTargetFlag) < 6:
+            print('Double Check Failed ' + str(onTargetFlag))
         return _Tcounts
