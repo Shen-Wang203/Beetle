@@ -897,11 +897,18 @@ class HPP_Control:
         # print('Real counts: ', _Tcounts)
         # print('Backlash', backlash_counter)
 
+        #Engage motors
+        #Engage motor and send counts to this motor has to have some time delay in between
+        #otherwise there will have strange bugs to come from Odrive
+        #Because of this, we need to engage motors all together first then send counts
+        for i in range(0,6):
+            if onTargetFlag[i] == 0:
+                self.engage_motor(axial=str(i+1))
+
         change_num = 10000
         # change_num = 4000
         if onTargetFlag[0] == 0:
             # Send T1x
-            self.engage_motor(axial='1')
             if abs(_Tcounts[0] - Tcounts_old[0]) < change_num:
                 var = 'p 0 ' + str(_Tcounts[0]) + ' 0 0' + '\n'
             else:
@@ -910,7 +917,6 @@ class HPP_Control:
 
         if onTargetFlag[1] == 0:
             # Send T1y
-            self.engage_motor(axial='2')
             if abs(_Tcounts[1] - Tcounts_old[1]) < change_num:
                 var = 'p 1 ' + str(_Tcounts[1]) + ' 0 0' + '\n'
             else:
@@ -919,7 +925,6 @@ class HPP_Control:
 
         if onTargetFlag[2] == 0:
             # Send T2x
-            self.engage_motor(axial='3')
             if abs(_Tcounts[2] - Tcounts_old[2]) < change_num:
                 var = 'p 0 ' + str(_Tcounts[2]) + ' 0 0' + '\n'
             else:
@@ -928,7 +933,6 @@ class HPP_Control:
 
         if onTargetFlag[3] == 0:
             # Send T2y
-            self.engage_motor(axial='4')
             if abs(_Tcounts[3] - Tcounts_old[3]) < change_num:
                 var = 'p 1 ' + str(_Tcounts[3]) + ' 0 0' + '\n'
             else:
@@ -937,7 +941,6 @@ class HPP_Control:
 
         if onTargetFlag[4] == 0:
             # Send T3x
-            self.engage_motor(axial='5')
             if abs(_Tcounts[4] - Tcounts_old[4]) < change_num:
                 var = 'p 0 ' + str(_Tcounts[4]) + ' 0 0' + '\n'
             else:
@@ -946,7 +949,6 @@ class HPP_Control:
 
         if onTargetFlag[5] == 0:
             # Send T3y
-            self.engage_motor(axial='6')
             if abs(_Tcounts[5] - Tcounts_old[5]) < change_num:
                 var = 'p 1 ' + str(_Tcounts[5]) + ' 0 0' + '\n'
             else:

@@ -8,29 +8,23 @@ from XYscan import XYscan
 import HPP_Control as control
 # from Curing_Align import Curing_Active_Alignment
 
-logfilename = 'runlog.log'
-logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
+# logfilename = 'runlog.log'
+# logging.basicConfig(filename=logfilename, filemode='w', level=logging.INFO)
 
 
 HPP = BM.BackModel()
 HPP.set_Pivot(np.array([[5], [5], [51.3], [0]]))
 hppcontrol = control.HPP_Control()
-
+xys = XYscan(HPP, hppcontrol)
 # hppcontrol.slow_traj_speed_2()
 # hppcontrol.close_ports()
 
-P0 = [0.0, 0.0, 140.5, 0.5, -0.8, 0.0]
+P0 = [0, 0, 140.5, 0.5, -0.8, 0.0]
 
-xys = XYscan(HPP, hppcontrol)
-xys.tolerance = 2
-xys.final_adjust = True
-hppcontrol.engage_motor()
-# hppcontrol.normal_traj_speed()
-xys.set_starting_point(P0)
-# xys.set_limit_Z(145)
-xys.set_loss_criteria(-4)
-P1 = xys.ps_run()
-hppcontrol.disengage_motor()
+# hppcontrol.clear_errors()
+# hppcontrol.calibration()
+
+xys.send_to_hpp(P0, doublecheck=True)
 
 # cure = Curing_Active_Alignment(HPP, hppcontrol)
 # cure.set_starting_point(P0)
