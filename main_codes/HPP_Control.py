@@ -1135,6 +1135,7 @@ class HPP_Control:
                 for i in range(0,6):
                     if abs(_Tcounts[i] - Tcounts_real[i]) > tolerance:
                         print('Motor ' + str(i+1) + ' Timeout Error')
+                        logging.info('Motor ' + str(i+1) + ' Timeout Error')
                         error_log = error_log + 'Motor ' + str(i+1) + ' Timeout Error' + '\n'
                 return _Tcounts
             if doublecheck:
@@ -1148,7 +1149,7 @@ class HPP_Control:
                     # This tlr is because when disengaged the actual counts will pass the 
                     # target count due to possible inertia, so let's loss the tolerance to
                     # hope that it will disengaged a little early
-                    tlr = tolerance + 2 + i
+                    tlr = tolerance + i + 2
                     continue
 
             return _Tcounts

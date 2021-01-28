@@ -151,7 +151,7 @@ class XYscan:
                 P_final = P1[:]
                 break
 
-            P0 = self.optimZ(P1, doublecheck=self.final_adjust)
+            P0 = self.optimZ(P1, doublecheck=False)
             
             # check error_flag, check_abnormal_loss function can erect this flag
             if self.error_flag:
@@ -1047,7 +1047,7 @@ class XYscan:
                 self.error_flag = True
                 return False
         elif _mode == 'i':
-            if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=self.final_adjust):
+            if not self.Xinterp(Tcounts[0], Tcounts[2], Tcounts[4], doublecheck=False):
                 print('X interp failed')
                 logging.info('X interp failed')
                 self.error_flag = True
@@ -1070,7 +1070,7 @@ class XYscan:
                 self.error_flag = True
                 return False
         elif _mode == 'i':
-            if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=self.final_adjust):
+            if not self.Yinterp(Tcounts[1], Tcounts[3], Tcounts[5], doublecheck=False):
                 print('Y interp failed')
                 logging.info('Y interp failed')
                 self.error_flag = True
@@ -1486,7 +1486,7 @@ class XYscan:
     # takes about 0.168s
     # doublecheck will do second check after disengage the motors
     # if doublecheck is true, don't need engage and disengage before and after this function
-    def send_to_hpp(self, R, doublecheck):   
+    def send_to_hpp(self, R, doublecheck, ignoreError = False):   
         target_mm = R[:]
         target_mm = [round(num, 5) for num in target_mm]
         print(target_mm)
@@ -1499,7 +1499,7 @@ class XYscan:
         # print(target_counts)
         # real_counts = control.Tcounts_real
         error_log = control.error_log
-        if error_log != '':
+        if error_log != '' and not ignoreError:
             # error_flag = True
             return False 
         # else:

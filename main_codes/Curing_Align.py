@@ -56,12 +56,12 @@ class Curing_Active_Alignment(XYscan.XYscan):
             logging.info('Product: VOA')
             self.step_Z = 0.0005
             self.stepScanCounts = 4
-            self.stepAmp = 1.5
+            self.stepAmp = 1
         elif self.product == 2:
             logging.info('Product: SM 1xN')
             self.step_Z = 0.001
             self.stepScanCounts = 4
-            self.stepAmp = 1.5
+            self.stepAmp = 1
         elif self.product == 3:
             logging.info('Product: MM 1xN')
             self.step_Z = 0.0005
@@ -104,7 +104,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
 
         self.final_adjust = True
         self.stepScanCounts = 4
-        self.doublecheck_flag = True
+        self.doublecheck_flag = False
         self.stepScanCounts = self.stepAmp * self.stepScanCounts
         # wait time only works during interp, if doublecheck is on, no need to wait or wait for a short time for powermeter to response
         self.wait_time = 0.2
@@ -190,8 +190,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
                     logging.info('Lower criteria for 0.005')
                 # as an indicate that we are adjusting the fixture
                 self.loss_curing_rec.append(99)    
-                # Z back if xy search failed for 3 times, if after 5min, no z anymore
-                if self.xycount == 3 and (end_time - start_time) < 300:
+                # Z back if xy search failed for 2 times, if after 5min, no z anymore
+                if self.xycount == 2 and (end_time - start_time) < 300:
                     # if self.zcount_loop >= 2 and not self.later_time_flag:
                     if self.zcount_loop >= 2: 
                         P = self.Zstep(P)
@@ -274,7 +274,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         P1 = P0[:]
         P1[2] = P1[2] - self.step_Z
         # self.hppcontrol.engage_motor()
-        if self.send_to_hpp(P1, doublecheck=True):
+        if self.send_to_hpp(P1, doublecheck=True, ignoreError=True):
             # self.hppcontrol.disengage_motor()
             # doublecheck is true, no need to wait
             time.sleep(0.2)
@@ -313,7 +313,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
             _z0 = P1[2]
             _direc0 = _direc1
             # self.hppcontrol.engage_motor()
-            if self.send_to_hpp(P1, doublecheck=True):
+            if self.send_to_hpp(P1, doublecheck=True, ignoreError=True):
                 # self.hppcontrol.disengage_motor()
                 time.sleep(0.2)
                 self.fetch_loss()
@@ -364,7 +364,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
         _z0 = P1[2]
         _direc0 = _direc1        
         # self.hppcontrol.engage_motor()   
-        if not self.send_to_hpp(P1, doublecheck=True):
+        if not self.send_to_hpp(P1, doublecheck=True, ignoreError=True):
             print('Movement Error')
             logging.info('Movement Error')
             self.error_flag = True

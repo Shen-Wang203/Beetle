@@ -247,7 +247,8 @@ class CMDInputThread(QtCore.QThread):
             P0 = self.currentPosition[:]
             
             if StaticVar.productType == "SM1xN":
-                P0[2] -= 0.22
+                # P0[2] -= 0.22
+                pass
             elif StaticVar.productType == "SMVOA":
                 P0[2] -= 0.1
             elif StaticVar.productType == "MM1xN":
