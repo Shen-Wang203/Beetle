@@ -14,7 +14,7 @@ class XYscan:
         self.starting_point = [0,0,138,0,0,0]
         self.error_flag = False
         self.limit_Z = 142
-        self.tolerance = 5
+        self.tolerance = 4
         self.Z_amp = 4
         self.stepScanCounts = 10
         self.final_adjust = False
@@ -175,7 +175,7 @@ class XYscan:
             self.Z_amp = 4
             self.zmode = 'aggressive'
             # self.final_adjust = False
-            self.tolerance = 5
+            self.tolerance = 4
             self.wait_time = 0.1
         # if (-12,-4], still continue scan mode, with normal zmode
         elif loss0 <= self.scanmode_threshold:
@@ -226,7 +226,7 @@ class XYscan:
             self.scanmode = 's'
             self.final_adjust = True
             self.stepScanCounts = 4 
-            self.tolerance = 2 
+            self.tolerance = 1 
             self.wait_time = 0.2
             if self.product == 1:
                 self.Z_amp = 1.2
@@ -241,7 +241,7 @@ class XYscan:
             self.zmode = 'normal'
             self.scanmode = 'i'
             self.final_adjust = True
-            self.tolerance = 2 
+            self.tolerance = 1 
             self.wait_time = 0.2
             if self.product == 1:
                 self.Z_amp = 1.2

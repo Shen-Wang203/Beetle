@@ -459,11 +459,11 @@ class HPP_Control:
         global Tcounts_real
 
         if xy == 'x':
-            # var = 'f 0' + '\n'
-            var = 'r axis0.encoder.shadow_count' + '\n'
+            var = 'd' + '\n'
+            # var = 'r axis0.encoder.shadow_count' + '\n'
         else:
-            # var = 'f 1' + '\n'   
-            var = 'r axis1.encoder.shadow_count' + '\n'     
+            var = 'g' + '\n'   
+            # var = 'r axis1.encoder.shadow_count' + '\n'     
         var = var.encode('utf-8')
         if T == 1:
             Tser1.write(var)
@@ -749,13 +749,13 @@ class HPP_Control:
     def real_time_counts(self, axis):
         global Tcounts_real
         #Check real counts
+        # var0 = 'r axis0.encoder.shadow_count' + '\n'
+        # var0 = 'r axis0.encoder.pos_estimate' + '\n'
+        var0 = 'd' + '\n'
+        # var1 = 'r axis1.encoder.shadow_count' + '\n'
+        # var1 = 'r axis1.encoder.pos_estimate' + '\n'
+        var1 = 'g' + '\n'
         if axis == 0:
-            var0 = 'r axis0.encoder.shadow_count' + '\n'
-            # var0 = 'r axis0.encoder.pos_estimate' + '\n'
-            # var0 = 'f 0' + '\n'
-            var1 = 'r axis1.encoder.shadow_count' + '\n'
-            # var1 = 'r axis1.encoder.pos_estimate' + '\n'
-            # var1 = 'f 1' + '\n'
             try: 
                 T1_real_count = int(self.T1_send(var0))
                 T2_real_count = int(self.T1_send(var1))
@@ -773,7 +773,6 @@ class HPP_Control:
             Tcounts_real = [T1_real_count, T2_real_count, T3_real_count, T4_real_count, T5_real_count, T6_real_count]
             return [T1_real_count, T2_real_count, T3_real_count, T4_real_count, T5_real_count, T6_real_count]
         elif axis == 1:
-            var0 = 'r axis0.encoder.shadow_count' + '\n'
             try: 
                 Tcounts_real[0] = int(self.T1_send(var0))
             except:
@@ -781,35 +780,30 @@ class HPP_Control:
                 Tcounts_real[0] = 299999
             return Tcounts_real[0]
         elif axis == 2:
-            var1 = 'r axis1.encoder.shadow_count' + '\n'
             try:
                 Tcounts_real[1] = int(self.T1_send(var1))
             except:
                 Tcounts_real[1] = 299999
             return Tcounts_real[1]
         elif axis == 3:
-            var0 = 'r axis0.encoder.shadow_count' + '\n'
             try:
                 Tcounts_real[2] = int(self.T2_send(var0))
             except:
                 Tcounts_real[2] = 299999
             return Tcounts_real[2]
         elif axis == 4:
-            var1 = 'r axis1.encoder.shadow_count' + '\n'
             try:
                 Tcounts_real[3] = int(self.T2_send(var1))
             except:
                 Tcounts_real[3] = 299999
             return Tcounts_real[3]
         elif axis == 5:
-            var0 = 'r axis0.encoder.shadow_count' + '\n'
             try:
                 Tcounts_real[4] = int(self.T3_send(var0))
             except:
                 Tcounts_real[4] = 299999
             return Tcounts_real[4]
         elif axis == 6:
-            var1 = 'r axis1.encoder.shadow_count' + '\n'
             try:
                 Tcounts_real[5] = int(self.T3_send(var1)) 
             except:
@@ -961,8 +955,10 @@ class HPP_Control:
 
     def engage_motor(self, axial='0'):
         global motorStatusFlag
-        var0 = 'w axis0.requested_state 8' + '\n'
-        var1 = 'w axis1.requested_state 8' + '\n'
+        # var0 = 'w axis0.requested_state 8' + '\n'
+        var0 = 'j' + '\n'
+        # var1 = 'w axis1.requested_state 8' + '\n'
+        var1 = 'k' + '\n'
         if axial == 'x': 
             if motorStatusFlag[0] == 0:
                 self.T1_send_only(var0)
@@ -1007,8 +1003,10 @@ class HPP_Control:
 
     def disengage_motor(self, axial='0'):
         global motorStatusFlag
-        var0 = 'w axis0.requested_state 1' + '\n'
-        var1 = 'w axis1.requested_state 1' + '\n'
+        # var0 = 'w axis0.requested_state 1' + '\n'
+        var0 = 'm' + '\n'
+        # var1 = 'w axis1.requested_state 1' + '\n'
+        var1 = 'n' + '\n'
         if axial == 'x': 
             self.T1_send_only(var0)
             self.T2_send_only(var0)

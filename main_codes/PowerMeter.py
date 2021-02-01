@@ -1,6 +1,6 @@
 import time
 import math
-import visa
+import pyvisa as visa
 import logging
 from StaticVar import StaticVar
 
