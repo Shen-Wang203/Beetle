@@ -2,172 +2,44 @@ import serial
 import time
 import logging
 
+import serial.tools.list_ports as portslist
+
+T1SerialNumbers = [ "208739844D4D", "207339A04D4D", "207639684D4D", "20803880304E", "2067387E304E", "205D388E304E", "2063388F304E" ]
+T2SerialNumbers = [ "208339834D4D", "2060388E304E", "2061397D4D4D", "2062388F304E", "204F388E304E", "20853881304E", "207B3880304E" ]
+T3SerialNumbers = [ "205C39844D4D", "20813882304E", "207B396A4D4D", "207C397D4D4D", "2065387E304E", "2086388F304E", "2087388E304E" ]
+
+a = portslist.comports()
+for i in range(len(a)):
+    portComNum = a[i].device
+    portSerialNum = a[i].serial_number
+    portDescription = a[i].description
+    if portSerialNum is None:
+        continue
+    if portDescription.find('Native Interface') != -1:
+        continue
+    for j in range(len(T1SerialNumbers)):
+        if portSerialNum == T1SerialNumbers[j]:
+            T1COMPort = portComNum
+            break
+
+    for j in range(len(T2SerialNumbers)):
+        if portSerialNum == T2SerialNumbers[j]:
+            T2COMPort = portComNum
+            break
+
+    for j in range(len(T3SerialNumbers)):
+        if portSerialNum == T3SerialNumbers[j]:
+            T3COMPort = portComNum
+            break
+
 # Timeout:
 # set timeout to x seconds (float allowed) returns immediately when the requested number of bytes are available, 
 # otherwise wait until the timeout expires and return all bytes that were received until then.
 # readline(): read a '\n' terminated line. Do specify a timeout when opening the serial port otherwise it could 
 # block forever if no newline character is received. readlines() ends with either '\n' or timeout
-
-# # Cube PC
-# # COM15: T3
-# Tser3 = serial.Serial('COM15', 115200, timeout=None, stopbits=1)
-# # COM17: T1
-# Tser1 = serial.Serial('COM17', 115200, timeout=None, stopbits=1)
-# # COM20: T2
-# Tser2 = serial.Serial('COM20', 115200, timeout=None, stopbits=1)
-# time.sleep(.5)
-
-# # Personal PC
-# # COM15: T3
-# Tser3 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
-# # COM17: T1
-# Tser1 = serial.Serial('COM4', 115200, timeout=None, stopbits=1)
-# # COM20: T2
-# Tser2 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
-# time.sleep(.5)
-
-# # Company Small PC
-# # COM86: T3
-# Tser3 = serial.Serial('COM86', 115200, timeout=None, stopbits=1)
-# # COM88: T1
-# Tser1 = serial.Serial('COM88', 115200, timeout=None, stopbits=1)
-# # COM87: T2
-# Tser2 = serial.Serial('COM87', 115200, timeout=None, stopbits=1)
-# time.sleep(.5)
-
-# For small PC
-# while True:
-#     stationNum = input('Control Box #: ')
-#     if stationNum == '1':
-#         # Company Small PC
-#         # COM86: T3
-#         Tser3 = serial.Serial('COM89', 115200, timeout=None, stopbits=1)
-#         # COM88: T1
-#         Tser1 = serial.Serial('COM90', 115200, timeout=None, stopbits=1)
-#         # COM87: T2
-#         Tser2 = serial.Serial('COM91', 115200, timeout=None, stopbits=1)
-#     elif stationNum == '2':
-#         pass
-#     elif stationNum == '3':
-#         pass
-#     elif stationNum == '4':
-#         pass
-#     elif stationNum == '5':
-#         pass
-#     elif stationNum == '0':
-#         # Company Small PC
-#         # COM86: T3
-#         Tser3 = serial.Serial('COM86', 115200, timeout=None, stopbits=1)
-#         # COM88: T1
-#         Tser1 = serial.Serial('COM88', 115200, timeout=None, stopbits=1)
-#         # COM87: T2
-#         Tser2 = serial.Serial('COM87', 115200, timeout=None, stopbits=1)
-#     else:
-#         print('Wrong input')
-#         continue
-#     time.sleep(.5)
-#     break
-
-# # For cube PC
-# while True:
-#     stationNum = input('Control Box #: ')
-#     # Shen's PC
-#     # if stationNum == '1':
-#     #     # COM15: T3
-#     #     Tser3 = serial.Serial('COM23', 115200, timeout=None, stopbits=1)
-#     #     # COM17: T1
-#     #     Tser1 = serial.Serial('COM24', 115200, timeout=None, stopbits=1)
-#     #     # COM20: T2
-#     #     Tser2 = serial.Serial('COM26', 115200, timeout=None, stopbits=1)
-
-#     # Jerry's laptop####################################################
-#     if stationNum == '1':
-        # COM15: T3
-# Tser3 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
-#         # COM17: T1
-# Tser1 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
-#         # COM20: T2
-# Tser2 = serial.Serial('COM8', 115200, timeout=None, stopbits=1)
-#     ####################################################################
-
-#     elif stationNum == '2':
-#         # COM27: T2
-#         Tser2 = serial.Serial('COM27', 115200, timeout=None, stopbits=1)
-#         # COM28: T1
-#         Tser1 = serial.Serial('COM28', 115200, timeout=None, stopbits=1)
-#         # COM32: T3
-#         Tser3 = serial.Serial('COM32', 115200, timeout=None, stopbits=1)
-#     elif stationNum == '3':
-#         # COM35: T2
-#         Tser2 = serial.Serial('COM35', 115200, timeout=None, stopbits=1)
-#         # COM36: T1
-#         Tser1 = serial.Serial('COM36', 115200, timeout=None, stopbits=1)
-#         # COM38: T3
-#         Tser3 = serial.Serial('COM38', 115200, timeout=None, stopbits=1)
-#     elif stationNum == '4':
-#         # COM43: T2
-#         Tser2 = serial.Serial('COM43', 115200, timeout=None, stopbits=1)
-#         # COM42: T1
-#         Tser1 = serial.Serial('COM42', 115200, timeout=None, stopbits=1)
-#         # COM46: T3
-#         Tser3 = serial.Serial('COM46', 115200, timeout=None, stopbits=1)
-#     elif stationNum == '5':
-#         # COM50: T2
-#         Tser2 = serial.Serial('COM50', 115200, timeout=None, stopbits=1)
-#         # COM49: T1
-#         Tser1 = serial.Serial('COM49', 115200, timeout=None, stopbits=1)
-#         # COM51: T3
-#         Tser3 = serial.Serial('COM51', 115200, timeout=None, stopbits=1)
-#     elif stationNum == '0':
-#         # COM15: T3
-#         Tser3 = serial.Serial('COM15', 115200, timeout=None, stopbits=1)
-#         # COM17: T1
-#         Tser1 = serial.Serial('COM17', 115200, timeout=None, stopbits=1)
-#         # COM20: T2
-#         Tser2 = serial.Serial('COM20', 115200, timeout=None, stopbits=1)
-#     else:
-#         print('Wrong input')
-#         continue
-#     time.sleep(.5)
-#     break
-
-# Production Room PC
-# # Control Box #1
-# # COM5: T3
-# Tser3 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
-# # COM6: T1
-# Tser1 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
-# # COM4: T2
-# Tser2 = serial.Serial('COM4', 115200, timeout=None, stopbits=1)
-# # Control Box #4
-# # COM9: T3
-# Tser3 = serial.Serial('COM9', 115200, timeout=0.1, stopbits=1)
-# # COM10: T1
-# Tser1 = serial.Serial('COM10', 115200, timeout=0.1, stopbits=1)
-# # COM8: T2
-# Tser2 = serial.Serial('COM8', 115200, timeout=0.1, stopbits=1)
-# Control Box #5
-# # COM14: T3
-# Tser3 = serial.Serial('COM14', 115200, timeout=0.1, stopbits=1)
-# # COM13: T1
-# Tser1 = serial.Serial('COM13', 115200, timeout=0.1, stopbits=1)
-# # COM12: T2
-# Tser2 = serial.Serial('COM12', 115200, timeout=0.1, stopbits=1)
-# Control box #6
-# COM4: T3
-Tser3 = serial.Serial('COM6', 115200, timeout=None, stopbits=1)
-# COM6: T1
-Tser1 = serial.Serial('COM7', 115200, timeout=None, stopbits=1)
-# COM5: T2
-Tser2 = serial.Serial('COM5', 115200, timeout=None, stopbits=1)
-# Control box #2
-# # COM15: T3
-# Tser3 = serial.Serial('COM15', 115200, timeout=1, stopbits=1)
-# # COM10: T1
-# Tser1 = serial.Serial('COM10', 115200, timeout=1, stopbits=1)
-# # COM9: T2
-# Tser2 = serial.Serial('COM9', 115200, timeout=1, stopbits=1)
-
+Tser1 = serial.Serial(T1COMPort, 115200, timeout=None, stopbits=1)
+Tser2 = serial.Serial(T2COMPort, 115200, timeout=None, stopbits=1)
+Tser3 = serial.Serial(T3COMPort, 115200, timeout=None, stopbits=1)
 
 error_log = ''
 Tcounts_real = [0,0,0,0,0,0]
