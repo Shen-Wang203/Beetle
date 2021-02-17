@@ -226,7 +226,7 @@ class XYscan:
             self.scanmode = 's'
             self.final_adjust = True
             self.stepScanCounts = 4 
-            self.tolerance = 1 
+            self.tolerance = 2 
             self.wait_time = 0.2
             if self.product == 1:
                 self.Z_amp = 1.2
@@ -241,7 +241,7 @@ class XYscan:
             self.zmode = 'normal'
             self.scanmode = 'i'
             self.final_adjust = True
-            self.tolerance = 1 
+            self.tolerance = 2 
             self.wait_time = 0.2
             if self.product == 1:
                 self.Z_amp = 1.2
