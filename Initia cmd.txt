@@ -39,7 +39,6 @@ T2
 odrivetool --serial-number 2062388F304E
 T3
 odrivetool --serial-number 207C397D4D4D
-Potential Issues: T1y Z signal doesn't work
 
 Control Box #4:
 T1

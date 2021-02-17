@@ -150,7 +150,7 @@ class CMDInputThread(QtCore.QThread):
                 P = self.P3
                 self.HPP.set_Pivot(np.array([[0], [0], [75], [0]]))
             # Engage motors, do close-loop controls
-            # self.hppcontrol.engage_motor()
+            self.hppcontrol.engage_motor()
             self.sig2.emit(1)
             # Read real time counts
             # Tcounts_old = self.hppcontrol.real_time_counts(0)
@@ -193,7 +193,7 @@ class CMDInputThread(QtCore.QThread):
 
         elif commands == 'close':
             error_log = ''
-            # self.hppcontrol.engage_motor()
+            self.hppcontrol.engage_motor()
             self.sig2.emit(1)
             #go to a reset position so that index can be found on next startup.
             T_reset = [-2000, -2000, -2000, -2000, -2000, -2000]
@@ -232,7 +232,7 @@ class CMDInputThread(QtCore.QThread):
             print('Command mm: ', target_mm)       
             Tmm = self.HPP.findAxialPosition(X, Y, Z, Rx, Ry, Rz)  
             
-            # self.hppcontrol.engage_motor()
+            self.hppcontrol.engage_motor()
             self.sig2.emit(1)
             control.onTargetFlag = [0,0,0,0,0,0]
             target_counts = self.hppcontrol.run_to_Tmm(Tmm, tolerance=2, doublecheck=True)
@@ -241,7 +241,7 @@ class CMDInputThread(QtCore.QThread):
 
         elif commands == 'align':
             self.runobject = XYscan(self.HPP, self.hppcontrol)
-            # self.hppcontrol.engage_motor()
+            self.hppcontrol.engage_motor()
             self.sig2.emit(2)
             # P0 = [0,0,140,-0.3,-0.4,0]
             P0 = self.currentPosition[:]
@@ -280,8 +280,8 @@ class CMDInputThread(QtCore.QThread):
                 time.sleep(0.3)
 
             # After alignment, back 10um for back-align
-            self.currentPosition[2] = self.currentPosition[2] - 0.01
-            self.runobject.send_to_hpp(self.currentPosition, doublecheck=True)
+            # self.currentPosition[2] = self.currentPosition[2] - 0.01
+            # self.runobject.send_to_hpp(self.currentPosition, doublecheck=True)
 
             # file1 = open("pos.txt","w+")
             # file2 = open("loss.txt","w+")
@@ -300,7 +300,7 @@ class CMDInputThread(QtCore.QThread):
             logging.info('')
             logging.info('Back-Align Starts')
             self.runobject = XYscan(self.HPP, self.hppcontrol)
-            # self.hppcontrol.engage_motor()
+            self.hppcontrol.engage_motor()
             self.sig2.emit(3)
             P0 = self.currentPosition[:]
             # Use interp method when loss is larger than -8 to have more accurate xy scan
@@ -336,6 +336,7 @@ class CMDInputThread(QtCore.QThread):
                 self.runobject.set_loss_criteria(self.loss_max-0.005)
             else:
                 self.runobject.set_loss_criteria(self.loss_max-0.01)
+            self.hppcontrol.engage_motor()
             P1 = self.runobject.curing_run2(self.currentPosition)
             try:
                 self.currentPosition = P1[:]

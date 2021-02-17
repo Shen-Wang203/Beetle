@@ -37,9 +37,15 @@ for i in range(len(a)):
 # otherwise wait until the timeout expires and return all bytes that were received until then.
 # readline(): read a '\n' terminated line. Do specify a timeout when opening the serial port otherwise it could 
 # block forever if no newline character is received. readlines() ends with either '\n' or timeout
-Tser1 = serial.Serial(T1COMPort, 115200, timeout=None, stopbits=1)
-Tser2 = serial.Serial(T2COMPort, 115200, timeout=None, stopbits=1)
-Tser3 = serial.Serial(T3COMPort, 115200, timeout=None, stopbits=1)
+# Tser1 = serial.Serial('COM12', 115200, timeout=None, stopbits=1)
+# Tser2 = serial.Serial('COM11', 115200, timeout=None, stopbits=1)s
+# Tser3 = serial.Serial('COM8', 115200, timeout=None, stopbits=1)
+try:
+    Tser1 = serial.Serial(T1COMPort, 115200, timeout=None, stopbits=1)
+    Tser2 = serial.Serial(T2COMPort, 115200, timeout=None, stopbits=1)
+    Tser3 = serial.Serial(T3COMPort, 115200, timeout=None, stopbits=1)
+except:
+    print("Connection Error")
 
 error_log = ''
 Tcounts_real = [0,0,0,0,0,0]
@@ -255,7 +261,7 @@ class HPP_Control:
         direction = _direc[:]
         # print('Backlash: ', backlash_counter)
         
-        self.engage_motor(axial='x')
+        # self.engage_motor(axial='x')
         if mode == 't':
             var1 = 't 0 ' + str(count_temp[0]) + '\n'
             var2 = 't 0 ' + str(count_temp[2]) + '\n'
@@ -295,7 +301,7 @@ class HPP_Control:
         direction = _direc[:]
         # print('Backlash: ', backlash_counter)
 
-        self.engage_motor(axial='y')
+        # self.engage_motor(axial='y')
         if mode == 't':
             var1 = 't 1 ' + str(count_temp[1]) + '\n'
             var2 = 't 1 ' + str(count_temp[3]) + '\n'
@@ -714,28 +720,28 @@ class HPP_Control:
         # Check if within target
         if onTargetFlag[0] == 0 and (T_current[0] >= (Tcounts[0] - tolerance) and T_current[0] <= (Tcounts[0] + tolerance)):
             onTargetFlag[0] = 1
-            if motorStatusFlag[0]:
-                self.disengage_motor(axial='1')
+            # if motorStatusFlag[0]:
+                # self.disengage_motor(axial='1')
         if onTargetFlag[1] == 0 and (T_current[1] >= (Tcounts[1] - tolerance) and T_current[1] <= (Tcounts[1] + tolerance)):
             onTargetFlag[1] = 1
-            if motorStatusFlag[1]:
-                self.disengage_motor(axial='2')
+            # if motorStatusFlag[1]:
+                # self.disengage_motor(axial='2')
         if onTargetFlag[2] == 0 and (T_current[2] >= (Tcounts[2] - tolerance) and T_current[2] <= (Tcounts[2] + tolerance)):
             onTargetFlag[2] = 1
-            if motorStatusFlag[2]:
-                self.disengage_motor(axial='3')
+            # if motorStatusFlag[2]:
+                # self.disengage_motor(axial='3')
         if onTargetFlag[3] == 0 and (T_current[3] >= (Tcounts[3] - tolerance) and T_current[3] <= (Tcounts[3] + tolerance)):
             onTargetFlag[3] = 1
-            if motorStatusFlag[3]:
-                self.disengage_motor(axial='4')
+            # if motorStatusFlag[3]:
+                # self.disengage_motor(axial='4')
         if onTargetFlag[4] == 0 and (T_current[4] >= (Tcounts[4] - tolerance) and T_current[4] <= (Tcounts[4] + tolerance)):
             onTargetFlag[4] = 1
-            if motorStatusFlag[4]:
-                self.disengage_motor(axial='5')
+            # if motorStatusFlag[4]:
+                # self.disengage_motor(axial='5')
         if onTargetFlag[5] == 0 and (T_current[5] >= (Tcounts[5] - tolerance) and T_current[5] <= (Tcounts[5] + tolerance)):
             onTargetFlag[5] = 1
-            if motorStatusFlag[5]:
-                self.disengage_motor(axial='6')       
+            # if motorStatusFlag[5]:
+                # self.disengage_motor(axial='6')       
 
         if sum(onTargetFlag) < 6:
             return False
@@ -769,9 +775,9 @@ class HPP_Control:
         #Engage motor and send counts to this motor has to have some time delay in between
         #otherwise there will have strange bugs to come from Odrive
         #Because of this, we need to engage motors all together first then send counts
-        for i in range(0,6):
-            if onTargetFlag[i] == 0:
-                self.engage_motor(axial=str(i+1))
+        # for i in range(0,6):
+        #     if onTargetFlag[i] == 0:
+                # self.engage_motor(axial=str(i+1))
 
         change_num = 10000
         # change_num = 4000

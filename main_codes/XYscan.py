@@ -187,8 +187,8 @@ class XYscan:
             # self.final_adjust = False
         # if (-4,-2], and stepping-at-final self.strategy, then step mode
         elif loss0 <= self.stepmode_threshold and self.strategy == 1:  
-            # self.scanmode = 's'
-            self.scanmode = 'i'
+            self.scanmode = 's'
+            # self.scanmode = 'i'
             self.final_adjust = True
             self.tolerance = 2
             self.wait_time = 0.1

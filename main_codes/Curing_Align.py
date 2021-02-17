@@ -56,21 +56,21 @@ class Curing_Active_Alignment(XYscan.XYscan):
             logging.info('Product: VOA')
             self.step_Z = 0.0005
             self.stepScanCounts = 4
-            self.stepAmp = 1
+            self.stepAmp = 1.5
         elif self.product == 2:
             logging.info('Product: SM 1xN')
             self.step_Z = 0.001
             self.stepScanCounts = 4
-            self.stepAmp = 1
+            self.stepAmp = 1.5
         elif self.product == 3:
             logging.info('Product: MM 1xN')
             self.step_Z = 0.0005
-            # self.stepScanCounts = 8
-            self.stepScanCounts = 14
+            self.stepScanCounts = 6
+            # self.stepScanCounts = 14
             self.buffer_value_big = 0.007
             self.buffer_value_small = 0.007
             self.lower_criteria = 0.01
-            self.stepAmp = 1
+            self.stepAmp = 2.5
 
     # End: time reach or loss doesn't change
     # Loss_criteria at curing should be 0.5 smaller than alignment, while still 0.5 smaller than spec
@@ -103,9 +103,8 @@ class Curing_Active_Alignment(XYscan.XYscan):
         self.current_pos = P[:]
 
         self.final_adjust = True
-        self.stepScanCounts = 4
         self.doublecheck_flag = False
-        self.stepScanCounts = self.stepAmp * self.stepScanCounts
+        self.stepScanCounts = int(self.stepAmp * self.stepScanCounts)
         # wait time only works during interp, if doublecheck is on, no need to wait or wait for a short time for powermeter to response
         self.wait_time = 0.2
         start_time = time.time()
@@ -127,9 +126,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 logging.info('Reach Time Limit')
                 print('Reach Time Limit')
                 break             
-            # elif (end_time - start_time) > 1800 and (end_time - start_time) < 1802:
-            #     print('Reach 30 min')
-            #     logging.info('Reach 30 min')
             elif not self.later_time_flag and (end_time - start_time) > 150:
                 # logging.info('Reach 3 min')
                 # print('Reach 3 min')
@@ -143,7 +139,6 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 self.xystep_limit = True
                 self.loss = []
                 self.new_crit_buffer = 0.002
-                self.stepScanCounts = self.stepScanCounts / self.stepAmp
 
                 # self.mode = 't'               
                 # for late time, loose the loss criteria to reduce movement times
@@ -154,6 +149,7 @@ class Curing_Active_Alignment(XYscan.XYscan):
                 print('XY step always go back is on')
                 self.xystep_gobacktolast = True
                 # self.new_crit_buffer = 0.002
+                self.stepScanCounts = int(self.stepScanCounts / self.stepAmp)
     
             time.sleep(0.5)
             self.fetch_loss()    
