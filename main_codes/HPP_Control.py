@@ -37,15 +37,12 @@ for i in range(len(a)):
 # otherwise wait until the timeout expires and return all bytes that were received until then.
 # readline(): read a '\n' terminated line. Do specify a timeout when opening the serial port otherwise it could 
 # block forever if no newline character is received. readlines() ends with either '\n' or timeout
-# Tser1 = serial.Serial('COM12', 115200, timeout=None, stopbits=1)
-# Tser2 = serial.Serial('COM11', 115200, timeout=None, stopbits=1)s
-# Tser3 = serial.Serial('COM8', 115200, timeout=None, stopbits=1)
 try:
-    Tser1 = serial.Serial(T1COMPort, 115200, timeout=None, stopbits=1)
-    Tser2 = serial.Serial(T2COMPort, 115200, timeout=None, stopbits=1)
-    Tser3 = serial.Serial(T3COMPort, 115200, timeout=None, stopbits=1)
+    Tser1 = serial.Serial(T1COMPort, 115200, timeout=0.2, write_timeout=0.2, stopbits=1)
+    Tser2 = serial.Serial(T2COMPort, 115200, timeout=0.2, write_timeout=0.2, stopbits=1)
+    Tser3 = serial.Serial(T3COMPort, 115200, timeout=0.2, write_timeout=0.2, stopbits=1)
 except:
-    print("Connection Error")
+    print('Control Box Connection Error')
 
 error_log = ''
 Tcounts_real = [0,0,0,0,0,0]
@@ -200,7 +197,10 @@ class HPP_Control:
     # Because timeout is None, readline() will wait until \n has received, so we don't need to delay a time
     def T1_send(self, var):
         var = var.encode('utf-8')
-        Tser1.write(var)
+        try:
+            Tser1.write(var)
+        except serial.SerialTimeoutException:
+            print('T1 Write TimeOut')
         return Tser1.readline().decode('utf-8')
 
     def T1_send_only(self, var):
@@ -209,7 +209,10 @@ class HPP_Control:
 
     def T2_send(self, var):
         var = var.encode('utf-8')
-        Tser2.write(var)
+        try:
+            Tser2.write(var)
+        except serial.SerialTimeoutException:
+            print('T2 Write TimeOut')
         return Tser2.readline().decode('utf-8')
 
     def T2_send_only(self, var):
@@ -218,7 +221,10 @@ class HPP_Control:
 
     def T3_send(self, var):
         var = var.encode('utf-8')
-        Tser3.write(var)
+        try:
+            Tser3.write(var)
+        except serial.SerialTimeoutException:
+            print('T3 Write Timeout')
         return Tser3.readline().decode('utf-8')
 
     def T3_send_only(self, var):
@@ -316,66 +322,11 @@ class HPP_Control:
         Tser1.write(var1)
         Tser2.write(var2)
         Tser3.write(var3)       
-        
-
-    # # for total (send and receive) byte less than 26
-    # def T1_get_counts(self, var):
-    #     var = var.encode('utf-8')
-    #     Tser1.write(var)
-    #     time.sleep(0.003)    
-    #     # for use with 'f 0' commands, return float current counts
-    #     if Tser1.in_waiting:
-    #         fstr = Tser1.readline().decode('utf-8')
-    #         for i in range(0,len(fstr)):
-    #             if fstr[i] == ' ':
-    #                 break
-    #         return float(fstr[0:i])
-
-    # T is 1 2 or 3; xy is 'x' or 'y'
-    # real counts, doesn't include backlash counts
-    def T_get_counts(self, T, xy):
-        global Tcounts_real
-
-        if xy == 'x':
-            var = 'd' + '\n'
-            # var = 'r axis0.encoder.shadow_count' + '\n'
-        else:
-            var = 'g' + '\n'   
-            # var = 'r axis1.encoder.shadow_count' + '\n'     
-        var = var.encode('utf-8')
-        if T == 1:
-            Tser1.write(var)
-            Tcount = Tser1.readline().decode('utf-8')         
-            if xy == 'x':
-                Tcounts_real[0] = int(Tcount)
-            else:
-                Tcounts_real[1] = int(Tcount)
-        elif T == 2:
-            Tser2.write(var)
-            Tcount = Tser2.readline().decode('utf-8')
-            if xy == 'x':
-                Tcounts_real[2] = int(Tcount)
-            else:
-                Tcounts_real[3] = int(Tcount)
-        else:
-            Tser3.write(var)
-            Tcount = Tser3.readline().decode('utf-8')
-            if xy == 'x':
-                Tcounts_real[4] = int(Tcount)
-            else:
-                Tcounts_real[5] = int(Tcount)
-
-        return int(Tcount)
-    
 
     def Tx_on_target(self, x1, x2, x3, tolerance):
         global backlash_counter
 
         # real counts minus backlash counts
-        # x1_current = self.T_get_counts(1, 'x') - backlash_counter[0]
-        # x2_current = self.T_get_counts(2, 'x') - backlash_counter[2]
-        # x3_current = self.T_get_counts(3, 'x') - backlash_counter[4]
-
         x1_current = self.real_time_counts(1) - backlash_counter[0]
         x2_current = self.real_time_counts(3) - backlash_counter[2]
         x3_current = self.real_time_counts(5) - backlash_counter[4]
@@ -395,10 +346,6 @@ class HPP_Control:
         global backlash_counter
 
         # real counts minus backlash counts
-        # y1_current = self.T_get_counts(1, 'y') - backlash_counter[1]
-        # y2_current = self.T_get_counts(2, 'y') - backlash_counter[3]
-        # y3_current = self.T_get_counts(3, 'y') - backlash_counter[5]
-
         y1_current = self.real_time_counts(2) - backlash_counter[1]
         y2_current = self.real_time_counts(4) - backlash_counter[3]
         y3_current = self.real_time_counts(6) - backlash_counter[5]        
